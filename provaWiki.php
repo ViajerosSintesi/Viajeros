@@ -4,4 +4,5 @@ $json = file_get_contents('http://es.wikipedia.org/w/api.php?format=php&action=q
 
 echo $json;
 
+
 ?>
