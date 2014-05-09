@@ -1,33 +1,74 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Web Viajeros</title>
-	
+<meta charset="UTF-8">
+<title>Web Viajeros</title>
+
 <!--para login de google
 <script src="js/loginGoogle.js"></script>
-	<link rel="stylesheet" href="css/butonGmail.css">
+<link rel="stylesheet" href="css/butonGmail.css">
 <script type="text/javascript">
- 
-  (function() {
-    var po = document.createElement('script');
-    po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(po, s);
-  })();
-  </script>
-  <span class="label">Sign in with:</span>
-  <div id="customBtn" class="customGPlusSignIn">
-    <span class="icon"></span>
-    <span class="buttonText">Google</span>
+
+(function() {
+var po = document.createElement('script');
+po.type = 'text/javascript'; po.async = true;
+po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(po, s);
+})();
+</script>
+<span class="label">Sign in with:</span>
+<div id="customBtn" class="customGPlusSignIn">
+<span class="icon"></span>
+<span class="buttonText">Google</span>
+</div>
+-->
+<script src="js/jquery-2.1.1.min.js"></script>
+<!--<script src="bootstrap/js/bootstrap.min.js"></script>-->
+<script src="js/index.js"></script>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="login">
+   <form role="form" id="login">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Nombre de Usuario</label>
+    <input type="text" class="form-control" id="username" placeholder="Aqui el usuario">
   </div>
-  -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  </head>
-  <body>
-  
-  
-  
+  <div class="form-group">
+    <label for="exampleInputPassword1">Contraseña</label>
+    <input type="password" class="form-control" id="password" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-default">Entra</button>
+</form>
+<button class="btn btn-default"  id="registrarse">
+  registrate
+</button>
+</div>
+<form id="registro">
+     <div class="form-group">
+    <label for="InputUsername">Nombre de Usuario</label>
+    <input type="text" class="form-control" id="usernameReg" placeholder="Aqui el usuario">
+  </div>
+   <div class="form-group">
+    <label for="inputPassword">Introduce el mail</label>
+    <input type="email" class="form-control" id="mailReg" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="inputPassword">Contraseña</label>
+    <input type="password" class="form-control" id="passReg" placeholder="Password">
+  </div>
+  <div class="form-group" id="divrepPass">
+    <label for="inputPassword">repite la contraseña</label>
+    <input type="password" class="form-control" id="repeatPassReg" placeholder="repeatPassword">
+  </div>
+  <button type="submit" class="btn btn-default" id="btnRegistro">Registrate</button>
+</form>
+</div>
+
+
+</div>
 </body>
 </html>
