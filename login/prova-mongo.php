@@ -1,5 +1,0 @@
-<?php
-$connection = new Mongo();
-
-
-?>
