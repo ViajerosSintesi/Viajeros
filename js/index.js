@@ -2,8 +2,24 @@ $(document).ready(function(){
     $("#registro").hide();
     $("#registrarse").click(function(){
         $("#registro").show();
-        $(".login").hide();
+        $("#login").hide();
+        $("#registrarse").hide();
     });
+    
+    $("#btnLogin").click(function(){
+          var mail = $("#emailLog").val();
+          var pass = $("#passLog").val();
+          
+        $.ajax({
+            type: "POST",
+            url: "php/controlLogin.php",
+            data: {"mail":mail,"pass":pass, "login":1}
+        })
+        .done(function(data){
+              console.log(data);
+        });
+    });
+    
     
     $("#btnRegistro").click(function(){
     var user = $("#usernameReg").val();
@@ -13,8 +29,11 @@ $(document).ready(function(){
     if(pass == rePass){
         $.ajax({
             type: "POST",
-            url: "php/registro.php",
+            url: "php/controlRegistro.php",
             data: {"user":user, "mail":mail,"pass":pass }
+        })
+        .done(function(data){
+              console.log(data);
         });
     }else{
         alert("error repite contraseña");
