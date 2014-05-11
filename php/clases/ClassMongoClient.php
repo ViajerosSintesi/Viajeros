@@ -39,7 +39,7 @@ class DBMongo{
 	}
 
 	public function findCollection($query=""){
-		$cursor = $this->collectionNow->find($query);
+		$cursor = $this->colectionNow->find($query);
 		return $cursor;
 	}
 
@@ -57,6 +57,9 @@ class DBMongo{
 
 	public function getCollection(){
 		return $this->colectionNow;
+	}
+	public function findOneCollection($query=""){
+	      return $this->colectionNow->findOne($query);
 	}
 }
 

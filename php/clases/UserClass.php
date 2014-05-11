@@ -50,7 +50,7 @@ class User{
 			$this->bbdd->insertar($this->userInArray);
 		}
 	}
-public function userToArray(){
+      public function userToArray(){
 		$this->userInArray = array(
 			'_id' => $this->id,
 			'username' => $this->username,
@@ -58,6 +58,28 @@ public function userToArray(){
 			'edad' => $this->edad
 			//'email' => $this->email
 			);
+	}
+      public function comproveLogin(){
+	    $queryForId = array('_id' => $this->id);
+	    $retorn = 0;
+	    if($this->bbdd->contar($queryForId)){
+	    	$queryForPass = array('_id' => $this->id,'pass' => $this->password);
+	    	if($this->bbdd->contar($queryForPass)){
+	    		$retorn = 1;
+	    	}
+	    }
+	    return $retorn;
+	}
+	public function cogeValoresSegunId(){
+		$queryForId = array('_id' => $this->id);
+		if($this->bbdd->contar($queryForId)){
+			$user = $this->bbdd->findOneCollection($queryForId);
+			
+			$this->username = $user['username'];
+			$this->edad = $user['edad'];
+			$this->pass = $user['pass'];
+
+		}
 	}
 }
 ?>
