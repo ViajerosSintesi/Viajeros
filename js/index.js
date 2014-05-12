@@ -33,7 +33,7 @@ $(document).ready(function(){
             data: {"user":user, "mail":mail,"pass":pass }
         })
         .done(function(data){
-              console.log(data);
+             
         });
     }else{
         alert("error repite contraseña");

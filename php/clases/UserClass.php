@@ -10,6 +10,8 @@ require_once("ClassMongoClient.php");
 * 		pass: password,
 * 		edad: int,
 * 	  	email: mail->redundante?
+*       activado:bool,
+*       codActivacion: uniqId()
 * 	}
 * 	ha medida que se vaya agrandando hay que meter mas informacion
 * 	como ciudades, baneos, etc...
@@ -22,6 +24,8 @@ class User{
 	private $username = null;
 	private $password = null;
 	private $edad = null;
+	private $activado = null;
+	private $codActivacion = null;
 	//private $email = null;
 	private $userInArray;
 	
@@ -33,10 +37,14 @@ class User{
 	public function setId($id){$this->id = $id;}
 	public function getUsername(){return $this->username;}
 	public function setUsername($username){$this->username = $username;}
-	public function getPassword(){return $this->password;}
-	public function setPassword($password){$this->password = $password;}
+	public function getPassword(){return md5($this->password);}
+	public function setPassword($password){$this->password = md5($password);}
 	public function getEdad(){return $this->edad;}
 	public function setEdad($edad){$this->edad = $edad;}
+	public function getActivado(){return $this->activado;}
+	public function setActivado($activado){$this->activado = $activado;}
+	public function getCodActivacion(){return $this->codActivacion;}
+	public function setCodActivacion($CodActivacion){$this->codActivacion = $CodActivacion;}
 	//public function getEmail(){return $this->email;}
 	//public function setEmail($email){$this->email = $email;}
     
@@ -45,17 +53,23 @@ class User{
 	}
 
 	public function guardarUser(){
+	      $retorn = 0;
 	    $this->userToArray();
 		if(!$this->userIfExistInBBDD()){
 			$this->bbdd->insertar($this->userInArray);
+			$retorn = 1;
 		}
+		return $retorn;
 	}
       public function userToArray(){
 		$this->userInArray = array(
 			'_id' => $this->id,
 			'username' => $this->username,
 			'pass' => $this->password,
-			'edad' => $this->edad
+			'edad' => $this->edad,
+			'activado' => $this->activado,
+			'codActivacion' => $this->codActivacion
+
 			//'email' => $this->email
 			);
 	}
@@ -64,8 +78,10 @@ class User{
 	    $retorn = 0;
 	    if($this->bbdd->contar($queryForId)){
 	    	$queryForPass = array('_id' => $this->id,'pass' => $this->password);
-	    	if($this->bbdd->contar($queryForPass)){
-	    		$retorn = 1;
+	    	if($user = $this->bbdd->findOneCollection($queryForPass)){
+	    	      if($user["activado"]){
+	    	            $retorn = 1;
+	    	      }else {$retorn = 2;}
 	    	}
 	    }
 	    return $retorn;
@@ -77,9 +93,29 @@ class User{
 			
 			$this->username = $user['username'];
 			$this->edad = $user['edad'];
-			$this->pass = $user['pass'];
+			$this->password = $user['pass'];
+			$this->activado = $user['activado'];
+			$this->codActivacion = $user['codActivacion'];
 
 		}
 	}
+	public function enviaEmailConfirm(){
+
+		$url = "https://viajeros-c9-txemens.c9.io/php/controlLogin.php?verificar=".$this->codActivacion;
+		$cadena = file_get_contents("../email.html");
+		$diccionario = array('username' => $this->username,
+							 'url' => $url
+							);
+		foreach ($diccionario as $key => $value) {
+			 $cadena = str_replace('['.$key.']',$value,$cadena);
+		}
+
+		$cabeceras = 'From: webmaster@example.com' . "\r\n" .
+    				'Reply-To: webmaster@example.com' . "\r\n" .
+   					 'X-Mailer: PHP/' . phpversion();
+
+		mail($this->id, 'activacion', $cadena, $cabeceras);
+	}
+	
 }
 ?>

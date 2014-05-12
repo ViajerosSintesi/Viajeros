@@ -13,8 +13,14 @@
 		$newUser->setUsername($username);
 		$newUser->setId($mail);
 		$newUser->setPassword($password);
+		$newUser->setCodActivacion(md5($mail));
+		$newUser->setActivado(0);
 		//$newUser->setEdad($edad);
-		$newUser->guardarUser();
+		$returnLogin = $newUser->guardarUser();
+		$newUser->enviaEmailConfirm();
+		echo json_encode(array( "notice"=>$returnLogin));
+		
+		
 	}
 	
 

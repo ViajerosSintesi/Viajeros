@@ -17,8 +17,8 @@ class DBMongo{
 	}
 
 	public function conectar(){
-	    $this->dbUser = "";
-	    $this->dbPass = "";
+	    $this->dbUser = "txemens";
+	    $this->dbPass = "h0lita";
 	    $this->db = "viajeros";
 	    $this->server = "mongodb://".$this->dbUser.":".$this->dbPass."@ds043329.mongolab.com:43329/viajeros";
 		$this->conexion = new Mongo($this->server);
