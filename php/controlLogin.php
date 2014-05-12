@@ -10,10 +10,10 @@
 		$user->setId($mail);
 		$user->setPassword($password);
 		
-		if($user->comproveLogin()){
+		if($notice = $user->comproveLogin()){
 		      $user->cogeValoresSegunId();
 		      $_SESSION['user'] = $user;
-		      echo "hola ".$user->getUsername();
+		      echo json_encode(array( "notice"=>$notice));
 		}
 		
       }

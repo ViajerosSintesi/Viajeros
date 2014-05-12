@@ -110,8 +110,8 @@ class User{
 			 $cadena = str_replace('['.$key.']',$value,$cadena);
 		}
 
-		$cabeceras = 'From: webmaster@example.com' . "\r\n" .
-    				'Reply-To: webmaster@example.com' . "\r\n" .
+		$cabeceras = 'From: no-reply@viajeros.com' . "\r\n" .
+    				'Reply-To: no-reply@viajeros.com' . "\r\n" .
    					 'X-Mailer: PHP/' . phpversion();
 
 		mail($this->id, 'activacion', $cadena, $cabeceras);

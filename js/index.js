@@ -16,7 +16,16 @@ $(document).ready(function(){
             data: {"mail":mail,"pass":pass, "login":1}
         })
         .done(function(data){
-              console.log(data);
+                var not = $.parseJSON(data);
+             if(!not.notice){
+                 alert("no te has logueado");
+             }
+             if(not.notice == 1){
+                   alert("Has entrado");
+             }
+             if(not.notice == 2){
+                   alert("no has activado la cuenta, mira en tu email");
+             }
         });
     });
     
@@ -33,7 +42,12 @@ $(document).ready(function(){
             data: {"user":user, "mail":mail,"pass":pass }
         })
         .done(function(data){
-             
+              var not = $.parseJSON(data);
+             if(!not.notice){
+                 alert("no ha podido registrarse, prueva con otro email");
+             }else{
+                   alert("Enhorabuena! Mira en tu correo y activalo!");
+             }
         });
     }else{
         alert("error repite contraseña");
