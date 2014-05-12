@@ -52,7 +52,8 @@ class DBMongo{
 	}
 
 	public function actualiza($query, $newData,$opt=""){
-		$this->colectionNow->update($query, $newData, $opt);
+	      if($opt=="")$this->colectionNow->update($query, $newData);
+		else $this->colectionNow->update($query, $newData, $opt);
 	}
 
 	public function getCollection(){
