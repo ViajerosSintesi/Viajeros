@@ -15,8 +15,8 @@
 		$newciudad->setlengua($lengua);
 		$newciudad->setusuarios_id($usuarios_id);
 
-		$returnLogin = $newciudad->guardarUser();
-		echo json_encode(array( "notice"=>$returnLogin));
+		$returnCiudad = $newciudad->guardarciudades();
+		echo json_encode(array( "notice"=>$returnCiudad));
 		
 		
 	}
