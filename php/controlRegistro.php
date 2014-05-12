@@ -13,7 +13,7 @@
 		$newUser->setUsername($username);
 		$newUser->setId($mail);
 		$newUser->setPassword($password);
-		$newUser->setCodActivacion(md5($mail));
+		$newUser->setCodActivacion(base64_encode($mail));
 		$newUser->setActivado(0);
 		//$newUser->setEdad($edad);
 		$returnLogin = $newUser->guardarUser();
@@ -21,6 +21,20 @@
 		echo json_encode(array( "notice"=>$returnLogin));
 		
 		
+	}
+	if(filter_has_var(INPUT_GET, "verificar")){
+	      $codActivacion = filter_input(INPUT_GET, "verificar");
+	      
+	      $email = base64_decode($codActivacion);
+	      
+	      $user = new User();
+	      $user->setId($email);
+	      $user->cogeValoresSegunId();
+	      
+	      $user->activarUser();
+	      
+	      header("../location:index.html");
+	      
 	}
 	
 

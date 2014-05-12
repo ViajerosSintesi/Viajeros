@@ -1,5 +1,6 @@
 <?php
 require_once("ClassMongoClient.php");
+require_once("CorreoClass.php");
 /**
 *	###################################################
 *	de momento en la BBDD el usuario tiene este formato:
@@ -18,6 +19,7 @@ require_once("ClassMongoClient.php");
 *  ######################################################
 * 	
 */
+
 class User{
 	private $bbdd;
 	private $id = null;
@@ -100,21 +102,19 @@ class User{
 		}
 	}
 	public function enviaEmailConfirm(){
-
-		$url = "https://viajeros-c9-txemens.c9.io/php/controlLogin.php?verificar=".$this->codActivacion;
-		$cadena = file_get_contents("../email.html");
-		$diccionario = array('username' => $this->username,
-							 'url' => $url
-							);
-		foreach ($diccionario as $key => $value) {
-			 $cadena = str_replace('['.$key.']',$value,$cadena);
-		}
-
-		$cabeceras = 'From: no-reply@viajeros.com' . "\r\n" .
-    				'Reply-To: no-reply@viajeros.com' . "\r\n" .
-   					 'X-Mailer: PHP/' . phpversion();
-
-		mail($this->id, 'activacion', $cadena, $cabeceras);
+            
+            
+		$url = "https://viajeros-c9-txemens.c9.io/php/controlRegistro.php?verificar=".$this->codActivacion;
+		$plantilla = file_get_contents("../plantillas/email.html");
+		$diccionario = array('username' => $this->username,'url' => $url );
+		$mail = new Correo($diccionario, $plantilla, $this->id, "Bienvenido!", "no-reply@viajeros.com");
+		$mail->enviarMail();
+	}
+	public function activarUser(){
+	      $this->userToArray();
+	      $nuevosDatos = array('$set' => array("activado" => 1));
+	      $queryForUp = array('_id' => $this->id);
+	      $this->bbdd->actualiza($queryForUp,$nuevosDatos);
 	}
 	
 }
