@@ -5,7 +5,7 @@
             
             $user = new User();
             $mail = filter_input(INPUT_POST, "mail");
-		$password = filter_input(INPUT_POST, "pass");
+			$password = filter_input(INPUT_POST, "pass");
 		
 		$user->setId($mail);
 		$user->setPassword($password);
