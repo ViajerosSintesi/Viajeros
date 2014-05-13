@@ -22,9 +22,8 @@ class User{
 	private $bbdd;
 	private $id = null;
 	private $nombre = null;
-	private $poblacion = null;
-	private $lengua = null;
-	private $usuarios_id = null;
+	private $coordenadax = null;
+	private $coordenaday = null;
 
 	private $ciudadesInArray;
 	
@@ -36,14 +35,11 @@ class User{
 	public function setId($id){$this->id = $id;}
 	public function getnombre(){return $this->nombre;}
 	public function setnombre($nombre){$this->nombre = $nombre;}
-	public function getpoblacion(){return $this->poblacion;}
-	public function setpoblacion($poblacion){$this->poblacion = $poblacion;}
-	public function getlengua(){return $this->lengua;}
-	public function setlengua($lengua){$this->lengua = $lengua;}
-	public function getusuarios_id(){return $this->usuarios_id;}
-	public function setusuarios_id($usuarios_id){$this->usuarios_id = $usuarios_id;}
-	//public function getEmail(){return $this->email;}
-	//public function setEmail($email){$this->email = $email;}
+	public function getcoordenadax(){return $this->coordenadax;}
+	public function setcoordenadax($coordenadax){$this->coordenadax = $coordenadax;}
+	public function getcoordenaday(){return $this->coordenaday;}
+	public function setcoordenaday($coordenaday){$this->coordenaday = $coordenaday;}
+
     
 	public function ciudadesIfExistInBBDD(){
 		return $this->bbdd->contar($this->ciudadesInArray);
@@ -62,9 +58,8 @@ class User{
 		$this->ciudadesInArray = array(
 			'_id' => $this->id,
 			'nombre' => $this->nombre,
-			'poblacion' => $this->poblacion,
-			'lengua' => $this->lengua,
-			'usuarios_id' => $this->usuarios_id
+			'coordenadax' => $this->coordenadax,
+			'coordenaday' => $this->coordenaday,
 
 			);
 	}
@@ -90,9 +85,8 @@ class User{
 			$user = $this->bbdd->findOneCollection($queryForId);
 			
 			$this->nombre = $user['nombre'];
-			$this->poblacion = $user['poblacion'];
-			$this->lengua = $user['lengua'];
-			$this->usuarios_id = $user['usuarios_id'];
+			$this->coordenadax = $user['coordenadax'];
+			$this->coordenaday = $user['coordenaday'];
 
 		}
 	}

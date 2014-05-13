@@ -11,9 +11,9 @@
 
 		$newciudad->setnombre($nombre);
 		$newciudad->setId();
-		$newciudad->setpoblacion($poblacion);
-		$newciudad->setlengua($lengua);
-		$newciudad->setusuarios_id($usuarios_id);
+		$newciudad->setcoordenadax($coordenadax);
+		$newciudad->setcoordenaday($coordenaday);
+
 
 		$returnCiudad = $newciudad->guardarciudades();
 		echo json_encode(array( "notice"=>$returnCiudad));
