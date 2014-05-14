@@ -8,6 +8,7 @@ require_once("ClassMongoClient.php");
 * 	{
 * 		id: mail,
 * 		username: string,
+*           apellidos: string
 * 		pass: password,
 * 		edad: int,
 * 	  	email: mail->redundante?
@@ -25,6 +26,7 @@ class User{
 	private $bbdd;
 	private $id = null;
 	private $username = null;
+	private $apellidos = null;
 	private $password = null;
 	private $edad = null;
 	private $activado = null;
@@ -41,14 +43,16 @@ class User{
 	public function setId($id){$this->id = $id;}
 	public function getUsername(){return $this->username;}
 	public function setUsername($username){$this->username = $username;}
-	public function getPassword(){return md5($this->password);}
+	public function getApellidos(){return $this->username;}
+	public function setApellidos($username){$this->username = $username;}
+	public function getPassword(){return $this->password;}
 	public function setPassword($password){$this->password = md5($password);}
 	public function getEdad(){return $this->edad;}
 	public function setEdad($edad){$this->edad = $edad;}
 	public function getActivado(){return $this->activado;}
 	public function setActivado($activado){$this->activado = $activado;}
 	public function getCodActivacion(){return $this->codActivacion;}
-	public function setCodActivacion($CodActivacion){$this->codActivacion = $CodActivacion;}
+	public function setCodActivacion($CodActivacion){$this->codActivacion = base64_encode($CodActivacion);}
 	public function getImgPerfil(){return $this->imgPerfil;}
 	public function setImgPerfil($imgPerfil){$this->imgPerfil = $imgPerfil;}
 	//public function getEmail(){return $this->email;}
@@ -92,6 +96,7 @@ class User{
 		$this->userInArray = array(
 			'_id' => $this->id,
 			'username' => $this->username,
+			'apellidos' => $this->apellidos,
 			'pass' => $this->password,
 			'edad' => $this->edad,
 			'activado' => $this->activado,
@@ -141,6 +146,7 @@ class User{
 			$user = $this->bbdd->findOneCollection($queryForId);
 			
 			$this->username = $user['username'];
+			$this->apellidos = $user['apellidos'];
 			$this->edad = $user['edad'];
 			$this->password = $user['pass'];
 			$this->activado = $user['activado'];

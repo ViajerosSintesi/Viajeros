@@ -1,0 +1,44 @@
+body{margin: 0; padding: 0; background-color: #e9eaed;}
+#wrap{width: 100%; height: 100%; margin: 0; padding: 0; background: url("../img/bg-image.png"); background-repeat: repeat-x;}
+#header{width: 80%; min-height: 150px; margin: 0 auto; /*border: 1px solid red;*/}
+#header img{padding: 10px;}
+#contenedor{width: 80%; margin: 0 auto; /*border: 1px solid red;*/}
+#contenedor div{display: inline-block; vertical-align: top;}
+#contenedor #home-left{width: 65%; margin-top: 50px; margin-bottom: 50px; /*border: 1px solid red;*/}
+#contenedor #home-right{width: 34%; margin-top: 50px; text-align: right; /*border: 1px solid red;*/}
+#home-left #imagen{width: 100%;}
+#home-right form{width: 80%; position: relative; left: 100%; margin-left: -90%;}
+#home-right fieldset{padding: 30px; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;}
+#home-right input{padding: 5px 4px; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;}
+#home-right #boton-login{background: #069; color: #fff; font-weight: bold; padding: 4px 15px 4px 15px;
+	border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;}
+#home-right span{text-decoration: none; color: #000;}
+#home-right span:hover{text-decoration: underline; color: #069; cursor: pointer;}
+/* === Registro === */
+#home-right #form-registro input{width: 188px; padding: 8px 10px;}
+#home-right #form-registro select{padding: 4px;}
+#home-right #form-registro #registrarse{background-color: #069; color: #fff; font-size: 19px;}
+#home-right #form-registro label{font-size: 18px;}
+/* === Perfil === */
+#contenedor #perfil{width: 100%; margin-bottom: 31px; background-color: #fff; border: 1px solid #d3d6db;}
+#perfil #titulo{width: 100%; text-align: left; margin-bottom: 15px; background-color: #f6f7f8; border-bottom: 1px solid #d3d6db;}
+#perfil div{display: inline-block;}
+
+#perfil #perfil-left{width: 49%; margin-bottom: 15px; /*border: 1px solid red;*/}
+#perfil #perfil-right{width: 49%; min-height: 244px; margin-bottom: 15px; padding-left: 10px; border-left: 1px solid #d3d6db;}
+#perfil-left #img-perfil{width: 50%; position: relative; left: 100%; margin-left: -75%; text-align: center;}
+#perfil-left #img-perfil img{width: 100%; border: 1px solid #d3d6db;}
+#perfil-right #perfil-edit{position: relative; left: 100%; margin-left:-38px; top: 0;}
+
+#perfil-galeria{width: 100%; margin-bottom: 31px; text-align: center; background-color: #fff; border: 1px solid #d3d6db;}
+#perfil-galeria img{width: 22%; min-width: 206px; border: 1px solid #d3d6db;}
+#perfil-galeria #titulo{width: 100%; text-align: left; margin-bottom: 15px; background-color: #f6f7f8; border-bottom: 1px solid #d3d6db;}
+#titulo{height: 81px;}
+#titulo h1{padding-left: 10px;}
+#titulo #perfil-subir-foto{position: relative; left: 100%; margin-left: -102px; top: -53px;}
+#titulo #perfil-subir-foto input{padding: 5px 10px; background-color: #069; color: #fff; font-size: 15px;}
+#perfil-galeria #fotos{width: 100%; margin-bottom: 15px;}
+/* ===== cuadro subir foto ===== */
+#contenedor #cuadro-foto{width: 400px; position: fixed; left: 50%; margin-left: -200px; top: 50%; z-index: 100;}
+
+#footer{width: 80%; margin: 0 auto; text-align: center; border-top: 1px solid #d3d6db; padding: 10px 0;}

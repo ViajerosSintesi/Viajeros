@@ -1,4 +1,4 @@
-<form action="#" method="post" id="form-registro">
+<form action="php/controlRegistro.php" method="post" id="form-registro">
 	<fieldset>
 	<legend><h2>Reg&iacute;stro</h2></legend>
 	<p><label for="nombre">Nombre: </label><br>
@@ -10,7 +10,7 @@
 	<p><label for="password">Contrase&ntilde;a: </label><br>
 		<input type="text" name="password"></p>
 	<p><label>Fecha de nacimiento: </label><br>
-		<select name="dia">
+		<select name="dia" id="dia">
 			<option value="0" selected="1">D&iacute;a</option>
 			<?php for($i=1; $i<32;$i++){
 				echo "<option value='$i'>$i</option>";
@@ -42,5 +42,5 @@
 	<input type="submit" name="registrarse" id="registrarse" value="Reg&iacute;strate">
 	</fieldset>
 	<p><span id="recuperarPass">&#191;Olvidaste tu contrase&ntilde;a?</span></p>
-	<p><a href="inicio.php"><span id="login">Inicia sesi&oacute;n</span></a></p>
+	<p><a href="index.html"><span id="login">Inicia sesi&oacute;n</span></a></p>
 </form>

@@ -2,19 +2,16 @@
 require_once("ClassMongoClient.php");
 /**
 *	###################################################
-*	de momento en la BBDD el usuario tiene este formato:
+*	de momento en la BBDD la ciudad tiene este formato:
 *
 * 	{
-* 		id: mail,
-* 		username: string,
-* 		pass: password,
-* 		edad: int,
-* 	  	email: mail->redundante?
-*       activado:bool,
-*       codActivacion: uniqId()
+* 		"_id": codigo de la ciudad,
+* 		"nombre": string,
+* 		"coordx": password,
+* 		"coordy": int,
+* 	  	"pais": pais al que pertence
 * 	}
-* 	ha medida que se vaya agrandando hay que meter mas informacion
-* 	como ciudades, baneos, etc...
+* 	
 *  ######################################################
 * 	
 */

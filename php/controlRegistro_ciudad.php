@@ -14,10 +14,8 @@
 		$newciudad->setcoordenadax($coordenadax);
 		$newciudad->setcoordenaday($coordenaday);
 
-
 		$returnCiudad = $newciudad->guardarciudades();
 		echo json_encode(array( "notice"=>$returnCiudad));
-		
 		
 	}
 	
