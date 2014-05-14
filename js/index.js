@@ -38,12 +38,48 @@ $(document).ready(function(){
           }
     });
     
+	
+	
+	// juvenc
+	function validar_email(valor)
+	{
+		// creamos nuestra regla con expresiones regulares.
+		var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+		// utilizamos test para comprobar si el parametro valor cumple la regla
+		if(filter.test(valor))
+			return true;
+		else
+			return false;
+	}
+	
     
+	$("#mailReg").change(function(){
+	if($("#mailReg").val() == '')
+		{
+			alert("Ingrese un email");
+		}else if(validar_email($("#mailReg").val()))
+		{
+			alert("Email valido");
+		}else
+		{
+			alert("El email no es valido");
+		}
+	});
+	// juvenc
+	
+	
+	
+	
     $("#btnRegistro").click(function(){
     var user = $("#usernameReg").val();
     var mail = $("#mailReg").val();
     var pass = $("#passReg").val();
     var rePass = $("#repeatPassReg").val();
+	
+	
+	
+	
+	
     if(pass == rePass){
         $.ajax({
             type: "POST",
