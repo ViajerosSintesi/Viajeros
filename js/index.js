@@ -9,24 +9,33 @@ $(document).ready(function(){
     $("#btnLogin").click(function(){
           var mail = $("#emailLog").val();
           var pass = $("#passLog").val();
-          
-        $.ajax({
-            type: "POST",
-            url: "php/controlLogin.php",
-            data: {"mail":mail,"pass":pass, "login":1}
-        })
-        .done(function(data){
-                var not = $.parseJSON(data);
-             if(!not.notice){
-                 alert("no te has logueado");
-             }
-             if(not.notice == 1){
-                   alert("Has entrado");
-             }
-             if(not.notice == 2){
-                   alert("no has activado la cuenta, mira en tu email");
-             }
-        });
+          var pasa = 1;
+          if(mail == ""){
+                $("#emailLog").addClass("has-error");
+                pasa = 0;
+          }else if(pass == ""){
+                $("#passLog").addClass("has-error");
+                pasa = 0;
+          }
+          if(pasa){
+              $.ajax({
+                  type: "POST",
+                  url: "php/controlLogin.php",
+                  data: {"mail":mail,"pass":pass, "login":1}
+              })
+              .done(function(data){
+                      var not = $.parseJSON(data);
+                   if(!not.notice){
+                       alert("no te has logueado");
+                   }
+                   if(not.notice == 1){
+                         alert("Has entrado");
+                   }
+                   if(not.notice == 2){
+                         alert("no has activado la cuenta, mira en tu email");
+                   }
+              });
+          }
     });
     
     
@@ -54,7 +63,7 @@ $(document).ready(function(){
     }
     });
     
-    /*no funciona*/
+    
     $("#repeatPassReg").change(function(){
      if($(this).val() != $("#passReg").val()){
         $("#divrepPass").addClass("has-error");  

@@ -5,16 +5,16 @@
             
             $user = new User();
             $mail = filter_input(INPUT_POST, "mail");
-			$password = filter_input(INPUT_POST, "pass");
+		$password = filter_input(INPUT_POST, "pass");
 		
 		$user->setId($mail);
 		$user->setPassword($password);
 		
 		if($notice = $user->comproveLogin()){
 		      $user->cogeValoresSegunId();
-		      $_SESSION['user'] = $user;
-		      echo json_encode(array( "notice"=>$notice));
+		      $_SESSION['userId'] = $user->getId();
+		     
 		}
-		
+		echo json_encode(array( "notice"=>$notice));
       }
 ?>

@@ -9,16 +9,19 @@
 		$username = filter_input(INPUT_POST, "user");
 		$password = filter_input(INPUT_POST, "pass");
 		//$edad = filter_input(INPUT_POST, "edad");
-
+            
 		$newUser->setUsername($username);
 		$newUser->setId($mail);
 		$newUser->setPassword($password);
-		$newUser->setCodActivacion(base64_encode($mail));
+		$newUser->setCodActivacion($mail);
 		$newUser->setActivado(0);
+		if(isset($_FILES["imgPerfil"])){
+                  $user->ponerImgPerfil($_FILES["imgPerfil"]);
+            }
 		//$newUser->setEdad($edad);
-		$returnLogin = $newUser->guardarUser();
+		$returnReg = $newUser->guardarUser();
 		$newUser->enviaEmailConfirm();
-		echo json_encode(array( "notice"=>$returnLogin));
+		echo json_encode(array( "notice"=>$returnReg));
 		
 		
 	}
