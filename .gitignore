@@ -1,0 +1,9 @@
+#estos archivos no son necesarios para vosotros
+
+# ignore php.ini
+
+php.ini
+
+# ignore carpeta sessions 
+
+/session
