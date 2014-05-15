@@ -11,7 +11,7 @@
 	<title>Perfil Usuario</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/jquery-1.10.2.js"></script>
-	<script src="js/jquery-ui-1.10.4.custom.js"></script>
+	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/ajax.js"></script>
 	<script src="js/perfil.js"></script>
 	<script type="text/javascript">
@@ -30,7 +30,7 @@
 			</div>
 			<div id="perfil-left" >
 				<div id="img-perfil">
-					<img src="img/no-imagen.jpg">
+					<img src="img/no-imagen.jpg" id="img-Perfil">
 					<form action="#" method="post" enctype="multipart/form-data" id="form-foto">
 					<input type="file" id="foto-perfil" value="Cambiar foto perfil">
 					</form>

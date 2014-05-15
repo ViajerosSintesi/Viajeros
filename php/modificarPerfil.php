@@ -29,12 +29,12 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
       $returnUpd = $user->updateUser();
       echo json_encode(array( "notice"=>$returnUpd));
 }
-var_dump($_FILES);
-var_dump($_POST);
+   
  if(isset($_FILES["imgPerfil"])){
-             $userId = $_SESSION["userId"];
+            $userId = $_SESSION["userId"];
             $user = new User();
-            $user->ponerImgPerfil($_FILES["imgPerfil"]);
+            $user->setId($userId);
+            echo $user->ponerImgPerfil($_FILES["imgPerfil"]);
             /*
             $uploaddir = '../images/fotosPerfil/';
             $uploadfile = $uploaddir.basename($_FILES['userfile']['name']);

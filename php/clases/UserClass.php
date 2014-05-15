@@ -194,12 +194,22 @@ class User{
 	 * @param  file 	$fileImg 	archivo de la imagen, se le entrega->$_FILES
 	 */
 	public function ponerImgPerfil($fileImg){
-	    $uploaddir = '../images/fotosPerfil/';
-            $uploadfile = $uploaddir.basename($fileImg['userfile']['name']);
+	      $retorn = 0;
+	      $uploaddir = '../images/fotosPerfil/';
+            $uploadfile = $uploaddir.basename($fileImg['name']);
             
-            if (move_uploaded_file($fileImg['userfile']['tmp_name'], $uploadfile)) {
+            if (move_uploaded_file($fileImg['tmp_name'], $uploadfile)) {
+                #borra la antigua imagen
+                $antiguoPath=$this->bbdd->findOneCollection(array("_id"=>$this->id), array("imgPerfil"));
+                
+                if(file_exists($antiguoPath['imgPerfil'])) unlink($antiguoPath['imgPerfil']);
+                
                 $this->setImgPerfil($uploadfile);
-            }  
+                $queryForId = array('_id' => $this->id);
+                $queryForChange = array('$set'=> array('imgPerfil' =>$uploadfile));
+                $retorn = $this->bbdd->actualiza($queryForId, $queryForChange);
+            }
+            return $retorn;
 	}
 
 	/**

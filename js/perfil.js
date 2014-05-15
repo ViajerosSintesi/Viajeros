@@ -19,6 +19,7 @@ $(function(){
 		cargarDatos();
 	      $('#foto-perfil').change(subirImgPerfil);
 });
+
 function subirImgPerfil(){
             var file = $("#foto-perfil")[0].files[0];
 		//obtenemos el nombre del archivo
@@ -29,9 +30,10 @@ function subirImgPerfil(){
 		var fileSize = file.size;
 		//obtenemos el tipo de archivo image/png ejemplo
 		var fileType = file.type;
-		var formData = {"imgPerfil":file};
-	
-            console.log(formData);
+		//var formData = {"imgPerfil":file};
+	      var formData = new FormData();
+	      formData.append("imgPerfil", file);
+            
 		$.ajax({
 			url: 'php/modificarPerfil.php',  
 			type: 'POST',
@@ -40,8 +42,8 @@ function subirImgPerfil(){
 			contentType: false,
 			processData: false,
 			success: function(data){
-			    var message = "La imagen ha subido correctamente.";
-			    alert(message);
+			    if(data==1) cargarDatos();
+			    else alert("no se ha subido");
 			}
 		});
 }
@@ -67,6 +69,7 @@ function cargarDatos(){
             $("#perfil-apellidos").val(data.apellidos);
             $("#emailUser").html(data.email);
             $("#edadUser").html(data.edad);
+            document.getElementById("img-Perfil").src=data.imgPerfil;
       });
 }
 
