@@ -1,25 +1,45 @@
+/**
+ *
+ * Perfil.js
+ * 
+ * controlador para el perfil
+ * 
+ **/
+
 $(function(){
+            //esta funcion carga los datos del usuario en sus campos
+            cargarDatos();
+            //esconde el cuadro para subir imagenes
 		$("#cuadro-foto").hide();
+		//esconde el fomulario para modificar la informacion del usuario
 		$("#form-info").hide();
+		//si se hace click en el boton de modificar, se abre el formulario
 		$("#perfil-edit").click(function(){
 			//actualizaPerfil();
 			$("#info").hide();
 			$("#form-info").show();
 		});
+		//si se cancela, se esconde el formulario 
 		$("#cancelar-datos").click(function(){
-			
 			$("#form-info").hide();
 			$("#info").show();
-			
 		});
+		//si se hace click al boton de subir imagenes, aparece el cuadro
 		$("#subir-foto").click(function(){
 			$("#cuadro-foto").show();
 		});
+		//al aceptar los cambios, modificas la informacion
 		$("#modificar-datos").click(modPerfil);
-		cargarDatos();
+		//si se elige foto, la sube
 	      $('#foto-perfil').change(subirImgPerfil);
 });
-
+/**
+ *
+ * subir imagen al pefil
+ * 
+ * ------------------Falta comprobacion de peso i extension sobretodo
+ * 
+ **/
 function subirImgPerfil(){
             var file = $("#foto-perfil")[0].files[0];
 		//obtenemos el nombre del archivo
@@ -30,10 +50,12 @@ function subirImgPerfil(){
 		var fileSize = file.size;
 		//obtenemos el tipo de archivo image/png ejemplo
 		var fileType = file.type;
-		//var formData = {"imgPerfil":file};
+		
+		//creamos un form data i añadimos el fichero
 	      var formData = new FormData();
 	      formData.append("imgPerfil", file);
             
+            //ejecutamos ajax para que conecte con el servidor y pueda modificar
 		$.ajax({
 			url: 'php/modificarPerfil.php',  
 			type: 'POST',
@@ -42,12 +64,19 @@ function subirImgPerfil(){
 			contentType: false,
 			processData: false,
 			success: function(data){
+			     //si todo va bien, vuelve a cargar los datos
 			    if(data==1) cargarDatos();
-			    else alert("no se ha subido");
+			    else alert("no se ha subido");// <<<<-----No alerts loco!
 			}
 		});
 }
-	
+/**
+ * funcion que dado una extension comprueba que se de imagen
+ * 
+ * return boolean       1: extension de imagen
+ *                      0: no es extension de imagen
+ * 
+ **/
 function isImage(extension){
 	switch(extension.toLowerCase()) 
 	{
@@ -60,6 +89,10 @@ function isImage(extension){
     }
 }
 
+/**
+ * le pide los datos al servidor y rellena los campos del perfil
+ * 
+ **/
 function cargarDatos(){
       var dataEnvio = {"datosPerfil": 1};
       $.getJSON('php/controlPerfil.php', dataEnvio,function(data){
@@ -73,6 +106,11 @@ function cargarDatos(){
       });
 }
 
+/**
+ * recoge los datos del formulario del perfil y los envia para cambiar
+ * 
+ *---------no se validan! 
+ **/ 
 function modPerfil(){
       var username = $("#perfil-nombre").val();
       var apellidos = $("#perfil-apellidos").val();
