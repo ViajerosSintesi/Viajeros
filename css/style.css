@@ -7,17 +7,26 @@ body{margin: 0; padding: 0; background-color: #e9eaed;}
 #contenedor #home-left{width: 65%; margin-top: 50px; margin-bottom: 50px; /*border: 1px solid red;*/}
 #contenedor #home-right{width: 34%; margin-top: 50px; text-align: right; /*border: 1px solid red;*/}
 #home-left #imagen{width: 100%;}
+
 #home-right form{width: 80%; position: relative; left: 100%; margin-left: -90%;}
 #home-right fieldset{padding: 30px; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;}
 #home-right input{padding: 5px 4px; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;}
 #home-right #boton-login{background: #069; color: #fff; font-weight: bold; padding: 4px 15px 4px 15px;
-	border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;}
+	border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; cursor: pointer;}
+
+	
+	
+#home-right #no_logeo {text-decoration: none; color: red;}
+#home-right #mail_incorrecto {text-decoration: none; color: red;}
 #home-right span{text-decoration: none; color: #000;}
-#home-right span:hover{text-decoration: underline; color: #069; cursor: pointer;}
+#home-right #recuperarPass:hover{text-decoration: underline; color: #069; cursor: pointer;}
+#home-right #registro:hover{text-decoration: underline; color: #069; cursor: pointer;}
+
+
 /* === Registro === */
 #home-right #form-registro input{width: 188px; padding: 8px 10px;}
 #home-right #form-registro select{padding: 4px;}
-#home-right #form-registro #registrarse{background-color: #069; color: #fff; font-size: 19px;}
+#home-right #form-registro #registrarse{background-color: #069; color: #fff; font-size: 19px; cursor:pointer;}
 #home-right #form-registro label{font-size: 18px;}
 /* === Perfil === */
 #contenedor #perfil{width: 100%; margin-bottom: 31px; background-color: #fff; border: 1px solid #d3d6db;}

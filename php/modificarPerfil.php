@@ -2,6 +2,7 @@
 require_once("./clases/UserClass.php");
 session_start();
 
+// Si la sesion es correcta
 if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
       
       $userId = $_SESSION["userId"];
@@ -9,6 +10,7 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
       $user->setId($userId);
       $user->cogeValoresSegunId();
       
+	  
       if(filter_has_var(INPUT_POST, "username")){
             $username = filter_input(INPUT_POST, "username");
             $user->setUsername($username);
@@ -32,7 +34,7 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
 var_dump($_FILES);
 var_dump($_POST);
  if(isset($_FILES["imgPerfil"])){
-             $userId = $_SESSION["userId"];
+            $userId = $_SESSION["userId"];
             $user = new User();
             $user->ponerImgPerfil($_FILES["imgPerfil"]);
             /*
