@@ -1,5 +1,8 @@
 <?php
       session_start();
+      if(!isset($_SESSION['userId'])){
+            header("location:index.php");
+      }
 ?>
 
 <!DOCTYPE html>
@@ -9,17 +12,10 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
-	<script src="ajax.js"></script>
+	<script src="js/ajax.js"></script>
+	<script src="js/perfil.js"></script>
 	<script type="text/javascript">
-	$(function(){
-		$("#cuadro-foto").hide();
-		$("#perfil-edit").click(function(){
-			actualizaPerfil();
-		});
-		$("#subir-foto").click(function(){
-			$("#cuadro-foto").show();
-		});
-	});
+	
 	</script>
 </head>
 <body>
@@ -41,11 +37,21 @@
 				</div>
 			</div>
 			<div id="perfil-right">
+			      <div id="info">
 				<div id="perfil-edit"><img src="img/png/edit_32px.png"></div>
-				<p><span>Nombre: </span>Pepito los palotes</p>
-				<p><span>Apellidos: </span>Apellido1 Apellido2</p>
-				<p><span>Email: </span>micorreo@gmail.com</p>
-				<p><span>Pais: </span>Espa&ntilde;a</p>
+				<p><span>Nombre: </span><span id="nombreUser"></span></p>
+				<p><span>Apellidos: </span><span id="apellidosUser"></span></p>
+				<p><span>Email: </span><span id="emailUser"></span></p>
+				<p><span>Pais: </span><span id="pais">Espa&ntilde;a</span></p>
+				<p><span>Fecha de nacimiento: </span><span id="edadUser"></span></p>
+				</div>
+				<div id="form-info">
+	                        <p><label for="">Nombre: </label><input type="text" name="nombre" id="perfil-nombre"></p>
+                        	<p><label for="">Apellidos: </label><input type="text" name="apellido" id="perfil-apellidos"></p>
+                        	<!--<p><label for="">Email: </label><input type="text" name="email" id="perfil-email"></p>-->
+                        	<input type="button" name="modificar" id="modificar-datos" value="Modificar datos">
+                        	<input type="button" name="cancelar" id="cancelar-datos" value="Cancelar">
+                        </div>
 			</div>
 		</div>
 		<div id="perfil-galeria">

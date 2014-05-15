@@ -34,8 +34,8 @@ class DBMongo{
 	}
 
 	public function insertar($doc){
-		$this->colectionNow->insert($doc);
-		return $this->findCollection($doc);
+		
+		return $this->colectionNow->insert($doc);
 	}
 
 	public function findCollection($query=""){
@@ -48,12 +48,16 @@ class DBMongo{
 	}
 
 	public function eliminar($query, $opt=""){
-		$this->colectionNow->remove($query, $opt);
+		if($opt=="")$this->colectionNow->remove($query);
+		else $this->colectionNow->remove($query, $opt);
 	}
 
-	public function actualiza($query, $newData,$opt=""){
-	      if($opt=="")$this->colectionNow->update($query, $newData);
-		else $this->colectionNow->update($query, $newData, $opt);
+	public function actualiza($query, $newData,$opt="+"){
+            
+	      $retorn = 0;
+	      if($opt=="+") $retorn = $this->colectionNow->update($query, $newData);
+		else $retorn = $this->colectionNow->update($query, $newData, $opt);
+	      return $retorn;
 	}
 
 	public function getCollection(){

@@ -43,8 +43,8 @@ class User{
 	public function setId($id){$this->id = $id;}
 	public function getUsername(){return $this->username;}
 	public function setUsername($username){$this->username = $username;}
-	public function getApellidos(){return $this->username;}
-	public function setApellidos($username){$this->username = $username;}
+	public function getApellidos(){return $this->apellidos;}
+	public function setApellidos($apellidos){$this->apellidos = $apellidos;}
 	public function getPassword(){return $this->password;}
 	public function setPassword($password){$this->password = md5($password);}
 	public function getEdad(){return $this->edad;}
@@ -211,11 +211,15 @@ class User{
 	 * @param  string $id 	id a actualizar
 	 */
 	public function updateUser($id=""){
-	      if($id=="") $queryForId = array('_id' => $this->id);
-	      else $queryForId = array('_id' => $id);
 	      
-	      $nuevosDatos = array('$set' => $this->userInArray);
-	      $this->bbdd->actualiza($queryForId, $nuevosDatos);
+	      if($id=="") $queryForId = array('_id' => $this->id);
+	      else {
+	            $queryForId = array('_id' => $id);
+	            $this->id = $id;
+	      }
+	      
+	      $this->bbdd->eliminar($queryForId);
+	      return $this->guardarUser();
 	}
 	
 }

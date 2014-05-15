@@ -9,7 +9,7 @@
 		$username = filter_input(INPUT_POST, "user", FILTER_SANITIZE_STRING);
 		$password = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_STRING);
 		$edad = filter_input(INPUT_POST, "edad");
-		$apellidos =  filter_input(INPUT_POST, "apellidos");
+		$apellidos =  filter_input(INPUT_POST, "apellidos",FILTER_SANITIZE_STRING);
             
 		$newUser->setUsername($username);
 		$newUser->setApellidos($apellidos);
