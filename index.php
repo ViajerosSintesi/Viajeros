@@ -59,7 +59,7 @@
                   	<p><label for="email">Email: </label><br>
                   		<input type="text" name="email" id="email" value="Tu email"></p>
                   	<p><label for="password">Contrase&ntilde;a: </label><br>
-                  		<input type="password" name="password" id="contra"></p>
+                  		<input type="password" name="contra" id="contra"></p>
                   	<p><label>Fecha de nacimiento: </label><br>
                   		<select name="dia" id="dia">
                   			<option value="0" selected="1">D&iacute;a</option>

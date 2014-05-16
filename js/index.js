@@ -264,7 +264,7 @@ $(document).ready(function(){
     var user = $("#nombre").val();
     var apellidos = $("#apellidos").val();
     var mail = $("#email").val();
-    var pass = $("#password").val();
+    var pass = $("#contra").val();
     var dia = $("#dia").val();
     var mes = $("#mes").val();
     var anio = $("#any").val();
