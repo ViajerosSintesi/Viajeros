@@ -195,7 +195,11 @@ class User{
 	 */
 	public function ponerImgPerfil($fileImg){
 	      $retorn = 0;
+	      
 	      $uploaddir = '../images/fotosPerfil/';
+
+            if (!file_exists($uploaddir)) 
+                mkdir($uploaddir, 0777, true);
             $uploadfile = $uploaddir.basename($fileImg['name']);
             
             if (move_uploaded_file($fileImg['tmp_name'], $uploadfile)) {
