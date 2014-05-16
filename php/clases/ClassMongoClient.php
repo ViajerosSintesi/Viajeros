@@ -37,14 +37,23 @@ class DBMongo{
 		
 		return $this->colectionNow->insert($doc);
 	}
-
+      
+      /**
+       * devuelve un array asociativo multidimensional!
+       * **/
 	public function findCollection($query=""){
-		$cursor = $this->colectionNow->find($query);
-		return $cursor;
+		if($query=="") $cursor = $this->colectionNow->find();
+		else $cursor = $this->colectionNow->find($query);
+		$retorn = array();
+		while ($cursor->hasNext()) 
+		      $retorn[] = $cursor->getNext();
+		
+		return $retorn;
 	}
 
 	public function contar($query=""){
-		return $this->colectionNow->count($query);
+		if($query=="") return $this->colectionNow->count();
+	      else return $this->colectionNow->count($query);
 	}
 
 	public function eliminar($query, $opt=""){

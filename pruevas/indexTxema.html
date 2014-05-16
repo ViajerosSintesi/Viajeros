@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Viajeros</title>
+
+<!--para login de google
+<script src="js/loginGoogle.js"></script>
+<link rel="stylesheet" href="css/butonGmail.css">
+<script type="text/javascript">
+
+(function() {
+var po = document.createElement('script');
+po.type = 'text/javascript'; po.async = true;
+po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(po, s);
+})();
+</script>
+<span class="label">Sign in with:</span>
+<div id="customBtn" class="customGPlusSignIn">
+<span class="icon"></span>
+<span class="buttonText">Google</span>
+</div>
+-->
+<script src="js/jquery-2.1.1.min.js"></script>
+<!--<script src="bootstrap/js/bootstrap.min.js"></script>-->
+<script src="js/index.js"></script>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+      <header class="row"> </header>
+  <div class="login col-xs-6 col-md-4 col-md-offset-4 col-xs-offset-4">
+    <div role="form" id="login">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input type="emailLog" class="form-control" id="emailLog" placeholder="Aqui el Mail" required>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Contraseña</label>
+        <input type="password" class="form-control" id="passLog" placeholder="Password">
+      </div>
+      <button class="btn btn-default" id="btnLogin">Entra</button>
+      <button class="btn btn-default"  id="registrarse">
+      registrate
+    </button>
+    </div>
+    
+  </div>
+  
+
+
+  <div class="registro col-xs-6 col-md-4 col-md-offset-4 col-xs-offset-4">
+  
+  <div id="registro">
+    <div class="form-group">
+      <label for="InputUsername">Nombre de Usuario</label>
+      <input type="text" class="form-control" id="usernameReg" placeholder="Aqui el usuario">
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Introduce el mail</label>
+      <input type="email" class="form-control" id="mailReg" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Contraseña</label>
+      <input type="password" class="form-control" id="passReg" placeholder="Password">
+    </div>
+    <div class="form-group" id="divrepPass">
+      <label for="inputPassword">repite la contraseña</label>
+      <input type="password" class="form-control" id="repeatPassReg" placeholder="repeatPassword">
+    </div>
+    <button type="submit" class="btn btn-default" id="btnRegistro">Registrate</button>
+  </div>
+</div>
+
+
+</div>
+<footer class="row"> </footer>
+</body>
+</html>

@@ -15,14 +15,14 @@ require_once("ClassMongoClient.php");
 *  ######################################################
 * 	
 */
-class User{
+class Ciudad{
 	private $bbdd;
 	private $id = null;
 	private $nombre = null;
 	private $coordenadax = null;
 	private $coordenaday = null;
-
-	private $ciudadesInArray;
+      private $pais = null;
+	private $ciudadInArray;
 	
 	function __construct(){
 	    $this->bbdd = new DBMongo("ciudades");
@@ -30,51 +30,39 @@ class User{
 
 	public function getId(){return $this->id;}
 	public function setId($id){$this->id = $id;}
-	public function getnombre(){return $this->nombre;}
-	public function setnombre($nombre){$this->nombre = $nombre;}
-	public function getcoordenadax(){return $this->coordenadax;}
-	public function setcoordenadax($coordenadax){$this->coordenadax = $coordenadax;}
-	public function getcoordenaday(){return $this->coordenaday;}
-	public function setcoordenaday($coordenaday){$this->coordenaday = $coordenaday;}
+	public function getNombre(){return $this->nombre;}
+	public function setNombre($nombre){$this->nombre = $nombre;}
+	public function getCoordenadax(){return $this->coordenadax;}
+	public function setCoordenadax($coordenadax){$this->coordenadax = $coordenadax;}
+	public function getCoordenaday(){return $this->coordenaday;}
+	public function setCoordenaday($coordenaday){$this->coordenaday = $coordenaday;}
+	public function getPais(){return $this->pais;}
+	public function setPais($pais){$this->pais = $pais;}
 
     
-	public function ciudadesIfExistInBBDD(){
-		return $this->bbdd->contar($this->ciudadesInArray);
+	public function ciudadIfExistInBBDD(){
+		return $this->bbdd->contar($this->ciudadInArray);
 	}
 
-	public function guardarciudades(){
+	public function guardarCiudad(){
 	    $retorn = 0;
-	    $this->ciudadesToArray();
-		if(!$this->ciudadesIfExistInBBDD()){
-			$this->bbdd->insertar($this->ciudadesInArray);
+	    $this->ciudadToArray();
+		if(!$this->ciudadIfExistInBBDD()){
+			$this->bbdd->insertar($this->ciudadInArray);
 			$retorn = 1;
 		}
 		return $retorn;
 	}
-      public function ciudadesToArray(){
-		$this->ciudadesInArray = array(
-			'_id' => $this->id,
-			'nombre' => $this->nombre,
-			'coordenadax' => $this->coordenadax,
-			'coordenaday' => $this->coordenaday,
-
+      public function ciudadToArray(){
+		$this->ciudadInArray = array(
+      			'_id' => $this->id,
+      			'nombre' => $this->nombre,
+      			'coordenadax' => $this->coordenadax,
+      			'coordenaday' => $this->coordenaday
+      			'pais' =>  $this->pais
 			);
 	}
-      /*public function comproveLogin(){
-	    $queryForId = array('_id' => $this->id);
-	    $retorn = 0;
-	    if($this->bbdd->contar($queryForId)){
-	    	$queryForPass = array('_id' => $this->id,'pass' => $this->password);
-	    	if($user = $this->bbdd->findOneCollection($queryForPass)){
-	    	      if($user["activado"]){
-	    	            $retorn = 1;
-	    	      }else {$retorn = 2;}
-	    	}
-	    }
-	    return $retorn;
-		
-	}*/
-	
+     
 	public function cogeValoresSegunId(){
 		$queryForId = array('_id' => $this->id);
 		if($this->bbdd->contar($queryForId)){
@@ -83,29 +71,11 @@ class User{
 			$this->nombre = $user['nombre'];
 			$this->coordenadax = $user['coordenadax'];
 			$this->coordenaday = $user['coordenaday'];
+			$this->pais = $user['pais'];
 
 		}
 	}
 	
-	/*
-	public function enviaEmailConfirm(){
-
-		$url = "https://viajeros-c9-txemens.c9.io/php/controlLogin.php?verificar=".$this->codActivacion;
-		$cadena = file_get_contents("../email.html");
-		$diccionario = array('username' => $this->username,
-							 'url' => $url
-							);
-		foreach ($diccionario as $key => $value) {
-			 $cadena = str_replace('['.$key.']',$value,$cadena);
-		}
-
-		$cabeceras = 'From: no-reply@viajeros.com' . "\r\n" .
-    				'Reply-To: no-reply@viajeros.com' . "\r\n" .
-   					 'X-Mailer: PHP/' . phpversion();
-
-		mail($this->id, 'activacion', $cadena, $cabeceras);
-	}
-	*/
 	
 }
 ?>
