@@ -18,6 +18,15 @@ $(document).ready(function(){
 	// validacion de gmail_registro instantaneo
 	$("#email").change(email_registro);
 	
+	// validacion de fecha
+	$("#dia").change(dia_registro);
+	
+	// validacion de fecha
+	$("#mes").change(mes_registro);
+	
+	// validacion de fecha
+	$("#any").change(any_registro);
+	
 
 	
 	
@@ -205,16 +214,48 @@ $(document).ready(function(){
 
 
 	// validacion de fecha_registro
-	function fecha_registro()
+	function dia_registro()
 	{
+		var retorn =0;
 		if($("#dia").val() ==0)
 		{
-			alert("dia incorrecto");	
+			$("#dia").css( "border","3px solid red" );	
 		}
 		else {
-			alert("fecha correcta");
+			$("#dia").css( "border","1px solid blue" );
+			retorn=1;
 		}
+		return retorn;
 	}
+	
+	function mes_registro()
+	{
+		var retorn =0;
+		if($("#mes").val() ==0)
+		{
+			$("#mes").css( "border","3px solid red" );	
+		}
+		else {
+			$("#mes").css( "border","1px solid blue" );
+			retorn=1;
+		}
+		return retorn;
+	}
+	
+	function any_registro()
+	{
+		var retorn =0;
+		if($("#any").val() ==0)
+		{
+			$("#any").css( "border","3px solid red" );	
+		}
+		else {
+			$("#any").css( "border","1px solid blue" );
+			retorn=1;
+		}
+		return retorn;
+	}
+	
 	
 
 
@@ -223,7 +264,7 @@ $(document).ready(function(){
     var user = $("#nombre").val();
     var apellidos = $("#apellidos").val();
     var mail = $("#email").val();
-    var pass = $("#password").val();
+    var pass = $("#contra").val();
     var dia = $("#dia").val();
     var mes = $("#mes").val();
     var anio = $("#any").val();
@@ -233,7 +274,7 @@ $(document).ready(function(){
 		  
 		  
 		  
-      if((apellido_registro()) && (email_registro()) && (contrasenya_registro()) && (nombre_registro())){
+      if((apellido_registro()) && (email_registro()) && (contrasenya_registro()) && (nombre_registro()) && (dia_registro()) && (mes_registro()) && (any_registro())){
 			
             $.ajax({
                   type: "POST",
