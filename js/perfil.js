@@ -5,6 +5,8 @@
  * controlador para el perfil
  * 
  **/
+ 
+
 
 $(function(){
             //esta funcion carga los datos del usuario en sus campos
@@ -51,11 +53,15 @@ function subirImgPerfil(){
 		//obtenemos el tipo de archivo image/png ejemplo
 		var fileType = file.type;
 		
+		
+		if (fileSize<=200000){
+		
+		
 		//creamos un form data i añadimos el fichero
 	      var formData = new FormData();
 	      formData.append("imgPerfil", file);
             
-            //ejecutamos ajax para que conecte con el servidor y pueda modificar
+        //ejecutamos ajax para que conecte con el servidor y pueda modificar
 		$.ajax({
 			url: 'php/modificarPerfil.php',  
 			type: 'POST',
@@ -69,6 +75,11 @@ function subirImgPerfil(){
 			    else alert("no se ha subido");// <<<<-----No alerts loco!
 			}
 		});
+		}
+		
+		else {
+		alert("la imagen es demasiado grande");
+		}
 }
 /**
  * funcion que dado una extension comprueba que se de imagen
