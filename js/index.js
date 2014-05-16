@@ -1,4 +1,37 @@
 $(document).ready(function(){
+
+
+	
+	
+	// validacion de contraseña_registro
+	$("#contra").change(contrasenya_registro);
+	
+
+	// validacion de nombre_registro
+	$("#nombre").change(nombre_registro);
+	
+	
+	// validacion de apellido_registro
+	$("#apellidos").change(apellido_registro);
+	
+	
+	// validacion de gmail_registro instantaneo
+	$("#email").change(email_registro);
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+
     $("#form-registro").hide();
     $("#registro").click(function(){
         $("#form-login").hide();
@@ -33,19 +66,30 @@ $(document).ready(function(){
               .done(function(data){
                       var not = $.parseJSON(data);
                    if(!not.notice){
-                       alert("no te has logueado");
+					   document.getElementById("no_logeo").innerHTML="No te has logeado";
                    }
                    if(not.notice == 1){
                          location.href="perfil.php";
                    }
                    if(not.notice == 2){
-                         alert("no has activado la cuenta, mira en tu email");
+                       document.getElementById("no_logeo").innerHTML="No has activado tu cuenta , mira tu email";
                    }
               });
           }
     });
     
-    
+	
+	
+	
+
+
+
+	
+	
+
+	
+	
+	
  
 });
       /*
@@ -57,7 +101,9 @@ $(document).ready(function(){
      }
     });
     */
-function validar_email(valor){
+	
+	
+	function validar_email(valor){
       // creamos nuestra regla con expresiones regulares.
       var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
       // utilizamos test para comprobar si el parametro valor cumple la regla
@@ -65,7 +111,112 @@ function validar_email(valor){
             return true;
       else
             return false;
-}
+	}
+	
+	
+
+	
+	// validacion de contraseña_registro
+	function contrasenya_registro()
+	{
+		var retorn =0;
+		var miCampoTexto2 = document.getElementById("contra").value;
+		if($("#contra").val() == ''){
+			document.getElementById("no_registro").innerHTML="El password no puede estar vacio";
+			$("#contra").css( "border","3px solid red" );		
+		}
+		
+		if(miCampoTexto2.length<=5){
+			document.getElementById("no_registro").innerHTML="El password debe tener 5 o mas digitos";
+			$("#contra").css( "border","3px solid red" );
+			
+		}
+		
+		if(miCampoTexto2.length>=5){
+			document.getElementById("no_registro").innerHTML="";
+			$("#contra").css( "border","1px solid blue" );
+			retorn=1;
+		}
+		return retorn;
+	}
+
+
+
+
+	// validacion de nombre_registro
+	function nombre_registro()
+	{
+		var retorn =0;
+		var miCampoTexto = document.getElementById("nombre").value;
+		if (miCampoTexto.length <= 3) {
+		document.getElementById("no_registro").innerHTML="El nombre debe tener un minimo de 3 digitos";
+		$("#nombre").css( "border","3px solid red" );
+		}
+		else {
+		document.getElementById("no_registro").innerHTML="";
+		$("#nombre").css( "border","1px solid blue" );
+		retorn=1;
+		}
+		return retorn;
+	}
+	
+	
+	// validacion de apellido_registro
+	function apellido_registro()
+	{
+		 var retorn =0;
+		if($("#apellidos").val() == '')
+		{
+			document.getElementById("no_registro").innerHTML="El apellido no puede estar vacio";
+			$("#apellidos").css( "border","3px solid red" );		
+		}
+		else {
+			document.getElementById("no_registro").innerHTML="";
+			$("#apellidos").css( "border","1px solid blue" );
+			retorn=1;
+		}
+		return retorn;
+	}
+	
+	
+	
+	// validacion de gmail_registro instantaneo
+	function email_registro()
+	{
+		var retorn =0;
+		if($("#email").val() == '')
+		{
+			document.getElementById("no_registro").innerHTML="Ingrese un email";
+			$("#email").css( "border","3px solid red" );
+		}else if(validar_email($("#email").val()))
+		{
+			document.getElementById("no_registro").innerHTML="";
+			$("#email").css( "border","1px solid blue" );
+			retorn=1;
+		}else
+		{
+			document.getElementById("no_registro").innerHTML="Email incorrecto";
+			$("#email").css( "border","3px solid red" );
+		}
+		return retorn;
+	}
+
+
+
+
+	// validacion de fecha_registro
+	function fecha_registro()
+	{
+		if($("#dia").val() ==0)
+		{
+			alert("dia incorrecto");	
+		}
+		else {
+			alert("fecha correcta");
+		}
+	}
+	
+
 
 
  function registroBoton(){
@@ -75,12 +226,15 @@ function validar_email(valor){
     var pass = $("#password").val();
     var dia = $("#dia").val();
     var mes = $("#mes").val();
-    var anio = $("#año").val();
+    var anio = $("#any").val();
     
     var fecha = dia+"/"+mes+"/"+anio;
-    if(mail== ''){
-          alert("El email no es valido");
-      }else if(validar_email(mail)){
+   
+		  
+		  
+		  
+      if((apellido_registro()) && (email_registro()) && (contrasenya_registro()) && (nombre_registro())){
+			
             $.ajax({
                   type: "POST",
                   url: "php/controlRegistro.php",
@@ -95,7 +249,7 @@ function validar_email(valor){
                    }
               });
       }else{
-            alert("El email no es valido");
+            alert("Datos incorrectos");
       }
     
     };

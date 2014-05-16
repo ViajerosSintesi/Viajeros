@@ -43,6 +43,8 @@
 					<p><label for="password">Contrase&ntilde;a: </label><input type="password" id="password" name="password"></p>
 					<input type="buton" name="enviar" id="boton-login" value="Iniciar sesi&oacute;n">
 				</fieldset>
+				<p><span id="mail_incorrecto"></span><p>
+				<p><span id="no_logeo"></span><p>
 				<p><span id="recuperarPass">&#191;Olvidaste tu contrase&ntilde;a?</span></p>
 				<p><span id="registro">&#191;Eres nuevo? Reg&iacute;strate</span></p>
 			</div>
@@ -51,13 +53,13 @@
                   	<fieldset>
                   	<legend><h2>Reg&iacute;stro</h2></legend>
                   	<p><label for="nombre">Nombre: </label><br>
-                  		<input type="text" name="nombre" id="nombre"></p>
+                  		<input type="text" name="nombre" id="nombre" value="Tu nombre"></p>
                   	<p><label for="apellidos">Apellidos</label><br>
-                  		<input type="text" name="apellidos" id="apellidos"></p>
+                  		<input type="text" name="apellidos" id="apellidos" value="Tu apellido"></p>
                   	<p><label for="email">Email: </label><br>
-                  		<input type="text" name="email" id="email"></p>
+                  		<input type="text" name="email" id="email" value="Tu email"></p>
                   	<p><label for="password">Contrase&ntilde;a: </label><br>
-                  		<input type="password" name="password"></p>
+                  		<input type="password" name="password" id="contra"></p>
                   	<p><label>Fecha de nacimiento: </label><br>
                   		<select name="dia" id="dia">
                   			<option value="0" selected="1">D&iacute;a</option>
@@ -66,7 +68,7 @@
                   			}
                   			?>
                   		</select>
-                  		<select name="mes">
+                  		<select name="mes" id="mes">
                   			<option value="0" selected="1">Mes</option>
                   			<option value="1">Ene</option>
                   			<option value="2">Feb</option>
@@ -81,7 +83,7 @@
                   			<option value="11">Nov</option>
                   			<option value="12">Dic</option>
                   		</select>
-                  		<select name="any">
+                  		<select name="any" id="any">
                   			<option value="0" selected="1">A&ntilde;o</option>
                   			<?php for ($i=date("Y"); $i > 1905; $i--) { 
                   				echo "<option value='$i'>$i</option>";
@@ -90,6 +92,7 @@
                   	</p>
                   	<input type="submit" name="registrarse" id="registrarse" value="Reg&iacute;strate">
                   	</fieldset>
+					<p><span id="no_registro"><span>
                   	<p><span id="recuperarPass">&#191;Olvidaste tu contrase&ntilde;a?</span></p>
                   	<p><span id="login">Inicia sesi&oacute;n</a></p>
                   </div>
