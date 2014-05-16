@@ -36,3 +36,45 @@ function cargarRegistro(){
 		document.getElementById("home-right").innerHTML="Error: El archivo no existe"; 
 	} 	
 }
+function infoPais(){
+	conectar();
+	conexion.open("GET", "info-pais.php", true);
+	conexion.send();
+	conexion.onreadystatechange=cargarInfoPais;
+}
+function cargarInfoPais(){
+	if (conexion.readyState==4 && conexion.status==200) { 
+		document.getElementById("contenido-pais").innerHTML=conexion.responseText; 
+	}
+	if (conexion.readyState==4 && conexion.status==404) { 
+		document.getElementById("contenido-pais").innerHTML="Error: El archivo no existe"; 
+	}
+}
+function fotoPais(){
+	conectar();
+	conexion.open("GET", "foto-pais.php", true);
+	conexion.send();
+	conexion.onreadystatechange=cargarInfoPais;
+}
+function cargarFotoPais(){
+	if (conexion.readyState==4 && conexion.status==200) { 
+		document.getElementById("contenido-pais").innerHTML=conexion.responseText; 
+	}
+	if (conexion.readyState==4 && conexion.status==404) { 
+		document.getElementById("contenido-pais").innerHTML="Error: El archivo no existe"; 
+	}
+}
+function ubicacionPais(){
+	conectar();
+	conexion.open("GET", "mapa.php", true);
+	conexion.send();
+	conexion.onreadystatechange=cargarUbicacionPais;
+}
+function cargarUbicacionPais(){
+	if (conexion.readyState==4 && conexion.status==200) { 
+		document.getElementById("contenido-pais").innerHTML=conexion.responseText; 
+	}
+	if (conexion.readyState==4 && conexion.status==404) { 
+		document.getElementById("contenido-pais").innerHTML="Error: El archivo no existe"; 
+	}
+}
