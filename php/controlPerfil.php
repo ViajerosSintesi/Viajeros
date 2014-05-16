@@ -10,7 +10,8 @@
 	                  'nombre'=> $user->getUsername(),
 	                  'apellidos'=> $user->getApellidos(),
 	                  'email'=> $user->getId(),
-	                  'edad'=> $user->getEdad()
+	                  'edad'=> $user->getEdad(),
+	                  'imgPerfil'=>$user->getImgPerfil()
 	            );
 	      echo json_encode($userArray);
 	}

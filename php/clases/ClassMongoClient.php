@@ -63,8 +63,14 @@ class DBMongo{
 	public function getCollection(){
 		return $this->colectionNow;
 	}
-	public function findOneCollection($query=""){
-	      return $this->colectionNow->findOne($query);
+	public function findOneCollection($query="", $mostrar=""){
+	      $retorn = "";
+	      if($query=="") $retorn= $this->colectionNow->findOne();
+	      else{
+	            if($mostrar=="") $retorn= $this->colectionNow->findOne($query);
+	            else $retorn=$this->colectionNow->findOne($query, $mostrar);
+	      } 
+	      return $retorn;
 	}
 }
 

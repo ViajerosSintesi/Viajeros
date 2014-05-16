@@ -3,6 +3,7 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="js/jquery-2.1.1.min.js"></script>
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/index.js"></script>

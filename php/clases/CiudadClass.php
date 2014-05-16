@@ -75,7 +75,6 @@ class User{
 		
 	}*/
 	
-	
 	public function cogeValoresSegunId(){
 		$queryForId = array('_id' => $this->id);
 		if($this->bbdd->contar($queryForId)){
@@ -87,8 +86,6 @@ class User{
 
 		}
 	}
-	
-	
 	
 	/*
 	public function enviaEmailConfirm(){
