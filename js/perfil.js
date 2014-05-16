@@ -43,7 +43,7 @@ $(function(){
  * 
  **/
 function subirImgPerfil(){
-            var file = $("#foto-perfil")[0].files[0];
+        var file = $("#foto-perfil")[0].files[0];
 		//obtenemos el nombre del archivo
 		var fileName = file.name;
 		//obtenemos la extensión del archivo
@@ -54,7 +54,7 @@ function subirImgPerfil(){
 		var fileType = file.type;
 		
 		
-		if (fileSize<=200000){
+		if ((fileSize<=200000) && (fileExtension=="jpeg") || (fileExtension=="png") || (fileExtension=="jpg")){
 		
 		
 		//creamos un form data i añadimos el fichero
@@ -78,7 +78,7 @@ function subirImgPerfil(){
 		}
 		
 		else {
-		alert("la imagen es demasiado grande");
+		alert("La imagen es demasiado grande o no cumple el formato correcto");
 		}
 }
 /**
@@ -125,7 +125,17 @@ function cargarDatos(){
 function modPerfil(){
       var username = $("#perfil-nombre").val();
       var apellidos = $("#perfil-apellidos").val();
-      var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos};
+	  var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos};
+
+	  // validacion username
+	  if($("#perfil-apellidos").val() == ''){
+	  alert ("el nombre no puede estar vacio");
+	  }
+	  
+	  
+	  
+	  
+	  else {
       $.post('php/modificarPerfil.php', dataEnvio, function(data){
             var not = JSON.parse(data);
             alert(not.notice)
@@ -133,4 +143,5 @@ function modPerfil(){
             $("#info").show();
 	      $("#form-info").hide();
       });
+	  }
 }
