@@ -58,7 +58,7 @@ class Ciudad{
       			'_id' => $this->id,
       			'nombre' => $this->nombre,
       			'coordenadax' => $this->coordenadax,
-      			'coordenaday' => $this->coordenaday
+      			'coordenaday' => $this->coordenaday,
       			'pais' =>  $this->pais
 			);
 	}
@@ -75,6 +75,7 @@ class Ciudad{
 
 		}
 	}
+	
 	
 	
 }

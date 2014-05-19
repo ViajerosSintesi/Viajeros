@@ -7,3 +7,5 @@ php.ini
 # ignore carpeta sessions 
 
 /session
+/images/fotosCiudades
+/images/fotosPerfil
