@@ -10,9 +10,11 @@
 <head>
 	<title>Perfil Usuario</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css">
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/ajax.js"></script>
+	<script src="js/buscador.js"></script>
 	<script src="js/perfil.js"></script>
 	<script type="text/javascript">
 	
@@ -22,8 +24,12 @@
 <div id="wrap">
 	<div id="header">
 		<img src="img/logo.png">
+	      
 	</div>
 	<div id="contenedor">
+	      <div>
+	            <input type="text" id="buscar"/>
+	      </div>
 		<div id="perfil">
 			<div id="titulo">
 				<h1>Informaci&oacute;n</h1>

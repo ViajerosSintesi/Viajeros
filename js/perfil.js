@@ -34,6 +34,15 @@ $(function(){
 		$("#modificar-datos").click(modPerfil);
 		//si se elige foto, la sube
 	      $('#foto-perfil').change(subirImgPerfil);
+
+            //reutilizable, es para buscar. la funcion buscador esta en js/buscador.js
+            $("#buscar" ).autocomplete({
+                  source: buscador,
+                  select: function(){
+                        window.location="http://google.es";
+                  }
+            });
+                  
 });
 /**
  *
