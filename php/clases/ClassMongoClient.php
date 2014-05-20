@@ -76,13 +76,19 @@ class DBMongo{
 		return $this->colectionNow;
 	}
 	public function findOneCollection($query="", $mostrar=""){
-	      $retorn = "";
+	      try {
+	      $retorn = array();
 	      if($query=="") $retorn= $this->colectionNow->findOne();
 	      else{
 	            if($mostrar=="") $retorn= $this->colectionNow->findOne($query);
 	            else $retorn=$this->colectionNow->findOne($query, $mostrar);
 	      } 
 	      return $retorn;
+	      }
+            catch (MongoCursorException $e) {
+                echo "error message: ".$e->getMessage()."\n";
+                echo "error code: ".$e->getCode()."\n";
+            }
 	}
 }
 

@@ -141,7 +141,7 @@ function cargarDatos(){
             $(".imagenDeCiudad").click(function(){
                   
                   var divId = $(this).attr("name");
-                  $("#"+divId).html('<input type="button" class="borrarImg" value="borrar"/>');
+                  $("#"+divId).html('<input type="button" class="borrarImg" value="borrar" name="'+divId+'"/>');
                   $('.borrarImg').click(borrarImagen);
                   $("#"+divId).append($(this).clone());
                   $("#"+divId).dialog();

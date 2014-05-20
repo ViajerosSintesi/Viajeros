@@ -102,13 +102,12 @@ class imagen {
       
       public function borrarImagen(){
             $retorn = 0;
-            $queryForId = array('_id' => $this->id);
-            echo $this->bbdd->contar($queryForId);
+            $queryForId = array('_id' => new MongoId($this->id));
+            var_dump($queryForId);
             if($this->bbdd->contar($queryForId)){
                   if($this->bbdd->eliminar($queryForId)){
                         $pathToImage = $this->ruta.$this->nombre;
                         $retorn = unlink($pathToImage);
-                        
                   }
             }
             return $retorn;
