@@ -44,8 +44,9 @@ $(function(){
             });
             $("#buscarForImg" ).autocomplete({
                   source: buscador
-                  
-            }); 
+            });
+            
+            $("#formfotos").submit(subirFotos);
 });
 /**
  *
@@ -55,7 +56,7 @@ $(function(){
  * 
  **/
 function subirImgPerfil(){
-        var file = $("#foto-perfil")[0].files[0];
+            var file = $("#foto-perfil")[0].files[0];
 		//obtenemos el nombre del archivo
 		var fileName = file.name;
 		//obtenemos la extensión del archivo
@@ -67,30 +68,26 @@ function subirImgPerfil(){
 		
 		
 		if ((fileSize<=200000) && (fileExtension=="jpeg") || (fileExtension=="png") || (fileExtension=="jpg")){
-		
-		
-		//creamos un form data i añadimos el fichero
-	      var formData = new FormData();
-	      formData.append("imgPerfil", file);
-            
-        //ejecutamos ajax para que conecte con el servidor y pueda modificar
-		$.ajax({
-			url: 'php/modificarPerfil.php',  
-			type: 'POST',
-			data: formData,
-			cache: false,
-			contentType: false,
-			processData: false,
-			success: function(data){
-			     //si todo va bien, vuelve a cargar los datos
-			    if(data==1) cargarDatos();
-			    else alert("no se ha subido");// <<<<-----No alerts loco!
-			}
-		});
-		}
-		
-		else {
-		alert("La imagen es demasiado grande o no cumple el formato correcto");
+                  //creamos un form data i añadimos el fichero
+                  var formData = new FormData();
+                  formData.append("imgPerfil", file);
+                  
+                  //ejecutamos ajax para que conecte con el servidor y pueda modificar
+                  $.ajax({
+                  	url: 'php/modificarPerfil.php',  
+                  	type: 'POST',
+                  	data: formData,
+                  	cache: false,
+                  	contentType: false,
+                  	processData: false,
+                  	success: function(data){
+                  	     //si todo va bien, vuelve a cargar los datos
+                  	    if(data==1) cargarDatos();
+                  	    else alert("no se ha subido");// <<<<-----No alerts loco!
+                  	}
+                  });
+		}else {
+		      alert("La imagen es demasiado grande o no cumple el formato correcto");
 		}
 }
 /**
@@ -127,6 +124,21 @@ function cargarDatos(){
             $("#edadUser").html(data.edad);
             document.getElementById("img-Perfil").src=data.imgPerfil;
       });
+      var dataImagenes = {"fotosForPerfil": 1};
+      
+      $.getJSON('php/controlImagen.php', dataImagenes,function(data){
+            
+            var intro = '';
+            for(var i = 0; i< data.length; i++){
+                  var ruta = data[i].ruta+'/'+data[i].nombre;
+                  intro += '<img src="'+ruta+'">';
+                  //console.log(intro);
+            }
+
+            $("#fotos").html(intro)
+            
+      });
+      
 }
 
 /**
@@ -137,23 +149,56 @@ function cargarDatos(){
 function modPerfil(){
       var username = $("#perfil-nombre").val();
       var apellidos = $("#perfil-apellidos").val();
-	  var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos};
+	var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos};
+	// validacion username
+      if($("#perfil-apellidos").val() == ''){
+	      alert ("el nombre no puede estar vacio");
+      }else{
+            $.post('php/modificarPerfil.php', dataEnvio, function(data){
+                  var not = JSON.parse(data);
+                  alert(not.notice)
+                  cargarDatos();
+                  $("#info").show();
+      	      $("#form-info").hide();
+            });
+	}
+}
 
-	  // validacion username
-	  if($("#perfil-apellidos").val() == ''){
-	  alert ("el nombre no puede estar vacio");
-	  }
-	  
-	  
-	  
-	  
-	  else {
-      $.post('php/modificarPerfil.php', dataEnvio, function(data){
-            var not = JSON.parse(data);
-            alert(not.notice)
-            cargarDatos();
-            $("#info").show();
-	      $("#form-info").hide();
-      });
-	  }
+function subirFotos(){
+       var file = $("#picture")[0].files[0];
+		//obtenemos el nombre del archivo
+		var fileName = file.name;
+		//obtenemos la extensión del archivo
+		var fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+		//obtenemos el tamaño del archivo
+		var fileSize = file.size;
+		//obtenemos el tipo de archivo image/png ejemplo
+		var fileType = file.type;
+		
+		var userId = $("userIdForImg").val();
+		var ciudadId = $("#buscarForImg").val();
+		if ((fileSize<=200000) && (fileExtension=="jpeg") || (fileExtension=="png") || (fileExtension=="jpg")){
+                  //creamos un form data i añadimos el fichero
+                  var formData = new FormData();
+                  formData.append("imgPerfil", file);
+                  formData.append("userId", userId);
+                  formData.append("ciudadId", ciudadId);
+                  //ejecutamos ajax para que conecte con el servidor y pueda modificar
+                  $.ajax({
+                  	url: 'php/modificarPerfil.php',  
+                  	type: 'POST',
+                  	data: formData,
+                  	cache: false,
+                  	contentType: false,
+                  	processData: false,
+                  	success: function(data){
+                  	     //si todo va bien, vuelve a cargar los datos
+                  	    if(data==1) cargarDatos();
+                  	    else alert("no se ha subido");// <<<<-----No alerts loco!
+                  	}
+                  });
+		}else {
+		      alert("La imagen es demasiado grande o no cumple el formato correcto");
+		}
+
 }

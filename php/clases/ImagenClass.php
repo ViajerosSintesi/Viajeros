@@ -63,6 +63,7 @@ class imagen {
       public function guardarImagen(){
             $retorn = 0;
             $this->imageToArray();
+            if($this->imageArray['_id'] == null) unset($this->imageArray['_id']);
             if(!$this->bbdd->contar(array("_id"=>$this->id))){
                   $retorn = $this->bbdd->insertar($this->imageArray);
             }
@@ -88,6 +89,15 @@ class imagen {
                               "ciudad" => $this->ciudad,
                               "usuario" => $this->usuario
                         );
+      }
+      
+      
+      public function darImagenes($porUser=true){
+            $queryForImages = array();
+            if($porUser) $queryForImages = array('usuario' => $this->usuario);
+            else $queryForImages = array('ciudad' => $this->ciudad);
+            
+            return $this->bbdd->findCollection($queryForImages);
       }
 }
 ?>

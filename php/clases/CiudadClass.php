@@ -76,7 +76,17 @@ class Ciudad{
 		}
 	}
 	
-	
+	public function buscarCiudad($opt){
+	      switch($opt){
+	            case "ciudad":
+	                        $query = array("nombre"=>$this->nombre, "pais"=>$this->pais);
+	                        $ciudad = $this->bbdd->findOneCollection($query);
+	                        $this->id= $ciudad['_id'];
+	                        break;
+	            case "user": $this->cogeValoresSegunId(); break;
+	            case "coord": break;
+	      }
+	}
 	
 }
 ?>

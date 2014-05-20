@@ -2,27 +2,42 @@
       require_once("clases/ImagenClass.php");
       require_once("clases/UserClass.php");
       require_once("clases/CiudadClass.php");
-      
-      if ($_FILES["picture"]["error"] > 0) {
-      echo "Error: " . $_FILES["picture"]["error"] . "<br>";
-      } 
+      session_start();
+       
       if(isset($_FILES["picture"])){
             
             
             $userId= filter_input(INPUT_POST, "userId");
             $ciudadId= filter_input(INPUT_POST, "ciudadId");
+            $ciudadId = explode(" ", $ciudadId);
+            $ciudad = new Ciudad();
+            $ciudad->setNombre($ciudadId[0]);
+            $ciudad->setPais($ciudadId[2]);
+            
+            $ciudad->buscarCiudad("ciudad");
             
             $imagenForUp = $_FILES["picture"];
             $imagen = new Imagen();
             
             $imagen->setNombre($imagenForUp["name"]);
-            $imagen->setCiudad($ciudadId);
+            $imagen->setCiudad($ciudad->getId());
             $imagen->setUsuario($userId);
             $imagen->setRuta();
             
             $imagen->subirImagen($imagenForUp);
-            echo $imagen->guardarImagen();
+            //echo $imagen->guardarImagen();
+            header("location: ../perfil.php");
       
+      }
+      if(filter_has_var(INPUT_GET, "fotosForPerfil")){
+            $userId= $_SESSION['userId'];
+            
+            $imagen = new Imagen();
+            
+            $imagen->setUsuario($userId);
+            
+            echo json_encode($imagen->darImagenes());
+            
       }
 
 ?>
