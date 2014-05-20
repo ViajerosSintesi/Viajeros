@@ -44,7 +44,7 @@
             
             $imagen = new Imagen();
             
-            $imagen->setId($imagenId);
+            $imagen->setId(new MongoId($imagenId));
             $imagen->cogeValoresSegunId();
             
             echo json_encode($imagen->borrarImagen());

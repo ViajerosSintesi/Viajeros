@@ -1,15 +1,10 @@
 $(document).ready(function(){
 
-
-	
-	
 	// validacion de contraseña_registro
 	$("#contra").change(contrasenya_registro);
 	
-
 	// validacion de nombre_registro
 	$("#nombre").change(nombre_registro);
-	
 	
 	// validacion de apellido_registro
 	$("#apellidos").change(apellido_registro);
@@ -28,18 +23,6 @@ $(document).ready(function(){
 	$("#any").change(any_registro);
 	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
 
     $("#form-registro").hide();
     $("#registro").click(function(){
@@ -74,7 +57,7 @@ $(document).ready(function(){
               })
               .done(function(data){
                       var not = $.parseJSON(data);
-                   if(!not.notice){
+                   if(not.notice== 0){
 					   document.getElementById("no_logeo").innerHTML="No te has logeado";
                    }
                    if(not.notice == 1){
@@ -87,18 +70,6 @@ $(document).ready(function(){
           }
     });
     
-	
-	
-	
-
-
-
-	
-	
-
-	
-	
-	
  
 });
       /*
@@ -121,8 +92,6 @@ $(document).ready(function(){
       else
             return false;
 	}
-	
-	
 
 	
 	// validacion de contraseña_registro
@@ -256,9 +225,6 @@ $(document).ready(function(){
 		return retorn;
 	}
 	
-	
-
-
 
  function registroBoton(){
     var user = $("#nombre").val();
