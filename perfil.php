@@ -30,6 +30,10 @@
 	      <div>
 	            <input type="text" id="buscar"/>
 	      </div>
+	      <form action="php/controlLogin.php" method="post">
+	      
+	            <input type="submit" name="destroySession" value="cerrar session" /> 
+		</form>
 		<div id="perfil">
 			<div id="titulo">
 				<h1>Informaci&oacute;n</h1>

@@ -39,5 +39,14 @@
             echo json_encode($imagen->darImagenes());
             
       }
-
+      if(filter_has_var(INPUT_GET, "borrarImagen")){
+            $imagenId = filter_input(INPUT_GET, "imagenId");
+            
+            $imagen = new Imagen();
+            
+            $imagen->setId($imagenId);
+            $imagen->cogeValoresSegunId();
+            
+            echo json_encode($imagen->borrarImagen());
+      }
 ?>

@@ -47,6 +47,7 @@ $(function(){
             });
             
             $("#formfotos").submit(subirFotos);
+            
 });
 /**
  *
@@ -131,11 +132,20 @@ function cargarDatos(){
             var intro = '';
             for(var i = 0; i< data.length; i++){
                   var ruta = data[i].ruta+'/'+data[i].nombre;
-                  intro += '<img src="'+ruta+'">';
-                  //console.log(intro);
+                  intro += '<img src="'+ruta+'" class="imagenDeCiudad" name="'+data[i]["_id"]["$id"]+'">';
+                  intro += '<div id="'+data[i]["_id"]["$id"]+'" class="dialogImg"> </div>';
+                  //console.log(data[i]["_id"]["$id"]);
             }
 
-            $("#fotos").html(intro)
+            $("#fotos").html(intro);
+            $(".imagenDeCiudad").click(function(){
+                  
+                  var divId = $(this).attr("name");
+                  $("#"+divId).html('<input type="button" class="borrarImg" value="borrar"/>');
+                  $('.borrarImg').click(borrarImagen);
+                  $("#"+divId).append($(this).clone());
+                  $("#"+divId).dialog();
+            });
             
       });
       
@@ -192,13 +202,23 @@ function subirFotos(){
                   	contentType: false,
                   	processData: false,
                   	success: function(data){
-                  	     //si todo va bien, vuelve a cargar los datos
-                  	    if(data==1) cargarDatos();
-                  	    else alert("no se ha subido");// <<<<-----No alerts loco!
-                  	}
+                              //si todo va bien, vuelve a cargar los datos
+                              if(data==1) cargarDatos();
+                                    else alert("no se ha subido");// <<<<-----No alerts loco!
+                              }
                   });
 		}else {
 		      alert("La imagen es demasiado grande o no cumple el formato correcto");
 		}
 
+}
+
+function borrarImagen(){
+      var imgId = $(this).attr('name');
+      
+      var dataEnvio = {"borrarImagen": 1, "imagenId": imgId};
+      $.getJSON('php/controlImagen.php', dataEnvio, function(data){
+            //console.log(data);
+            if(data)cargarDatos();
+      });
 }

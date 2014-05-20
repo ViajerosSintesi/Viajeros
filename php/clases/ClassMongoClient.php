@@ -57,8 +57,11 @@ class DBMongo{
 	}
 
 	public function eliminar($query, $opt=""){
-		if($opt=="")$this->colectionNow->remove($query);
-		else $this->colectionNow->remove($query, $opt);
+	      $retorn = 0;
+		if($opt=="") $retorn = $this->colectionNow->remove($query);
+		else $retorn = $this->colectionNow->remove($query, $opt);
+		
+		return $retorn;
 	}
 
 	public function actualiza($query, $newData,$opt="+"){

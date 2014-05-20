@@ -17,4 +17,9 @@
 		}
 		echo json_encode(array( "notice"=>$notice));
       }
+      
+      if(filter_has_var(INPUT_POST, "destroySession")){
+            session_destroy();
+            header("location:https://viajeros-c9-txemens.c9.io");
+      }
 ?>

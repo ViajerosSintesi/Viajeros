@@ -30,7 +30,7 @@ class imagen {
 	}
 	
 	public function getId(){return $this->id;}
-	public function setId($id){$this->id = $id;}
+	public function setId($id){$this->id = $id."";}
 	public function getNombre(){return $this->nombre;}
 	public function setNombre($nombre){$this->nombre = $nombre;}
 	public function getRuta(){return $this->ruta;}
@@ -98,6 +98,20 @@ class imagen {
             else $queryForImages = array('ciudad' => $this->ciudad);
             
             return $this->bbdd->findCollection($queryForImages);
+      }
+      
+      public function borrarImagen(){
+            $retorn = 0;
+            $queryForId = array('_id' => $this->id);
+            echo $this->bbdd->contar($queryForId);
+            if($this->bbdd->contar($queryForId)){
+                  if($this->bbdd->eliminar($queryForId)){
+                        $pathToImage = $this->ruta.$this->nombre;
+                        $retorn = unlink($pathToImage);
+                        
+                  }
+            }
+            return $retorn;
       }
 }
 ?>
