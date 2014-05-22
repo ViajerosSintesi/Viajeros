@@ -92,6 +92,30 @@ $(document).ready(function(){
       else
             return false;
 	}
+	
+	
+	
+	
+	function validar_password(valor2){
+	 // creamos nuestra regla con expresiones regulares.
+	  var retornar=0;
+      var filter2 = /[_0-9-]/g;
+	  var filter3 = /[@0-9%]/g;
+	  var filter4 = /[#0-9~]/g;
+	  var filter5 = /[&0-9=]/g;
+	  var filter6 = /[€0-9$]/g;
+	  var filter7 = /[¿0-9?]/g;
+      // utilizamos test para comprobar si el parametro valor cumple la regla
+      if((filter2.test(valor2)==true)||(filter3.test(valor2)==true)||(filter4.test(valor2)==true)||(filter5.test(valor2)==true)||(filter6.test(valor2)==true)||(filter7.test(valor2)==true)){
+           retornar=1; 	
+		   }
+      else{
+           retornar=0;
+		}
+		return retornar;
+	}
+	
+	
 
 	
 	// validacion de contraseña_registro
@@ -99,18 +123,20 @@ $(document).ready(function(){
 	{
 		var retorn =0;
 		var miCampoTexto2 = document.getElementById("contra").value;
+
+		
 		if($("#contra").val() == ''){
 			document.getElementById("no_registro").innerHTML="El password no puede estar vacio";
 			$("#contra").css( "border","3px solid red" );		
 		}
 		
-		if(miCampoTexto2.length<=5){
-			document.getElementById("no_registro").innerHTML="El password debe tener 5 o mas digitos";
+		if((miCampoTexto2.length<=4)||(validar_password($("#contra").val())==true)){
+			document.getElementById("no_registro").innerHTML="El password debe tener 5 o mas digitos y solo puede tener letras";
 			$("#contra").css( "border","3px solid red" );
 			
 		}
 		
-		if(miCampoTexto2.length>=5){
+		else {
 			document.getElementById("no_registro").innerHTML="";
 			$("#contra").css( "border","1px solid blue" );
 			retorn=1;
