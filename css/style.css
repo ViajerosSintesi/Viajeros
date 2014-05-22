@@ -21,6 +21,7 @@ body{margin: 0; padding: 0; background-color: #e9eaed;}
 #home-right #mail_incorrecto {text-decoration: none; color: red;}
 #home-right span{text-decoration: none; color: #000;}
 #home-right #recuperarPass:hover{text-decoration: underline; color: #069; cursor: pointer;}
+#home-right #login:hover{text-decoration: underline; color: #069; cursor: pointer;}
 #home-right #registro:hover{text-decoration: underline; color: #069; cursor: pointer;}
 
 
