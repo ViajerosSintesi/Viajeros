@@ -110,6 +110,14 @@ function isImage(extension){
     }
 }
 
+
+
+
+
+
+
+
+
 /**
  * le pide los datos al servidor y rellena los campos del perfil
  * 
@@ -126,6 +134,14 @@ function cargarDatos(){
             document.getElementById("img-Perfil").src=data.imgPerfil;
       });
       var dataImagenes = {"fotosForPerfil": 1};
+	  
+	  
+
+	  
+	  
+	  
+	  
+	  
       
       $.getJSON('php/controlImagen.php', dataImagenes,function(data){
             
@@ -144,7 +160,18 @@ function cargarDatos(){
                   $("#"+divId).html('<input type="button" class="borrarImg" value="borrar" name="'+divId+'"/>');
                   $('.borrarImg').click(borrarImagen);
                   $("#"+divId).append($(this).clone());
-                  $("#"+divId).dialog();
+				  $("#"+divId+">img").addClass("imagen-dialogo");
+                  $("#"+divId).dialog({
+				    
+					modal: true,
+					title: "Caja con opciones",
+					width: 720,
+					minWidth: 720,
+					maxWidth: 1080,
+					maxHeight: 1080,
+					show: "fold",
+					hide: "scale"
+					});
             });
             
       });
