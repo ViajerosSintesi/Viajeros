@@ -30,7 +30,7 @@
       
       }
       if(filter_has_var(INPUT_GET, "fotosForPerfil")){
-            $userId= $_SESSION['userId'];
+            $userId= filter_input(INPUT_GET, "userId");
             
             $imagen = new Imagen();
             

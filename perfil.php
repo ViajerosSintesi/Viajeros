@@ -1,7 +1,13 @@
 <?php
       session_start();
+      
       if(!isset($_SESSION['userId'])){
             header("location:index.php");
+            if(filter_has_var(INPUT_GET,"user")){
+                  $user= filter_input(INPUT_GET,"user");
+            }else{
+                  $user=$_SESSION['userId'];
+            }
       }
 ?>
 
@@ -84,7 +90,7 @@
 					<legend>Subir foto</legend>
 					<input type="file" name="picture" id="picture"><br>
 					<input type="text" name="ciudadId" id="buscarForImg"/><br>
-					<input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>" id="userIdForImg"/>
+					<input type="hidden" name="userId" value="<?php echo $user?>" id="userIdForImg"/>
 					<input type="submit" name="subir-pic" id="subir-pic" value="Subir foto">
 				</fieldset>
 			</form>
