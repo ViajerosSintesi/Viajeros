@@ -13,7 +13,7 @@
             $ciudad = new Ciudad();
             $ciudad->setNombre($ciudadId[0]);
             $ciudad->setPais($ciudadId[2]);
-            
+
             $ciudad->buscarCiudad("ciudad");
             
             $imagenForUp = $_FILES["picture"];
