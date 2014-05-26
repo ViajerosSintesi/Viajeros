@@ -111,19 +111,13 @@ function isImage(extension){
 }
 
 
-
-
-
-
-
-
-
 /**
  * le pide los datos al servidor y rellena los campos del perfil
  * 
  **/
 function cargarDatos(){
-      var dataEnvio = {"datosPerfil": 1};
+      var userId = $("#userIdForImg").val();
+      var dataEnvio = {"datosPerfil": 1, "userId": userId};
       $.getJSON('php/controlPerfil.php', dataEnvio,function(data){
             $("#nombreUser").html(data.nombre);
             $("#apellidosUser").html(data.apellidos);
@@ -133,16 +127,8 @@ function cargarDatos(){
             $("#edadUser").html(data.edad);
             document.getElementById("img-Perfil").src=data.imgPerfil;
       });
-      var dataImagenes = {"fotosForPerfil": 1};
-	  
-	  
+      var dataImagenes = {"fotosForPerfil": 1, "userId": userId};
 
-	  
-	  
-	  
-	  
-	  
-      
       $.getJSON('php/controlImagen.php', dataImagenes,function(data){
             
             var intro = '';
