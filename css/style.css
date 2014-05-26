@@ -52,6 +52,8 @@ body{margin: 0; padding: 0; background-color: #e9eaed;}
 #titulo #perfil-subir-foto{position: relative; left: 100%; margin-left: -102px; top: -53px;}
 #titulo #perfil-subir-foto input{padding: 5px 10px; background-color: #069; color: #fff; font-size: 15px;}
 #perfil-galeria #fotos{width: 100%; margin-bottom: 15px;}
+
+
 /* ===== cuadro subir foto ===== */
 #bg-cuadro{display: none; width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: 9999;
 background-color: grey; background: rgba(54, 54, 54, 0.3);}
@@ -60,6 +62,7 @@ min-height: 300px; border-radius:5px; -moz-border-radius:5px; -webkit-border-rad
 background-color: grey; background: rgba(54, 54, 54, 0.8);}
 #cuadro-foto #cerrar-cuadro{position: relative; left: 100%; margin-left: -20px; top: 4px;}
 #cuadro-foto #centra-input{width: 100%; text-align: center; padding: 10px;}
+.imagen-dialogo {width: 80%; height:80%;}
 
 /* ================ Pais ================ */
 #contenedor #cabecera{width: 100%; height: 250px; padding: 0; margin: 0;}

@@ -1,7 +1,19 @@
 <?php
       session_start();
+      $user = null;
       if(!isset($_SESSION['userId'])){
             header("location:index.php");
+      }else{
+             if(filter_has_var(INPUT_GET,"user")){
+                  $user= filter_input(INPUT_GET,"user");
+            }else{
+                  $user=$_SESSION['userId'];
+            }
+      }
+      
+      function comproveEmail(){
+            if(filter_has_var(INPUT_GET,"user")) return 0;
+            else return 1;
       }
 ?>
 
@@ -21,6 +33,7 @@
 	</script>
 </head>
 <body>
+<input type="hidden" name="userId" value="<?php echo $user?>" id="userIdForImg"/>
 <div id="wrap">
 	<div id="header">
 		<img src="img/logo.png">
@@ -42,16 +55,24 @@
 				<div id="img-perfil">
 					<img src="img/no-imagen.jpg" id="img-Perfil">
 					<form action="#" method="post" enctype="multipart/form-data" id="form-foto">
-					<input type="file" id="foto-perfil" value="Cambiar foto perfil">
+					<?php if( comproveEmail()){
+				echo '<input type="file" id="foto-perfil" value="Cambiar foto perfil">';
+					}
+				?>
 					</form>
 				</div>
 			</div>
 			<div id="perfil-right">
 			      <div id="info">
-				<div id="perfil-edit"><img src="img/png/edit_32px.png"></div>
+				<?php if( comproveEmail()){
+				echo '<div id="perfil-edit"><img src="img/png/edit_32px.png"></div>';
+				}?>
 				<p><span>Nombre: </span><span id="nombreUser"></span></p>
 				<p><span>Apellidos: </span><span id="apellidosUser"></span></p>
-				<p><span>Email: </span><span id="emailUser"></span></p>
+				<?php if( comproveEmail()){
+				      	echo '<p><span>Email: </span><span id="emailUser"></span></p>';
+				}
+			      ?>
 				<p><span>Pais: </span><span id="pais">Espa&ntilde;a</span></p>
 				<p><span>Fecha de nacimiento: </span><span id="edadUser"></span></p>
 				</div>
@@ -67,7 +88,10 @@
 		<div id="perfil-galeria">
 			<div id="titulo">
 				<h1>Fotos</h1>
-				<div id="perfil-subir-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>
+					<?php if( comproveEmail()){
+				echo '<div id="perfil-subir-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>';
+					}
+				?>
 			</div>
 			<div id="fotos">
 			<?php
@@ -79,15 +103,20 @@
 			</div>
 		</div>
 		<div id="cuadro-foto">
-			<form action="php/controlImagen.php" method="post" enctype="multipart/form-data" id="formFotos">
+		<?php if( comproveEmail()){
+				
+	          echo "
+			<form action='php/controlImagen.php' method='post' enctype='multipart/form-data' id='formFotos'>
 				<fieldset>
 					<legend>Subir foto</legend>
-					<input type="file" name="picture" id="picture"><br>
-					<input type="text" name="ciudadId" id="buscarForImg"/><br>
-					<input type="hidden" name="userId" value="<?php echo $_SESSION['userId']?>" id="userIdForImg"/>
-					<input type="submit" name="subir-pic" id="subir-pic" value="Subir foto">
+					<input type='file' name='picture' id='picture'><br>
+					<input type='text' name='ciudadId' id='buscarForImg'/><br>
+					<input type='hidden' name='userId' value='$user' id='userIdForImg'/>
+					<input type='submit' name='subir-pic' id='subir-pic' value='Subir foto'>
 				</fieldset>
-			</form>
+			</form>";
+		}
+			?>
 		</div>
 	</div>
 	<div id="footer">

@@ -13,7 +13,7 @@
             $ciudad = new Ciudad();
             $ciudad->setNombre($ciudadId[0]);
             $ciudad->setPais($ciudadId[2]);
-            
+
             $ciudad->buscarCiudad("ciudad");
             
             $imagenForUp = $_FILES["picture"];
@@ -30,7 +30,7 @@
       
       }
       if(filter_has_var(INPUT_GET, "fotosForPerfil")){
-            $userId= $_SESSION['userId'];
+            $userId= filter_input(INPUT_GET, "userId");
             
             $imagen = new Imagen();
             
