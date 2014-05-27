@@ -142,7 +142,7 @@ function cargarDatos(){
             $(".imagenDeCiudad").click(function(){
                   
                   var divId = $(this).attr("name");
-                  $("#"+divId).html('<input type="button" class="borrarImg" value="borrar" name="'+divId+'"/>');
+                  $("#"+divId).html('<input type="button" class="borrarImg" value="borrar" name="'+divId+'"/><input type="button" class="reportarImg" value="reportar" name="'+divId+'"/>');
                   $('.borrarImg').click(function(){
                         borrarImagen(this);
                         $("#"+divId).dialog("close", "duration", 1000);
@@ -239,3 +239,18 @@ function borrarImagen(imagen){
             //console.log(this.parentNode.nodeName);
       });
 }
+
+
+
+function reportarImagen(imagen,user){
+      var imgId_reporte = $(imagen).attr('name');
+	  var userId_reporte = $("#userIdForImg").val();
+      
+      var dataEnvio2 = {"reportarImagen": 1, "imgId": imgId_reporte, "userId": userId_reporte};
+      $.getJSON('php/controlReporte.php', dataEnvio, function(data){
+            //console.log(data);
+            if(data)cargarDatos();
+            //console.log(this.parentNode.nodeName);
+      });
+}
+
