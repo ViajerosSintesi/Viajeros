@@ -21,12 +21,12 @@ class DBMongo{
 	    $this->dbPass = "h0lita";
 	    $this->db = "viajeros";
 	    $this->server = "mongodb://".$this->dbUser.":".$this->dbPass."@ds043329.mongolab.com:43329/viajeros";
-		$this->conexion = new Mongo($this->server);
-		return $this->conexion;
+	    $this->conexion = new Mongo($this->server);
+	    return $this->conexion;
 	}
 
 	public function selectCollection($colection){
-	    $db = $this->db;
+	      $db = $this->db;
 		$database = $this->conexion->$db;
 		$col = $database->$colection;
 		$this->colectionNow = $col;

@@ -2,6 +2,7 @@
       require_once("clases/ImagenClass.php");
       require_once("clases/UserClass.php");
       require_once("clases/CiudadClass.php");
+      require_once("clases/ClassMongoClient.php");
       session_start();
        
       if(isset($_FILES["picture"])){
@@ -49,5 +50,27 @@
             $imagen->cogeValoresSegunId();
 
             echo json_encode($imagen->borrarImagen());
+      }
+      if(filter_has_var(INPUT_GET, "fotosForCiudad")){
+            $ciudadId= filter_input(INPUT_GET, "ciudadId");
+            
+            $imagen = new Imagen();
+            
+            $imagen->setCiudad($ciudadId);
+            
+            echo json_encode($imagen->darImagenes(false));
+            
+      }
+      if(filter_has_var(INPUT_GET, "Pais")){
+            $paisId= filter_input(INPUT_GET, "pais");
+            $mongo= new DBMongo("ciudades");
+            $arrayForFind = array("idPais"=>$paisId);
+            $ciudadesDelPais = $mongo->findCollection($arrayForFind);
+            for($i=0; $i<count($ciudadesDelPais);$i++){
+                  $imagen = new Imagen();
+                  $imagen->setCiudad($ciudadesDelPais[$i]);
+                  
+                  echo json_encode($imagen->darImagenes(false));
+            }
       }
 ?>
