@@ -33,7 +33,7 @@ function listPaises(){
 }
 function obtenerInfoPais($pais){
 	$collection = conectar();
-	$parametro = array('pais'=>$pais);
+	$parametro = array('_id'=>new MongoId($pais));
 	$cursor = $collection->findOne($parametro);
 	return $cursor;
 }

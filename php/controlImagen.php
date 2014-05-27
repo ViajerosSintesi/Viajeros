@@ -57,18 +57,18 @@
             $imagen = new Imagen();
             
             $imagen->setCiudad($ciudadId);
-            
+
             echo json_encode($imagen->darImagenes(false));
             
       }
       if(filter_has_var(INPUT_GET, "Pais")){
+            require_once("clases/PaisClass.php");
             $paisId= filter_input(INPUT_GET, "pais");
-            $mongo= new DBMongo("ciudades");
-            $arrayForFind = array("idPais"=>$paisId);
-            $ciudadesDelPais = $mongo->findCollection($arrayForFind);
+            $pais = new Pais();
+            $ciudadesDelPais = $pais->listar
             for($i=0; $i<count($ciudadesDelPais);$i++){
                   $imagen = new Imagen();
-                  $imagen->setCiudad($ciudadesDelPais[$i]);
+                  $imagen->setCiudad($ciudadesDelPais[$i]["_id"]);
                   
                   echo json_encode($imagen->darImagenes(false));
             }

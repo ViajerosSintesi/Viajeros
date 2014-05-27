@@ -15,7 +15,7 @@ class DBMongo{
 		$this->conectar();
 		$this->selectCollection($colection);
 	}
-
+	
 	public function conectar(){
 	    $this->dbUser = "txemens";
 	    $this->dbPass = "h0lita";
