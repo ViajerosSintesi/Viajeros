@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+
+	// validacion de contraseña_inicio
+	$("#usuario").change(nombre_inicio);
+	
+	// validacion de contraseña_inicio
+	$("#password").change(contrasenya_inicio);
+
 	// validacion de contraseña_registro
 	$("#contra").change(contrasenya_registro);
 	
@@ -145,6 +152,59 @@ $(document).ready(function(){
 	}
 
 
+	
+	
+	// validacion de contraseña_inicio
+	function contrasenya_inicio()
+	{
+		var retorn =0;
+		var miCampoTexto2 = document.getElementById("password").value;
+
+		
+		if($("#password").val() == ''){
+			document.getElementById("no_logeo").innerHTML="El password no puede estar vacio";
+			$("#password").css( "border","3px solid red" );		
+		}
+		
+		if((miCampoTexto2.length<=4)||(validar_password($("#password").val())==true)){
+			document.getElementById("no_logeo").innerHTML="El password debe tener 5 o mas digitos y solo puede tener letras";
+			$("#password").css( "border","3px solid red" );
+			
+		}
+		
+		else {
+			document.getElementById("no_logeo").innerHTML="";
+			$("#password").css( "border","1px solid blue" );
+			retorn=1;
+		}
+		return retorn;
+	}
+	
+	
+	
+	
+	
+	// validacion de nombre_inicio
+	function nombre_inicio()
+	{
+		var retorn =0;
+		var miCampoTexto = document.getElementById("usuario").value;
+		if (miCampoTexto.length <= 3) {
+		document.getElementById("no_logeo").innerHTML="El nombre debe tener un minimo de 3 digitos";
+		$("#usuario").css( "border","3px solid red" );
+		}
+		else {
+		document.getElementById("no_logeo").innerHTML="";
+		$("#usuario").css( "border","1px solid blue" );
+		retorn=1;
+		}
+		return retorn;
+	}
+	
+	
+	
+	
+	
 
 
 	// validacion de nombre_registro
