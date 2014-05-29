@@ -37,8 +37,8 @@ $(function(){
             $("#buscar" ).autocomplete({
                   source: buscador,
                   select: function(){
-                        
-                        window.location="http://google.es";
+						var res = document.getElementById("id").value;
+                        window.location="ciudad.php?ciudad="+res;
                   }
             });
             $("#buscarForImg" ).autocomplete({
@@ -56,7 +56,7 @@ $(function(){
  * 
  **/
 function subirImgPerfil(){
-            var file = $("#foto-perfil")[0].files[0];
+        var file = $("#foto-perfil")[0].files[0];
 		//obtenemos el nombre del archivo
 		var fileName = file.name;
 		//obtenemos la extensión del archivo

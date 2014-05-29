@@ -42,6 +42,8 @@
 	<div id="contenedor">
 	      <div>
 	            <input type="text" id="buscar"/>
+				<input type="hidden" value="" id="id" />
+				
 	      </div>
 	      <form action="php/controlLogin.php" method="post">
 	      
