@@ -6,39 +6,42 @@
  * 
  **/
 $(function(){
-            
             //esta funcion carga los datos del usuario en sus campos
             cargarDatos();
             //esconde el cuadro para subir imagenes
-		$("#cuadro-foto").hide();
-		//esconde el fomulario para modificar la informacion del usuario
-		$("#form-info").hide();
-		//si se hace click en el boton de modificar, se abre el formulario
-		$("#perfil-edit").click(function(){
-			//actualizaPerfil();
-			$("#info").hide();
-			$("#form-info").show();
-		});
-		//si se cancela, se esconde el formulario 
-		$("#cancelar-datos").click(function(){
-			$("#form-info").hide();
-			$("#info").show();
-		});
-		//si se hace click al boton de subir imagenes, aparece el cuadro
-		$("#subir-foto").click(function(){
-			$("#cuadro-foto").show();
-		});
-		//al aceptar los cambios, modificas la informacion
-		$("#modificar-datos").click(modPerfil);
-		//si se elige foto, la sube
-	      $('#foto-perfil').change(subirImgPerfil);
+            $("#bg-cuadro").hide();
+            //esconde el fomulario para modificar la informacion del usuario
+            $("#form-info").hide();
+            //si se hace click en el boton de modificar, se abre el formulario
+            $("#perfil-edit").click(function(){
+                  //actualizaPerfil();
+                  $("#info").hide();
+                  $("#form-info").show();
+            });
+            //si se cancela, se esconde el formulario 
+            $("#cancelar-datos").click(function(){
+                  $("#form-info").hide();
+                  $("#info").show();
+            });
+            //si se hace click al boton de subir imagenes, aparece el cuadro
+            $("#subir-foto").click(function(){
+                  $("#bg-cuadro").show();
+            });
+            //cerrar el cuadro de subri fotos
+            $("#cerrar-cuadro").click(function(){
+                  $("#bg-cuadro").hide();
+            });
+            //al aceptar los cambios, modificas la informacion
+            $("#modificar-datos").click(modPerfil);
+            //si se elige foto, la sube
+            $('#foto-perfil').change(subirImgPerfil);
 
             //reutilizable, es para buscar. la funcion buscador esta en js/buscador.js
             $("#buscar" ).autocomplete({
                   source: buscador,
                   select: function(){
-                        
-                        window.location="http://google.es";
+                        var res = document.getElementById("id").value;
+                        window.location="ciudad.php?ciudad="+res;
                   }
             });
             $("#buscarForImg" ).autocomplete({
@@ -46,6 +49,22 @@ $(function(){
             });
             
             $("#formfotos").submit(subirFotos);
+            //Menu
+            $("#hide-show-menu").click(function(){
+                  $("#barra-menu").toggle("slow",function(){
+                        var src = ($("#ico-menu").attr('src') === 'img/33.png')
+                        ? 'img/32.png'
+                        : 'img/33.png';
+                        $("#ico-menu").attr('src', src);
+                  });
+            });
+            //Mostrar esconder logout
+            $("#show-logout").click(function(){
+                  $("#div-logout").show();
+            })
+            $("#show-logout").mouseleave(function(){
+                  $("#div-logout").hide();
+            });
             
 });
 /**
