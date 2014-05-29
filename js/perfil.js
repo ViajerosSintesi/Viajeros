@@ -41,7 +41,7 @@ $(function(){
                   source: buscador,
                   select: function(){
                         var res = document.getElementById("id").value;
-                        window.location="ciudad.php?ciudad="+res;
+                        window.location=res;
                   }
             });
             $("#buscarForImg" ).autocomplete({
