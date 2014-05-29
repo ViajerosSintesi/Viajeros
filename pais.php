@@ -19,11 +19,12 @@ if(@$_POST['edit-info']){
 	<title>Perfil Pa&iacute;s</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css">
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
-	<script src="js/jquery-ui-1.10.4.custom.js"></script>
 	<script src="js/buscador.js"></script>
 	<script src="ajax.js"></script>
+	<script src="js/comun.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		$("#informacion").click(function(){
