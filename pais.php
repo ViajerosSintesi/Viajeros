@@ -20,7 +20,9 @@ if(@$_POST['edit-info']){
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/jquery-1.10.2.js"></script>
+	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
+	<script src="js/buscador.js"></script>
 	<script src="ajax.js"></script>
 	<script type="text/javascript">
 	$(function(){
@@ -65,10 +67,22 @@ if(@$_POST['edit-info']){
 	</script>
 </head>
 <body>
-<form action="php/controlLogin.php" method="post">
-	<input type="submit" name="destroySession" value="cerrar session" /> 
-</form>
 <div id="wrap">
+	<div id="menu">
+		<button id="hide-show-menu">Barra men&uacute; <img src="img/33.png" id="ico-menu"></button>
+		<div id="barra-menu">
+			<input type="text" id="buscar" title="Buscar ciudad, pa&iacute;s">
+			<input type="hidden" value="" id="id" />
+			<ul>
+				<li><a href="perfil.php">Perfil</a></li>
+				<li><a href="list-pais.php">Paises</a></li>
+				<li><a href="mapa.php">Mapa</a></li>
+				<li><form action="php/controlLogin.php" method="post">
+						<input type="submit" name="destroySession" id="destroySession" value="Cerrar session" /> 
+					</form></li>
+			</ul>
+		</div>
+	</div>
 	<div id="header">
 		<img src="img/logo.png">
 	</div>
