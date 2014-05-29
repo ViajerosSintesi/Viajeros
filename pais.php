@@ -1,7 +1,7 @@
 <?php
 include("funciones.php");
-
-if(isset($_SESSION['userId'])){
+session_start();
+if(!isset($_SESSION['userId'])){
       header("location:index.php");
 }else{
       if(isset($_GET['pais'])){

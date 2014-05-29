@@ -15,12 +15,17 @@
 	     $regexObj = new MongoRegex("/".$ciudad."/"); 
 	     $query = array("ciudad" => $regexObj);
 	     $todasciudades = $mongo->findCollection($query);
+	     #paises
+	     $mongoPais = new DBMongo("pais");
+	     $regexObjPais = new MongoRegex("/".$ciudad."/"); 
+	     $queryForPais = array("pais" => $regexObjPais);
+	     $todosPaises=$mongoPais->findCollection($queryForPais);
 	     //var_dump($todasciudades);
 	     /*for($i = 0;$i<count($todasciudades); $i++){
 	            $queryForPais = array("_id"=>$todasciudades[$i]["idPais"]);
 	            $todasciudades[$i][] = $mongo->findCollection($queryForPais);
 	     }*/
-	     echo json_encode($todasciudades);
+	     echo json_encode(array_merge($todasciudades, $todosPaises));
 	}
 	
 

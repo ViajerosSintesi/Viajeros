@@ -7,6 +7,7 @@
 	class Valoracion{
 		private $user = null;
 		private $object = null;
+		private $valor = null;
             private $bbdd;
             private $arrayValor;
             
@@ -18,26 +19,30 @@
             public function setUser($user) {$this->user = $user;}
             public function getObject() {return $this->object;}
             public function setObject($object) {$this->object = $object;}
+            public function getValor() {return $this->valor;}
+            public function setValor($valor) {$this->valor = $valor;}
             
             public function valoracionToArray(){
                   $this->arrayValor = array(
                         "user"=> $this->user,
-                        "object"=> $this->object
+                        "object"=> $this->object,
+                        "valor"=>$this->valor
                   );
             }
             public function verValoraciones(){
                   $query = array("object"=>$this->object);
-                  return $this->bbdd->contar($query);
+                  $queryForView = array("valor"=>true);
+                  return $this->bbdd->findCollection($query,$queryForView);
             }
             public function insertValoracion(){
                   $retorn = 0;
-                  if(!$this->comproveValoracion) 
+                  if(!$this->comproveValoracion()) 
                         $retorn = $this->bbdd->insertar($this->arrayValor);
                   
                   return $retorn;
             }
             public function comproveValoracion(){
-                  $this->valoracionToArray;
+                  $this->valoracionToArray();
                   return $this->bbdd->contar($this->arrayValor);
             }
 	}

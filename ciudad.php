@@ -1,10 +1,17 @@
 <?php
 include("funciones.php");
+session_start();
 $ciudad = "";
-if(isset($_GET['ciudad'])){
-	$ciudad = $_GET['ciudad'];
-	
+$userId = null;
+if(!isset($_SESSION['userId'])){
+      header("location:index.php");
+}else{
+      if(isset($_GET['ciudad'])){
+      	$ciudad = $_GET['ciudad'];
+	      $userId = $_SESSION['userId'];
+      }
 }
+
 $coor = obtenerCoordenadasCiudad($ciudad);
 if(@$_POST['edit-info']){
 	modificarInfoCiudad($_POST['info-ciudad'], $ciudad);
@@ -20,7 +27,8 @@ if(@$_POST['edit-info']){
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
 	<script src="ajax.js"></script>
 	<script type="text/javascript">
-	$(function(){
+      
+$(function(){
 		$("#informacion").click(function(){
 			//infoCiudad();
 			$("#contenido").load("ciudad-info.php?ciudad=<?php echo $ciudad;?>");
@@ -42,7 +50,11 @@ if(@$_POST['edit-info']){
 			cargarmap1();
 			return false;
 		});
-	});
+		
+	      $(".valorCiudad").change(function(){
+                $("#valorCiudad").submit();
+            });
+});
 	function cargarmap1() {
 		var mapOptions = {
 		center: new google.maps.LatLng(<?php echo $coor; ?>),
@@ -53,7 +65,11 @@ if(@$_POST['edit-info']){
 	window.onload=function(){
 		$("#contenido").load("ciudad-info.php?ciudad=<?php echo $ciudad;?>");
 	};
-	</script>
+	
+	function enviarValoracion(){
+	      console.log(this);
+	}
+</script>
 </head>
 <body>
 <div id="wrap">
@@ -61,7 +77,25 @@ if(@$_POST['edit-info']){
 		<img src="img/logo.png">
 	</div>
 	<div id="contenedor">
-		<div id="cabecera"><img src="img/home_img1.jpg"></div>
+	<form method="get" action="php/controlValoracion.php" id="valorCiudad">
+	            <input type="hidden" value="<?php echo $ciudad;?>" name="ciudad"/>
+	            <input type="hidden" value="<?php echo $userId;?>" name="userId"/>
+	            
+		      0<input type="radio" name="valorCiudad" value="0" class="valorCiudad">
+		      1<input type="radio" name="valorCiudad" value="1" class="valorCiudad">
+		      2<input type="radio" name="valorCiudad" value="2" class="valorCiudad">
+		     3<input type="radio" name="valorCiudad" value="3" class="valorCiudad">
+		      4<input type="radio" name="valorCiudad" value="4" class="valorCiudad">
+		      5<input type="radio" name="valorCiudad" value="5" class="valorCiudad">
+		      6<input type="radio" name="valorCiudad" value="6" class="valorCiudad">
+		      7<input type="radio" name="valorCiudad" value="7" class="valorCiudad">
+		      8<input type="radio" name="valorCiudad" value="8" class="valorCiudad">
+		      9<input type="radio" name="valorCiudad" value="9" class="valorCiudad">
+		      10<input type="radio" name="valorCiudad" value="10" class="valorCiudad">
+		</form>
+		<div id="cabecera"><img src="img/home_img1.jpg"> 
+		
+		</div>
 		<div id="menu-pais">
 			<ul>
 				<li><a href="#" id="informacion">Informaci&oacute;n</a></li>
