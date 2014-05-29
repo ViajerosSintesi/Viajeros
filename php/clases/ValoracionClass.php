@@ -29,21 +29,36 @@
                         "valor"=>$this->valor
                   );
             }
+            
             public function verValoraciones(){
                   $query = array("object"=>$this->object);
-                  $queryForView = array("valor"=>true);
+                  $queryForView = array("_id"=>false, "valor"=>true);
                   return $this->bbdd->findCollection($query,$queryForView);
             }
-            public function insertValoracion(){
+            public function insertValoracion($compr=true){
                   $retorn = 0;
-                  if(!$this->comproveValoracion()) 
+                  $this->valoracionToArray();
+                  if($compr){
+                        if(!$this->comproveValoracion())
+                              $retorn = $this->bbdd->insertar($this->arrayValor);
+                  }else{
+                        $queryForSearch = array("user"=> $this->user, 
+                                                "object"=>$this->object);
+                        $this->bbdd->eliminar($queryForSearch);
                         $retorn = $this->bbdd->insertar($this->arrayValor);
-                  
+                  }
                   return $retorn;
             }
             public function comproveValoracion(){
-                  $this->valoracionToArray();
-                  return $this->bbdd->contar($this->arrayValor);
+                  $queryForSearch = array("user"=> $this->user, 
+                                          "object"=>$this->object);
+                  return $this->bbdd->contar($queryForSearch);
+            }
+            public function verValoracionDelUsuario(){
+                  $query = array("user"=> $this->user, 
+                                 "object"=>$this->object);
+                  $queryForView = array("_id"=>false, "valor"=>true);
+                  return $this->bbdd->findOneCollection($query,$queryForView);
             }
 	}
 ?>

@@ -77,7 +77,7 @@ $(function(){
 		<img src="img/logo.png">
 	</div>
 	<div id="contenedor">
-	<form method="get" action="php/controlValoracion.php" id="valorCiudad">
+	<form method="get" action="php/controlValoracionCiudad.php" id="valorCiudad">
 	            <input type="hidden" value="<?php echo $ciudad;?>" name="ciudad"/>
 	            <input type="hidden" value="<?php echo $userId;?>" name="userId"/>
 	            
