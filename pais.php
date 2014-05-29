@@ -7,6 +7,7 @@ if(!isset($_SESSION['userId'])){
       if(isset($_GET['pais'])){
       	$pais = $_GET['pais'];
       	$coor = obtenerCoordenadasPais($pais);
+      	$userId = $_SESSION['userId'];
       }
 }
 if(@$_POST['edit-info']){
@@ -51,7 +52,20 @@ if(@$_POST['edit-info']){
 			ciudadesPais("<?php echo $pais; ?>");
 			return false;
 		});
-	});
+      $(".valorCiudad").change(function(){
+                $("#valorCiudad").submit();
+            });
+            valoraciones();
+});
+      function valoraciones(){
+            $.getJSON("php/controlValoracionPais.php",{"ciudad":"<?php echo $pais;?>", "verValor":"1"}, function(data){
+                  $("#valoracionCiudad").html("Nota:"+data);
+            });
+            var queryForValoracionUsuario = {"ciudad":"<?php echo $pais;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
+            $.getJSON("php/controlValoracionPais.php",queryForValoracionUsuario, function(data){
+                  $("#valorCiudad"+data.valor).attr("checked", "true");
+            });
+      }
 	function cargarmap1() {
 		//alert("desde php <?php echo $coor; ?>");
 		var mapOptions = {
@@ -87,6 +101,23 @@ if(@$_POST['edit-info']){
 		<img src="img/logo.png">
 	</div>
 	<div id="contenedor">
+	      <span id="valoracionPais"></span>
+	      <form method="get" action="php/controlValoracionPais.php" id="valorPais">
+	            <input type="hidden" value="<?php echo $pais;?>" name="pais"/>
+	            <input type="hidden" value="<?php echo $userId;?>" name="userId"/>
+	            
+		      0<input type="radio" name="valorPais" value="0" class="valorPais" id="valorPais0">
+		      1<input type="radio" name="valorPais" value="1" class="valorPais" id="valorPais1">
+		      2<input type="radio" name="valorPais" value="2" class="valorPais" id="valorPais2">
+		      3<input type="radio" name="valorPais" value="3" class="valorPais" id="valorPais3">
+		      4<input type="radio" name="valorPais" value="4" class="valorPais" id="valorPais4">
+		      5<input type="radio" name="valorPais" value="5" class="valorPais" id="valorPais5">
+		      6<input type="radio" name="valorPais" value="6" class="valorPais" id="valorPais6">
+		      7<input type="radio" name="valorPais" value="7" class="valorPais" id="valorPais7">
+		      8<input type="radio" name="valorPais" value="8" class="valorPais" id="valorPais8">
+		      9<input type="radio" name="valorPais" value="9" class="valorPais" id="valorPais9">
+		      10<input type="radio" name="valorPais" value="10" class="valorPais" id="valorPais10">
+		</form>
 		<div id="cabecera"><img src="img/home_img1.jpg"></div>
 		<div id="menu-pais">
 			<ul>

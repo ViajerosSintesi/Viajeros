@@ -29,6 +29,7 @@ if(@$_POST['edit-info']){
 	<script type="text/javascript">
       
 $(function(){
+            
 		$("#informacion").click(function(){
 			//infoCiudad();
 			$("#contenido").load("ciudad-info.php?ciudad=<?php echo $ciudad;?>");
@@ -54,7 +55,17 @@ $(function(){
 	      $(".valorCiudad").change(function(){
                 $("#valorCiudad").submit();
             });
+            valoraciones();
 });
+      function valoraciones(){
+            $.getJSON("php/controlValoracionCiudad.php",{"ciudad":"<?php echo $ciudad;?>", "verValor":"1"}, function(data){
+                  $("#valoracionCiudad").html("Nota:"+data);
+            });
+            var queryForValoracionUsuario = {"ciudad":"<?php echo $ciudad;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
+            $.getJSON("php/controlValoracionCiudad.php",queryForValoracionUsuario, function(data){
+                  $("#valorCiudad"+data.valor).attr("checked", "true");
+            });
+      }
 	function cargarmap1() {
 		var mapOptions = {
 		center: new google.maps.LatLng(<?php echo $coor; ?>),
@@ -77,21 +88,22 @@ $(function(){
 		<img src="img/logo.png">
 	</div>
 	<div id="contenedor">
+	<span id="valoracionCiudad"></span>
 	<form method="get" action="php/controlValoracionCiudad.php" id="valorCiudad">
 	            <input type="hidden" value="<?php echo $ciudad;?>" name="ciudad"/>
 	            <input type="hidden" value="<?php echo $userId;?>" name="userId"/>
 	            
-		      0<input type="radio" name="valorCiudad" value="0" class="valorCiudad">
-		      1<input type="radio" name="valorCiudad" value="1" class="valorCiudad">
-		      2<input type="radio" name="valorCiudad" value="2" class="valorCiudad">
-		     3<input type="radio" name="valorCiudad" value="3" class="valorCiudad">
-		      4<input type="radio" name="valorCiudad" value="4" class="valorCiudad">
-		      5<input type="radio" name="valorCiudad" value="5" class="valorCiudad">
-		      6<input type="radio" name="valorCiudad" value="6" class="valorCiudad">
-		      7<input type="radio" name="valorCiudad" value="7" class="valorCiudad">
-		      8<input type="radio" name="valorCiudad" value="8" class="valorCiudad">
-		      9<input type="radio" name="valorCiudad" value="9" class="valorCiudad">
-		      10<input type="radio" name="valorCiudad" value="10" class="valorCiudad">
+		      0<input type="radio" name="valorCiudad" value="0" class="valorCiudad" id="valorCiudad0">
+		      1<input type="radio" name="valorCiudad" value="1" class="valorCiudad" id="valorCiudad1">
+		      2<input type="radio" name="valorCiudad" value="2" class="valorCiudad" id="valorCiudad2">
+		      3<input type="radio" name="valorCiudad" value="3" class="valorCiudad" id="valorCiudad3">
+		      4<input type="radio" name="valorCiudad" value="4" class="valorCiudad" id="valorCiudad4">
+		      5<input type="radio" name="valorCiudad" value="5" class="valorCiudad" id="valorCiudad5">
+		      6<input type="radio" name="valorCiudad" value="6" class="valorCiudad" id="valorCiudad6">
+		      7<input type="radio" name="valorCiudad" value="7" class="valorCiudad" id="valorCiudad7">
+		      8<input type="radio" name="valorCiudad" value="8" class="valorCiudad" id="valorCiudad8">
+		      9<input type="radio" name="valorCiudad" value="9" class="valorCiudad" id="valorCiudad9">
+		      10<input type="radio" name="valorCiudad" value="10" class="valorCiudad" id="valorCiudad10">
 		</form>
 		<div id="cabecera"><img src="img/home_img1.jpg"> 
 		

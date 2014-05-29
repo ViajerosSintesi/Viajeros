@@ -16,8 +16,9 @@
       $valorCiudad = new Valoracion("valoracionciudad");
       $valorCiudad->setUser($userId);
       $valorCiudad->setObject($ciudad);
-
-       echo json_encode($valorCiudad->verValoracionDelUsuario());
+      $total = $valorCiudad->verValoracionDelUsuario();
+      if($total<1) $total = 1;
+       echo json_encode($total);
  }
  if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "valorCiudad")){
       $userId = filter_input(INPUT_GET, "userId");
@@ -43,13 +44,15 @@
       $valores = $valorCiudad->verValoraciones();
       
       $numValores = count($valores);
-      $total=0;
+      $total=1;
       //echo "<pre>";
       //var_dump($valores);
-      for($i=0;$i<$numValores;$i++)
-            $total +=$valores[$i]["valor"];
-
-      $total = $total/$numValores;
+      if($numValores != 0){
+            for($i=0;$i<$numValores;$i++)
+                  $total +=$valores[$i]["valor"];
+         if($total != 0)
+            $total = $total/$numValores;   
+      }
       echo json_encode($total);
  }
 ?>
