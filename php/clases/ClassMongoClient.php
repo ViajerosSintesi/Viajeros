@@ -41,9 +41,9 @@ class DBMongo{
       /**
        * devuelve un array asociativo multidimensional!
        * **/
-	public function findCollection($query=""){
+	public function findCollection($query="", $campos = array()){
 		if($query=="") $cursor = $this->colectionNow->find();
-		else $cursor = $this->colectionNow->find($query);
+		else $cursor = $this->colectionNow->find($query, $campos);
 		$retorn = array();
 		while ($cursor->hasNext()) 
 		      $retorn[] = $cursor->getNext();

@@ -13,6 +13,9 @@ $("#cerrar-cuadro").click(function(){
 <div id="fotos">
 	<div id="boton-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>
 <?php
+if(isset($_GET['pais'])){
+      echo $_GET['pais'];
+}
 for ($i=0; $i < 6; $i++) { 
 	echo "<img src='img/no-imagen.jpg'>";
 }

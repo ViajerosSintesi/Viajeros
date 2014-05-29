@@ -23,6 +23,7 @@ class imagen {
 	private $nombre = null;
 	private $usuario = null;
 	private $ciudad = null;
+	private $pais = null;
       private $bbdd = null;
       private $imageArray = null;
 	function __construct(){
@@ -35,14 +36,15 @@ class imagen {
 	public function setNombre($nombre){$this->nombre = $nombre;}
 	public function getRuta(){return $this->ruta;}
 	public function setRuta($ruta=""){
-	      if ($ruta=="")$this->ruta ='../images/fotosCiudades/'.$this->ciudad.'/'.$this->usuario.'/';
+	      if ($ruta=="")$this->ruta ='../images/fotosCiudades/'.$this->pais.'/'.$this->ciudad.'/'.$this->usuario.'/';
 	      else $this->ruta = $ruta;
 	     }
 	public function getUsuario(){return $this->usuario;}
 	public function setUsuario($usuario){$this->usuario = $usuario;}
 	public function getCiudad(){return $this->ciudad;}
 	public function setCiudad($ciudad){$this->ciudad = $ciudad;}
-
+	public function getPais(){return $this->pais;}
+	public function setPais($pais){$this->pais = $pais;}
 
       public function subirImagen($fileImg){
 	      $retorn = 0;

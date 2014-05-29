@@ -11,6 +11,8 @@
             $userId= filter_input(INPUT_POST, "userId");
             $ciudadId= filter_input(INPUT_POST, "ciudadId");
             $ciudadId = explode(" ", $ciudadId);
+            
+            var_dump($ciudadId);
             $ciudad = new Ciudad();
             $ciudad->setNombre($ciudadId[0]);
             $ciudad->setPais($ciudadId[2]);
@@ -21,13 +23,15 @@
             $imagen = new Imagen();
             
             $imagen->setNombre($imagenForUp["name"]);
-            $imagen->setCiudad($ciudad->getId());
+            $imagen->setCiudad($ciudad->getNombre());
+            $imagen->setPais($ciudad->getPais());
             $imagen->setUsuario($userId);
             $imagen->setRuta();
             
             $imagen->subirImagen($imagenForUp);
+            
             //echo $imagen->guardarImagen();
-            header("location: ../perfil.php");
+            //header("location: ../perfil.php");
       
       }
       if(filter_has_var(INPUT_GET, "fotosForPerfil")){
@@ -65,7 +69,7 @@
             require_once("clases/PaisClass.php");
             $paisId= filter_input(INPUT_GET, "pais");
             $pais = new Pais();
-            $ciudadesDelPais = $pais->listar
+            $ciudadesDelPais = $pais->listarCiudadesPais();
             for($i=0; $i<count($ciudadesDelPais);$i++){
                   $imagen = new Imagen();
                   $imagen->setCiudad($ciudadesDelPais[$i]["_id"]);

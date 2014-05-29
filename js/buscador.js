@@ -5,7 +5,7 @@ function buscador(request, response){
       $.getJSON("php/controlCiudad.php",dataEnvio ,function(data){
             var availableTags =[];
            for(var i = 0; i<data.length;i++){
-                  availableTags.push(data[i].nombre+" - "+ data[i].pais);
+                  availableTags.push(data[i].ciudad+" - "+ data[i].pais);
             }
             response(availableTags);
       });

@@ -1,10 +1,14 @@
 <?php
 include("funciones.php");
-if(isset($_GET['pais'])){
-	$pais = $_GET['pais'];
-	$coor = obtenerCoordenadasPais($pais);
-}
 
+if(isset($_SESSION['userId'])){
+      header("location:index.php");
+}else{
+      if(isset($_GET['pais'])){
+      	$pais = $_GET['pais'];
+      	$coor = obtenerCoordenadasPais($pais);
+      }
+}
 if(@$_POST['edit-info']){
 	modificarInfoPais($pais, $_POST['info-pais']);
 }
@@ -61,6 +65,9 @@ if(@$_POST['edit-info']){
 	</script>
 </head>
 <body>
+<form action="php/controlLogin.php" method="post">
+	<input type="submit" name="destroySession" value="cerrar session" /> 
+</form>
 <div id="wrap">
 	<div id="header">
 		<img src="img/logo.png">

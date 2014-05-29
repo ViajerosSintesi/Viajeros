@@ -1,6 +1,10 @@
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
+
+<div id="fotos">
+	<div id="boton-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>
 <script type="text/javascript">
+
 $("#bg-cuadro").hide();
 $("#subir-foto").click(function(){
 	$("#bg-cuadro").show();
@@ -10,9 +14,8 @@ $("#cerrar-cuadro").click(function(){
 	$("#bg-cuadro").hide();
 });
 </script>
-<div id="fotos">
-	<div id="boton-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>
 <?php
+
 for ($i=0; $i < 6; $i++) { 
 	echo "<img src='img/no-imagen.jpg'>";
 }
@@ -30,3 +33,4 @@ for ($i=0; $i < 6; $i++) {
 		</form>
 	</div>
 </div>
+
