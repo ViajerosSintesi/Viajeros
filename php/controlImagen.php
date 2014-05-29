@@ -12,7 +12,7 @@
             $ciudadId= filter_input(INPUT_POST, "ciudadId");
             $ciudadId = explode(" ", $ciudadId);
             
-            var_dump($ciudadId);
+            
             $ciudad = new Ciudad();
             $ciudad->setNombre($ciudadId[0]);
             $ciudad->setPais($ciudadId[2]);
@@ -31,7 +31,7 @@
             $imagen->subirImagen($imagenForUp);
             
             //echo $imagen->guardarImagen();
-            //header("location: ../perfil.php");
+            header("location: ../perfil.php");
       
       }
       if(filter_has_var(INPUT_GET, "fotosForPerfil")){
