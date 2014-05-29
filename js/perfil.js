@@ -37,6 +37,7 @@ $(function(){
             $("#buscar" ).autocomplete({
                   source: buscador,
                   select: function(){
+                        
                         window.location="http://google.es";
                   }
             });
