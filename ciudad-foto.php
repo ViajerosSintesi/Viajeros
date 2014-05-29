@@ -1,5 +1,7 @@
+<!--
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
+-->
 
 <div id="fotos">
 	<div id="boton-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>
@@ -14,12 +16,34 @@ $("#cerrar-cuadro").click(function(){
 	$("#bg-cuadro").hide();
 });
 </script>
-<?php
+<div id="foto">
 
-for ($i=0; $i < 6; $i++) { 
-	echo "<img src='img/no-imagen.jpg'>";
+<?php
+if(isset($_GET['ciudad'])){
+      $ciudadId= filter_input(INPUT_GET, "ciudad");
+
+      echo <<<END
+            <script type="text/javascript">
+                  var dataQuery = {"fotosForCiudad":"1", "ciudadId":"$ciudadId"};
+                  var htmli = $("#fotos").html();
+                  console.log("hola");
+                  $.getJSON("php/controlImagen.php", dataQuery, function(data){
+                       
+                        for(var i = 0; i <data.length; i++){
+                               htmli += "<img src='"+data[i]["ruta"]+data[i]["nombre"]+"'>";
+                        }
+                        $("#foto").html(htmli);
+                  });
+                   
+            </script>
+END;
+}else{
+      for ($i=0; $i < 6; $i++) { 
+      	echo "<img src='img/no-imagen.jpg'>";
+      }
 }
 ?>
+</div>
 </div>
 <div id="bg-cuadro">
 	<div id="cuadro-foto">

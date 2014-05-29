@@ -19,23 +19,20 @@ class Ciudad{
 	private $bbdd;
 	private $id = null;
 	private $nombre = null;
-	private $coordenadax = null;
-	private $coordenaday = null;
+	private $coordenadas = null;
       private $pais = null;
 	private $ciudadInArray;
 	
 	function __construct(){
-	    $this->bbdd = new DBMongo("ciudades");
+	    $this->bbdd = new DBMongo("ciudad");
 	}
 
 	public function getId(){return $this->id;}
 	public function setId($id){$this->id = $id;}
 	public function getNombre(){return $this->nombre;}
 	public function setNombre($nombre){$this->nombre = $nombre;}
-	public function getCoordenadax(){return $this->coordenadax;}
-	public function setCoordenadax($coordenadax){$this->coordenadax = $coordenadax;}
-	public function getCoordenaday(){return $this->coordenaday;}
-	public function setCoordenaday($coordenaday){$this->coordenaday = $coordenaday;}
+	public function getCoordenadas(){return $this->coordenadas;}
+	public function setCoordenadas($coordenadas){$this->coordenadas = $coordenadas;}
 	public function getPais(){return $this->pais;}
 	public function setPais($pais){$this->pais = $pais;}
 
@@ -56,7 +53,7 @@ class Ciudad{
       public function ciudadToArray(){
 		$this->ciudadInArray = array(
       			'_id' => $this->id,
-      			'nombre' => $this->nombre,
+      			'ciudad' => $this->nombre,
       			'coordenadax' => $this->coordenadax,
       			'coordenaday' => $this->coordenaday,
       			'pais' =>  $this->pais
@@ -64,13 +61,14 @@ class Ciudad{
 	}
      
 	public function cogeValoresSegunId(){
-		$queryForId = array('_id' => $this->id);
+		$queryForId = array('_id' => new MongoId($this->id));
+	
+            
 		if($this->bbdd->contar($queryForId)){
 			$user = $this->bbdd->findOneCollection($queryForId);
 			
-			$this->nombre = $user['nombre'];
-			$this->coordenadax = $user['coordenadax'];
-			$this->coordenaday = $user['coordenaday'];
+			$this->nombre = $user['ciudad'];
+		
 			$this->pais = $user['pais'];
 
 		}
@@ -79,7 +77,7 @@ class Ciudad{
 	public function buscarCiudad($opt){
 	      switch($opt){
 	            case "ciudad":
-	                        $query = array("nombre"=>$this->nombre, "pais"=>$this->pais);
+	                        $query = array("ciudad"=>$this->nombre, "pais"=>$this->pais);
 	                        $ciudad = $this->bbdd->findOneCollection($query);
 	                        $this->id= $ciudad['_id'];
 	                        break;

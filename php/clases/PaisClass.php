@@ -12,7 +12,7 @@ class Pais{
       private $paisArray;
       
 	public function getId(){return $this->id;}
-	public function setId($id){$this->id = $id;}
+	public function setId($id){$this->id = new MongoId($id);}
 	public function getPais(){return $this->pais;}
 	public function setPais($pais){$this->pais = $pais;}
 	public function getInfo(){return $this->info;}
@@ -24,6 +24,7 @@ class Pais{
       function __construct(){
            $this->bbdd = new DBMongo("ciudades");
       }
+      
       public function paisToArray(){
             $this->paisArray = array(
                         "_id"             => $this->id,
@@ -33,10 +34,13 @@ class Pais{
                   );
       }
       public function listarCiudadesPais(){
-            $arrayForFind = array("idPais"=>$pais);
-            $mongo= new DBMongo("ciudades");
+            $arrayForFind = array("idPais"=>$this->id);
+            $mongo= new DBMongo("ciudad");
             $ciudadesDelPais = $mongo->findCollection($arrayForFind);
             return $ciudadesDelPais;
+      }
+      public function cogerValorePorId(){
+      
       }
 }
 

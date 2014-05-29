@@ -57,22 +57,27 @@
       }
       if(filter_has_var(INPUT_GET, "fotosForCiudad")){
             $ciudadId= filter_input(INPUT_GET, "ciudadId");
-            
+            $ciudad = new Ciudad();
+
+            $ciudad->setId($ciudadId);
+            $ciudad->cogeValoresSegunId();
             $imagen = new Imagen();
             
-            $imagen->setCiudad($ciudadId);
+            $imagen->setCiudad($ciudad->getNombre());
 
             echo json_encode($imagen->darImagenes(false));
             
       }
-      if(filter_has_var(INPUT_GET, "Pais")){
+      if(filter_has_var(INPUT_GET, "pais")){
             require_once("clases/PaisClass.php");
             $paisId= filter_input(INPUT_GET, "pais");
             $pais = new Pais();
+            $pais->setId($paisId);
             $ciudadesDelPais = $pais->listarCiudadesPais();
+            //var_dump($ciudadesDelPais);
             for($i=0; $i<count($ciudadesDelPais);$i++){
                   $imagen = new Imagen();
-                  $imagen->setCiudad($ciudadesDelPais[$i]["_id"]);
+                  $imagen->setCiudad($ciudadesDelPais[$i]["ciudad"]);
                   
                   echo json_encode($imagen->darImagenes(false));
             }

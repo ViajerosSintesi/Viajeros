@@ -93,7 +93,6 @@ class imagen {
                         );
       }
       
-      
       public function darImagenes($porUser=true){
             $queryForImages = array();
             if($porUser) $queryForImages = array('usuario' => $this->usuario);

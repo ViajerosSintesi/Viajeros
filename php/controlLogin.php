@@ -20,6 +20,7 @@
       
       if(filter_has_var(INPUT_POST, "destroySession")){
             session_destroy();
+            //cambiar al nuevo servidor!
             header("location:https://viajeros-c9-txemens.c9.io");
       }
 ?>
