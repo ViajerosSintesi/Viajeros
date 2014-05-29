@@ -15,18 +15,18 @@ class DBMongo{
 		$this->conectar();
 		$this->selectCollection($colection);
 	}
-
+	
 	public function conectar(){
 	    $this->dbUser = "txemens";
 	    $this->dbPass = "h0lita";
 	    $this->db = "viajeros";
 	    $this->server = "mongodb://".$this->dbUser.":".$this->dbPass."@ds043329.mongolab.com:43329/viajeros";
-		$this->conexion = new Mongo($this->server);
-		return $this->conexion;
+	    $this->conexion = new Mongo($this->server);
+	    return $this->conexion;
 	}
 
 	public function selectCollection($colection){
-	    $db = $this->db;
+	      $db = $this->db;
 		$database = $this->conexion->$db;
 		$col = $database->$colection;
 		$this->colectionNow = $col;
@@ -41,9 +41,9 @@ class DBMongo{
       /**
        * devuelve un array asociativo multidimensional!
        * **/
-	public function findCollection($query=""){
+	public function findCollection($query="", $campos = array()){
 		if($query=="") $cursor = $this->colectionNow->find();
-		else $cursor = $this->colectionNow->find($query);
+		else $cursor = $this->colectionNow->find($query, $campos);
 		$retorn = array();
 		while ($cursor->hasNext()) 
 		      $retorn[] = $cursor->getNext();

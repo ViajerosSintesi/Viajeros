@@ -5,10 +5,8 @@
  * controlador para el perfil
  * 
  **/
- 
-
-
 $(function(){
+            
             //esta funcion carga los datos del usuario en sus campos
             cargarDatos();
             //esconde el cuadro para subir imagenes
@@ -110,12 +108,13 @@ function isImage(extension){
     }
 }
 
-
 /**
  * le pide los datos al servidor y rellena los campos del perfil
  * 
  **/
 function cargarDatos(){
+       $("body").append("<div id='cargaAjax'> <img src='img/gif-load.gif'/></div>");
+       $("#cargaAjax").dialog({modal:true});
       var userId = $("#userIdForImg").val();
       var dataEnvio = {"datosPerfil": 1, "userId": userId};
       $.getJSON('php/controlPerfil.php', dataEnvio,function(data){
@@ -143,8 +142,11 @@ function cargarDatos(){
             $(".imagenDeCiudad").click(function(){
                   
                   var divId = $(this).attr("name");
-                  $("#"+divId).html('<input type="button" class="borrarImg" value="borrar" name="'+divId+'"/>');
-                  $('.borrarImg').click(borrarImagen);
+                  $("#"+divId).html('<input type="button" class="borrarImg" value="borrar" name="'+divId+'"/><input type="button" class="reportarImg" value="reportar" name="'+divId+'"/>');
+                  $('.borrarImg').click(function(){
+                        borrarImagen(this);
+                        $("#"+divId).dialog("close", "duration", 1000);
+                  });
                   $("#"+divId).append($(this).clone());
 				  $("#"+divId+">img").addClass("imagen-dialogo");
                   $("#"+divId).dialog({
@@ -159,7 +161,8 @@ function cargarDatos(){
 					hide: "scale"
 					});
             });
-            
+            $("#cargaAjax").dialog("close");
+            $("#cargaAjax").remove();
       });
       
 }
@@ -226,12 +229,28 @@ function subirFotos(){
 
 }
 
-function borrarImagen(){
-      var imgId = $(this).attr('name');
+function borrarImagen(imagen){
+      var imgId = $(imagen).attr('name');
       
       var dataEnvio = {"borrarImagen": 1, "imagenId": imgId};
       $.getJSON('php/controlImagen.php', dataEnvio, function(data){
             //console.log(data);
             if(data)cargarDatos();
+            //console.log(this.parentNode.nodeName);
       });
 }
+
+
+
+function reportarImagen(imagen,user){
+      var imgId_reporte = $(imagen).attr('name');
+	  var userId_reporte = $("#userIdForImg").val();
+      
+      var dataEnvio2 = {"reportarImagen": 1, "imgId": imgId_reporte, "userId": userId_reporte};
+      $.getJSON('php/controlReporte.php', dataEnvio, function(data){
+            //console.log(data);
+            if(data)cargarDatos();
+            //console.log(this.parentNode.nodeName);
+      });
+}
+
