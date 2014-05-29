@@ -1,5 +1,5 @@
 <?php
-include("funciones.php");
+include("../funciones.php");
 $ciudad = "";
 if(isset($_GET['ciudad'])){
 	$ciudad = $_GET['ciudad'];

@@ -1,4 +1,4 @@
-<?php include("funciones.php");
+<?php include("../funciones.php");
 $ciudad="";
 if(isset($_GET['ciudad'])){
 	$ciudad = $_GET['ciudad'];

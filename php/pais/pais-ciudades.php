@@ -1,5 +1,5 @@
 <?php
-include("funciones.php");
+include("../funciones.php");
 if(isset($_GET['pais'])){
 	$pais = $_GET['pais'];
 }

@@ -74,7 +74,7 @@ $(document).ready(function(){
           if(pasa){
               $.ajax({
                   type: "POST",
-                  url: "php/controlLogin.php",
+                  url: "php/controles/controlLogin.php",
                   data: {"mail":mail,"pass":pass, "login":1}
               })
               .done(function(data){
@@ -338,14 +338,11 @@ $(document).ready(function(){
     
     var fecha = dia+"/"+mes+"/"+anio;
    
-		  
-		  
-		  
       if((apellido_registro()) && (email_registro()) && (contrasenya_registro()) && (nombre_registro()) && (dia_registro()) && (mes_registro()) && (any_registro())){
 			
             $.ajax({
                   type: "POST",
-                  url: "php/controlRegistro.php",
+                  url: "php/controles/controlRegistro.php",
                   data: {"user":user, "mail":mail,"pass":pass, "edad":fecha, "apellidos":apellidos }
               })
               .done(function(data){

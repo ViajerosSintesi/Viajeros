@@ -1,7 +1,11 @@
 <?php
-include("funciones.php");
-if(isset($_GET['pais'])){
-	$pais = $_GET['pais'];
+include("../funciones.php");
+$ciudad = "";
+if(isset($_GET['ciudad'])){
+	$ciudad = $_GET['ciudad'];
+	$cursor = cargarComentCiudad($ciudad);
+	$session=1;
+	// falta terminaar de implemaentar la funcion.
 }
 ?>
 <html>
@@ -9,14 +13,13 @@ if(isset($_GET['pais'])){
 	<title></title>
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
-	<script src="cargaScript.js"></script>
+	<script src="js/cargaScript.js"></script>
 </head>
 <body>
 
 
 <div id="comentarios-pais">
 	<?php 
-	$cursor = cargarComentPais($pais);
 	foreach ($cursor as $document) {
 		$cursor2 = datosUnUsuario($document["idUsu"]);?>
 	<div class="coments">

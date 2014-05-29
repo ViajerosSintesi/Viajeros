@@ -1,5 +1,5 @@
 <?php
-	require_once("./clases/UserClass.php");
+	require_once("../clases/UserClass.php");
 
 	if(filter_has_var(INPUT_POST, "user") && filter_has_var(INPUT_POST, "mail") && filter_has_var(INPUT_POST, "pass") ){
 

@@ -9,7 +9,7 @@
  *                            ciudad: valoracionciudad
  * 
  * */
- require_once("clases/ValoracionClass.php");
+ require_once("../clases/ValoracionClass.php");
  if(filter_has_var(INPUT_GET, "ciudad")&&filter_has_var(INPUT_GET, "verValorUsuario")){
       $userId = filter_input(INPUT_GET, "userId");
       $ciudad = filter_input(INPUT_GET, "ciudad");

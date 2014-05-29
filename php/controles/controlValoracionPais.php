@@ -9,7 +9,7 @@
  *                            pais: valoracionpais
  * 
  * */
- require_once("clases/ValoracionClass.php");
+ require_once("../clases/ValoracionClass.php");
  if(filter_has_var(INPUT_GET, "pais")&&filter_has_var(INPUT_GET, "verValorUsuario")){
       $userId = filter_input(INPUT_GET, "userId");
       $pais = filter_input(INPUT_GET, "pais");

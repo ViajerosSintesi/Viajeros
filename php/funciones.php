@@ -1,5 +1,5 @@
 <?php
-require_once("./php/clases/ClassMongoClient.php");
+require_once("clases/ClassMongoClient.php");
 // conectar
 global $collection, $m, $db;
 function conectar($co="pais"){

@@ -1,8 +1,8 @@
 <?php
-      require_once("clases/ImagenClass.php");
-      require_once("clases/UserClass.php");
-      require_once("clases/CiudadClass.php");
-      require_once("clases/ClassMongoClient.php");
+      require_once("../clases/ImagenClass.php");
+      require_once("../clases/UserClass.php");
+      require_once("../clases/CiudadClass.php");
+      require_once("../clases/ClassMongoClient.php");
       session_start();
        
       if(isset($_FILES["picture"])){
@@ -69,7 +69,7 @@
             
       }
       if(filter_has_var(INPUT_GET, "pais")){
-            require_once("clases/PaisClass.php");
+            require_once("../clases/PaisClass.php");
             $paisId= filter_input(INPUT_GET, "pais");
             $pais = new Pais();
             $pais->setId($paisId);

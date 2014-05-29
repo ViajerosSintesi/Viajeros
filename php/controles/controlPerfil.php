@@ -1,5 +1,5 @@
 <?php
-	require_once("./clases/UserClass.php");
+	require_once("../clases/UserClass.php");
 	session_start();
 	
 	if(filter_has_var(INPUT_GET, "datosPerfil")){

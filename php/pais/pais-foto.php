@@ -1,12 +1,8 @@
-<!--
+<!---
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
 -->
-
-<div id="fotos">
-	<div id="boton-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>
 <script type="text/javascript">
-
 $("#bg-cuadro").hide();
 $("#subir-foto").click(function(){
 	$("#bg-cuadro").show();
@@ -16,25 +12,23 @@ $("#cerrar-cuadro").click(function(){
 	$("#bg-cuadro").hide();
 });
 </script>
-<div id="foto">
-
+<div id="fotos">
+	<div id="boton-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>
 <?php
-if(isset($_GET['ciudad'])){
-      $ciudadId= filter_input(INPUT_GET, "ciudad");
+if(isset($_GET['pais'])){
+      $pais = filter_input(INPUT_GET, "pais");
 
       echo <<<END
             <script type="text/javascript">
-                  var dataQuery = {"fotosForCiudad":"1", "ciudadId":"$ciudadId"};
-                  var htmli = $("#fotos").html();
-                  console.log("hola");
-                  $.getJSON("php/controlImagen.php", dataQuery, function(data){
-                       
-                        for(var i = 0; i <data.length; i++){
-                               htmli += "<img src='"+data[i]["ruta"]+data[i]["nombre"]+"'>";
-                        }
-                        $("#foto").html(htmli);
+                  var dataQuery = {"pais": "$pais"};
+                  $.getJSON("php/controles/controlImagen.php", dataQuery, function(data){
+                
+                  var html = $("#fotos").html();
+                  for(var i = 0; i <data.length; i++){
+                         html += "<img src='"+data[i]["ruta"]+data[i]["nombre"]+"'>";
+                  }
+                  $("#fotos").html(html);
                   });
-                   
             </script>
 END;
 }else{
@@ -43,7 +37,6 @@ END;
       }
 }
 ?>
-</div>
 </div>
 <div id="bg-cuadro">
 	<div id="cuadro-foto">
@@ -57,4 +50,3 @@ END;
 		</form>
 	</div>
 </div>
-

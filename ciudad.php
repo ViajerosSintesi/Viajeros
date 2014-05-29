@@ -1,5 +1,5 @@
 <?php
-include("funciones.php");
+include("php/funciones.php");
 session_start();
 $ciudad = "";
 $userId = null;
@@ -25,24 +25,24 @@ if(@$_POST['edit-info']){
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
-	<script src="ajax.js"></script>
+	<script src="js/ajax.js"></script>
 	<script type="text/javascript">
       
 $(function(){
             
 		$("#informacion").click(function(){
 			//infoCiudad();
-			$("#contenido").load("ciudad-info.php?ciudad=<?php echo $ciudad;?>");
+			$("#contenido").load("php/ciudad/ciudad-info.php?ciudad=<?php echo $ciudad;?>");
 			return false;
 		});
 		$("#fotos").click(function(){
 			//fotoCiudad();
-			$("#contenido").load("ciudad-foto.php?ciudad=<?php echo $ciudad;?>");
+			$("#contenido").load("php/ciudad/ciudad-foto.php?ciudad=<?php echo $ciudad;?>");
 			return false;
 		});
 		$("#comentarios").click(function(){
 			//comentariosPais();
-			$("#contenido").load("ciudad-comentarios.php?ciudad=<?php echo $ciudad;?>");
+			$("#contenido").load("php/ciudad/ciudad-comentarios.php?ciudad=<?php echo $ciudad;?>");
 			return false;
 		});
 		$("#ubicacion").click(function(){
@@ -58,11 +58,11 @@ $(function(){
             valoraciones();
 });
       function valoraciones(){
-            $.getJSON("php/controlValoracionCiudad.php",{"ciudad":"<?php echo $ciudad;?>", "verValor":"1"}, function(data){
+            $.getJSON("php/controles/controlValoracionCiudad.php",{"ciudad":"<?php echo $ciudad;?>", "verValor":"1"}, function(data){
                   $("#valoracionCiudad").html("Nota:"+data);
             });
             var queryForValoracionUsuario = {"ciudad":"<?php echo $ciudad;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
-            $.getJSON("php/controlValoracionCiudad.php",queryForValoracionUsuario, function(data){
+            $.getJSON("php/controles/controlValoracionCiudad.php",queryForValoracionUsuario, function(data){
                   $("#valorCiudad"+data.valor).attr("checked", "true");
             });
       }
@@ -74,7 +74,7 @@ $(function(){
 		var map = new google.maps.Map(document.getElementById("mapa"),mapOptions);
 	}
 	window.onload=function(){
-		$("#contenido").load("ciudad-info.php?ciudad=<?php echo $ciudad;?>");
+		$("#contenido").load("php/ciudad/ciudad-info.php?ciudad=<?php echo $ciudad;?>");
 	};
 	
 	function enviarValoracion(){
@@ -89,7 +89,7 @@ $(function(){
 	</div>
 	<div id="contenedor">
 	<span id="valoracionCiudad"></span>
-	<form method="get" action="php/controlValoracionCiudad.php" id="valorCiudad">
+	<form method="get" action="php/controles/controlValoracionCiudad.php" id="valorCiudad">
 	            <input type="hidden" value="<?php echo $ciudad;?>" name="ciudad"/>
 	            <input type="hidden" value="<?php echo $userId;?>" name="userId"/>
 	            

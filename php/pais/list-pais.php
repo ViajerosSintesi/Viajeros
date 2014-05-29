@@ -1,5 +1,5 @@
 <?php
-include("funciones.php");
+include("../funciones.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,7 @@ include("funciones.php");
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
-	<script src="ajax.js"></script>
+	<script src="js/ajax.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		$("#hide-show-menu").click(function(){

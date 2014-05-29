@@ -1,5 +1,5 @@
 <?php
-include("funciones.php");
+include("php/funciones.php");
 session_start();
 if(!isset($_SESSION['userId'])){
       header("location:index.php");
@@ -24,23 +24,23 @@ if(@$_POST['edit-info']){
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/buscador.js"></script>
-	<script src="ajax.js"></script>
+	<script src="js/ajax.js"></script>
 	<script src="js/comun.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		$("#informacion").click(function(){
 			//infoPais("España");
-			$("#contenido").load("pais-info.php?pais=<?php echo $pais; ?>");
+			$("#contenido").load("php/pais/pais-info.php?pais=<?php echo $pais; ?>");
 			return false;
 		});
 		$("#fotos").click(function(){
 			//fotoPais();
-			$("#contenido").load("pais-foto.php?pais=<?php echo $pais; ?>");
+			$("#contenido").load("php/pais/pais-foto.php?pais=<?php echo $pais; ?>");
 			return false;
 		});
 		$("#comentarios").click(function(){
 			//comentariosPais();
-			$("#contenido").load("pais-comentarios.php?pais=<?php echo $pais; ?>");
+			$("#contenido").load("php/pais/pais-comentarios.php?pais=<?php echo $pais; ?>");
 			return false;
 		});
 		$("#ubicacion").click(function(){
@@ -59,11 +59,11 @@ if(@$_POST['edit-info']){
             valoraciones();
 });
       function valoraciones(){
-            $.getJSON("php/controlValoracionPais.php",{"ciudad":"<?php echo $pais;?>", "verValor":"1"}, function(data){
+            $.getJSON("php/controles/controlValoracionPais.php",{"ciudad":"<?php echo $pais;?>", "verValor":"1"}, function(data){
                   $("#valoracionCiudad").html("Nota:"+data);
             });
             var queryForValoracionUsuario = {"ciudad":"<?php echo $pais;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
-            $.getJSON("php/controlValoracionPais.php",queryForValoracionUsuario, function(data){
+            $.getJSON("php/controles/controlValoracionPais.php",queryForValoracionUsuario, function(data){
                   $("#valorCiudad"+data.valor).attr("checked", "true");
             });
       }
@@ -77,7 +77,7 @@ if(@$_POST['edit-info']){
 	}
 	//window.load=infoPais();
 	window.onload=function(){
-		$("#contenido").load("pais-info.php?pais=<?php echo $pais; ?>");
+		$("#contenido").load("php/pais/pais-info.php?pais=<?php echo $pais; ?>");
 	};
 	</script>
 </head>
@@ -103,7 +103,7 @@ if(@$_POST['edit-info']){
 	</div>
 	<div id="contenedor">
 	      <span id="valoracionPais"></span>
-	      <form method="get" action="php/controlValoracionPais.php" id="valorPais">
+	      <form method="get" action="php/controles/controlValoracionPais.php" id="valorPais">
 	            <input type="hidden" value="<?php echo $pais;?>" name="pais"/>
 	            <input type="hidden" value="<?php echo $userId;?>" name="userId"/>
 	            

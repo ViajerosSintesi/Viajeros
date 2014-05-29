@@ -93,7 +93,7 @@ function subirImgPerfil(){
                   
                   //ejecutamos ajax para que conecte con el servidor y pueda modificar
                   $.ajax({
-                  	url: 'php/modificarPerfil.php',  
+                  	url: 'php/controles/modificarPerfil.php',  
                   	type: 'POST',
                   	data: formData,
                   	cache: false,
@@ -137,7 +137,7 @@ function cargarDatos(){
        $("#cargaAjax").dialog({modal:true});
       var userId = $("#userIdForImg").val();
       var dataEnvio = {"datosPerfil": 1, "userId": userId};
-      $.getJSON('php/controlPerfil.php', dataEnvio,function(data){
+      $.getJSON('php/controles/controlPerfil.php', dataEnvio,function(data){
             $("#nombreUser").html(data.nombre);
             $("#apellidosUser").html(data.apellidos);
             $("#perfil-nombre").val(data.nombre);
@@ -148,7 +148,7 @@ function cargarDatos(){
       });
       var dataImagenes = {"fotosForPerfil": 1, "userId": userId};
 
-      $.getJSON('php/controlImagen.php', dataImagenes,function(data){
+      $.getJSON('php/controles/controlImagen.php', dataImagenes,function(data){
             
             var intro = '';
             for(var i = 0; i< data.length; i++){
@@ -200,7 +200,7 @@ function modPerfil(){
       if($("#perfil-apellidos").val() == ''){
 	      alert ("el nombre no puede estar vacio");
       }else{
-            $.post('php/modificarPerfil.php', dataEnvio, function(data){
+            $.post('php/controles/modificarPerfil.php', dataEnvio, function(data){
                   var not = JSON.parse(data);
                   alert(not.notice)
                   cargarDatos();
@@ -231,7 +231,7 @@ function subirFotos(){
                   formData.append("ciudadId", ciudadId);
                   //ejecutamos ajax para que conecte con el servidor y pueda modificar
                   $.ajax({
-                  	url: 'php/modificarPerfil.php',  
+                  	url: 'php/controles/modificarPerfil.php',  
                   	type: 'POST',
                   	data: formData,
                   	cache: false,
@@ -253,7 +253,7 @@ function borrarImagen(imagen){
       var imgId = $(imagen).attr('name');
       
       var dataEnvio = {"borrarImagen": 1, "imagenId": imgId};
-      $.getJSON('php/controlImagen.php', dataEnvio, function(data){
+      $.getJSON('php/controles/controlImagen.php', dataEnvio, function(data){
             //console.log(data);
             if(data)cargarDatos();
             //console.log(this.parentNode.nodeName);
@@ -267,7 +267,7 @@ function reportarImagen(imagen,user){
 	  var userId_reporte = $("#userIdForImg").val();
       
       var dataEnvio2 = {"reportarImagen": 1, "imgId": imgId_reporte, "userId": userId_reporte};
-      $.getJSON('php/controlReporte.php', dataEnvio, function(data){
+      $.getJSON('php/controles/controlReporte.php', dataEnvio, function(data){
             //console.log(data);
             if(data)cargarDatos();
             //console.log(this.parentNode.nodeName);
