@@ -1,36 +1,39 @@
-html, body{height: 100%;}
+/* ==================== parte comun ==================== */
+/*html, body{height: 100%;}*/
 body{margin: 0; padding: 0; background-color: #e9eaed;}
 #wrap{width: 100%; height: 100%; margin: 0; padding: 0; background: url("../img/bg-image.png"); background-repeat: repeat-x;}
-#header{width: 80%; min-height: 150px; margin: 0 auto; /*border: 1px solid red;*/}
-#header img{padding: 10px;}
-#contenedor{width: 80%; margin: 0 auto; /*border: 1px solid red;*/}
+input{padding: 5px 4px; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;}
+input[type=submit]{padding: 5px 4px; background-color: #069; color: #fff; font-size: 12px;
+	border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;}
+#header{width: 80%; min-height: 107px; margin: 0 auto;}
+#header img{padding-top: 22px;}
+#contenedor{width: 80%; margin: 0 auto;}
+
+/* ======================== fin ============================ */
+
+/* ======================== Index ========================== */
 #contenedor div{display: inline-block; vertical-align: top;}
-#contenedor #home-left{width: 65%; margin-top: 50px; margin-bottom: 50px; /*border: 1px solid red;*/}
-#contenedor #home-right{width: 34%; margin-top: 50px; text-align: right; /*border: 1px solid red;*/}
+#contenedor #home-left{width: 65%; margin-top: 50px; margin-bottom: 50px;}
+#contenedor #home-right{width: 34%; margin-top: 50px; text-align: right;}
 #home-left #imagen{width: 100%;}
 
 #home-right form{width: 80%; position: relative; left: 100%; margin-left: -90%;}
 #home-right fieldset{padding: 30px; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;}
-#home-right input{padding: 5px 4px; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;}
-#home-right #boton-login{background: #069; color: #fff; font-weight: bold; padding: 4px 15px 4px 15px;
+/*#home-right input{padding: 5px 4px; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;}*/
+#home-right #boton-login{background: #069; color: #fff; text-align: center; font-weight: bold;
 	border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; cursor: pointer;}
-
-	
-	
+#home-right span{text-decoration: none; color: #000;}
+#home-right .enlace:hover{text-decoration: underline; color: #069; cursor: pointer;}
 #home-right #no_logeo {text-decoration: none; color: red;}
 #home-right #mail_incorrecto {text-decoration: none; color: red;}
-#home-right span{text-decoration: none; color: #000;}
-#home-right #recuperarPass:hover{text-decoration: underline; color: #069; cursor: pointer;}
-#home-right #login:hover{text-decoration: underline; color: #069; cursor: pointer;}
-#home-right #registro:hover{text-decoration: underline; color: #069; cursor: pointer;}
+/* ======================= fin =========================== */
 
-
-/* === Registro === */
-#home-right #form-registro input{width: 188px; padding: 8px 10px;}
+/* ===================== Registro ======================== */
+#home-right #form-registro input{width: 188px;}
 #home-right #form-registro select{padding: 4px;}
-#home-right #form-registro #registrarse{background-color: #069; color: #fff; font-size: 19px; cursor:pointer;}
+#home-right #form-registro #registrarse{font-size: 17px;}
 #home-right #form-registro label{font-size: 18px;}
-/* === Perfil === */
+/* ===================== Perfil ===================== */
 #contenedor #perfil{width: 100%; margin-bottom: 31px; background-color: #fff; border: 1px solid #d3d6db;}
 #perfil #titulo{width: 100%; text-align: left; margin-bottom: 15px; background-color: #f6f7f8; border-bottom: 1px solid #d3d6db;}
 #perfil div{display: inline-block;}
@@ -52,9 +55,8 @@ body{margin: 0; padding: 0; background-color: #e9eaed;}
 #titulo #perfil-subir-foto{position: relative; left: 100%; margin-left: -102px; top: -53px;}
 #titulo #perfil-subir-foto input{padding: 5px 10px; background-color: #069; color: #fff; font-size: 15px;}
 #perfil-galeria #fotos{width: 100%; margin-bottom: 15px;}
-
-
-/* ===== cuadro subir foto ===== */
+/* ==================================================== */
+/* ================= cuadro subir foto ================ */
 #bg-cuadro{display: none; width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: 9999;
 background-color: grey; background: rgba(54, 54, 54, 0.3);}
 #cuadro-foto{width: 500px; position: fixed; left: 50%; margin-left: -250px; top: 28%; color: #fff;
@@ -72,12 +74,46 @@ background-color: grey; background: rgba(54, 54, 54, 0.8);}
 #menu-pais ul li{display: inline-block; text-decoration: none; padding: 0; margin: 0;}
 #menu-pais ul li a{text-decoration: none; font-size: 22px; padding: 0 20px; color: #000;}
 #menu-pais ul li a:hover{text-decoration: underline; color: #069;}
-#contenedor #caja-pais{width: 100%; min-height: 300px; background-color: #fff; text-align: center;}
-#caja-pais #contenido-pais{width: 90%; min-height: 300px; text-align: left; margin: 15px 0; background-color: #fff !important;}
-#caja-pais #info-pais{width: 100%; text-align: justify;}
-#caja-pais #fotos-pais{width: 100%; text-align: center;}
-#caja-pais #fotos-pais img{border: 1px solid #d3d6db;}
-#caja-pais #mapa-pais{width: 100%; min-height: 300px;}
+#contenedor #caja-contenido{width: 100%; min-height: 300px; background-color: #fff; text-align: center;}
+#caja-contenido #contenido{position: relative; overflow: hidden; width: 90%; min-height: 300px; text-align: left; margin: 15px 0; background-color: #fff !important;}
+#caja-contenido #info{width: 100%; text-align: justify;}
+/* ============== fotos(pais, ciudad) ==================== */
+#caja-contenido #fotos{width: 100%; text-align: center;}
+#caja-contenido #fotos #boton-foto{width: 100%; text-align: right;}
+#caja-contenido #fotos img{border: 1px solid #d3d6db;}
+/* ======================================================= */
+#caja-contenido #mapa{width: 100%; min-height: 300px;}
+#caja-contenido #ciudades-pais{width: 100%;}
+#ciudades-pais #tabla{width: 100%;}
+#tabla a{color: inherit; text-decoration: none;}
+#tabla a:hover{color: #069; text-decoration: underline;}
+#contenido #comentarios-pais{width: 100%; text-align: center;}
+#comentarios-pais .coments{width: 80%; text-align: justify; border-bottom: 1px solid #d3d6db; margin-bottom: 5px;}
+.coments .coment-up{width: 100%;}
+.coments .coment-down{width: 100%; text-align: right;}
+.coment-down button{background: none; border: none;}
+#cuadro{width: 100%; text-align: center;}
 
+/*==================== Menu =========================== */
+
+#menu{width: 100%; position: fixed; background: url(../img/bg-image.png); z-index: 9999;}
+#menu #barra-menu{width: 80%; margin: 0 auto; color: #fff;}
+#barra-menu ul{margin: 0; padding: 0; float: right;}
+#barra-menu ul li{display: inline-block; margin-top: 12px;}
+#barra-menu ul li a{color: #fff; text-decoration: none; padding-left: 20px; font-weight: bold;}
+#barra-menu ul li a:hover{color: #069; text-decoration: underline; }
+#barra-menu #buscar{background-color: #fff; background-image: url(../img/243.png); background-repeat: no-repeat; background-position: 2px; padding-left: 20px; 
+	padding-top: 4px; padding-bottom: 4px; width: 220px;}
+#hide-show-menu{position:fixed; background: url(../img/bg-image.png); border: none; color: #fff; padding: 4px;}
+#hide-show-menu img{margin-top: 3px;}
+
+#barra-menu ul li #destroySession{border: none; background: none; margin: 0; padding: 0; padding-left: 20px; font-weight: bold; font-size: 13px;}
+#barra-menu ul li #destroySession:hover{color: #069; text-decoration: underline; }
+/* =================== lista Paises ========================= */
+#contenedor #contenedor-paises{width: 100%; margin: 0 auto; text-align: center; background-color: #fff;}
+#contenedor-paises .list-paises{width: 90%; text-align: left; margin: 15px 0;}
+.list-paises ul li{display: inline-block; margin-left: 10px;}
+.list-paises ul li a{text-decoration: none; color: #000; font-weight: bold;}
+.list-paises ul li a:hover{color: #069; text-decoration: underline;}
 
 #footer{width: 80%; margin: 0 auto; text-align: center; border-top: 1px solid #d3d6db; padding: 10px 0;}

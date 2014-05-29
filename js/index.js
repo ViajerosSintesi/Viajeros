@@ -1,6 +1,21 @@
 $(document).ready(function(){
-
-
+	// texto en los inputs
+	var valor="";
+	$(".text-input").focus(function(){
+		valor = $(this).val();
+		if($(this).val()){
+			$(this).val("");
+		}else{
+			$(this).val(valor);
+		}
+	})
+	$(".text-input").focusout(function(){
+		if($(this).val()==""){
+			$(this).val(valor);
+		}
+	});
+	// fin
+	
 	// validacion de contraseña_inicio
 	$("#usuario").change(nombre_inicio);
 	
