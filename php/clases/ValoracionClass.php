@@ -8,6 +8,7 @@
 		private $user = null;
 		private $object = null;
 		private $valor = null;
+		
             private $bbdd;
             private $arrayValor;
             
@@ -21,6 +22,7 @@
             public function setObject($object) {$this->object = $object;}
             public function getValor() {return $this->valor;}
             public function setValor($valor) {$this->valor = $valor;}
+            
             
             public function valoracionToArray(){
                   $this->arrayValor = array(

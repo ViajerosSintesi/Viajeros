@@ -25,8 +25,10 @@ $(function(){
 			alert('sending comment...');
 		}
 	});
-	$("#areatexto").elastic();
-	$("#areatexto-ciudad").elastic();
+	
+	//hay que mirarselo que no funciona
+	//$("#areatexto").elastic();
+	//$("#areatexto-ciudad").elastic();
 
 	
 });
