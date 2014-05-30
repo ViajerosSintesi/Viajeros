@@ -37,6 +37,7 @@
                   $queryForView = array("_id"=>false, "valor"=>true);
                   return $this->bbdd->findCollection($query,$queryForView);
             }
+            
             public function insertValoracion($compr=true){
                   $retorn = 0;
                   $this->valoracionToArray();

@@ -42,16 +42,6 @@ if(filter_has_var(INPUT_GET, "coment")&&filter_has_var(INPUT_GET, "verValorUsuar
       $valorComent->setObject($coment);
       $valores = $valorComent->verValoraciones();
       
-      $numValores = count($valores);
-      $total=1;
-      //echo "<pre>";
-      //var_dump($valores);
-      if($numValores != 0){
-            for($i=0;$i<$numValores;$i++)
-                  $total +=$valores[$i]["valor"];
-         if($total != 0)
-            $total = $total/$numValores;   
-      }
-      echo json_encode($total);
+      echo json_encode($valores);
  }
 ?>
