@@ -11,7 +11,7 @@ $(function(){
 		alert("envio comentario");
 		return false;
 	});
-	$("#areatexto").keypress(function(e) {
+	/*$("#areatexto").keypress(function(e) {
 		if (e.keyCode == 13 && !e.shiftKey) {
 			e.preventDefault();
 			alert('sending comment...');
@@ -38,7 +38,7 @@ $(function(){
 			});
 		}
 	});
-	
+	*/
 	//hay que mirarselo que no funciona
 	//$("#areatexto").elastic();
 	//$("#areatexto-ciudad").elastic();

@@ -1,10 +1,10 @@
 <?php
-include("php/funciones.php");
+include("../funciones.php");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mapa</title>
+	<title>Lista de Paises</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/jquery-1.10.2.js"></script>
@@ -40,8 +40,25 @@ include("php/funciones.php");
 		<img src="img/logo.png">
 	</div>
 	<div id="contenedor">
-		<div id="contenedor-mapa">
-			<div id="mapa">
+		<div id="contenedor-paises">
+			<div class="list-paises">
+			<?php
+			$cursor = listPaises();
+			$var = 'A';
+			echo "<h2>".$var."</h2>";
+			echo "<ul>";
+			foreach ($cursor as $document){
+				if($var == $document['pais'][0]){
+					echo "<li><a href='pais.php?pais=".$document['_id']."'>".$document['pais']."</a></li>";
+				}else{
+					echo "</ul>";
+					echo "<hr><h2>".$document['pais'][0]."</h2>";
+					echo "<ul>";
+					echo "<li><a href='pais.php?pais=".$document['_id']."'>".$document['pais']."</a></li>";
+					$var = $document['pais'][0];
+				}
+			}
+			?>
 			</div>
 		</div>
 	</div>

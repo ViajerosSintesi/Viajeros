@@ -53,18 +53,18 @@ if(@$_POST['edit-info']){
 			ciudadesPais("<?php echo $pais; ?>");
 			return false;
 		});
-      $(".valorCiudad").change(function(){
-                $("#valorCiudad").submit();
+      $(".valorPais").change(function(){
+                $("#valorPais").submit();
             });
             valoraciones();
 });
       function valoraciones(){
-            $.getJSON("php/controles/controlValoracionPais.php",{"ciudad":"<?php echo $pais;?>", "verValor":"1"}, function(data){
-                  $("#valoracionCiudad").html("Nota:"+data);
+            $.getJSON("php/controles/controlValoracionPais.php",{"pais":"<?php echo $pais;?>", "verValor":"1"}, function(data){
+                  if(data!=null)$("#valoracionPais").html("Nota:"+data);
             });
-            var queryForValoracionUsuario = {"ciudad":"<?php echo $pais;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
+            var queryForValoracionUsuario = {"pais":"<?php echo $pais;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
             $.getJSON("php/controles/controlValoracionPais.php",queryForValoracionUsuario, function(data){
-                  $("#valorCiudad"+data.valor).attr("checked", "true");
+                  if(data!=null)$("#valorPais"+data.valor).attr("checked", "true");
             });
       }
 	function cargarmap1() {
@@ -107,7 +107,6 @@ if(@$_POST['edit-info']){
 	            <input type="hidden" value="<?php echo $pais;?>" name="pais"/>
 	            <input type="hidden" value="<?php echo $userId;?>" name="userId"/>
 	            
-		      0<input type="radio" name="valorPais" value="0" class="valorPais" id="valorPais0">
 		      1<input type="radio" name="valorPais" value="1" class="valorPais" id="valorPais1">
 		      2<input type="radio" name="valorPais" value="2" class="valorPais" id="valorPais2">
 		      3<input type="radio" name="valorPais" value="3" class="valorPais" id="valorPais3">

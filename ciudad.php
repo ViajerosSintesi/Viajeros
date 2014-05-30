@@ -59,11 +59,11 @@ $(function(){
 });
       function valoraciones(){
             $.getJSON("php/controles/controlValoracionCiudad.php",{"ciudad":"<?php echo $ciudad;?>", "verValor":"1"}, function(data){
-                  $("#valoracionCiudad").html("Nota:"+data);
+                  if(data!=null)$("#valoracionCiudad").html("Nota:"+data);
             });
             var queryForValoracionUsuario = {"ciudad":"<?php echo $ciudad;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
             $.getJSON("php/controles/controlValoracionCiudad.php",queryForValoracionUsuario, function(data){
-                  $("#valorCiudad"+data.valor).attr("checked", "true");
+                  if(data!=null)$("#valorCiudad"+data.valor).attr("checked", "true");
             });
       }
 	function cargarmap1() {
@@ -93,7 +93,7 @@ $(function(){
 	            <input type="hidden" value="<?php echo $ciudad;?>" name="ciudad"/>
 	            <input type="hidden" value="<?php echo $userId;?>" name="userId"/>
 	            
-		      0<input type="radio" name="valorCiudad" value="0" class="valorCiudad" id="valorCiudad0">
+		      
 		      1<input type="radio" name="valorCiudad" value="1" class="valorCiudad" id="valorCiudad1">
 		      2<input type="radio" name="valorCiudad" value="2" class="valorCiudad" id="valorCiudad2">
 		      3<input type="radio" name="valorCiudad" value="3" class="valorCiudad" id="valorCiudad3">

@@ -32,7 +32,9 @@
       $valorCiudad->setValor($valor);
       //echo "<pre>";
       //var_dump($valorCiudad);
-      echo json_encode($valorCiudad->insertValoracion(false));
+      if($valorCiudad->insertValoracion(false)){
+             header("Location:../../ciudad.php?ciudad=".$ciudad);
+      }
  }
  if(filter_has_var(INPUT_GET, "ciudad")&&filter_has_var(INPUT_GET, "verValor")){
       
@@ -44,7 +46,7 @@
       $valores = $valorCiudad->verValoraciones();
       
       $numValores = count($valores);
-      $total=1;
+      $total=0;
       //echo "<pre>";
       //var_dump($valores);
       if($numValores != 0){

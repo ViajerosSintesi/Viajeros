@@ -43,8 +43,18 @@ if(isset($_GET['pais'])){
                         
 		            htmlInsert +='</div>';
 		            htmlInsert +='<div class="coment-down">';
-			      htmlInsert +='<button title="me gusta" class="meGusta" id="coment-'+i+'"><span id="countPos'+i+'">'+data[i].valorPos+'</span><img src="img/hand_pro.png" ></button>';
-			      htmlInsert +='<button title="no me gusta" class="noMeGusta" id="coment-'+i+'"><span id="countNeg'+i+'">'+data[i].valorNeg+'</span><img src="img/hand_contra.png" ></button>';
+			      htmlInsert +='<button title="me gusta" class="meGusta" id="coment-'+i+'"><span id="countPos'+i+'">'+data[i].valorPos+'</span>';
+			      if(data[i].valorDelUser){
+			            if(data[i].valorDelUser.valor == 2) htmlInsert +='<img src="img/hand_pro_verde.png" >';
+			            else htmlInsert +='<img src="img/hand_pro.png" >';
+			      }else htmlInsert +='<img src="img/hand_pro.png" >';
+			      htmlInsert +='</button>';
+			      htmlInsert +='<button title="no me gusta" class="noMeGusta" id="coment-'+i+'"><span id="countNeg'+i+'">'+data[i].valorNeg+'</span>';
+			      if(data[i].valorDelUser){
+			            if(data[i].valorDelUser.valor == 1) htmlInsert +='<img src="img/hand_contra_roja.png" >';
+			            else htmlInsert +='<img src="img/hand_contra.png" >';
+			      }else htmlInsert +='<img src="img/hand_contra.png" >';
+			      htmlInsert +='</button>';
 			      htmlInsert +='<button title="reportar abuso"><img src="img/hand_1.png" ></button>';
 		            htmlInsert +='</div>';
 		            htmlInsert +='</div>';

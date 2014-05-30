@@ -32,7 +32,9 @@
       $valorPais->setValor($valor);
       //echo "<pre>";
       //var_dump($valorPais);
-      echo json_encode($valorPais->insertValoracion(false));
+      if($valorPais->insertValoracion(false)){
+            header("Location:../../pais.php?pais=".$pais);
+      }
  }
  if(filter_has_var(INPUT_GET, "pais")&&filter_has_var(INPUT_GET, "verValor")){
       
@@ -43,7 +45,7 @@
       $valorPais->setObject($pais);
       $valores = $valorPais->verValoraciones();
       $numValores = count($valores);
-      $total=1;
+      $total=0;
       //echo "<pre>";
       //var_dump($valores);
       if($numValores != 0){
