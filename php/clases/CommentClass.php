@@ -10,7 +10,6 @@
 		private $comentario = null;
 		private $idSitio = null;
 		private $bbdd;
-		private $arrayComment;
 		
 		function __construct($bbdd){
 		      $this->bbdd = new DBMongo($bbdd);
@@ -23,6 +22,8 @@
             public function getIdSitio(){return $this->idSitio;}
             public function setIdSitio($idSitio){$this->idSitio = $idSitio;}
             
+            
+            
             public function devolverDelSitio($tipo){
                   if($tipo == "Pais")
                         $query = array("idPais" =>new MongoId($this->idSitio));
@@ -31,6 +32,14 @@
                   //var_dump($this->bbdd->findCollection($query));
                   //$queryForView = array("_id"=>false, "valor"=>true);
                   return  $this->bbdd->findCollection($query);
+            }
+            public function insertarComent($tipo){
+                  $queryForInsert = array("idUsu"=>$this->user, 
+                                    "comentario"=>$this->comentario);
+                  if($tipo == "Ciudad") $queryForInsert["idCiu"]= $this->idSitio;
+                  elseif($tipo == "Pais") $queryForInsert["idPais"]= $this->idSitio;
+                  
+                  return $this->bbdd->insertar($queryForInsert);
             }
 	}
 ?>

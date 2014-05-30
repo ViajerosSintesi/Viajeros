@@ -14,7 +14,12 @@ if(isset($_GET['ciudad'])){
 	<title></title>
 	<!--<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>-->
-	
+	<style>
+	.imgperfil{
+	      width:50px;
+	      border-radius:20px;
+	}
+	</style>
 	<script src="js/cargaScript.js"></script>
 	<script src="js/valoracion.js"></script>
 	
@@ -36,7 +41,7 @@ if(isset($_GET['ciudad'])){
 	             for(var i = 0; i<data.length; i++){
                         htmlInsert +='<div class="coments">';
                         htmlInsert +='<div class="coment-up">';
-                        htmlInsert +='<p>'+data[i].nombreDelUser+'</p>';
+                        htmlInsert +='<p><a href="perfil.php?user='+data[i].idUsu+'"><img class="imgperfil" src="'+data[i].imgPerfilUser+'"/>'+data[i].nombreDelUser+'</a></p>';
 			      htmlInsert +='<p>'+data[i].comentario+'</p>';
 			      htmlInsert +='<input type="hidden" id="idUsu'+i+'" value="<?php echo $_SESSION["userId"];?>"/>';
 			      htmlInsert +='<input type="hidden" id="idComent'+i+'" value="'+data[i]._id['$id']+'"/>';
@@ -54,6 +59,11 @@ if(isset($_GET['ciudad'])){
       	      htmlInsert +='<div id="subirComent">';
       		htmlInsert +='<form action="#" method="post">';
       		htmlInsert +='<textarea id="areatexto" cols="80" rows="5"></textarea>';
+      		
+      		htmlInsert +='<input type="hidden" id="idUser" value="<?php echo $_SESSION["userId"];?>"/>';
+			htmlInsert +='<input type="hidden" id="idSitio" value="<?php echo $ciudad;?>"/>';
+			htmlInsert +='<input type="hidden" id="tipo" value="Ciudad"/>';
+      		
       		htmlInsert +='<!-- <input type="submit" id="kiko" value="enviar"> -->';
       	      htmlInsert +='</form>';
                   htmlInsert +='</div>';
@@ -78,6 +88,27 @@ if(isset($_GET['ciudad'])){
                         enviarValoracion("comment", 1, idUsu, idComment);
                         cargarComents();
                   });
+                  $("#areatexto").keypress(function(e) {
+            		if (e.keyCode == 13 && !e.shiftKey) {
+            			e.preventDefault();
+            			var comentario = $("#areatexto").val();
+            			var idUser = $("#idUser").val();
+            			var idSitio = $("#idSitio").val();
+            			var tipo = $("#tipo").val();
+            			
+            			var dataEnvio = {
+            			   "comentario":comentario, 
+            			   "userId": idUser,
+            			   "ciudad": idSitio,
+            			   "insertarComent": tipo
+            			   };
+            			$.getJSON("php/controles/controlComment.php", dataEnvio, function(data){
+            			      if(data){
+            			            cargarComents();
+            			      }
+            			});
+            		}
+	            });
                   
 	           }); 
 	      

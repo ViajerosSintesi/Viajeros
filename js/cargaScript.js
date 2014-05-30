@@ -22,7 +22,20 @@ $(function(){
 	$("#areatexto-ciudad").keypress(function(e) {
 		if (e.keyCode == 13 && !e.shiftKey) {
 			e.preventDefault();
-			alert('sending comment...');
+			var comentario = $("#areatexto").val();
+			var idUser = $("#idUsert").val();
+			var idSitio = $("#idSitio").val();
+			var tipo = $("#tipo").val();
+			
+			var dataEnvio = {
+			   "comentario":comentario, 
+			   "userId": idUser,
+			   "ciudad": idSitio,
+			   "insertarComent": tipo
+			   };
+			$.getJSON("php/controles/controlComment.php", dataEnvio, function(data){
+			      console.log(data);
+			});
 		}
 	});
 	
@@ -32,3 +45,4 @@ $(function(){
 
 	
 });
+

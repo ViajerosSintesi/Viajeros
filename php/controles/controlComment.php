@@ -31,6 +31,7 @@ if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "verComments
       $user->setId($comentarios[$i]["idUsu"]);
       $user->cogeValoresSegunId();
       $comentarios[$i]["nombreDelUser"] = $user->getUsername();
+      $comentarios[$i]["imgPerfilUser"] = $user->getImgPerfil();
   }
   
   //echo "<pre>";
@@ -40,5 +41,19 @@ if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "verComments
       
 }
 
+if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarComent")){
+      $ciudad = filter_input(INPUT_GET, "ciudad");
+      $userId = filter_input(INPUT_GET, "userId");
+      $tipo = filter_input(INPUT_GET, "insertarComent");
+      $comentText = filter_input(INPUT_GET, "comentario");
+      
+      $coment= new Comment("coment".$tipo);
+      
+      $coment->setUser($userId);
+      $coment->setIdSitio(new MongoId($ciudad));
+      $coment->setComentario($comentText);
+      
+      echo json_encode($coment->insertarComent($tipo));
+}
 
 ?>
