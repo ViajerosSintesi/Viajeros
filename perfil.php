@@ -44,7 +44,7 @@
 				<li><a href="perfil.php">Perfil</a></li>
 				<li><a href="list-pais.php">Paises</a></li>
 				<li><a href="mapa.php">Mapa</a></li>
-				<li><form action="php/controlLogin.php" method="post">
+				<li><form action="php/controles/controlLogin.php" method="post">
 						<input type="submit" name="destroySession" id="destroySession" value="Cerrar session" /> 
 					</form></li>
 			</ul>

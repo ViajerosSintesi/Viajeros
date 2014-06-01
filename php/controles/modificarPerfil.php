@@ -25,8 +25,17 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
             $edad = filter_input(INPUT_POST, "edad");
             $user->setUsername($edad);
       }
+      if(filter_has_var(INPUT_POST, "email")){
+            $id = filter_input(INPUT_POST, "email");
+            $user->setId($id);
+            $user->setActivado(0);
+            $user->enviaEmailConfirm();
+            $returnUpd = $user->updateUser($userId);
+      }else{
+            $returnUpd = $user->updateUser();
+      }
      
-      $returnUpd = $user->updateUser();
+      
       echo json_encode(array( "notice"=>$returnUpd));
 }
 

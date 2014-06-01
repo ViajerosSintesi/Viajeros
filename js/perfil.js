@@ -199,7 +199,8 @@ function cargarDatos(){
 function modPerfil(){
       var username = $("#perfil-nombre").val();
       var apellidos = $("#perfil-apellidos").val();
-	var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos};
+      var mail =  $("#perfil-email").val();
+	var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos, "email": mail};
 	// validacion username
       if($("#perfil-apellidos").val() == ''){
 	      alert ("el nombre no puede estar vacio");

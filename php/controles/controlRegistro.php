@@ -32,14 +32,15 @@
 	      $codActivacion = filter_input(INPUT_GET, "verificar");
 	      
 	      $email = base64_decode($codActivacion);
-	      
+	      //echo $email;
 	      $user = new User();
 	      $user->setId($email);
 	      $user->cogeValoresSegunId();
 	      
+	      
 	      $user->activarUser();
 	      
-	      header("location:../perfil.php");
+	      header("location:../../perfil.php");
 	      
 	}
 
