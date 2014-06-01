@@ -15,6 +15,9 @@ $("#subir-foto").click(function(){
 $("#cerrar-cuadro").click(function(){
 	$("#bg-cuadro").hide();
 });
+
+
+
 </script>
 <div id="foto">
 
@@ -26,7 +29,7 @@ if(isset($_GET['ciudad'])){
             <script type="text/javascript">
                   var dataQuery = {"fotosForCiudad":"1", "ciudadId":"$ciudadId"};
                   var htmli = $("#fotos").html();
-                  console.log("hola");
+                  //console.log("hola");
                   $.getJSON("php/controles/controlImagen.php", dataQuery, function(data){
                        
                         for(var i = 0; i <data.length; i++){

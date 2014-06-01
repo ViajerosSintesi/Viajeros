@@ -167,6 +167,10 @@ function cargarDatos(){
                         borrarImagen(this);
                         $("#"+divId).dialog("close", "duration", 1000);
                   });
+                  $('.reportarImg').click(function(){
+                        reportarImagen(divId, userId);
+                        $("#"+divId).dialog("close", "duration", 1000);
+                  });
                   $("#"+divId).append($(this).clone());
 				  $("#"+divId+">img").addClass("imagen-dialogo");
                   $("#"+divId).dialog({
@@ -221,7 +225,7 @@ function subirFotos(){
 		//obtenemos el tipo de archivo image/png ejemplo
 		var fileType = file.type;
 		
-		var userId = $("userIdForImg").val();
+		var userId = $("#userIdForImg").val();
 		var ciudadId = $("#buscarForImg").val();
 		if ((fileSize<=200000) && (fileExtension=="jpeg") || (fileExtension=="png") || (fileExtension=="jpg")){
                   //creamos un form data i añadimos el fichero
@@ -263,13 +267,14 @@ function borrarImagen(imagen){
 
 
 function reportarImagen(imagen,user){
-      var imgId_reporte = $(imagen).attr('name');
-	  var userId_reporte = $("#userIdForImg").val();
+      var imgId = imagen;
+	  var userId = user;
       
-      var dataEnvio2 = {"reportarImagen": 1, "imgId": imgId_reporte, "userId": userId_reporte};
+      var dataEnvio = {"reportarImg": 1, "imgId": imgId, "userId": userId};
+      
       $.getJSON('php/controles/controlReporte.php', dataEnvio, function(data){
-            //console.log(data);
-            if(data)cargarDatos();
+            console.log(data);
+            //if(data) cargarDatos();
             //console.log(this.parentNode.nodeName);
       });
 }

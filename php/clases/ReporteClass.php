@@ -4,7 +4,7 @@
 	/**
 	* 
 	*/
-	class report{
+	class Report{
 		
 		private $user = null;
 		private $objectToReport = null;

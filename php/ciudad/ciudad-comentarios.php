@@ -60,7 +60,7 @@ if(isset($_GET['ciudad'])){
 			            else htmlInsert +='<img src="img/hand_contra.png" >';
 			      }else htmlInsert +='<img src="img/hand_pro.png" >';
 			      htmlInsert +='</button>';
-			      htmlInsert +='<button title="reportar abuso"><img src="img/hand_1.png" ></button>';
+			      htmlInsert +='<button title="reportar abuso" class="reportButton" id="report-'+i+'"><img src="img/hand_1.png" ></button>';
 		            htmlInsert +='</div>';
 		            htmlInsert +='</div>';
 	                  
@@ -118,6 +118,22 @@ if(isset($_GET['ciudad'])){
             			      }
             			});
             		}
+	            });
+	            $(".reportButton").click(function(){
+	                  var id=$(this).attr("id");
+                        var numComent = id[id.length-1];
+                        //console.log(numComent);
+                        var idUsu= $("#idUsu"+numComent).val();
+                        var idComment= $("#idComent"+numComent).val();
+                        
+                        var dataEnvio = {
+                                    "reportarComent": "Ciudad",
+                                    "userId": idUsu,
+                                    "comentId": idComment
+                                    };
+	                  $.getJSON("php/controles/controlReporte.php", dataEnvio, function(data){
+	                        console.log(data);
+	                  });
 	            });
                   
 	           }); 

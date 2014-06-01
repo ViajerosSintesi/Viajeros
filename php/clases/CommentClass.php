@@ -6,6 +6,7 @@
 	*/
 	class Comment{
 		
+		private $id = null;
 		private $user = null;
 		private $comentario = null;
 		private $idSitio = null;
@@ -15,6 +16,8 @@
 		      $this->bbdd = new DBMongo($bbdd);
 		}
       	
+      	public function getId(){return $this->id;}
+            public function setId($id){$this->id = $id;}
             public function getUser(){return $this->user;}
             public function setUser($user){$this->user = $user;}
             public function getComentario(){return $this->comentario;}
@@ -22,8 +25,19 @@
             public function getIdSitio(){return $this->idSitio;}
             public function setIdSitio($idSitio){$this->idSitio = $idSitio;}
             
-            
-            
+            public function cogeValoresSegunId(){
+		      $queryForId = array('_id' => $this->id);
+	      	if($this->bbdd->contar($queryForId)){
+		      	$coment = $this->bbdd->findOneCollection($queryForId);
+			      $this->id = $coment['_id'];
+			      $this->usuario = $coment['idUsu'];
+		            $this->idSitio= (isset($coment['idCiu']))? $coment['idCiu'] : $coment['idPais'];
+		     }
+	      }
+            public function borrarComent(){
+                  $queryForDelete = array("_id"=>new MongoId($this->id));
+                  return  $this->bbdd->eliminar($queryForDelete);
+            }
             public function devolverDelSitio($tipo){
                   if($tipo == "Pais")
                         $query = array("idPais" =>new MongoId($this->idSitio));
