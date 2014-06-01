@@ -1,5 +1,5 @@
 <?php
-include("../funciones.php");
+include("php/funciones.php");
 ?>
 <!DOCTYPE html>
 <html>

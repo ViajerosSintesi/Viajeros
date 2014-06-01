@@ -25,11 +25,11 @@ if(isset($_GET['ciudad'])){
 	
 	<script type="text/javascript">
             $(function(){
-                  cargarComents();
+                  cargarComents('<?php echo $ciudad;?>', '<?php echo $_SESSION['userId'];?>', 'Ciudad');
                   
             });
             
-	      function cargarComents(){
+	      /*function cargarComents(){
 	           var dataEnvio = {
 	                        "ciudad": '<?php echo $ciudad;?>',
 	                        "userId": "<?php echo $_SESSION['userId'];?>",
@@ -138,7 +138,7 @@ if(isset($_GET['ciudad'])){
                   
 	           }); 
 	      
-	      }
+	      }*/
 	</script>
 </head>
 <body>
