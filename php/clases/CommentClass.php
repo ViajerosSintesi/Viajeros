@@ -11,6 +11,7 @@
 		private $comentario = null;
 		private $idSitio = null;
 		private $bbdd;
+		private $fecha = null;
 		
 		function __construct($bbdd){
 		      $this->bbdd = new DBMongo($bbdd);
@@ -24,6 +25,8 @@
             public function setComentario($comentario){$this->comentario = $comentario;}
             public function getIdSitio(){return $this->idSitio;}
             public function setIdSitio($idSitio){$this->idSitio = $idSitio;}
+            public function getFecha(){return $this->fecha;}
+            public function setFecha($fecha){$this->fecha = $fecha;}
             
             public function cogeValoresSegunId(){
 		      $queryForId = array('_id' => $this->id);
@@ -32,6 +35,7 @@
 			      $this->id = $coment['_id'];
 			      $this->usuario = $coment['idUsu'];
 		            $this->idSitio= (isset($coment['idCiu']))? $coment['idCiu'] : $coment['idPais'];
+		            $this->fecha = $coment['data'];
 		     }
 	      }
             public function borrarComent(){
@@ -49,7 +53,8 @@
             }
             public function insertarComent($tipo){
                   $queryForInsert = array("idUsu"=>$this->user, 
-                                    "comentario"=>$this->comentario);
+                                    "comentario"=>$this->comentario,
+                                    "data"=> $this->fecha);
                   if($tipo == "Ciudad") $queryForInsert["idCiu"]= $this->idSitio;
                   elseif($tipo == "Pais") $queryForInsert["idPais"]= $this->idSitio;
                   

@@ -165,7 +165,7 @@ class User{
 		#libreria para la clase correo
         require_once("CorreoClass.php");
         #url que dentro del email tiene que clickar para activar la cuenta
-		$url = "https://viajeros-c9-txemens.c9.io/php/controles/controlRegistro.php?verificar=".$this->codActivacion;
+		$url = "http://viajeros.herokuapp.com/php/controles/controlRegistro.php?verificar=".$this->codActivacion;
 		#plantilla del email
 		$plantilla = file_get_contents("../../plantillas/email.html");
 		#palabras claves dentro del mail

@@ -65,6 +65,7 @@ function cargarComents(idSitio, idUser, tipo){
                   
                   htmlInsert +='</div>';
                   htmlInsert +='<div class="coment-down">';
+                  htmlInsert +='<span class="fecha">'+data[i].data+'</span>';
       	      htmlInsert +='<button title="me gusta" class="meGusta" id="coment-'+i+'"><span id="countPos'+i+'">'+data[i].valorPos+'</span>';
       	      if(data[i].valorDelUser){
       	            if(data[i].valorDelUser.valor == 2) htmlInsert +='<img src="img/hand_pro_verde.png" >';
@@ -120,12 +121,13 @@ function cargarComents(idSitio, idUser, tipo){
       			var idUser = $("#idUser").val();
       			var idSitio = $("#idSitio").val();
       			var tipo = $("#tipo").val();
-      			
+      			var fecha = new Date().toString();
       			var dataEnvio = {
       			   "comentario":comentario, 
       			   "userId": idUser,
       			   "ciudad": idSitio,
-      			   "insertarComent": tipo
+      			   "insertarComent": tipo,
+      			   "fecha": fecha
       			   };
       			$.getJSON("php/controles/controlComment.php", dataEnvio, function(data){
       			      if(data){

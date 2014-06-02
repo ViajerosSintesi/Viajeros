@@ -46,12 +46,14 @@ if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarComen
       $userId = filter_input(INPUT_GET, "userId");
       $tipo = filter_input(INPUT_GET, "insertarComent");
       $comentText = filter_input(INPUT_GET, "comentario");
-      
+      $data = filter_input(INPUT_GET, "fecha");
       $coment= new Comment("coment".$tipo);
       
       $coment->setUser($userId);
       $coment->setIdSitio(new MongoId($ciudad));
       $coment->setComentario($comentText);
+      
+      $coment->setFecha($data);
       
       echo json_encode($coment->insertarComent($tipo));
 }
