@@ -10,6 +10,7 @@ include("php/funciones.php");
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
 	<script src="js/ajax.js"></script>
+	<script src="js/comun.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		$("#hide-show-menu").click(function(){
