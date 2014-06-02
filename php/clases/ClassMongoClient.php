@@ -17,10 +17,12 @@ class DBMongo{
 	}
 	
 	public function conectar(){
-	    $this->dbUser = "txemens";
+	    /*$this->dbUser = "txemens";
 	    $this->dbPass = "h0lita";
 	    $this->db = "viajeros";
 	    $this->server = "mongodb://".$this->dbUser.":".$this->dbPass."@ds043329.mongolab.com:43329/viajeros";
+	    */
+	     $this->server = getenv("MONGOLAB_URI");
 	    $this->conexion = new Mongo($this->server);
 	    return $this->conexion;
 	}
