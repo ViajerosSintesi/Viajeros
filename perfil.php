@@ -15,8 +15,10 @@
             if(filter_has_var(INPUT_GET,"user")) return 0;
             else return 1;
       }
+include("php/funciones.php");
+$coor = lugaresUsuario($_SESSION['userId']);
+$coor=json_encode($coor["lugares"]);
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,8 +31,7 @@
 	<script src="js/ajax.js"></script>
 	<script src="js/buscador.js"></script>
 	<script src="js/perfil.js"></script>
-	<script type="text/javascript">
-	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </head>
 <body>
 <input type="hidden" name="userId" value="<?php echo $user?>" id="userIdForImg"/>
@@ -128,6 +129,41 @@
 			<?php } ?>
 			</div>
 		</div>
+		<div id="perfil-lugares">
+			<div id="titulo">
+				<h1>Lugares</h1>
+			</div>
+			<div id="map-div"></div>
+		</div>
+		<script>
+		var coor = <?php echo $coor?>;
+		var infowindow = new google.maps.InfoWindow();
+		function initialize() {
+			var myLatlng = new google.maps.LatLng(36.4613218,-1.2081181,4);
+			var mapOptions = {
+				zoom: 2,
+				center: myLatlng
+			}
+			var map = new google.maps.Map(document.getElementById('map-div'), mapOptions);
+
+			for (var i = 0; i < coor.length; i++) {
+				var c1 = coor[i].coor.split(",",2);
+				var contenido = coor[i].direc;
+				var myLatlng2 = new google.maps.LatLng(c1[0], c1[1]);
+				var marker = new google.maps.Marker({
+					position: myLatlng2,
+					map: map
+				});
+				(function(marker, contenido){                       
+					google.maps.event.addListener(marker, 'click', function(){
+						infowindow.setContent(contenido);
+						infowindow.open(map, marker);
+					});
+				})(marker,contenido);
+			};
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
 	</div>
 	<div id="footer">
 		<span><a href="#">Sobre nosotros</a></span>

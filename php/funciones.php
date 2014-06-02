@@ -94,4 +94,11 @@ function paisCiudades($id){
 	$cursor = $collection->find($parametro)->sort(array('ciudad'=>1));
 	return $cursor;
 }
+function lugaresUsuario($usu){
+	$collection = conectar("usuarios");
+	$par = array("_id"=>$usu);
+	$parametro = array("_id"=>0,"lugares"=>1);
+	$cursor = $collection->findOne($par,$parametro);
+	return $cursor;
+}
 ?>
