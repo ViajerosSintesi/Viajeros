@@ -16,7 +16,7 @@
             else return 1;
       }
 include("php/funciones.php");
-$coor = lugaresUsuario($_SESSION['userId']);
+$coor = lugaresUsuario($user);
 $coor=json_encode($coor["lugares"]);
 ?>
 <!DOCTYPE html>
