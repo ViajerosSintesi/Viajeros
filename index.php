@@ -1,7 +1,3 @@
-<?php
-      phpinfo();
-?>
-
 <!DOCTYPE html>
 <html>
 <head>

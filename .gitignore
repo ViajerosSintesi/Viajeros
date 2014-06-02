@@ -1,14 +1,13 @@
 #estos archivos no son necesarios para vosotros
 
 # ignore php.ini
-
-#php.ini
+php.ini
 heroku-client.tgz
 # ignore carpeta sessions 
 
 /session
-/images/fotosCiudades
-/images/fotosPerfil
+#/images/fotosCiudades
+#/images/fotosPerfil
 /paradise
 /heroku-client
 
