@@ -37,16 +37,17 @@ $coor=json_encode($coor["lugares"]);
 <input type="hidden" name="userId" value="<?php echo $user?>" id="userIdForImg"/>
 <div id="wrap">
 	<div id="menu">
-		<button id="hide-show-menu">Barra men&uacute; <img src="img/33.png" id="ico-menu"></button>
+		<button id="hide-show-menu" title="Ocultar/mostrar barra de men&uacute;">Barra men&uacute; <img src="img/33.png" id="ico-menu"></button>
 		<div id="barra-menu">
 			<input type="text" id="buscar" title="Buscar ciudad, pa&iacute;s">
 			<input type="hidden" value="" id="id" />
 			<ul>
-				<li><a href="perfil.php">Perfil</a></li>
-				<li><a href="list-pais.php">Paises</a></li>
-				<li><a href="mapa.php">Mapa</a></li>
+				<li><a href="#" id="miUbicacion" title="Obterner ubicaci&oacute;n"><img src="img/161.png"></a></li>
+				<li><a href="perfil.php" title="Ir a perfil">Perfil</a></li>
+				<li><a href="list-pais.php" title="Lista de paises">Paises</a></li>
+				<li><a href="mapa.php" title="Muestra el mapa">Mapa</a></li>
 				<li><form action="php/controles/controlLogin.php" method="post">
-						<input type="submit" name="destroySession" id="destroySession" value="Cerrar session" /> 
+						<input type="submit" name="destroySession" id="destroySession" value="Cerrar session" title="Cambiar foto de perfil" /> 
 					</form></li>
 			</ul>
 		</div>
@@ -74,7 +75,7 @@ $coor=json_encode($coor["lugares"]);
 			      <div id="info">
 			      	<table>
 			      		<?php if( comproveEmail()){ ?>
-						<tr><th></th><td><div id="perfil-edit"><img src="img/edit_32px.png"></div></td></tr>
+						<tr><th></th><td><div id="perfil-edit"><img src="img/152.png" title="Editar informaci&oacute;n"></div></td></tr>
 						<?php } ?>
 						<tr><th>Nombre: </th><td><span id="nombreUser"></span></td></tr>
 						<tr><th>Apellidos: </th><td><span id="apellidosUser"></td></tr>
@@ -100,7 +101,7 @@ $coor=json_encode($coor["lugares"]);
 			<div id="titulo">
 				<h1>Fotos</h1>
 					<?php if( comproveEmail()){
-				echo '<div id="perfil-subir-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>';
+				echo '<div id="perfil-subir-foto"><input type="submit" id="subir-foto" value="Subir foto" title="Subir foto"></div>';
 					}
 				?>
 			</div>
@@ -115,9 +116,9 @@ $coor=json_encode($coor["lugares"]);
 		</div>
 		<div id="bg-cuadro">
 			<div id="cuadro-foto">
-				<div id="cerrar-cuadro"><img src="img/delete.png"></div>
+				<div class="cerrar-cuadro"><img src="img/75.png"></div>
 			<?php if( comproveEmail()){ ?>
-				<form action='php/controles/controlImagen.php' method='post' enctype='multipart/form-data' id='formFotos'>
+				<form action='php/controlImagen.php' method='post' enctype='multipart/form-data' id='formFotos'>
 					<div id="centra-input">
 						<h2>Selecciona una foto</h2>
 						<input type='file' name='picture' id='picture'><br>
@@ -127,6 +128,9 @@ $coor=json_encode($coor["lugares"]);
 					</div>
 				</form>
 			<?php } ?>
+			</div>
+			<div id="mapa-ubicacion">
+				<div class="cerrar-cuadro"><img src="img/75.png"></div>
 			</div>
 		</div>
 		<div id="perfil-lugares">

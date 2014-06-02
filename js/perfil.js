@@ -10,6 +10,8 @@ $(function(){
             cargarDatos();
             //esconde el cuadro para subir imagenes
             $("#bg-cuadro").hide();
+            $("#cuadro-foto").hide();
+            $("#mapa-ubicacion").hide();
             //esconde el fomulario para modificar la informacion del usuario
             $("#form-info").hide();
             //si se hace click en el boton de modificar, se abre el formulario
@@ -26,11 +28,24 @@ $(function(){
             //si se hace click al boton de subir imagenes, aparece el cuadro
             $("#subir-foto").click(function(){
                   $("#bg-cuadro").show();
+                  $("#cuadro-foto").show();
+            });
+            //Mostrar el mapa de ubicacion actual
+            $("#miUbicacion").click(function(){
+                  $("#bg-cuadro").show();
+                  //geolocalizacion();
+                  $("#mapa-ubicacion").append("<iframe src='geolocalizacion.php' id='geolocalizacion'></iframe>");
+                  $("#mapa-ubicacion").show();
             });
             //cerrar el cuadro de subri fotos
-            $("#cerrar-cuadro").click(function(){
+            $(".cerrar-cuadro").click(function(){
                   $("#bg-cuadro").hide();
+                  $("#cuadro-foto").hide();
+                  $("#mapa-ubicacion").hide();
+                  $("#geolocalizacion").remove();
+
             });
+            
             //al aceptar los cambios, modificas la informacion
             $("#modificar-datos").click(modPerfil);
             //si se elige foto, la sube
