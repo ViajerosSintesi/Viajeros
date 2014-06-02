@@ -5,8 +5,10 @@ if(!isset($_SESSION['userId'])){
 	header("location:index.php");
 }
 include("php/funciones.php");
+$alerta = "&nbsp;";
 if($_POST){
 	guardarUbicacion($_SESSION['userId'],$_POST['coor'], $_POST['info']);
+	$alerta = "Ubicaci&oacute;n guardada con exito!";
 }
 ?>
 <!DOCTYPE html>
@@ -18,19 +20,19 @@ if($_POST){
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 	<style type="text/css">
 	body{text-align: center; margin: 0; padding: 0;}
-	p{margin: 5px; color: red;}
+	p{margin: 5px;}
 	#map-div{height: 350px; width: 600px; margin: 0 auto;}
 	input[type=submit]{padding: 5px 4px; background: url(img/blue.gif); color: #fff; font-size: 12px;
 	border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;}
 	</style>
 </head>
 <body>
-<p id="alertas">&nbsp;</p>
+<p id="alertas"></p>
 <div id="map-div"></div>
 <form method="post">
 	<input type="hidden" name="coor" id="coor">
 	<input type="hidden" name="info" id="info">
-<input type="submit" name="guardarUbicacion" id="guardarUbicacion" value="Guardar Ubicaci&oacute;n">
+	<input type="submit" name="guardarUbicacion" id="guardarUbicacion" value="Guardar Ubicaci&oacute;n">
 </form>
 <script>
 var geocoder;
@@ -38,6 +40,7 @@ var map;
 var infowindow = new google.maps.InfoWindow();
 var marker;
 var x=document.getElementById("alertas");
+x.innerHTML = "<?php echo $alerta; ?>";
 function getLocation(){
 	if (navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(showPosition,showError);
