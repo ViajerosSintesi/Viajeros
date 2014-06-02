@@ -2,7 +2,7 @@
 
 # ignore php.ini
 
-php.ini
+#php.ini
 heroku-client.tgz
 # ignore carpeta sessions 
 
