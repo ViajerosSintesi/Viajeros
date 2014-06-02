@@ -43,6 +43,6 @@ if(isset($_FILES["imgPerfil"])){
             $userId = $_SESSION["userId"];
             $user = new User();
             $user->setId($userId);
-            var_dump($user->ponerImgPerfil($_FILES["imgPerfil"]));
+            echo $user->ponerImgPerfil($_FILES["imgPerfil"]);
 }
 ?>

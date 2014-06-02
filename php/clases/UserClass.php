@@ -196,7 +196,7 @@ class User{
 	public function ponerImgPerfil($fileImg){
 	      $retorn = 0;
 	      
-	      $uploaddir = '../images/fotosPerfil/';
+	      $uploaddir = '../../images/fotosPerfil/';
 
             if (!file_exists($uploaddir)) 
                 mkdir($uploaddir, 0777, true);
@@ -208,11 +208,12 @@ class User{
                 $antiguoPath=$this->bbdd->findOneCollection(array("_id"=>$this->id), array("imgPerfil"));
                 
                 if(file_exists($antiguoPath['imgPerfil'])) unlink($antiguoPath['imgPerfil']);
-                
+                //echo file_exists($uploadfile);
                 $this->setImgPerfil($uploadfile);
                 $queryForId = array('_id' => $this->id);
                 $queryForChange = array('$set'=> array('imgPerfil' =>$uploadfile));
-                $retorn = $this->bbdd->actualiza($queryForId, $queryForChange);
+                $this->bbdd->actualiza($queryForId, $queryForChange);
+                $retorn=1;
             }
             return $retorn;
 	}
