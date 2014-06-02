@@ -101,4 +101,10 @@ function lugaresUsuario($usu){
 	$cursor = $collection->findOne($par,$parametro);
 	return $cursor;
 }
+function guardarUbicacion($usu, $coor, $infoLugar){
+	$collection = conectar("usuarios");
+	$parametro = array("_id"=>$usu);
+	$param = array('$push'=>array('lugares'=> array('coor'=>$coor, 'direc'=>$infoLugar)));
+	$cursor = $collection->update($parametro, $param);;
+}
 ?>
