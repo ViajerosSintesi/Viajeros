@@ -114,14 +114,8 @@ class Correo {
             $mail->Subject = $this->asunto;
             $mail->MsgHTML($this->cuerpo);
             
-            if(!$mail->Send())
-            {
-              echo "Mailer Error: " . $mail->ErrorInfo;
-            }
-            else
-            {
-              echo "<p>Su mensaje se ha enviado con éxito.<br>Nos estaremos comunicando en la brevedad posible.<br><br><a href='index.php'>[ Enviar otra mensaje ]</a></p>";
-            }
+            if(!$mail->Send()) echo "Mailer Error: " . $mail->ErrorInfo;
+            
       /*
       #crear cabezera
 		$this->constHeaders();
