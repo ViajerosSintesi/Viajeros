@@ -24,7 +24,7 @@
 		//$newUser->setEdad($edad);
 		$returnReg = $newUser->guardarUser();
 	      #------->>>>>>>>>>>>>>>>>>>imposible enviar email
-		//if($returnReg) $newUser->enviaEmailConfirm();
+		if($returnReg) $newUser->enviaEmailConfirm();
 		echo json_encode(array( "notice"=>$returnReg));
 		
 		
