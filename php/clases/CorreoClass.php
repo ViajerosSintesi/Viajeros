@@ -94,10 +94,23 @@ class Correo {
 	 * ->Solamente son para recrear el funcionamiento y demostrar que llega a este punto
 	 */
 	public function enviarMail(){
-		$this->crearCuerpo();
-		#crear cabezera
-		$this->constHeaders();
+	      $this->crearCuerpo();
 
+	      require 'vendor/autoload.php';
+            $sendgrid = new SendGrid('txemens', '$m0k0p0k');
+
+            $message = new SendGrid\Email();
+            $message->addTo($this->destinatario)->
+                setFrom($this->headersFrom)->
+                setSubject($this->asunto)->
+                setText('Hello World!')->
+                setHtml($this->cuerpo);
+            $response = $sendgrid->send($message);
+		
+		
+/*
+      #crear cabezera
+		$this->constHeaders();
 		#si no estan construidas las cabezeras mostrara un mensaje de error
 		if(!$this->headersTotal){
 			echo "Caxo error, no estan los headers contruidos, la funcion para contruir es constHeaders()";
@@ -106,6 +119,7 @@ class Correo {
 			// $this->headersTotal;
 			//echo $this->cuerpo;
 		}
+*/
 	}
 	
 	#gets y sets de cada campo
