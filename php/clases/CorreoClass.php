@@ -96,19 +96,29 @@ class Correo {
 	public function enviarMail(){
 	      $this->crearCuerpo();
 
-	    require("../sendgrid/sendgrid-php/lib/sendgrid/Email.php");
-
-            $sendgrid = new SendGrid('txemens', '$m0k0p0k');
-
-            $message = new SendGrid\Email();
-            $message->addTo($this->destinatario)->
-                setFrom($this->headersFrom)->
-                setSubject($this->asunto)->
-                setText('Hello World!')->
-                setHtml($this->cuerpo);
-            $response = $sendgrid->send($message);
-		
-		
+	   require_once('../php-mailer/PHPMailer/class.phpmailer.php');
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+                $mail->SMTPAuth = true;
+                $mail->Port = 25;
+                $mail->Host = 'smtp.sendgrid.net';
+                $mail->Username = $_ENV["SENDGRID_USERNAME"];
+                $mail->Password = $_ENV["SENDGRID_PASSWORD"];
+             
+                $mail->AddReplyTo($this->headersFrom, "Paradise");
+                $mail->SetFrom($this->headersFrom, "Paradise");    
+                $mail->AddAddress($this->destinatario, " ");
+                $mail->Subject = $this->asunto;
+                $mail->MsgHTML($this->cuerpo);
+             
+                if(!$mail->Send())
+                {
+                    echo "Mailer Error: " . $mail->ErrorInfo;
+                }
+                else
+                {
+                    echo "<p>Su mensaje se ha enviado con éxito.<br>Nos estaremos comunicando en la brevedad posible.<br><br><a href='index.php'>[ Enviar otra mensaje ]</a></p>";
+                }
 /*
       #crear cabezera
 		$this->constHeaders();
