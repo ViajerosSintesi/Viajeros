@@ -96,7 +96,7 @@ class Correo {
 	public function enviarMail(){
 	      $this->crearCuerpo();
             $this->constHeaders();
-            require_once('php-mailer/PHPMailer/class.phpmailer.php');
+            require_once('./php-mailer/PHPMailer/class.phpmailer.php');
     $mail = new PHPMailer();
  
     $mail->IsSMTP();
