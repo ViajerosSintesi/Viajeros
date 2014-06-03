@@ -16,14 +16,15 @@
 		$newUser->setId($mail);
 		$newUser->setPassword($password);
 		$newUser->setCodActivacion($mail);
-		$newUser->setActivado(0);
+		$newUser->setActivado(1);
 		$newUser->setEdad($edad);
 		if(isset($_FILES["imgPerfil"])){
                   $user->ponerImgPerfil($_FILES["imgPerfil"]);
             }
 		//$newUser->setEdad($edad);
 		$returnReg = $newUser->guardarUser();
-		if($returnReg) $newUser->enviaEmailConfirm();
+	      #------->>>>>>>>>>>>>>>>>>>imposible enviar email
+		//if($returnReg) $newUser->enviaEmailConfirm();
 		echo json_encode(array( "notice"=>$returnReg));
 		
 		

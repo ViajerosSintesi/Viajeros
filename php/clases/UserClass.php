@@ -170,6 +170,8 @@ class User{
 		$plantilla = file_get_contents("../../plantillas/email.html");
 		#palabras claves dentro del mail
 		$diccionario = array('username' => $this->username,'url' => $url );
+		
+	
 		#creacion del correo y envio
 		$mail = new Correo($diccionario, $plantilla, $this->id, "Bienvenido!", "no-reply@viajeros.com");
 		$mail->enviarMail();
