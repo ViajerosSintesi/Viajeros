@@ -212,12 +212,16 @@ function cargarDatos(){
  *---------no se validan! 
  **/ 
 function modPerfil(){
+       $("body").append("<div id='cargaAjax'> <img src='img/gif-load.gif'/></div>");
+       $("#cargaAjax").dialog({modal:true});
       var username = $("#perfil-nombre").val();
       var apellidos = $("#perfil-apellidos").val();
       var mail =  $("#perfil-email").val();
 	var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos, "email": mail};
 	// validacion username
       if($("#perfil-apellidos").val() == ''){
+             $("#cargaAjax").dialog("close");
+            $("#cargaAjax").remove();
 	      alert ("el nombre no puede estar vacio");
       }else{
             $.post('php/controles/modificarPerfil.php', dataEnvio, function(data){
@@ -226,11 +230,14 @@ function modPerfil(){
                   cargarDatos();
                   $("#info").show();
       	      $("#form-info").hide();
+      	       $("#cargaAjax").dialog("close");
+                  $("#cargaAjax").remove();
             });
 	}
 }
 
 function subirFotos(){
+      
        var file = $("#picture")[0].files[0];
 		//obtenemos el nombre del archivo
 		var fileName = file.name;
@@ -258,10 +265,12 @@ function subirFotos(){
                   	contentType: false,
                   	processData: false,
                   	success: function(data){
+                      
                               //si todo va bien, vuelve a cargar los datos
                               if(data==1) cargarDatos();
                                     else alert("no se ha subido");// <<<<-----No alerts loco!
                               }
+                        
                   });
 		}else {
 		      alert("La imagen es demasiado grande o no cumple el formato correcto");
@@ -290,7 +299,7 @@ function reportarImagen(imagen,user){
       
       $.getJSON('php/controles/controlReporte.php', dataEnvio, function(data){
             console.log(data);
-            //if(data) cargarDatos();
+            if(data) cargarDatos();
             //console.log(this.parentNode.nodeName);
       });
 }
