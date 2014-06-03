@@ -3,6 +3,7 @@
         "ext-bcmath": "*",
         "ext-memcached": "*",
         "ext-mongo": "*",
-        "ext-xsl": "*"
+        "ext-xsl": "*",
+        "sendgrid/sendgrid": "2.0.5"
     }
 }
