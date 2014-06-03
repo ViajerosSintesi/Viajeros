@@ -97,6 +97,8 @@ class Correo {
 	      $this->crearCuerpo();
             $this->constHeaders();
             require_once('class.phpmailer.php');
+            require_once('class.smtp.php');
+            require 'PHPMailerAutoload.php';
             $mail = new PHPMailer();
             
             $mail->IsSMTP();
