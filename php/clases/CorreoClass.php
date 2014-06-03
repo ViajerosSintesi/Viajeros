@@ -96,30 +96,30 @@ class Correo {
 	public function enviarMail(){
 	      $this->crearCuerpo();
             $this->constHeaders();
-            require_once('./php-mailer/PHPMailer/class.phpmailer.php');
-    $mail = new PHPMailer();
- 
-    $mail->IsSMTP();
-    $mail->SMTPAuth = true;
-    $mail->Port = 25;
-    $mail->Host = 'smtp.sendgrid.net';
-    $mail->Username = $_ENV["SENDGRID_USERNAME"];
-    $mail->Password = $_ENV["SENDGRID_PASSWORD"];
- 
-    $mail->AddReplyTo($this->headersFrom, "Paradise");
-    $mail->SetFrom($this->headersFrom, "Paradise");    
-    $mail->AddAddress($this->destinatario, "Dermatologico del Norte");
-    $mail->Subject = $this->asunto;
-    $mail->MsgHTML($this->cuerpo);
- 
-    if(!$mail->Send())
-    {
-        echo "Mailer Error: " . $mail->ErrorInfo;
-    }
-    else
-    {
-        echo "<p>Su mensaje se ha enviado con éxito.<br>Nos estaremos comunicando en la brevedad posible.<br><br><a href='index.php'>[ Enviar otra mensaje ]</a></p>";
-    }
+            require_once('php-mailer/PHPMailer/class.phpmailer.php');
+            $mail = new PHPMailer();
+            
+            $mail->IsSMTP();
+            $mail->SMTPAuth = true;
+            $mail->Port = 25;
+            $mail->Host = 'smtp.sendgrid.net';
+            $mail->Username = $_ENV["SENDGRID_USERNAME"];
+            $mail->Password = $_ENV["SENDGRID_PASSWORD"];
+            
+            $mail->AddReplyTo($this->headersFrom, "Paradise");
+            $mail->SetFrom($this->headersFrom, "Paradise");    
+            $mail->AddAddress($this->destinatario, "Dermatologico del Norte");
+            $mail->Subject = $this->asunto;
+            $mail->MsgHTML($this->cuerpo);
+            
+            if(!$mail->Send())
+            {
+              echo "Mailer Error: " . $mail->ErrorInfo;
+            }
+            else
+            {
+              echo "<p>Su mensaje se ha enviado con éxito.<br>Nos estaremos comunicando en la brevedad posible.<br><br><a href='index.php'>[ Enviar otra mensaje ]</a></p>";
+            }
       /*
       #crear cabezera
 		$this->constHeaders();
