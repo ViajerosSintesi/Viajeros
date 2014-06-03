@@ -96,7 +96,8 @@ class Correo {
 	public function enviarMail(){
 	      $this->crearCuerpo();
 
-	      require 'vendor/autoload.php';
+	    require("../sendgrid/sendgrid-php/sendgrid-php.php");
+
             $sendgrid = new SendGrid('txemens', '$m0k0p0k');
 
             $message = new SendGrid\Email();
