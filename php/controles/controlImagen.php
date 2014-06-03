@@ -31,7 +31,7 @@
             $imagen->subirImagen($imagenForUp);
             
             //echo $imagen->guardarImagen();
-            header("location: ../perfil.php");
+            header("location: ../../perfil.php");
       
       }
       if(filter_has_var(INPUT_GET, "fotosForPerfil")){
@@ -82,4 +82,5 @@
                   echo json_encode($imagen->darImagenes(false));
             }
       }
+
 ?>

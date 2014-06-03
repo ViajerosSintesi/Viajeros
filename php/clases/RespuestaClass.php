@@ -49,7 +49,7 @@ class Respuesta{
                   $query = array("idPais" =>new MongoId($this->idSitio));
             elseif($tipo = "Ciudad")
                   $query = array('idCiu'=>new MongoId($this->idSitio));
-            $queryForInsert["idPregunta"] => $this->idPregunta;
+            $queryForInsert["idPregunta"] = $this->idPregunta;
             //var_dump($this->bbdd->findCollection($query));
             //$queryForView = array("_id"=>false, "valor"=>true);
             return  $this->bbdd->findCollection($query);
@@ -59,7 +59,7 @@ class Respuesta{
                               "pregunta"=>$this->pregunta);
             if($tipo == "Ciudad") $queryForInsert["idCiu"]= $this->idSitio;
             elseif($tipo == "Pais") $queryForInsert["idPais"]= $this->idSitio;
-            $queryForInsert["idPregunta"] => $this->idPregunta;
+            $queryForInsert["idPregunta"] = $this->idPregunta;
             return $this->bbdd->insertar($queryForInsert);
       }
 }
