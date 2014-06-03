@@ -175,9 +175,30 @@ function cargarDatos(){
 
             $("#fotos").html(intro);
             $(".imagenDeCiudad").click(function(){
-                  
                   var divId = $(this).attr("name");
-                  $("#"+divId).html('<input type="button" class="borrarImg" value="borrar" name="'+divId+'"/><input type="button" class="reportarImg" value="reportar" name="'+divId+'"/>');
+                  var dataImgValoracion = {"verValor": 1, "userId": userId, "img":divId};
+                  $.getJSON("php/controles/controlValoracionImg.php", dataImgValoracion, function(data){
+                        //console.log(data);
+                         var htmlInsert = "";
+                        if(data){
+                              htmlInsert ='<button title="me gusta" class="meGusta" id="coment-'+i+'"><span id="countPos">'+data.valorPos+'</span>';
+                  	      if(data.valorDelUser){
+                  	            if(data.valorDelUser.valor == 2) htmlInsert +='<img src="img/hand_pro_verde.png" >';
+                  	            else htmlInsert +='<img src="img/hand_pro.png" >';
+                  	      }else htmlInsert +='<img src="img/hand_pro.png" >';
+                  	      htmlInsert +='</button>';
+                  	      htmlInsert +='<button title="no me gusta" class="noMeGusta" id="coment-'+i+'"><span id="countNeg'+i+'">'+data.valorNeg+'</span>';
+                  	      if(data.valorDelUser){
+                  	            if(data.valorDelUser.valor == 1) htmlInsert +='<img src="img/hand_contra_roja.png" >';
+                  	            else htmlInsert +='<img src="img/hand_contra.png" >';
+                  	      }else htmlInsert +='<img src="img/hand_contra.png" >';
+                  	      htmlInsert +='</button>';
+                        }
+            	      $("#"+divId).html( $("#"+divId).html()+htmlInsert);
+                  });
+                                   
+                  
+                  $("#"+divId).html($("#"+divId).html()+'<input type="button" class="borrarImg" value="borrar" name="'+divId+'"/><input type="button" class="reportarImg" value="reportar" name="'+divId+'"/>');
                   $('.borrarImg').click(function(){
                         borrarImagen(this);
                         $("#"+divId).dialog("close", "duration", 1000);
