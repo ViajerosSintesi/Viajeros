@@ -6,6 +6,7 @@
  * 
  **/
 $(function(){
+      
             //esta funcion carga los datos del usuario en sus campos
             cargarDatos();
             //esconde el cuadro para subir imagenes
@@ -259,44 +260,45 @@ function modPerfil(){
 
 function subirFotos(){
       
-       var file = $("#picture")[0].files[0];
-		//obtenemos el nombre del archivo
-		var fileName = file.name;
-		//obtenemos la extensión del archivo
-		var fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
-		//obtenemos el tamaño del archivo
-		var fileSize = file.size;
-		//obtenemos el tipo de archivo image/png ejemplo
-		var fileType = file.type;
-		
-		var userId = $("#userIdForImg").val();
-		var ciudadId = $("#buscarForImg").val();
-		if ((fileSize<=200000) && (fileExtension=="jpeg") || (fileExtension=="png") || (fileExtension=="jpg")){
-                  //creamos un form data i añadimos el fichero
-                  var formData = new FormData();
-                  formData.append("imgPerfil", file);
-                  formData.append("userId", userId);
-                  formData.append("ciudadId", ciudadId);
-                  //ejecutamos ajax para que conecte con el servidor y pueda modificar
-                  $.ajax({
-                  	url: 'php/controles/modificarPerfil.php',  
-                  	type: 'POST',
-                  	data: formData,
-                  	cache: false,
-                  	contentType: false,
-                  	processData: false,
-                  	success: function(data){
-                      
-                              //si todo va bien, vuelve a cargar los datos
-                              if(data==1) cargarDatos();
-                                    else alert("no se ha subido");// <<<<-----No alerts loco!
-                              }
-                        
-                  });
-		}else {
-		      alert("La imagen es demasiado grande o no cumple el formato correcto");
-		}
-
+      var file = $("#picture")[0].files[0];
+	//obtenemos el nombre del archivo
+	var fileName = file.name;
+	//obtenemos la extensión del archivo
+	var fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+	//obtenemos el tamaño del archivo
+	var fileSize = file.size;
+	//obtenemos el tipo de archivo image/png ejemplo
+	var fileType = file.type;
+	
+	var userId = $("#userIdForImg").val();
+	console.log(userId);
+	var ciudadId = $("#buscarForImg").val();
+	if ((fileSize<=200000) && (fileExtension=="jpeg") || (fileExtension=="png") || (fileExtension=="jpg")){
+            //creamos un form data i añadimos el fichero
+            var formData = new FormData();
+            formData.append("imgPerfil", file);
+            formData.append("userId", userId);
+            formData.append("ciudadId", ciudadId);
+            //ejecutamos ajax para que conecte con el servidor y pueda modificar
+            $.ajax({
+            	url: 'php/controles/modificarPerfil.php',  
+            	type: 'POST',
+            	data: formData,
+            	cache: false,
+            	contentType: false,
+            	processData: false,
+            	success: function(data){
+                
+                        //si todo va bien, vuelve a cargar los datos
+                        if(data==1) cargarDatos();
+                              else alert("no se ha subido");// <<<<-----No alerts loco!
+                        }
+                  
+            });
+	}else {
+	      alert("La imagen es demasiado grande o no cumple el formato correcto");
+	}
+      
 }
 
 function borrarImagen(imagen){

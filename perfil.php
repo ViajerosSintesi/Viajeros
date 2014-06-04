@@ -118,12 +118,13 @@ $coor=json_encode($coor["lugares"]);
 			<div id="cuadro-foto">
 				<div class="cerrar-cuadro"><img src="img/75.png"></div>
 			<?php if( comproveEmail()){ ?>
-				<form action='php/controles/controlImagen.php' method='post' enctype='multipart/form-data' id='formFotos'>
+				    <form action='php/controles/controlImagen.php' method='post' enctype='multipart/form-data' id='formFotos'>
 					<div id="centra-input">
 						<h2>Selecciona una foto</h2>
 						<input type='file' name='picture' id='picture'><br>
+						<h2>Selecciona una ciudad</h2>
 						<input type='text' name='ciudadId' id='buscarForImg'/><br>
-						<input type='hidden' name='userId' value='$user' id='userIdForImg'/>
+						<input type='hidden' name='userId' value='<?php echo $user;?>' id='userIdForImg'/>
 						<input type='submit' name='subir-pic' id='subir-pic' value='Subir foto'>
 					</div>
 				</form>

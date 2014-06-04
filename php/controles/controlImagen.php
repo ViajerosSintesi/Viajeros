@@ -29,7 +29,7 @@
             $imagen->setRuta();
             
             $imagen->subirImagen($imagenForUp);
-            
+            //echo $userId;
             //echo $imagen->guardarImagen();
             header("location: ../../perfil.php");
       

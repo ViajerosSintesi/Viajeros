@@ -13,9 +13,6 @@ require_once("ClassMongoClient.php");
  * 
  **/
 
-/**
-* 
-*/
 class imagen {	  
 
 	private $id = null;
@@ -36,7 +33,7 @@ class imagen {
 	public function setNombre($nombre){$this->nombre = $nombre;}
 	public function getRuta(){return $this->ruta;}
 	public function setRuta($ruta=""){
-	      if ($ruta=="")$this->ruta ='../images/fotosCiudades/'.$this->pais.'/'.$this->ciudad.'/'.$this->usuario.'/';
+	      if ($ruta=="")$this->ruta ='../../images/fotosCiudades/'.$this->pais.'/'.$this->ciudad.'/'.$this->usuario.'/';
 	      else $this->ruta = $ruta;
 	     }
 	public function getUsuario(){return $this->usuario;}
