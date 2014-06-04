@@ -41,6 +41,7 @@ $(function(){
 			$("#contenido").load("php/ciudad/ciudad-info.php?ciudad=<?php echo $ciudad;?>");
 			return false;
 		});
+		
 		$("#fotos").click(function(){
 			//fotoCiudad();
 			$("#contenido").load("php/ciudad/ciudad-foto.php?ciudad=<?php echo $ciudad;?>");
@@ -49,6 +50,11 @@ $(function(){
 		$("#comentarios").click(function(){
 			//comentariosPais();
 			$("#contenido").load("php/ciudad/ciudad-comentarios.php?ciudad=<?php echo $ciudad;?>");
+			return false;
+		});
+		$("#preguntas").click(function(){
+			//comentariosPais();
+			$("#contenido").load("php/ciudad/ciudad-preguntas.php?ciudad=<?php echo $ciudad;?>");
 			return false;
 		});
 		$("#ubicacion").click(function(){
@@ -140,6 +146,7 @@ $(function(){
 				<li><a href="#" id="informacion">Informaci&oacute;n</a></li>
 				<li><a href="#" id="fotos">Fotos</a></li>
 				<li><a href="#" id="comentarios">Comentarios</a></li>
+				<li><a href="#" id="preguntas">Preguntas</a></li>
 				<li><a href="#" id="ubicacion">Ubicaci&oacute;n</a></li>
 			</ul>
 		</div>

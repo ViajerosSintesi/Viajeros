@@ -9,10 +9,10 @@ if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "verPregunta
   $ciudad = filter_input(INPUT_GET, "ciudad");
   $userId = filter_input(INPUT_GET, "userId");
   $tipo = filter_input(INPUT_GET, "verPreguntas");
-  $preguntaCiudad = new Comment("pregunta".$tipo);
+  $preguntaCiudad = new Pregunta("pregunta".$tipo);
   
   $preguntaCiudad->setIdSitio($ciudad);
-  $preguntas = $cCiudad->devolverDelSitio($tipo);
+  $preguntas = $preguntaCiudad->devolverDelSitio($tipo);
   
   $valoracionPregunta = new Valoracion("valoracionpregunta");
   $valoracionPregunta->setUser($userId);
@@ -46,13 +46,13 @@ if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarPregu
       $userId = filter_input(INPUT_GET, "userId");
       $tipo = filter_input(INPUT_GET, "insertarPregunta");
       $preguntaText = filter_input(INPUT_GET, "pregunta");
-      
-      $pregunta= new Comment("pregunta".$tipo);
+      $data = filter_input(INPUT_GET, "fecha");
+      $pregunta= new Pregunta("pregunta".$tipo);
       
       $pregunta->setUser($userId);
       $pregunta->setIdSitio(new MongoId($ciudad));
       $pregunta->setPregunta($preguntaText);
-      
+      $pregunta->setFecha($data);
       echo json_encode($pregunta->insertarPregunta($tipo));
 }
 

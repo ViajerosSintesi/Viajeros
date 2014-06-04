@@ -25,7 +25,7 @@ if(isset($_GET['ciudad'])){
 	
 	<script type="text/javascript">
             $(function(){
-                  cargarComents('<?php echo $ciudad;?>', '<?php echo $_SESSION['userId'];?>', 'Ciudad');
+                  cargarPreguntas('<?php echo $ciudad;?>', '<?php echo $_SESSION['userId'];?>', 'Ciudad');
                   
             });
             
@@ -34,7 +34,7 @@ if(isset($_GET['ciudad'])){
 </head>
 <body>
 
-<div id="comentarios-pais">
+<div id="preguntas-pais">
 
 </div>
 </body>

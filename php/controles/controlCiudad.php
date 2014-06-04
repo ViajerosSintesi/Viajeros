@@ -11,9 +11,9 @@
 	      echo json_encode($nombreCiudad);
 	}
 	
-	if(filter_has_var(INPUT_GET, "nombreCiudad") && filter_has_var(INPUT_GET, "buscar")){
+	if(filter_has_var(INPUT_GET, "nombreCiudadB") && filter_has_var(INPUT_GET, "buscar")){
 	     require_once("../clases/ClassMongoClient.php");
-	     $ciudad = filter_input(INPUT_GET, "nombreCiudad");
+	     $ciudad = filter_input(INPUT_GET, "nombreCiudadB");
 	     $mongo = new DBMongo("ciudad");
 	     $regexObj = new MongoRegex("/".$ciudad."/"); 
 	     $query = array("ciudad" => $regexObj);

@@ -124,7 +124,7 @@ $coor=json_encode($coor["lugares"]);
 						<h2>Selecciona una foto</h2>
 						<input type='file' name='picture' id='picture'><br>
 						<h2>Selecciona una ciudad</h2>
-						<input type='text' name='ciudadId' id='buscarForImg'/><br>
+						<input type='text' name='ciudadId' id='buscarForImg' required/><br>
 						<input type='hidden' name='userId' value='<?php echo $user;?>' id='userIdForImg'/>
 						<input type='submit' name='subir-pic' id='subir-pic' value='Subir foto'>
 					</div>
