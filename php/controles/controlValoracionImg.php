@@ -47,10 +47,10 @@ if(filter_has_var(INPUT_GET, "img")&&filter_has_var(INPUT_GET, "verValorUsuario"
       $valoraciones = $valorImg->verValoraciones();
       $valImg["valorNeg"]=0;
       $valImg["valorPos"]=0;
-      
+      //var_dump($valoraciones);
       for($x = 0; $x<count($valoraciones); $x++){
-            if($valoraciones["valor"] == 1) $valImg["valorNeg"]++;
-            elseif($valoraciones["valor"] == 2)$valImg["valorPos"]++; 
+            if($valoraciones[$x]["valor"] == 1) $valImg["valorNeg"]++;
+            elseif($valoraciones[$x]["valor"] == 2)$valImg["valorPos"]++; 
       }
       
       $valorImg->setUser($userId);

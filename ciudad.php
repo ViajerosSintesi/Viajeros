@@ -7,8 +7,11 @@ if(!isset($_SESSION['userId'])){
       header("location:index.php");
 }else{
       if(isset($_GET['ciudad'])){
+            require_once("php/clases/CiudadClass.php");
       	$ciudad = $_GET['ciudad'];
 	      $userId = $_SESSION['userId'];
+	      $ciudadC = new Ciudad();
+	    
       }
 }
 
@@ -25,7 +28,7 @@ if(@$_POST['edit-info']){
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css">
 	<script src="js/jquery-1.10.2.js"></script>
-	<script src="js/jquery-ui-1.10.4.custom.js"></script>
+	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/ajax.js"></script>
 	<script src="js/buscador.js"></script>
 	<script src="js/comun.js"></script>
@@ -59,6 +62,10 @@ $(function(){
                 $("#valorCiudad").submit();
             });
             valoraciones();
+            var dataForName = {"nombreCiudad": '<?php echo $ciudad;?>'};
+            $.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
+                  $("#nombreCity").html(data);
+            })
 });
       function valoraciones(){
             $.getJSON("php/controles/controlValoracionCiudad.php",{"ciudad":"<?php echo $ciudad;?>", "verValor":"1"}, function(data){
@@ -105,6 +112,7 @@ $(function(){
 	</div>
 	<div id="header">
 		<img src="img/logo.png">
+		<h1 id="nombreCity"></h1>
 	</div>
 	<div id="contenedor">
 	<span id="valoracionCiudad"></span>

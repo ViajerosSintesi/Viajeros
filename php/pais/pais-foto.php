@@ -13,7 +13,7 @@ $("#cerrar-cuadro").click(function(){
 });
 </script>
 <div id="fotos">
-	<div id="boton-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>
+	<!---<div id="boton-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>-->
 <?php
 if(isset($_GET['pais'])){
       $pais = filter_input(INPUT_GET, "pais");
@@ -38,15 +38,18 @@ END;
 }
 ?>
 </div>
-<div id="bg-cuadro">
+<!--<div id="bg-cuadro">
 	<div id="cuadro-foto">
 		<div id="cerrar-cuadro"><img src="img/delete.png"></div>
-		<form action="#" method="post" id="form-fotos">
-			<div id="centra-input">
-			<h2>Selecciona una foto</h2>
-			<p><input type="file" name="picture" id="picture"><br></p>
-			<input type="submit" name="subir-pic" id="subir-pic" value="Subir foto">
-			</div>
-		</form>
-	</div>
+		 <form action='php/controles/controlImagen.php' method='post' enctype='multipart/form-data' id='formFotos'>
+					<div id="centra-input">
+						<h2>Selecciona una foto</h2>
+						<input type='file' name='picture' id='picture'><br>
+						<h2>Selecciona una ciudad</h2>
+						<input type='text' name='ciudadId' id='buscarForImg'/><br>
+						<input type='hidden' name='userId' value='<?php echo $user;?>' id='userIdForImg'/>
+						<input type='submit' name='subir-pic' id='subir-pic' value='Subir foto'>
+					</div>
+				</form>
+	</div>-->
 </div>

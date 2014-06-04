@@ -57,6 +57,10 @@ if(@$_POST['edit-info']){
 			$("#valorPais").submit();
 		});
 		valoraciones();
+		var dataForName = {"nombreCiudad": '<?php echo $ciudad;?>'};
+            $.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
+                  $("#nombreCity").html(data);
+            })
 	});
       function valoraciones(){
             $.getJSON("php/controles/controlValoracionPais.php",{"pais":"<?php echo $pais;?>", "verValor":"1"}, function(data){
@@ -99,6 +103,7 @@ if(@$_POST['edit-info']){
 	</div>
 	<div id="header">
 		<img src="img/logo.png">
+			<h1 id="nombreCity"></h1>
 	</div>
 	<div id="contenedor">
 		<div id="cabecera">
@@ -131,11 +136,11 @@ if(@$_POST['edit-info']){
 		<div id="caja-contenido">
 			<div id="contenido"></div>
 		</div>
-		<div id="bg-cuadro">
+		<!--<div id="bg-cuadro">
 			<div id="mapa-ubicacion">
 				<div class="cerrar-cuadro"><img src="img/75.png"></div>
 			</div>
-		</div>
+		</div>-->
 	</div>
 	<div id="footer">
 		<span><a href="#">Sobre nosotros</a></span>

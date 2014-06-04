@@ -17,10 +17,8 @@ function enviarValoracion(tipo, valor, user, object){
                   var userId = user;
 
                   var dataEnvio = {"valorimg": valor, "imagenId": imgId, "userId": userId};
-      
                   $.getJSON('php/controles/controlValoracionImg.php', dataEnvio, function(data){
                         console.log(data);
-                        Name);
                   });
                   break;
             default: break;

@@ -182,20 +182,30 @@ function cargarDatos(){
                         //console.log(data);
                          var htmlInsert = "";
                         if(data){
-                              htmlInsert ='<button title="me gusta" class="meGusta" id="coment-'+i+'"><span id="countPos">'+data.valorPos+'</span>';
-                  	      if(data.valorDelUser){
-                  	            if(data.valorDelUser.valor == 2) htmlInsert +='<img src="img/hand_pro_verde.png" >';
+                              htmlInsert ='<button title="me gusta" class="meGusta"><span id="countPos">'+data.valores.valorPos+'</span>';
+                  	      if(data.valorUsu){
+                  	            if(data.valorUsu.valor == 2) htmlInsert +='<img src="img/hand_pro_verde.png" >';
                   	            else htmlInsert +='<img src="img/hand_pro.png" >';
                   	      }else htmlInsert +='<img src="img/hand_pro.png" >';
                   	      htmlInsert +='</button>';
-                  	      htmlInsert +='<button title="no me gusta" class="noMeGusta" id="coment-'+i+'"><span id="countNeg'+i+'">'+data.valorNeg+'</span>';
-                  	      if(data.valorDelUser){
-                  	            if(data.valorDelUser.valor == 1) htmlInsert +='<img src="img/hand_contra_roja.png" >';
+                  	      htmlInsert +='<button title="no me gusta" class="noMeGusta"><span id="countNeg'+i+'">'+data.valores.valorNeg+'</span>';
+                  	      if(data.valorUsu){
+                  	            if(data.valorUsu.valor == 1) htmlInsert +='<img src="img/hand_contra_roja.png" >';
                   	            else htmlInsert +='<img src="img/hand_contra.png" >';
                   	      }else htmlInsert +='<img src="img/hand_contra.png" >';
                   	      htmlInsert +='</button>';
                         }
             	      $("#"+divId).html( $("#"+divId).html()+htmlInsert);
+                        $(".meGusta").click(function(){
+                             
+                              enviarValoracion("img", 2, userId, divId);
+                              
+                        });
+                        
+                        $(".noMeGusta").click(function(){
+                              enviarValoracion("img", 1, userId, divId);
+                              
+                        });
                   });
                                    
                   

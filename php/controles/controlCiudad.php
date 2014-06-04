@@ -1,11 +1,14 @@
 <?php
 
 
-	if(filter_has_var(INPUT_POST, "nombreCiu")){
+	if(filter_has_var(INPUT_GET, "nombreCiudad")){
             require_once("../clases/CiudadClass.php");
-		$newciudad = new ciudad();
-		$nombre = filter_input(INPUT_POST, "ciudad");
-		
+		$ciudadC = new Ciudad();
+		$id = filter_input(INPUT_GET, "nombreCiudad");
+	      $ciudadC->setId($id);
+	      $ciudadC->cogeValoresSegunId();
+	      $nombreCiudad = $ciudadC->getNombre();
+	      echo json_encode($nombreCiudad);
 	}
 	
 	if(filter_has_var(INPUT_GET, "nombreCiudad") && filter_has_var(INPUT_GET, "buscar")){

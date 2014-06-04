@@ -14,10 +14,17 @@
             
             
             $ciudad = new Ciudad();
-            $ciudad->setNombre($ciudadId[0]);
-            $ciudad->setPais($ciudadId[2]);
-
-            $ciudad->buscarCiudad("ciudad");
+            if(isset($ciudadId[2])){
+                  $ciudad->setNombre($ciudadId[0]);
+                  $ciudad->setPais($ciudadId[2]);
+                  $ciudad->buscarCiudad("ciudad");
+                  $location="perfil.php";
+            }else{
+                  $ciudad->setId($ciudadId[0]);
+                  $ciudad->cogeValoresSegunId();
+                  $location="ciudad.php";
+            }
+           
             
             $imagenForUp = $_FILES["picture"];
             $imagen = new Imagen();
@@ -31,7 +38,7 @@
             $imagen->subirImagen($imagenForUp);
             //echo $userId;
             //echo $imagen->guardarImagen();
-            header("location: ../../perfil.php");
+            header("location: ../../".$location);
       
       }
       if(filter_has_var(INPUT_GET, "fotosForPerfil")){

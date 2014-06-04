@@ -1,3 +1,13 @@
+<?php 
+      session_start();
+      if(isset($_GET['ciudad'])){
+      	$ciudad = $_GET['ciudad'];
+	      $userId = $_SESSION['userId'];
+      }else{
+            $ciudad = "";
+	      $userId = $_SESSION['userId'];
+      }
+?>
 <!--
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
@@ -15,9 +25,50 @@ $("#subir-foto").click(function(){
 $("#cerrar-cuadro").click(function(){
 	$("#bg-cuadro").hide();
 });
+ $("#formfotos").submit(subirFotos);
 
-
-
+function subirFotos(){
+      
+      var file = $("#picture")[0].files[0];
+	//obtenemos el nombre del archivo
+	var fileName = file.name;
+	//obtenemos la extensión del archivo
+	var fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+	//obtenemos el tamaño del archivo
+	var fileSize = file.size;
+	//obtenemos el tipo de archivo image/png ejemplo
+	var fileType = file.type;
+	
+	var userId = $("#userIdForImg").val();
+	console.log(userId);
+	var ciudadId = $("#buscarForImg").val();
+	if ((fileSize<=200000) && (fileExtension=="jpeg") || (fileExtension=="png") || (fileExtension=="jpg")){
+            //creamos un form data i añadimos el fichero
+            var formData = new FormData();
+            formData.append("imgPerfil", file);
+            formData.append("userId", userId);
+            formData.append("ciudadId", ciudadId);
+            //ejecutamos ajax para que conecte con el servidor y pueda modificar
+            $.ajax({
+            	url: 'php/controles/modificarPerfil.php',  
+            	type: 'POST',
+            	data: formData,
+            	cache: false,
+            	contentType: false,
+            	processData: false,
+            	success: function(data){
+                
+                        //si todo va bien, vuelve a cargar los datos
+                        if(data==1) cargarDatos();
+                              else alert("no se ha subido");// <<<<-----No alerts loco!
+                        }
+                  
+            });
+	}else {
+	      alert("La imagen es demasiado grande o no cumple el formato correcto");
+	}
+      
+}
 </script>
 <div id="foto">
 
@@ -51,11 +102,14 @@ END;
 <div id="bg-cuadro">
 	<div id="cuadro-foto">
 		<div id="cerrar-cuadro"><img src="img/delete.png"></div>
-		<form action="#" method="post" id="form-fotos">
+		<form action='php/controles/controlImagen.php' method='post' enctype='multipart/form-data' id='formFotos'>
 			<div id="centra-input">
-			<h2>Selecciona una foto</h2>
-			<p><input type="file" name="picture" id="picture"><br></p>
-			<input type="submit" name="subir-pic" id="subir-pic" value="Subir foto">
+				<h2>Selecciona una foto</h2>
+				<input type='file' name='picture' id='picture'><br>
+				
+				<input type='hidden' name='ciudadId' value="<?php echo $ciudad;?>" id='buscarForImg'/><br>
+				<input type='hidden' name='userId' value='<?php echo $user;?>' id='userIdForImg'/>
+				<input type='submit' name='subir-pic' id='subir-pic' value='Subir foto'>
 			</div>
 		</form>
 	</div>
