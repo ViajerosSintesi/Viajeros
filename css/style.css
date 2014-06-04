@@ -80,8 +80,14 @@ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; background
 .ui-autocomplete{z-index: 99999!important;}
 
 /* ================ Pais ================ */
-#contenedor #cabecera{width: 100%; height: 250px; padding: 0; margin: 0;}
-#cabecera img{width: 100%; height: 100%; padding: 0; margin: 0;}
+#contenedor #cabecera{width: 100%; height: 250px; padding: 0; margin: 0;
+	background: url(../img/home_img1.jpg); background-size: 100% 250px;}
+/*#cabecera img{width: 100%; height: 250px; padding: 0; margin: 0;}*/
+#cabecera #subcabecera-pais{width: 100%; position: relative; top: 72px; color: #fff; background-color: grey; background: rgba(54, 54, 54, 0.6);}
+#subcabecera-pais #titulo-pais{margin-left: 10px;}
+#titulo-pais h1{text-shadow: 5px 3px 2px #000; margin: 0;}
+#subcabecera-pais #puntuacion{position: relative; float: right; top: 10px; margin-right: 10px;}
+#cabecera #valoracionPais{position: relative; float: right; font-size: 198px; line-height: 140px; top: 35px; color: #fff; text-shadow: 5px 3px 2px #000;}
 #contenedor #menu-pais{width: 100%; height: 50px; background-color: #f6f7f8; border-bottom: 1px solid #d3d6db;}
 #menu-pais ul{padding: 0; margin: 13px 0;}
 #menu-pais ul li{display: inline-block; text-decoration: none; padding: 0; margin: 0;}
