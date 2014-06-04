@@ -66,7 +66,7 @@ function cargarFotoPais(){
 }
 function ciudadesPais(pais){
 	conectar();
-	conexion.open("GET", "pais-ciudades.php?pais="+pais, true);
+	conexion.open("GET", "php/pais/pais-ciudades.php?pais="+pais, true);
 	conexion.send();
 	conexion.onreadystatechange=cargarCiudadesPais;
 }

@@ -53,14 +53,14 @@ if(@$_POST['edit-info']){
 			ciudadesPais("<?php echo $pais; ?>");
 			return false;
 		});
-      $(".valorPais").change(function(){
-                $("#valorPais").submit();
-            });
-            valoraciones();
-});
+		$(".valorPais").change(function(){
+			$("#valorPais").submit();
+		});
+		valoraciones();
+	});
       function valoraciones(){
             $.getJSON("php/controles/controlValoracionPais.php",{"pais":"<?php echo $pais;?>", "verValor":"1"}, function(data){
-                  if(data!=null)$("#valoracionPais").html("Nota:"+data);
+                  if(data!=null)$("#valoracionPais").html(data);
             });
             var queryForValoracionUsuario = {"pais":"<?php echo $pais;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
             $.getJSON("php/controles/controlValoracionPais.php",queryForValoracionUsuario, function(data){
@@ -68,14 +68,12 @@ if(@$_POST['edit-info']){
             });
       }
 	function cargarmap1() {
-		//alert("desde php <?php echo $coor; ?>");
 		var mapOptions = {
 		center: new google.maps.LatLng(<?php echo $coor; ?>),
 		zoom: 5,
 		mapTypeId: google.maps.MapTypeId.ROADMAP};
 		var map = new google.maps.Map(document.getElementById("mapa"),mapOptions);
 	}
-	//window.load=infoPais();
 	window.onload=function(){
 		$("#contenido").load("php/pais/pais-info.php?pais=<?php echo $pais; ?>");
 	};
@@ -103,23 +101,24 @@ if(@$_POST['edit-info']){
 		<img src="img/logo.png">
 	</div>
 	<div id="contenedor">
-	      <span id="valoracionPais"></span>
-	      <form method="get" action="php/controles/controlValoracionPais.php" id="valorPais">
-	            <input type="hidden" value="<?php echo $pais;?>" name="pais"/>
-	            <input type="hidden" value="<?php echo $userId;?>" name="userId"/>
-	            
-		      1<input type="radio" name="valorPais" value="1" class="valorPais" id="valorPais1">
-		      2<input type="radio" name="valorPais" value="2" class="valorPais" id="valorPais2">
-		      3<input type="radio" name="valorPais" value="3" class="valorPais" id="valorPais3">
-		      4<input type="radio" name="valorPais" value="4" class="valorPais" id="valorPais4">
-		      5<input type="radio" name="valorPais" value="5" class="valorPais" id="valorPais5">
-		      6<input type="radio" name="valorPais" value="6" class="valorPais" id="valorPais6">
-		      7<input type="radio" name="valorPais" value="7" class="valorPais" id="valorPais7">
-		      8<input type="radio" name="valorPais" value="8" class="valorPais" id="valorPais8">
-		      9<input type="radio" name="valorPais" value="9" class="valorPais" id="valorPais9">
-		      10<input type="radio" name="valorPais" value="10" class="valorPais" id="valorPais10">
-		</form>
-		<div id="cabecera"><img src="img/home_img1.jpg"></div>
+		<div id="cabecera">
+			<!-- <img src="img/home_img1.jpg"> -->
+			<span id="valoracionPais"></span>
+			<div id="subcabecera-pais">
+				<div id="titulo-pais">
+					<?php $nombrePais = obtenerInfoPais($pais);?>
+					<h1><?php echo $nombrePais['pais']; ?></h1></div>
+				<div id="puntuacion">
+					<form method="get" action="php/controles/controlValoracionPais.php" id="valorPais">
+						<input type="hidden" value="<?php echo $pais;?>" name="pais"/>
+						<input type="hidden" value="<?php echo $userId;?>" name="userId"/>
+						<?php for($i=0;$i<10;$i++){ ?>
+						<img src="img/226.png"><input type="radio" name="valorPais" value="<?php echo $i+1;?>" class="valorPais" id="valorPais<?php echo $i+1;?>">
+						<?php } ?>
+					</form>
+				</div>
+			</div>
+		</div>
 		<div id="menu-pais">
 			<ul>
 				<li><a href="#" id="informacion">Informaci&oacute;n</a></li>
@@ -131,6 +130,11 @@ if(@$_POST['edit-info']){
 		</div>
 		<div id="caja-contenido">
 			<div id="contenido"></div>
+		</div>
+		<div id="bg-cuadro">
+			<div id="mapa-ubicacion">
+				<div class="cerrar-cuadro"><img src="img/75.png"></div>
+			</div>
 		</div>
 	</div>
 	<div id="footer">

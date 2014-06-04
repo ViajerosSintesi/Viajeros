@@ -141,7 +141,7 @@ $coor=json_encode($coor["lugares"]);
 			<div id="map-div"></div>
 		</div>
 		<script>
-		var coor = "<?php echo $coor?>";
+		var coor = <?php echo $coor?>;
 		var infowindow = new google.maps.InfoWindow();
 		function initialize() {
 			var myLatlng = new google.maps.LatLng(36.4613218,-1.2081181,4);
