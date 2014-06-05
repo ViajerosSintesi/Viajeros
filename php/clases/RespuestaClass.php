@@ -13,6 +13,7 @@ class Respuesta{
       private $respuesta = null;
 	private $idSitio = null;
 	private $bbdd;
+	private $fecha = null;
 	
 	function __construct($bbdd){
 	      $this->bbdd = new DBMongo($bbdd);
@@ -28,7 +29,8 @@ class Respuesta{
       public function setRespuesta($respuesta){$this->respuesta = $respuesta;}
       public function getIdSitio(){return $this->idSitio;}
       public function setIdSitio($idSitio){$this->idSitio = $idSitio;}
-
+      public function getFecha(){return $this->fecha;}
+      public function setFecha($fecha){$this->fecha = $fecha;}
       
       public function cogeValoresSegunId(){
 	      $queryForId = array('_id' => $this->id);
@@ -38,6 +40,8 @@ class Respuesta{
 		      $this->usuario = $respuesta['idUsu'];
 	            $this->idSitio= (isset($respuesta['idCiu']))? $respuesta['idCiu'] : $respuesta['idPais'];
 	            $this->idPregunta= $respuesta['idPregunta'];
+	            $this->fecha = $respuesta['data'];
+	            $this->respuesta = $respuesta['respuesta'];
 	     }
       }
       public function borrarRespuesta(){
@@ -55,10 +59,12 @@ class Respuesta{
             return  $this->bbdd->findCollection($query);
       }
       public function insertarRespuesta($tipo){
-            $queryForInsert = array("idUsu"=>$this->user, 
-                              "pregunta"=>$this->pregunta);
+            $queryForInsert = array("idUsu"=>$this->user,
+                              "respuesta"=>$this->respuesta,
+                               "data"=> $this->fecha);
             if($tipo == "Ciudad") $queryForInsert["idCiu"]= $this->idSitio;
             elseif($tipo == "Pais") $queryForInsert["idPais"]= $this->idSitio;
+            
             $queryForInsert["idPregunta"] = $this->idPregunta;
             return $this->bbdd->insertar($queryForInsert);
       }

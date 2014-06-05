@@ -40,7 +40,7 @@ if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "verComments
   echo json_encode($comentarios);
       
 }
-
+       
 if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarComent")){
       $ciudad = filter_input(INPUT_GET, "ciudad");
       $userId = filter_input(INPUT_GET, "userId");
