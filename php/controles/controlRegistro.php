@@ -16,7 +16,7 @@
 		$newUser->setId($mail);
 		$newUser->setPassword($password);
 		$newUser->setCodActivacion($mail);
-		$newUser->setActivado(1);
+		$newUser->setActivado(0);
 		$newUser->setEdad($edad);
 		if(isset($_FILES["imgPerfil"])){
                   $user->ponerImgPerfil($_FILES["imgPerfil"]);
