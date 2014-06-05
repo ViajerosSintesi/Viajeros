@@ -32,6 +32,7 @@ class User{
 	private $activado = null;
 	private $codActivacion = null;
 	private $imgPerfil = null;
+	private $lugares = null;
 	//private $email = null;
 	private $userInArray;
 	
@@ -55,6 +56,8 @@ class User{
 	public function setCodActivacion($CodActivacion){$this->codActivacion = base64_encode($CodActivacion);}
 	public function getImgPerfil(){return $this->imgPerfil;}
 	public function setImgPerfil($imgPerfil){$this->imgPerfil = $imgPerfil;}
+	public function getLugares(){return $this->lugares;}
+	public function setLugares($lugares){$this->lugares = $lugares;}
 
     
     /**
@@ -233,10 +236,17 @@ class User{
 	            $queryForId = array('_id' => $id);
 	            $this->id = $id;
 	      }
-	      
+	      $this->cogerCoord();
 	      $this->bbdd->eliminar($queryForId);
+	      
 	      return $this->guardarUser();
 	}
-	
+      
+      public function cogerCoord(){
+            $queryForCoord = array('_id' => $this->id);
+            $queryForView = array('lugares' => true);
+            $this->lugares= $this->bbdd->findOneCollection($queryForCoord, $queryForView);
+            return $this->lugares;
+      }	
 }
 ?>

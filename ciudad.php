@@ -67,7 +67,9 @@ $(function(){
 		$(".valorCiudad").change(function(){
 			$("#valorCiudad").submit();
 		});
+		
 		valoraciones();
+		
 		var dataForName = {"nombreCiudad": '<?php echo $ciudad;?>'};
 		$.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
 			$("#nombreCity").html(data);
@@ -129,7 +131,7 @@ $(function(){
 					<h1><?php echo $nombreCiudad['ciudad']; ?></h1>
 				</div>
 				<div id="puntuacion">
-					<form method="get" action="php/controles/controlValoracionPais.php" id="valorPais">
+					<form method="get" action="php/controles/controlValoracionCiudad.php" id="valorCiudad">
 						<input type="hidden" value="<?php echo $ciudad;?>" name="ciudad"/>
 						<input type="hidden" value="<?php echo $userId;?>" name="userId"/>
 						<?php for($i=0;$i<10;$i++){ ?>
