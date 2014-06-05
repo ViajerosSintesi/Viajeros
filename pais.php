@@ -56,16 +56,12 @@ if(@$_POST['edit-info']){
 		$(".valorPais").change(function(){
 			$("#valorPais").submit();
 		});
-		$("#preguntas").click(function(){
-			//comentariosPais();
-			$("#contenido").load("php/pais/pais-preguntas.php?pais=<?php echo $pais;?>");
-			return false;
-		});
 		valoraciones();
+		
 	});
       function valoraciones(){
             $.getJSON("php/controles/controlValoracionPais.php",{"pais":"<?php echo $pais;?>", "verValor":"1"}, function(data){
-                  if(data!=null)$("#valoracionPais").html(data);
+                  if(data!=null)$("#valoracion-lugar").html(data);
             });
             var queryForValoracionUsuario = {"pais":"<?php echo $pais;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
             $.getJSON("php/controles/controlValoracionPais.php",queryForValoracionUsuario, function(data){
@@ -92,10 +88,10 @@ if(@$_POST['edit-info']){
 			<input type="text" id="buscar" title="Buscar ciudad, pa&iacute;s">
 			<input type="hidden" value="" id="id" />
 			<ul>
-				<li><a href="#" id="miUbicacion" title="Obterner ubicaci&oacute;n"><img src="img/161.png"></a></li>
-				<li><a href="perfil.php" title="Ir a perfil">Perfil</a></li>
-				<li><a href="list-pais.php" title="Lista de paises">Paises</a></li>
-				<li><a href="mapa.php" title="Muestra el mapa">Mapa</a></li>
+				<li><a href="#" id="miUbicacion" title="Obterner ubicaci&oacute;n" alt="Obterner ubicaci&oacute;n"><img src="img/161.png"></a></li>
+				<li><a href="perfil.php" title="Ir a perfil" alt="Ir a perfil">Perfil</a></li>
+				<li><a href="list-pais.php" title="Lista de paises" alt="Lista de paises">Paises</a></li>
+				<li><a href="mapa.php" title="Muestra el mapa" alt="Muestra el mapa">Mapa</a></li>
 				<li><form action="php/controles/controlLogin.php" method="post">
 						<input type="submit" name="destroySession" id="destroySession" value="Cerrar session" title="Cambiar foto de perfil" /> 
 					</form></li>
@@ -103,23 +99,23 @@ if(@$_POST['edit-info']){
 		</div>
 	</div>
 	<div id="header">
-		<img src="img/logo.png">
-		
+		<img src="img/logo.png" alt="Logo corporativo">
 	</div>
 	<div id="contenedor">
 		<div id="cabecera">
 			<!-- <img src="img/home_img1.jpg"> -->
-			<span id="valoracionPais"></span>
-			<div id="subcabecera-pais">
-				<div id="titulo-pais">
+			<span id="valoracion-lugar"></span>
+			<div id="subcabecera-lugar">
+				<div id="titulo-lugar">
 					<?php $nombrePais = obtenerInfoPais($pais);?>
-					<h1><?php echo $nombrePais['pais']; ?></h1></div>
+					<h1><?php echo $nombrePais['pais']; ?></h1>
+				</div>
 				<div id="puntuacion">
 					<form method="get" action="php/controles/controlValoracionPais.php" id="valorPais">
 						<input type="hidden" value="<?php echo $pais;?>" name="pais"/>
 						<input type="hidden" value="<?php echo $userId;?>" name="userId"/>
 						<?php for($i=0;$i<10;$i++){ ?>
-						<img src="img/226.png"><input type="radio" name="valorPais" value="<?php echo $i+1;?>" class="valorPais" id="valorPais<?php echo $i+1;?>">
+						<img src="img/226.png" alt="Valoraci&oacute;n estrella"><input type="radio" name="valorPais" value="<?php echo $i+1;?>" class="valorPais" id="valorPais<?php echo $i+1;?>" title="Puntuaci&oacute;n">
 						<?php } ?>
 					</form>
 				</div>
@@ -127,27 +123,26 @@ if(@$_POST['edit-info']){
 		</div>
 		<div id="menu-pais">
 			<ul>
-				<li><a href="#" id="informacion">Informaci&oacute;n</a></li>
-				<li><a href="#" id="fotos">Fotos</a></li>
-				<li><a href="#" id="comentarios">Comentarios</a></li>
-				<li><a href="#" id="preguntas">Preguntas</a></li>
-				<li><a href="#" id="ubicacion">Ubicaci&oacute;n</a></li>
-				<li><a href="#" id="ciudades">Ciudades</a></li>
+				<li><a href="#" id="informacion" title="Informaci&oacute;n">Informaci&oacute;n</a></li>
+				<li><a href="#" id="fotos" title="Galeria de imagenes">Fotos</a></li>
+				<li><a href="#" id="comentarios" title="Comentarios sobre el pa&iacute;s">Comentarios</a></li>
+				<li><a href="#" id="ubicacion" title="Ubicaci&oacute;n en el mapa">Ubicaci&oacute;n</a></li>
+				<li><a href="#" id="ciudades" title="Lista todas las ciudades del pa&iacute;s">Ciudades</a></li>
 			</ul>
 		</div>
 		<div id="caja-contenido">
 			<div id="contenido"></div>
 		</div>
-		<!--<div id="bg-cuadro">
+		<div id="bg-cuadro">
 			<div id="mapa-ubicacion">
-				<div class="cerrar-cuadro"><img src="img/75.png"></div>
+				<div class="cerrar-cuadro"><img src="img/75.png" alt="Cerrar cuadro" title="Cerrar"></div>
 			</div>
-		</div>-->
+		</div>
 	</div>
 	<div id="footer">
-		<span><a href="#">Sobre nosotros</a></span>
-		<span><a href="#">Condiciones</a></span>
-		<span><a href="#">Privacidad</a></span>
+		<span><a href="#" title="Informaci&oacute;n sobre nosotros">Sobre nosotros</a></span>
+		<span><a href="#" title="Condiciones de uso de la web">Condiciones</a></span>
+		<span><a href="#" title="Terminos de privacidad">Privacidad</a></span>
 		<span>&#64; 2014 Alumnos D.A.W.</span>
 	</div>
 </div>

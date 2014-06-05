@@ -110,7 +110,7 @@ function cargarFotoCiudad(){
 
 function editInfoPais(pais){
 	conectar();
-	conexion.open("GET", "pais-edit-info.php?pais="+pais, true);
+	conexion.open("GET", "php/pais/pais-edit-info.php?pais="+pais, true);
 	conexion.send();
 	conexion.onreadystatechange=cargaEditInfoPais;
 }
@@ -124,7 +124,7 @@ function cargaEditInfoPais(){
 }
 function editInfoCiudad(ciudad){
 	conectar();
-	conexion.open("GET", "ciudad-edit-info.php?ciudad="+ciudad, true);
+	conexion.open("GET", "php/ciudad/ciudad-edit-info.php?ciudad="+ciudad, true);
 	conexion.send();
 	conexion.onreadystatechange=cargaEditInfoCiudad;
 }

@@ -7,21 +7,13 @@ include("php/funciones.php");
 	<title>Mapa</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css">
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
+	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/ajax.js"></script>
-	<script type="text/javascript">
-	$(function(){
-		$("#hide-show-menu").click(function(){
-			$("#barra-menu").toggle("slow",function(){
-				var src = ($("#ico-menu").attr('src') === 'img/33.png')
-            	? 'img/32.png'
-            	: 'img/33.png';
-         		$("#ico-menu").attr('src', src);
-			});
-		});
-	});
-	</script>
+	<script src="js/buscador.js"></script>
+	<script src="js/comun.js"></script>
 </head>
 <body>
 <div id="wrap">

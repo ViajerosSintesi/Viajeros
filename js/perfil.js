@@ -9,10 +9,10 @@ $(function(){
       
             //esta funcion carga los datos del usuario en sus campos
             cargarDatos();
-            //esconde el cuadro para subir imagenes
+            /*//esconde el cuadro para subir imagenes
             $("#bg-cuadro").hide();
             $("#cuadro-foto").hide();
-            $("#mapa-ubicacion").hide();
+            $("#mapa-ubicacion").hide();*/
             //esconde el fomulario para modificar la informacion del usuario
             $("#form-info").hide();
             //si se hace click en el boton de modificar, se abre el formulario
@@ -26,7 +26,7 @@ $(function(){
                   $("#form-info").hide();
                   $("#info").show();
             });
-            //si se hace click al boton de subir imagenes, aparece el cuadro
+            /*//si se hace click al boton de subir imagenes, aparece el cuadro
             $("#subir-foto").click(function(){
                   $("#bg-cuadro").show();
                   $("#cuadro-foto").show();
@@ -45,27 +45,27 @@ $(function(){
                   $("#mapa-ubicacion").hide();
                   $("#geolocalizacion").remove();
 
-            });
+            });*/
             
             //al aceptar los cambios, modificas la informacion
             $("#modificar-datos").click(modPerfil);
             //si se elige foto, la sube
             $('#foto-perfil').change(subirImgPerfil);
 
-            //reutilizable, es para buscar. la funcion buscador esta en js/buscador.js
+            /*//reutilizable, es para buscar. la funcion buscador esta en js/buscador.js
             $("#buscar" ).autocomplete({
                   source: buscador,
                   select: function(){
                         var res = document.getElementById("id").value;
                         window.location=res;
                   }
-            });
+            });*/
             $("#buscarForImg" ).autocomplete({
                   source: buscador
             });
             
             $("#formfotos").submit(subirFotos);
-            //Menu
+            /*//Menu
             $("#hide-show-menu").click(function(){
                   $("#barra-menu").toggle("slow",function(){
                         var src = ($("#ico-menu").attr('src') === 'img/33.png')
@@ -73,15 +73,7 @@ $(function(){
                         : 'img/33.png';
                         $("#ico-menu").attr('src', src);
                   });
-            });
-            //Mostrar esconder logout
-            $("#show-logout").click(function(){
-                  $("#div-logout").show();
-            })
-            $("#show-logout").mouseleave(function(){
-                  $("#div-logout").hide();
-            });
-            
+            });*/        
 });
 /**
  *
