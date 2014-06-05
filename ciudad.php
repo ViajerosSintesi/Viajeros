@@ -41,6 +41,7 @@ $(function(){
 			$("#contenido").load("php/ciudad/ciudad-info.php?ciudad=<?php echo $ciudad;?>");
 			return false;
 		});
+		
 		$("#fotos").click(function(){
 			//fotoCiudad();
 			$("#contenido").load("php/ciudad/ciudad-foto.php?ciudad=<?php echo $ciudad;?>");
@@ -51,6 +52,11 @@ $(function(){
 			$("#contenido").load("php/ciudad/ciudad-comentarios.php?ciudad=<?php echo $ciudad;?>");
 			return false;
 		});
+		$("#preguntas").click(function(){
+			//comentariosPais();
+			$("#contenido").load("php/ciudad/ciudad-preguntas.php?ciudad=<?php echo $ciudad;?>");
+			return false;
+		});
 		$("#ubicacion").click(function(){
 			//ubicacionPais();
 			document.getElementById("contenido").innerHTML="<div id='mapa'></div>";
@@ -58,14 +64,14 @@ $(function(){
 			return false;
 		});
 		
-	      $(".valorCiudad").change(function(){
-                $("#valorCiudad").submit();
-            });
-            valoraciones();
-            var dataForName = {"nombreCiudad": '<?php echo $ciudad;?>'};
-            $.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
-                  $("#nombreCity").html(data);
-            })
+		$(".valorCiudad").change(function(){
+			$("#valorCiudad").submit();
+		});
+		valoraciones();
+		var dataForName = {"nombreCiudad": '<?php echo $ciudad;?>'};
+		$.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
+			$("#nombreCity").html(data);
+		})
 });
       function valoraciones(){
             $.getJSON("php/controles/controlValoracionCiudad.php",{"ciudad":"<?php echo $ciudad;?>", "verValor":"1"}, function(data){
