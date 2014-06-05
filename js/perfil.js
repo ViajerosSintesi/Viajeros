@@ -230,23 +230,28 @@ function cargarDatos(){
       
 }
 
+
+
 /**
  * recoge los datos del formulario del perfil y los envia para cambiar
  * 
  *---------no se validan! 
  **/ 
+ 
+ 
 function modPerfil(){
        $("body").append("<div id='cargaAjax'> <img src='img/gif-load.gif'/></div>");
        $("#cargaAjax").dialog({modal:true});
       var username = $("#perfil-nombre").val();
       var apellidos = $("#perfil-apellidos").val();
       var mail =  $("#perfil-email").val();
-	var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos, "email": mail};
-	// validacion username
-      if($("#perfil-apellidos").val() == ''){
-             $("#cargaAjax").dialog("close");
+		var pass =  $("#perfil-password").val();
+		var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos, "email": mail, "password": pass};
+		// validacion username
+      if(($("#perfil-nombre").val() == '')||(pass.length<=4)){
+            $("#cargaAjax").dialog("close");
             $("#cargaAjax").remove();
-	      alert ("el nombre no puede estar vacio");
+	      document.getElementById("no_modifico").innerHTML="El campo nombre no puede estar vacio y el password debe tener almenos 5 digitos";
       }else{
             $.post('php/controles/modificarPerfil.php', dataEnvio, function(data){
                   var not = JSON.parse(data);
