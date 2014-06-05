@@ -219,7 +219,7 @@ function cargarDatos(){
                         $("#"+divId).dialog("close", "duration", 1000);
                   });
                   $("#"+divId).append($(this).clone());
-				  $("#"+divId+">img").addClass("imagen-dialogo");
+		      $("#"+divId+">img").addClass("imagen-dialogo");
                   $("#"+divId).dialog({
 				    
 					modal: true,
