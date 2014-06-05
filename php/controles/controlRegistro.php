@@ -41,7 +41,7 @@
 	      
 	      $user->activarUser();
 	      
-	      header("location:../../perfil.php");
+	      header("location:../../index.php?ref=1");
 	      
 	}
 

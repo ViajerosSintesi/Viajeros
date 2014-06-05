@@ -79,7 +79,7 @@ if(isset($_GET['ciudad'])){
       echo <<<END
      <script type="text/javascript">
             var userId = "$userId";
-                  var dataImagenes = {"ciudad": "$ciudad"};
+                  var dataImagenes = {"ciudad": "$ciudad","fotosForCiudad":1};
  $.getJSON('php/controles/controlImagen.php', dataImagenes,function(data){
             
             var intro = '';

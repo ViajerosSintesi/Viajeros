@@ -1,3 +1,12 @@
+<?php 
+      session_start();
+      if(isset($_SESSION['userId'])){
+            header("Location:perfil.php");
+      }
+      if(filter_has_var(INPUT_GET,"ref")){
+            echo "<script>alert('Te has registrado con exito!')";
+      }
+?>
 <!DOCTYPE html>
 <html>
 <head>
