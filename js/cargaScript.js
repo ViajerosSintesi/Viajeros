@@ -235,6 +235,7 @@ function cargarPreguntas(idSitio, idUser, tipo){
       			var idSitio = $("#idSitio").val();
       			var tipo = $("#tipo").val();
       			var fecha = new Date().toString();
+
       			var dataEnvio = {
       			   "pregunta":pregunta, 
       			   "userId": idUser,

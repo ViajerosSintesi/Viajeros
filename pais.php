@@ -56,11 +56,12 @@ if(@$_POST['edit-info']){
 		$(".valorPais").change(function(){
 			$("#valorPais").submit();
 		});
+		$("#preguntas").click(function(){
+			//comentariosPais();
+			$("#contenido").load("php/pais/pais-preguntas.php?pais=<?php echo $pais;?>");
+			return false;
+		});
 		valoraciones();
-		var dataForName = {"nombreCiudad": '<?php echo $ciudad;?>'};
-            $.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
-                  $("#nombreCity").html(data);
-            })
 	});
       function valoraciones(){
             $.getJSON("php/controles/controlValoracionPais.php",{"pais":"<?php echo $pais;?>", "verValor":"1"}, function(data){
@@ -103,7 +104,7 @@ if(@$_POST['edit-info']){
 	</div>
 	<div id="header">
 		<img src="img/logo.png">
-			<h1 id="nombreCity"></h1>
+		
 	</div>
 	<div id="contenedor">
 		<div id="cabecera">
@@ -129,6 +130,7 @@ if(@$_POST['edit-info']){
 				<li><a href="#" id="informacion">Informaci&oacute;n</a></li>
 				<li><a href="#" id="fotos">Fotos</a></li>
 				<li><a href="#" id="comentarios">Comentarios</a></li>
+				<li><a href="#" id="preguntas">Preguntas</a></li>
 				<li><a href="#" id="ubicacion">Ubicaci&oacute;n</a></li>
 				<li><a href="#" id="ciudades">Ciudades</a></li>
 			</ul>
