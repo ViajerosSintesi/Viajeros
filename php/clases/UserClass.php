@@ -55,8 +55,7 @@ class User{
 	public function setCodActivacion($CodActivacion){$this->codActivacion = base64_encode($CodActivacion);}
 	public function getImgPerfil(){return $this->imgPerfil;}
 	public function setImgPerfil($imgPerfil){$this->imgPerfil = $imgPerfil;}
-	//public function getEmail(){return $this->email;}
-	//public function setEmail($email){$this->email = $email;}
+
     
     /**
      * userIfExistInBBDD
@@ -101,7 +100,8 @@ class User{
 			'edad' => $this->edad,
 			'activado' => $this->activado,
 			'codActivacion' => $this->codActivacion,
-                  'imgPerfil' => $this->imgPerfil
+                  'imgPerfil' => $this->imgPerfil,
+                  'lugares' => array()
 			//'email' => $this->email
 			);
 	}
@@ -190,7 +190,6 @@ class User{
 	 * guarda la imagen de perfil en el servidor, por defecto "images/fotosPerfil/"
 	 * si la consigue mover, se guarda como propiedad la ruta de la imagen
 	 *
-	 * --->Ojo! no la guarda en la BBDD<---
 	 * 
 	 * @param  file 	$fileImg 	archivo de la imagen, se le entrega->$_FILES
 	 */

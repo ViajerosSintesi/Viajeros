@@ -1,3 +1,15 @@
+<?php 
+      session_start();
+      if(isset($_GET['pais'])){
+      	$pais = $_GET['pais'];
+	      $userId = $_SESSION['userId'];
+      }else{
+            $pais = "";
+	      $userId = $_SESSION['userId'];
+      }
+?>
+
+
 <!---
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
@@ -25,11 +37,11 @@ if(isset($_GET['pais'])){
                         var userId = "$userId";
                         var html = $("#fotos").html();
                         for(var i = 0; i <data.length; i++){
-                               html += "<img src='"+data[i]["ruta"]+data[i]["nombre"]+"' class="imagenDeCiudad"> name="'+data[i]["_id"]["\$id"]+'";
+                               html += '<img src="'+data[i]["ruta"]+data[i]["nombre"]+'" class="imagenDeCiudad" name="'+data[i]["_id"]["\$id"]+'">';
                                html += '<div id="'+data[i]["_id"]["\$id"]+'" class="dialogImg"> </div>';
                         }
-                        $("#fotos").html(html);
-                        $(".imagenDeCiudad").click(function () {
+                  $("#fotos").html(html);
+      $(".imagenDeCiudad").click(function () {
         var divId = $(this).attr("name");
         var dataImgValoracion = {
             "verValor": 1,
@@ -54,7 +66,9 @@ if(isset($_GET['pais'])){
                 } else htmlInsert += '<img src="img/hand_contra.png" >';
                 htmlInsert += '</button>';
             }
+            
             $("#" + divId).html($("#" + divId).html() + htmlInsert);
+            
             $(".meGusta").click(function () {
                 enviarValoracion("img", 2, userId, divId);
             });

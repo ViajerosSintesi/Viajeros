@@ -35,7 +35,6 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
             $returnUpd = $user->updateUser();
       }
      
-      
       echo json_encode(array( "notice"=>$returnUpd));
 }
 

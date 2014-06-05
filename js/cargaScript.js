@@ -129,11 +129,13 @@ function cargarComents(idSitio, idUser, tipo){
       			   "insertarComent": tipo,
       			   "fecha": fecha
       			   };
+
       			$.getJSON("php/controles/controlComment.php", dataEnvio, function(data){
       			      if(data){
       			            cargarComents(idSitio, idUser, tipo);
       			      }
       			});
+      		
       		}
             });
              $(".reportButton").click(function(){
