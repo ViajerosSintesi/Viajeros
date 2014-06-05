@@ -32,9 +32,9 @@ function enviarValoracion(tipo, valor, user, object){
                         break;
             case 'respuesta': 
                         var dataEnvio = {"userId": user, 
-                                         "coment": object, 
-                                         "valorComent": valor};
-                        $.getJSON("php/controles/controlValoracionComent.php",
+                                         "respuesta": object, 
+                                         "valorRespuesta": valor};
+                        $.getJSON("php/controles/controlValoracionRespuesta.php",
                                     dataEnvio, function(data){
                                     console.log(data);
                                     });

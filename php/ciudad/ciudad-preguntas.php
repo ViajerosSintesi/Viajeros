@@ -19,6 +19,10 @@ if(isset($_GET['ciudad'])){
 	      width:50px;
 	      border-radius:20px;
 	}
+
+	.respuesta{
+	      margin-left: 10%;
+	}
 	</style>
 	<script src="js/cargaScript.js"></script>
 	<script src="js/valoracion.js"></script>

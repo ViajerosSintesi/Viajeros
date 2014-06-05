@@ -1,6 +1,5 @@
 <?php
 
- 
 require_once("../clases/ValoracionClass.php");
 require_once("../clases/PreguntaClass.php");
 require_once("../clases/UserClass.php");

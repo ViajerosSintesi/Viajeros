@@ -54,7 +54,8 @@
             }
             public function insertarPregunta($tipo){
                   $queryForInsert = array("idUsu"=>$this->user, 
-                                    "pregunta"=>$this->pregunta);
+                                    "pregunta"=>$this->pregunta,
+                                    "data"=>$this->fecha);
                   if($tipo == "Ciudad") $queryForInsert["idCiu"]= $this->idSitio;
                   elseif($tipo == "Pais") $queryForInsert["idPais"]= $this->idSitio;
                   
