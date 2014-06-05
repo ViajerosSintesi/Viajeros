@@ -53,7 +53,7 @@
             for($i=0;$i<$numValores;$i++)
                   $total +=$valores[$i]["valor"];
          if($total != 0)
-            $total = $total/$numValores;   
+            $total = round($total/$numValores,1,PHP_ROUND_HALF_UP);  
       }
       echo json_encode($total);
  }
