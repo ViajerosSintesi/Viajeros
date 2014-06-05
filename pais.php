@@ -25,6 +25,8 @@ if(@$_POST['edit-info']){
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/buscador.js"></script>
 	<script src="js/ajax.js"></script>
+	<script src="js/valoracion.js"></script>
+	<script src="js/cargaScript.js"></script>
 	<script src="js/comun.js"></script>
 	<script type="text/javascript">
 	$(function(){

@@ -169,7 +169,8 @@ function cargarDatos(){
             $("#fotos").html(intro);
             $(".imagenDeCiudad").click(function(){
                   var divId = $(this).attr("name");
-                  var dataImgValoracion = {"verValor": 1, "userId": userId, "img":divId};
+                  $("#"+divId).html("");
+               var dataImgValoracion = {"verValor": 1, "userId": userId, "img":divId};
                   $.getJSON("php/controles/controlValoracionImg.php", dataImgValoracion, function(data){
                         //console.log(data);
                          var htmlInsert = "";

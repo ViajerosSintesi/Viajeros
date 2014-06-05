@@ -396,5 +396,3 @@ function cargarRespuestas(idSitio, idUser, tipo){
 
       });
 }
-
- 

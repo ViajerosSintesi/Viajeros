@@ -32,6 +32,7 @@ if(@$_POST['edit-info']){
 	<script src="js/ajax.js"></script>
 	<script src="js/buscador.js"></script>
 	<script src="js/comun.js"></script>
+	<script src="js/cargaScript.js"></script>
 	<script type="text/javascript">
       
 $(function(){
@@ -146,6 +147,7 @@ $(function(){
 				<li><a href="#" id="informacion" title="Informaci&oacute;n">Informaci&oacute;n</a></li>
 				<li><a href="#" id="fotos" title="Galeria de imagenes">Fotos</a></li>
 				<li><a href="#" id="comentarios" title="Comentarios sobre la ciudad">Comentarios</a></li>
+				<li><a href="#" id="preguntas" title="Preguntas sobre la ciudad">Preguntas</a></li>
 				<li><a href="#" id="ubicacion" title="Ubicaci&oacute;n en el mapa">Ubicaci&oacute;n</a></li>
 			</ul>
 		</div>
