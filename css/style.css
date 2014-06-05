@@ -83,11 +83,11 @@ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; background
 #contenedor #cabecera{width: 100%; height: 250px; padding: 0; margin: 0;
 	background: url(../img/home_img1.jpg); background-size: 100% 250px;}
 /*#cabecera img{width: 100%; height: 250px; padding: 0; margin: 0;}*/
-#cabecera #subcabecera-pais{width: 100%; position: relative; top: 72px; color: #fff; background-color: grey; background: rgba(54, 54, 54, 0.6);}
-#subcabecera-pais #titulo-pais{margin-left: 10px;}
-#titulo-pais h1{text-shadow: 5px 3px 2px #000; margin: 0;}
-#subcabecera-pais #puntuacion{position: relative; float: right; top: 10px; margin-right: 10px;}
-#cabecera #valoracionPais{position: relative; float: right; font-size: 198px; line-height: 140px; top: 35px; color: #fff; text-shadow: 5px 3px 2px #000;}
+#cabecera #subcabecera-lugar{width: 100%; position: relative; top: 72px; color: #fff; background-color: grey; background: rgba(54, 54, 54, 0.6);}
+#subcabecera-lugar #titulo-lugar{margin-left: 10px;}
+#titulo-lugar h1{text-shadow: 5px 3px 2px #000; margin: 0;}
+#subcabecera-lugar #puntuacion{position: relative; float: right; top: 10px; margin-right: 10px;}
+#cabecera #valoracion-lugar{position: relative; float: right; font-size: 198px; line-height: 140px; top: 35px; color: #fff; text-shadow: 5px 3px 2px #000;}
 #contenedor #menu-pais{width: 100%; height: 50px; background-color: #f6f7f8; border-bottom: 1px solid #d3d6db;}
 #menu-pais ul{padding: 0; margin: 13px 0;}
 #menu-pais ul li{display: inline-block; text-decoration: none; padding: 0; margin: 0;}
@@ -96,6 +96,9 @@ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; background
 #contenedor #caja-contenido{width: 100%; min-height: 300px; background-color: #fff; text-align: center;}
 #caja-contenido #contenido{position: relative; overflow: hidden; width: 90%; min-height: 300px; text-align: left; margin: 15px 0; background-color: #fff !important;}
 #caja-contenido #info{width: 100%; text-align: justify;}
+#info #edit-info-lugar{width: 100%; text-align: right;}
+#edit-info-lugar img{cursor: pointer;}
+#edit-info-lugar img:hover{box-shadow: -2px 2px 5px #999;}
 /* ============== fotos(pais, ciudad) ==================== */
 #caja-contenido #fotos{width: 100%; text-align: center;}
 #caja-contenido #fotos #boton-foto{width: 100%; text-align: right;}

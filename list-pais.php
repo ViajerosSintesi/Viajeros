@@ -7,22 +7,13 @@ include("php/funciones.php");
 	<title>Lista de Paises</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css">
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
 	<script src="js/ajax.js"></script>
+	<script src="js/buscador.js"></script>
 	<script src="js/comun.js"></script>
-	<script type="text/javascript">
-	$(function(){
-		$("#hide-show-menu").click(function(){
-			$("#barra-menu").toggle("slow",function(){
-				var src = ($("#ico-menu").attr('src') === 'img/33.png')
-            	? 'img/32.png'
-            	: 'img/33.png';
-         		$("#ico-menu").attr('src', src);
-			});
-		});
-	});
-	</script>
+
 </head>
 <body>
 <div id="wrap">
@@ -65,6 +56,11 @@ include("php/funciones.php");
 				}
 			}
 			?>
+			</div>
+		</div>
+		<div id="bg-cuadro">
+			<div id="mapa-ubicacion">
+				<div class="cerrar-cuadro"><img src="img/75.png"></div>
 			</div>
 		</div>
 	</div>
