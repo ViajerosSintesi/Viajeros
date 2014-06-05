@@ -93,7 +93,9 @@ $coor=json_encode($coor["lugares"]);
 						<tr><th><label for="">Nombre: </label></th><td><input type="text" name="nombre" id="perfil-nombre"></td></tr>
 						<tr><th><label for="">Apellidos: </label></th><td><input type="text" name="apellido" id="perfil-apellidos"></td></tr>
 						<tr><th><label for="">Email: </label></th><td><input type="text" name="email" id="perfil-email"></td></tr>
+						<tr><th><label for="">Password: </label></th><td><input type="password" name="password" id="perfil-password"></td></tr>
 						<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
+						<p><span id="no_modifico"><span>
 						<tr><td><input type="submit" name="modificar-datos" id="modificar-datos" value="Modificar datos"></td><td><input type="submit" name="cancelar" id="cancelar-datos" value="Cancelar"></td></tr>
 					</table>
 				</div>
