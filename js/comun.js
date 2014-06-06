@@ -135,24 +135,24 @@ function imgDialog(userId, divId, borra){
                   	      }else htmlInsert +='<img src="img/hand_contra.png" >';
                   	      htmlInsert +='</button>';
                         }
-      	      $("#"+divId).html( $("#"+divId).html()+htmlInsert);
-                  
-                  $(".meGusta").click(function(){
-                       alert("hola");
-                        enviarValoracion("img", 2, userId, divId);
-                        $("#"+divId).dialog("close", "duration", 1000);
-                        imgDialog(userId);
                         
+      	     
+                 if(borra) htmlInsert +='<input type="button" class="borrarImg" value="borrar" name="'+divId+'"/>';
+                  htmlInsert +='<input type="button" class="reportarImg" value="reportar" name="'+divId+'"/>';
+                  $("#"+divId).html( $("#"+divId).html()+htmlInsert);
+                $(".meGusta").click(function(){
+                       $("#"+divId).dialog("close", "duration", 1000);
+                        enviarValoracion("img", 2, userId, divId);
+                        
+                        imgDialog(userId, divId, borra);
                   });
                   
                   $(".noMeGusta").click(function(){
-                        enviarValoracion("img", 1, userId, divId);
                         $("#"+divId).dialog("close", "duration", 1000);
-                        imgDialog(userId);
+                        enviarValoracion("img", 1, userId, divId);
+                        
+                        imgDialog(userId, divId, borra);
                   });
-                  if(borra) $("#"+divId).html($("#"+divId).html()+'<input type="button" class="borrarImg" value="borrar" name="'+divId+'"/>');
-                  $("#"+divId).html($("#"+divId).html()+'<input type="button" class="reportarImg" value="reportar" name="'+divId+'"/>');
-                
                   $('.borrarImg').click(function(){
                         
                         borrarImagen(divId);
@@ -177,5 +177,6 @@ function imgDialog(userId, divId, borra){
 					show: "fold",
 					hide: "scale"
 					});
-            
+
 }
+

@@ -26,7 +26,7 @@ $coor=json_encode($coor["lugares"]);
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css">
-	<script src="js/jquery-1.10.2.js"></script>
+	<script src="js/jquery-2.1.1.min.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/ajax.js"></script>
 	<script src="js/buscador.js"></script>
