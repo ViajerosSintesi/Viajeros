@@ -1,0 +1,12 @@
+#contenedor #contenedor-mapa{width: 100%; margin-bottom: 31px; background-color: #fff; border: 1px solid #d3d6db; text-align: center;}
+#contenedor-mapa #titulo{width: 100%; text-align: left; margin-bottom: 15px; background:url(../img/pattern.png); border-bottom: 1px solid #d3d6db;}
+#mapa{width: 90%;}
+#map_canvas {float: left; width: 70%; height: 406px; margin: 4px; margin-bottom: 31px;}
+#lista {float: left; margin-left: 1px; width: 29%; height: 406px; overflow: auto; cursor: pointer;}
+#opciones {padding: 5px; width: 100%;}
+#bsqda{width: 95%; padding: 2px 4px;}
+.placeIcon {width: 16px; height: 16px; margin: 2px;}
+#resultados {border-collapse: collapse; width: 254px;}
+#busc-input {width: 100%; text-align: left;}
+#busc-input input{width: 70%;}
+#autocomplete {width: 100%; border: 1px solid #ccc;}

@@ -133,6 +133,7 @@ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; background
 #barra-menu ul li #destroySession:hover{color: #069; text-decoration: underline; }
 /* =================== lista Paises ========================= */
 #contenedor #contenedor-paises{width: 100%; margin: 0 auto; text-align: center; background-color: #fff;}
+#contenedor-paises #titulo{width: 100%; text-align: left; margin-bottom: 15px; background:url(../img/pattern.png); border-bottom: 1px solid #d3d6db;}
 #contenedor-paises .list-paises{width: 90%; text-align: left; margin: 15px 0;}
 .list-paises ul li{display: inline-block; margin-left: 10px;}
 .list-paises ul li a{text-decoration: none; color: #000; font-weight: bold;}

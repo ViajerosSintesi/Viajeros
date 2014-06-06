@@ -38,6 +38,9 @@ include("php/funciones.php");
 	</div>
 	<div id="contenedor">
 		<div id="contenedor-paises">
+			<div id="titulo">
+				<h1>Listado de Paises</h1>
+			</div>
 			<div class="list-paises">
 			<?php
 			$cursor = listPaises();
