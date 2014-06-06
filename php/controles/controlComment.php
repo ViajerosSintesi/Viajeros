@@ -42,6 +42,7 @@ if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "verComments
 }
        
 if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarComent")){
+      
       $ciudad = filter_input(INPUT_GET, "ciudad");
       $userId = filter_input(INPUT_GET, "userId");
       $tipo = filter_input(INPUT_GET, "insertarComent");
@@ -54,8 +55,28 @@ if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarComen
       $coment->setComentario($comentText);
       
       $coment->setFecha($data);
-      
-      echo json_encode($coment->insertarComent($tipo));
+      $inserta = 0;
+     
+      if(filter_has_var(INPUT_COOKIE,"coment")){
+            $numIntentos = filter_input(INPUT_COOKIE,"coment");
+            echo $numIntentos;
+            
+            if($numIntentos <4){
+              $expire=time()+60*4;
+              $inserta =1;
+               setcookie("coment", $numIntentos+1, $expire);
+            }
+      }else{
+            $expire=time()+60*4;
+             setcookie("coment", 0, $expire);
+      }
+     
+      if($inserta){
+             echo json_encode($coment->insertarComent($tipo));
+      } else{
+            echo json_encode(0);
+      }
+     
 }
 
 ?>

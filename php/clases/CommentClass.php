@@ -53,8 +53,8 @@
             }
             public function insertarComent($tipo){
                   $queryForInsert = array("idUsu"=>$this->user, 
-                                    "comentario"=>$this->comentario,
-                                    "data"=> $this->fecha);
+                                          "comentario"=>$this->comentario,
+                                          "data"=> $this->fecha);
                   if($tipo == "Ciudad") $queryForInsert["idCiu"]= $this->idSitio;
                   elseif($tipo == "Pais") $queryForInsert["idPais"]= $this->idSitio;
                   

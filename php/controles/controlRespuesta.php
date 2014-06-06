@@ -52,7 +52,25 @@ if(filter_has_var(INPUT_GET,"pregunta")&& filter_has_var(INPUT_GET, "insertarRes
       $respuesta->setIdSitio(new MongoId($pregunta));
       $respuesta->setRespuesta($respuestaText);
       $respuesta->setFecha($data);
-      echo json_encode($respuesta->insertarRespuesta($tipo));
+        $inserta = 0;
+     if(filter_has_var(INPUT_COOKIE,"respuesta")){
+            $numIntentos = filter_input(INPUT_COOKIE,"respuesta");
+           
+            if($numIntentos <4){
+              $expire=time()+60*4;
+              $inserta =1;
+               setcookie("respuesta", $numIntentos+1, $expire);
+            }
+      }else{
+            $expire=time()+60*4;
+             setcookie("respuesta", 0, $expire);
+      }
+     
+      if($inserta){
+              echo json_encode($respuesta->insertarRespuesta($tipo));
+      } else{
+            echo json_encode(0);
+      }
 }
 
 ?>
