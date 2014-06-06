@@ -1,0 +1,10 @@
+#preguntas-pais{width: 100%; text-align: center;}
+.pregunta{width: 80%; text-align: justify; border-bottom: 1px solid #d3d6db; margin-bottom: 5px;}
+.pregunta-up{width: 100%;}
+.pregunta-down{width: 100%; text-align: right;}
+.rspta{width: 100%; text-align: right; margin-bottom: 5px;}
+.rspta div{width: 90%; text-align: left;}
+.rspta div .respuesta{width: 100%; border: 1px solid #d3d6db; margin-bottom: 5px;}
+.respuesta-up{width: 100% !important;}
+.respuesta-down{width: 100% !important; text-align: right !important;}
+#subirRespuesta{width: 100%; text-align: center;}
