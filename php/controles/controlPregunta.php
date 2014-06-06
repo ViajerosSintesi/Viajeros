@@ -52,7 +52,27 @@ if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarPregu
       $pregunta->setIdSitio(new MongoId($ciudad));
       $pregunta->setPregunta($preguntaText);
       $pregunta->setFecha($data);
-      echo json_encode($pregunta->insertarPregunta($tipo));
+      $inserta = 0;
+      
+      if(filter_has_var(INPUT_COOKIE,"pregunta")){
+            $numIntentos = filter_input(INPUT_COOKIE,"pregunta");
+           
+            if($numIntentos <4){
+              $expire=time()+60*4;
+              $inserta =1;
+               setcookie("pregunta", $numIntentos+1, $expire);
+            }
+      }else{
+            $expire=time()+60*4;
+             setcookie("pregunta", 0, $expire);
+      }
+     
+      if($inserta){
+              echo json_encode($pregunta->insertarPregunta($tipo));
+      } else{
+            echo json_encode(0);
+      }
+     
 }
 
 ?>
