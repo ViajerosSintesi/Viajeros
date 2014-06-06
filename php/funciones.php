@@ -70,7 +70,7 @@ function modificarInfoCiudad($info, $ciudad){
 	$collection->update(array('_id'=>new MongoId($ciudad)), $variable);
 
 }
-function cargarComentPais($pais){
+/*function cargarComentPais($pais){
 	$collection = conectar("comentPais");
 	$parametro = array('idPais'=>new MongoId($pais));
 	$cursor = $collection->find($parametro);
@@ -81,7 +81,7 @@ function cargarComentCiudad($ciudad){
 	$parametro = array('idCiu'=>new MongoId($ciudad));
 	$cursor =$collection->find($parametro);
 	return $cursor;
-}
+}*/
 function datosUnUsuario($valor){
 	$collection = conectar("usuarios");
 	$parametro = array("_id"=>$valor);

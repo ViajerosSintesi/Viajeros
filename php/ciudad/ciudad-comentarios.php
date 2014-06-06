@@ -4,7 +4,7 @@ include("../funciones.php");
 $ciudad = "";
 if(isset($_GET['ciudad'])){
 	$ciudad = $_GET['ciudad'];
-	$cursor = cargarComentCiudad($ciudad);
+	//$cursor = cargarComentCiudad($ciudad);
 	$session=1;
 	// falta terminaar de implemaentar la funcion.
 }

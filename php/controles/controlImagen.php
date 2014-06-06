@@ -22,7 +22,7 @@
             }else{
                   $ciudad->setId($ciudadId[0]);
                   $ciudad->cogeValoresSegunId();
-                  $location="ciudad.php";
+                  $location="ciudad.php?ciudad=$ciudadId[0]";
             }
            
             
@@ -52,6 +52,7 @@
             
       }
       if(filter_has_var(INPUT_GET, "borrarImagen")){
+            
             $imagenId = filter_input(INPUT_GET, "imagenId");
             
             $imagen = new Imagen();
@@ -59,6 +60,12 @@
             $imagen->setId(new MongoId($imagenId));
             
             $imagen->cogeValoresSegunId();
+            
+            $valorBbdd = new DBMongo("valoracionimg");
+            
+            $queryForRemove=array("object"=>$imagenId);
+            
+            $valorBbdd->eliminar($queryForRemove);
 
             echo json_encode($imagen->borrarImagen());
       }
@@ -71,7 +78,7 @@
             $imagen = new Imagen();
             
             $imagen->setCiudad($ciudad->getNombre());
-
+           
             echo json_encode($imagen->darImagenes(false));
             
       }

@@ -15,12 +15,12 @@
 	     require_once("../clases/ClassMongoClient.php");
 	     $ciudad = filter_input(INPUT_GET, "nombreCiudadB");
 	     $mongo = new DBMongo("ciudad");
-	     $regexObj = new MongoRegex("/".$ciudad."/"); 
+	     $regexObj = new MongoRegex("/".$ciudad."/i"); 
 	     $query = array("ciudad" => $regexObj);
 	     $todasciudades = $mongo->findCollection($query);
 	     #paises
 	     $mongoPais = new DBMongo("pais");
-	     $regexObjPais = new MongoRegex("/".$ciudad."/"); 
+	     $regexObjPais = new MongoRegex("/".$ciudad."/i"); 
 	     $queryForPais = array("pais" => $regexObjPais);
 	     $todosPaises=$mongoPais->findCollection($queryForPais);
 	     //var_dump($todasciudades);
@@ -28,6 +28,8 @@
 	            $queryForPais = array("_id"=>$todasciudades[$i]["idPais"]);
 	            $todasciudades[$i][] = $mongo->findCollection($queryForPais);
 	     }*/
+	     
+
 	     echo json_encode(array_merge($todasciudades, $todosPaises));
 	}
 	
