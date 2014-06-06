@@ -5,7 +5,7 @@
             header("location:index.php");
       }else{
              if(filter_has_var(INPUT_GET,"user")){
-                  $user= filter_input(INPUT_GET,"user");
+                  $user= base64_decode(filter_input(INPUT_GET,"user"));
             }else{
                   $user=$_SESSION['userId'];
             }

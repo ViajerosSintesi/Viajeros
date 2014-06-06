@@ -102,6 +102,8 @@
 						}?>
 					</select>
 					</p>
+					<img src='php/controles/creaCaptcha.php'/>
+				      <input type='text' id="captcha" name='code'/>
 					<input type="submit" name="registrarse" id="registrarse" value="Reg&iacute;strate">
 				</fieldset>
 				<p><span id="no_registro"><span>
