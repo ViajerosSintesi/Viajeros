@@ -23,7 +23,7 @@ require_once("../clases/CaptchaClass.php");
 	
 	$captcha->creaCaptcha();
 	#guardar code en session
-	
+
 	
 	/*echo $captcha->getCode()."<br>";
 	echo $captcha->getSizeFont()."<br>";

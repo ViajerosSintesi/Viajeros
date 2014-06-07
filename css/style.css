@@ -140,3 +140,14 @@ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; background
 .list-paises ul li a:hover{color: #069; text-decoration: underline;}
 
 #footer{width: 80%; margin: 0 auto; text-align: center; border-top: 1px solid #d3d6db; padding: 10px 0;}
+
+
+
+
+
+
+.nohasEstado:hover{
+      cursor:pointer;
+      text-shadow: 5px 3px 2px #fff;
+      color: #000;
+}

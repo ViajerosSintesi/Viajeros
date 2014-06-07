@@ -33,6 +33,37 @@
 	     echo json_encode(array_merge($todasciudades, $todosPaises));
 	}
 	
-
+      if(filter_has_var(INPUT_GET,"incluirCiudadUser")){
+            require_once("../clases/UserClass.php");
+            
+            $ciudad = filter_input(INPUT_GET,"incluirCiudadUser");
+            $userId = filter_input(INPUT_GET,"user");
+            session_start();
+            if(isset($_SESSION["userId"])){
+                  if($_SESSION["userId"] == $userId){
+                        $user = new User();
+                        $user->setId($userId);
+                        $user->setLugares($ciudad);
+                  
+                        echo json_encode($user->incluirCiudad());
+                  }else echo json_encode(0);
+            }else echo json_encode(0);
+            
+      }
+      
+      if(filter_has_var(INPUT_GET,"saberCiudadUser")){
+            require_once("../clases/UserClass.php");
+            
+            $ciudad = filter_input(INPUT_GET,"saberCiudadUser");
+            $userId = filter_input(INPUT_GET,"user");
+            $user = new User();
+            $user->setId($userId);
+            $user->cogeValoresSegunId();
+             
+            $lugares = $user->getLugares();
+            
+            echo json_encode(in_array($ciudad, $lugares));
+      }
+      
 
 ?>

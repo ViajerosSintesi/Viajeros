@@ -58,9 +58,15 @@ $(document).ready(function(){
     });
     $("#registrarse").click(registroBoton);
     
+    $("#form-login").keypress(function(e) {
+		if (e.keyCode == 13 && !e.shiftKey) {
+		      $("#boton-login").click();
+		}
+    });
     $("#boton-login").click(function(){
           var mail = $("#usuario").val();
           var pass = $("#password").val();
+          var code = $("#captchaDiv").val();
           var pasa = 1;
           if(mail == ""){
                 //$("#emailLog").addClass("has-error");
@@ -75,7 +81,7 @@ $(document).ready(function(){
               $.ajax({
                   type: "POST",
                   url: "php/controles/controlLogin.php",
-                  data: {"mail":mail,"pass":pass, "login":1}
+                  data: {"mail":mail,"pass":pass, "login":1, "code": code}
               })
               .done(function(data){
                       var not = $.parseJSON(data);
@@ -87,6 +93,10 @@ $(document).ready(function(){
                    }
                    if(not.notice == 2){
                        document.getElementById("no_logeo").innerHTML="No has activado tu cuenta , mira tu email";
+                   }
+                   if(not.notice ==3){
+
+                         document.getElementById("captchaDiv").innerHTML=" <img src='php/controles/creaCaptcha.php?"+(new Date()).getTime()+"'/><input type='text' id='code'/>";
                    }
               });
           }
@@ -114,10 +124,7 @@ $(document).ready(function(){
       else
             return false;
 	}
-	
-	
-	
-	
+
 	function validar_password(valor2){
 	 // creamos nuestra regla con expresiones regulares.
 	  var retornar=0;
@@ -137,9 +144,7 @@ $(document).ready(function(){
 		return retornar;
 	}
 	
-	
 
-	
 	// validacion de contraseña_registro
 	function contrasenya_registro()
 	{
@@ -166,8 +171,6 @@ $(document).ready(function(){
 		return retorn;
 	}
 
-
-	
 	
 	// validacion de contraseña_inicio
 	function contrasenya_inicio()
@@ -195,10 +198,7 @@ $(document).ready(function(){
 		return retorn;
 	}
 	
-	
-	
-	
-	
+
 	// validacion de nombre_inicio
 	function nombre_inicio()
 	{
@@ -216,12 +216,6 @@ $(document).ready(function(){
 		return retorn;
 	}
 	
-	
-	
-	
-	
-
-
 	// validacion de nombre_registro
 	function nombre_registro()
 	{
@@ -335,6 +329,7 @@ $(document).ready(function(){
     var dia = $("#dia").val();
     var mes = $("#mes").val();
     var anio = $("#any").val();
+    var code = $("#code").val();
     
     var fecha = dia+"/"+mes+"/"+anio;
    
@@ -343,12 +338,14 @@ $(document).ready(function(){
             $.ajax({
                   type: "POST",
                   url: "php/controles/controlRegistro.php",
-                  data: {"user":user, "mail":mail,"pass":pass, "edad":fecha, "apellidos":apellidos }
+                  data: {"user":user, "mail":mail,"pass":pass, "edad":fecha, "apellidos":apellidos, "codeCaptcha": code }
               })
               .done(function(data){
                     var not = $.parseJSON(data);
                    if(!not.notice){
                        alert("no ha podido registrarse, prueva con otro email");
+                   }else if(not.notice==3){
+                          alert("Codigo Captcha Mal escrito!!");
                    }else{
                          alert("Enhorabuena! Mira en tu correo y activalo!");
                    }

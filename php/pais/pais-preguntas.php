@@ -6,7 +6,7 @@ $pais = "";
 if(isset($_GET['pais'])){
 	$pais = $_GET['pais'];
 
-	$cursor = cargarComentCiudad($pais);
+	//$cursor = cargarComentCiudad($pais);
 	$session=1;
 	// falta terminaar de implemaentar la funcion.
 }

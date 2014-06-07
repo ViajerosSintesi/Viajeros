@@ -56,6 +56,7 @@
 						<tr><td></td><td><input type="buton" name="enviar" id="boton-login" value="Iniciar sesi&oacute;n"></td></tr>
 					</table>
 				</fieldset>
+				<p><span id="captchaDiv"></span><p>
 				<p><span id="mail_incorrecto"></span><p>
 				<p><span id="no_logeo"></span><p>
 				<p><span id="recuperarPass" class="enlace">&#191;Olvidaste tu contrase&ntilde;a?</span></p>
@@ -103,7 +104,7 @@
 					</select>
 					</p>
 					<img src='php/controles/creaCaptcha.php'/>
-				      <input type='text' id="captcha" name='code'/>
+				      <input type='text'  id='code' required/>
 					<input type="submit" name="registrarse" id="registrarse" value="Reg&iacute;strate">
 				</fieldset>
 				<p><span id="no_registro"><span>

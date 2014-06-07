@@ -10,12 +10,13 @@ if(!isset($_SESSION['userId'])){
             require_once("php/clases/CiudadClass.php");
       	$ciudad = $_GET['ciudad'];
 	      $userId = $_SESSION['userId'];
-	      $ciudadC = new Ciudad();
+	      //$ciudadC = new Ciudad();
 	    
       }
 }
 
 $coor = obtenerCoordenadasCiudad($ciudad);
+$nombreCiudad = obtenerInfoCiudad($ciudad);
 if(@$_POST['edit-info']){
 	modificarInfoCiudad($_POST['info-ciudad'], $ciudad);
 }
@@ -70,12 +71,36 @@ $(function(){
 		});
 		
 		valoraciones();
+		$("#nombreCiudad").click(function(){
+	            heEstadoAqui("<?php echo $userId;?>", "<?php echo $nombreCiudad['ciudad'];?>");
+		});
 		
-		var dataForName = {"nombreCiudad": '<?php echo $ciudad;?>'};
-		$.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
-			$("#nombreCity").html(data);
-		})
+		saberSiHeEstadoAqui("<?php echo $userId;?>", "<?php echo $nombreCiudad['ciudad'];?>");
+		
 });
+
+      function heEstadoAqui(user, ciudad){
+            if(confirm("Has estado en "+ciudad+"?")){
+                  var dataForName = {"incluirCiudadUser": ciudad, "user": user};
+      		$.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
+      			if(data == true){
+      			      $("#nombreCiudad").removeClass("nohasEstado");
+			            $("#nombreCiudad").addClass("hasEstado");
+			            $("#nombreCiudad").off("click");
+			      }
+      		});
+            }
+      }
+      function saberSiHeEstadoAqui(user, ciudad){
+            var dataForName = {"saberCiudadUser": ciudad, "user": user};
+		$.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
+			if(data == true){
+			      $("#nombreCiudad").removeClass("nohasEstado");
+			      $("#nombreCiudad").addClass("hasEstado");
+			     $("#nombreCiudad").off("click");
+			}
+		});
+      }
       function valoraciones(){
             $.getJSON("php/controles/controlValoracionCiudad.php",{"ciudad":"<?php echo $ciudad;?>", "verValor":"1"}, function(data){
                   if(data!=null)$("#valoracion-lugar").html(data);
@@ -128,8 +153,8 @@ $(function(){
 			<span id="valoracion-lugar"></span>
 			<div id="subcabecera-lugar">
 				<div id="titulo-lugar">
-					<?php $nombreCiudad = obtenerInfoCiudad($ciudad);?>
-					<h1><?php echo $nombreCiudad['ciudad']; ?></h1>
+					
+					<h1 id="nombreCiudad" class="nohasEstado"><?php echo $nombreCiudad['ciudad']; ?></h1>
 				</div>
 				<div id="puntuacion">
 					<form method="get" action="php/controles/controlValoracionCiudad.php" id="valorCiudad">

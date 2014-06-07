@@ -2,7 +2,7 @@
 	require_once("../clases/UserClass.php");
 
 	if(filter_has_var(INPUT_POST, "user") && filter_has_var(INPUT_POST, "mail") && filter_has_var(INPUT_POST, "pass") ){
-
+            session_start();
 		$newUser = new User();
 
 		$mail = filter_input(INPUT_POST, "mail", FILTER_SANITIZE_EMAIL);
@@ -10,6 +10,7 @@
 		$password = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_STRING);
 		$edad = filter_input(INPUT_POST, "edad");
 		$apellidos =  filter_input(INPUT_POST, "apellidos",FILTER_SANITIZE_STRING);
+		$code =  filter_input(INPUT_POST, "codeCaptcha");
             
 		$newUser->setUsername($username);
 		$newUser->setApellidos($apellidos);
@@ -22,9 +23,15 @@
                   $user->ponerImgPerfil($_FILES["imgPerfil"]);
             }
 		//$newUser->setEdad($edad);
-		$returnReg = $newUser->guardarUser();
-	      #------->>>>>>>>>>>>>>>>>>>imposible enviar email
-		if($returnReg) $newUser->enviaEmailConfirm();
+	
+		if($_SESSION["captcha"] != $code){
+		      $returnReg = 3;
+		} else{
+      		$returnReg = $newUser->guardarUser();
+      	      #------->>>>>>>>>>>>>>>>>>>imposible enviar email
+      		if($returnReg) $newUser->enviaEmailConfirm();
+		}
+	
 		echo json_encode(array( "notice"=>$returnReg));
 		
 		

@@ -155,6 +155,7 @@ class User{
 			$this->activado = $user['activado'];
 			$this->codActivacion = $user['codActivacion'];
 			$this->imgPerfil = $user['imgPerfil'];
+			$this->lugares = $user['lugares'];
 			$retorn = 1;
 		}
 		return $retorn;
@@ -248,5 +249,11 @@ class User{
             $this->lugares= $this->bbdd->findOneCollection($queryForCoord, $queryForView);
             return $this->lugares;
       }	
+      
+      public function incluirCiudad(){
+            $queryForLugares = array('_id' => $this->id);
+            $queryForChange = array('$addToSet'=> array('lugares' => $this->lugares));
+            return $this->bbdd->actualiza($queryForLugares, $queryForChange);
+      }
 }
 ?>
