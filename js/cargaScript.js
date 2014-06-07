@@ -192,8 +192,8 @@ function cargarPreguntas(idSitio, idUser, tipo){
       	      htmlInsert +='</button>';
       	      htmlInsert +='<button title="reportar abuso" class="reportButton" id="report-'+i+'"><img src="img/hand_1.png" /></button>';
                   htmlInsert +='</div>';
-                  htmlInsert +='<button title="ver respuestas" class="respuesta" id="report-'+i+'">respuestas</button>';
-                  htmlInsert +='<div id="'+data[i]._id['$id']+'"></div>';
+                  htmlInsert +='<button title="ver respuestas" class="ver-respuesta" id="report-'+i+'">respuestas</button>';
+                  htmlInsert +='<div class="rspta"><div id="'+data[i]._id['$id']+'"></div></div>';
                    
                   htmlInsert +='</div>';
              }
@@ -268,7 +268,7 @@ function cargarPreguntas(idSitio, idUser, tipo){
                         console.log(data);
                   });
             });
-            $(".respuesta").click(function(){
+            $(".ver-respuesta").click(function(){
                   
                   var id=$(this).attr("id");
                   var numPregunta = id[id.length-1];
@@ -324,7 +324,7 @@ function cargarRespuestas(idSitio, idUser, tipo){
             
 	      htmlInsert +='<div id="subirRespuesta">';
 		htmlInsert +='<form action="#" method="post">';
-		htmlInsert +='<textarea id="areatexto" cols="80" rows="5"></textarea>';
+		htmlInsert +='<textarea id="areaTextoResp" cols="80" rows="5"></textarea>';
 		htmlInsert +='<input type="hidden" id="idUser" value="'+idUser+'"/>';
 		htmlInsert +='<input type="hidden" id="idSitio" value="'+idSitio+'"/>';
 		htmlInsert +='<input type="hidden" id="tipo" value="'+tipo+'"/>';
@@ -354,10 +354,10 @@ function cargarRespuestas(idSitio, idUser, tipo){
                   enviarValoracion("respuesta", 1, idUsu, idRespuesta);
                   cargarRespuestas(idSitio, idUser, tipo);
             });
-            $("#areatexto").keypress(function(e) {
+            $("#areaTextoResp").keypress(function(e) {
       		if (e.keyCode == 13 && !e.shiftKey) {
       			e.preventDefault();
-      			var respuesta = $("#areatexto").val();
+      			var respuesta = $("#areaTextoResp").val();
       			var idUser = $("#idUser").val();
       			var idSitio = $("#idSitio").val();
       			var tipo = $("#tipo").val();
