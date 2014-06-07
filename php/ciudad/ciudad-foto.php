@@ -22,7 +22,7 @@ $("#subir-foto").click(function(){
 	$("#bg-cuadro").show();
 	return false;
 });
-$("#cerrar-cuadro").click(function(){
+$(".cerrar-cuadro").click(function(){
 	$("#bg-cuadro").hide();
 });
  $("#formfotos").submit(subirFotos);
@@ -90,7 +90,7 @@ if(isset($_GET['ciudad'])){
                   //console.log(data[i]["_id"]["\$id"]);
             }
 
-            $("#fotos").html(intro);
+            $("#foto").html(intro);
             $(".imagenDeCiudad").click(function(){
                    var divId = $(this).attr("name");
                    var borra = 0;
@@ -114,7 +114,7 @@ END;
 </div>
 <div id="bg-cuadro">
 	<div id="cuadro-foto">
-		<div id="cerrar-cuadro"><img src="img/delete.png"></div>
+		<div class="cerrar-cuadro"><img src="img/75.png"></div>
 		<form action='php/controles/controlImagen.php' method='post' enctype='multipart/form-data' id='formFotos'>
 			<div id="centra-input">
 				<h2>Selecciona una foto</h2>
