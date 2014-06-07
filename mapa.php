@@ -156,12 +156,7 @@ include("php/funciones.php");
 
 		function search() {
 			var type = document.opciones.type.value
-			/*alert(type);
-			for (var i = 0; i < document.opciones.type.length; i++) {
-				if (document.opciones.type[i].checked) {
-					type = document.opciones.type[i].value;
-				}
-			}*/
+			/*alert(type);*/
 			autocomplete.setBounds(map.getBounds());
 			var search = {
 				bounds: map.getBounds()
@@ -262,8 +257,12 @@ include("php/funciones.php");
 			return content;
 		}
 		window.onload = getLocation();
-		//google.maps.event.addDomListener(window, 'load', getLocation);
 		</script>
+		<div id="bg-cuadro">
+			<div id="mapa-ubicacion">
+				<div class="cerrar-cuadro"><img src="img/75.png" alt="Cerrar cuadro" title="Cerrar"></div>
+			</div>
+		</div>
 	</div>
 	<div id="footer">
 		<span><a href="#">Sobre nosotros</a></span>
