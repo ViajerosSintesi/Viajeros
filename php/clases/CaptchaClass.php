@@ -47,85 +47,34 @@ class Captcha{
 
 
 	#Gets i sets de las propiedades
-	public function getCode(){
-		return $this->code;
-	}
-	public function getImage(){
-		return $this->image;
-	}
-	public function getWidth(){
-		return $this->width;
-	}
-
-	public function setWidth($width){
-		$this->width = $width;
-	}
-
-	public function getHeight(){
-		return $this->height;
-	}
-
-	public function setHeight($height){
-		$this->height = $height;
-	}
-
-	public function getNumCaracters(){
-		return $this->numCaracters;
-	}
-
-	public function setNumCaracters($numCaracters){
-		$this->numCaracters = $numCaracters;
-	}
-
-	public function getFont(){
-		return $this->font;
-	}
-
-	public function setFont($font){
-		$this->font = $font;
-	}
-
-	public function getNumDots(){
-		return $this->numDots;
-	}
-
-	public function setNumDots($numDots){
-		$this->numDots = $numDots;
-	}
-
-	public function getNumLines(){
-		return $this->numLines;
-	}
-
-	public function setNumLines($numLines){
-		$this->numLines = $numLines;
-	}
-	
-	public function getNoiseColor(){
-		return $this->noiseColor;
-	}
-
+	public function getCode(){return $this->code;}
+	public function getImage(){return $this->image;}
+	public function getWidth(){return $this->width;}
+	public function setWidth($width){$this->width = $width;}
+	public function getHeight(){return $this->height;}
+	public function setHeight($height){$this->height = $height;}
+	public function getNumCaracters(){return $this->numCaracters;}
+	public function setNumCaracters($numCaracters){$this->numCaracters = $numCaracters;}
+	public function getFont(){return $this->font;}
+	public function setFont($font){$this->font = $font;}
+	public function getNumDots(){return $this->numDots;}
+	public function setNumDots($numDots){$this->numDots = $numDots;}
+	public function getNumLines(){return $this->numLines;}
+	public function setNumLines($numLines){$this->numLines = $numLines;}
+	public function getNoiseColor(){return $this->noiseColor;}
 	public function setNoiseColor($red, $green, $blue){
 		$this->noiseColor[0] = $red;
 		$this->noiseColor[1] = $green;
 		$this->noiseColor[2] = $blue;
 	}
-	public function getTextColor(){
-		return $this->textColor;
-	}
-
+	public function getTextColor(){return $this->textColor;}
 	public function setTextColor($red, $green, $blue){
 		$this->textColor[0] = $red;
 		$this->textColor[1] = $green;
 		$this->textColor[2] = $blue;
 	}
-	public function getSizeFont(){
-		return $this->sizeFont;
-	}
-	public function getBackColor(){
-		return $this->backColor;
-	}
-
+	public function getSizeFont(){return $this->sizeFont;}
+	public function getBackColor(){return $this->backColor;}
 	public function setBackColor($red, $green, $blue){
 		$this->backColor[0] = $red;
 		$this->backColor[1] = $green;
