@@ -103,8 +103,8 @@
 						}?>
 					</select>
 					</p>
-					<img src='php/controles/creaCaptcha.php'/>
-				      <input type='text'  id='code' required/>
+					<button id="genCaptchaB"><span >Genera captcha</span></button>
+					<span id="genCaptcha"></span>
 					<input type="submit" name="registrarse" id="registrarse" value="Reg&iacute;strate">
 				</fieldset>
 				<p><span id="no_registro"><span>

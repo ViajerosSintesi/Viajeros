@@ -16,6 +16,9 @@ $(document).ready(function(){
 	});
 	// fin
 	
+	$("#genCaptchaB").click(function(){
+	      $("#genCaptcha").html("<img src='php/controles/creaCaptcha.php?"+(new Date()).getTime()+"'/><input type='text' id='code'/>");
+	});
 	// validacion de contraseña_inicio
 	$("#usuario").change(nombre_inicio);
 	

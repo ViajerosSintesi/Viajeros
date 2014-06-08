@@ -26,7 +26,7 @@ if(filter_has_var(INPUT_POST, "mail") && filter_has_var(INPUT_POST, "pass") && f
 
 	$user->setId($mail);
 	$user->setPassword($password);
-	$pasa = 0;
+	$pasa = 1;
 
 	if(isset($_SESSION['captcha'])){
 		$code = filter_input(INPUT_POST, "code",FILTER_SANITIZE_STRING);
@@ -35,19 +35,20 @@ if(filter_has_var(INPUT_POST, "mail") && filter_has_var(INPUT_POST, "pass") && f
 			$pasa =1;
 
 		}else{
+		      $pasa = 0;
 			session_destroy();
 		}
 	}else $pasa = 1;
 
 	$notice =0;
-
+      //echo $pasa;
 	if($pasa){
 		if( $notice =$user->comproveLogin()){
 			$user->cogeValoresSegunId();
 			$_SESSION['userId'] = $user->getId();
       		      //echo $notice;
 		}else{
-			echo $notice;
+			//echo $notice;
 			if(filter_has_var(INPUT_COOKIE,"login")){
 				$numIntentos = filter_input(INPUT_COOKIE,"login");
 				if($numIntentos <4){

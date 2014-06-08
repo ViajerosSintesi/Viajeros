@@ -80,6 +80,7 @@ if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarComen
       $coment->setFecha($data);
       $inserta = 0;
       session_start();
+  
       if(isset($_SESSION["userId"])){
       	if($_SESSION["userId"] == $userId){
       		if(filter_has_var(INPUT_COOKIE,"coment")){
