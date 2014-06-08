@@ -2,44 +2,34 @@
 require_once("ClassMongoClient.php");
 
 /**
-*	###################################################
-*	de momento en la BBDD el usuario tiene este formato:
-*
-* 	{
-* 		id: mail,
-* 		username: string,
-*           apellidos: string
-* 		pass: password,
-* 		edad: int,
-* 	  	email: mail->redundante?
-*           activado:bool,
-*           codActivacion: uniqId()
-*           imgPerfil: path to image
-* 	}
-* 	ha medida que se vaya agrandando hay que meter mas informacion
-* 	como ciudades, baneos, etc...
-*  ######################################################
+*	clase usuario
 * 	
 */
 
 class User{
-	private $bbdd;
-	private $id = null;
-	private $username = null;
-	private $apellidos = null;
-	private $password = null;
-	private $edad = null;
-	private $activado = null;
-	private $codActivacion = null;
-	private $imgPerfil = null;
-	private $lugares = null;
-	//private $email = null;
-	private $userInArray;
+	private $bbdd;					#coleccion que aloja los usuarios
+	private $id = null;				#id del user
+	private $username = null;			#nombre del usuario
+	private $apellidos = null;			#apellidos
+	private $password = null;			#contrasenya
+	private $edad = null;				#edad del usuario
+	private $activado = null;			#bool que guarda si esta activado o no
+	private $codActivacion = null;		#cod de activacion para activar
+	private $imgPerfil = null;			#ruta acia la imagen del perfil
+	private $lugares = null;			#lugares en el que ha estado
+	private $userInArray;				#formato array de las propiedades
 	
+
+	/**
+	 * [__construct description]
+	 * constructor por defecto, se conecta a la BBDD de usuarios
+	 */
 	function __construct(){
 	    $this->bbdd = new DBMongo("usuarios");
 	}
-
+	/**
+	 * getters and setters
+	 */
 	public function getId(){return $this->id;}
 	public function setId($id){$this->id = $id;}
 	public function getUsername(){return $this->username;}
@@ -242,18 +232,27 @@ class User{
 	      
 	      return $this->guardarUser();
 	}
-      
-      public function cogerCoord(){
-            $queryForCoord = array('_id' => $this->id);
-            $queryForView = array('lugares' => true);
-            $this->lugares= $this->bbdd->findOneCollection($queryForCoord, $queryForView);
-            return $this->lugares;
-      }	
-      
-      public function incluirCiudad(){
-            $queryForLugares = array('_id' => $this->id);
-            $queryForChange = array('$addToSet'=> array('lugares' => $this->lugares));
-            return $this->bbdd->actualiza($queryForLugares, $queryForChange);
-      }
+    /**
+     * [cogerCoord description]
+     * recoge los lugares que el usuario ha estado
+     * @return Array  		nombre de los lugares
+     */
+	public function cogerCoord(){
+	    $queryForCoord = array('_id' => $this->id);
+	    $queryForView = array('lugares' => true);
+	    $this->lugares= $this->bbdd->findOneCollection($queryForCoord, $queryForView);
+	    return $this->lugares;
+	}	
+
+	/**
+	 * [incluirCiudad description]
+	 * incluye una ciudad a los lugares donde el user ha estado
+	 * @return bool  		devuelve si ha podido insertar el lugar al user 
+	 */
+	public function incluirCiudad(){
+	    $queryForLugares = array('_id' => $this->id);
+	    $queryForChange = array('$addToSet'=> array('lugares' => $this->lugares));
+	    return $this->bbdd->actualiza($queryForLugares, $queryForChange);
+	}
 }
 ?>

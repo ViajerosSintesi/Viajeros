@@ -1,7 +1,16 @@
 <?php
 
-
 require_once("../clases/ReporteClass.php");
+
+/**
+ * reportarImg: llamada a la funcion
+ * imgId: id de la imagen
+ * userId: id del usuario que reporta
+ *
+ * añade un nuevo reporte, si existen mas de 10 reportes sobre un objeto
+ * el objeto se elimina
+ * devuelve true para confirmar
+ */
 if(filter_has_var(INPUT_GET, "reportarImg")){
       require_once("../clases/ImagenClass.php");
       
@@ -24,7 +33,15 @@ if(filter_has_var(INPUT_GET, "reportarImg")){
       }
        echo json_encode(1);
 }
-
+/**
+ * reportarImg: llamada a la funcion
+ * comentId: id de la imagen
+ * userId: id del usuario que reporta
+ *
+ * añade un nuevo reporte, si existen mas de 10 reportes sobre un objeto
+ * el objeto se elimina
+ * devuelve true para confirmar
+ */
 if(filter_has_var(INPUT_GET, "reportarComent")){
       require_once("../clases/CommentClass.php");
       $tipo = filter_input(INPUT_GET, "reportarComent");
