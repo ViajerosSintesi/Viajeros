@@ -2,6 +2,15 @@
 require_once("../clases/UserClass.php");
 session_start();
 
+/**
+ * 
+ * importantes:
+ * modperfil: llamada a la funcion
+ * userId: id del usuario
+ * 
+ * se recogen los datos enviados y actualiza los datos de la BBDD con los obtenidos
+ * 
+ * */
 if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
       
       $userId = $_SESSION["userId"];
@@ -37,7 +46,11 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
      
       echo json_encode(array( "notice"=>$returnUpd));
 }
-
+/**
+ * si recibe un fichero imagen, actualizará la foto de perfil
+ * del usuario guardado en sesion
+ * 
+ * */ 
 if(isset($_FILES["imgPerfil"])){
             $userId = $_SESSION["userId"];
             $user = new User();
