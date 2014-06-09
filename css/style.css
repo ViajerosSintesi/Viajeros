@@ -100,9 +100,9 @@ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; background
 #edit-info-lugar img{cursor: pointer;}
 #edit-info-lugar img:hover{box-shadow: -2px 2px 5px #999;}
 /* ============== fotos(pais, ciudad) ==================== */
-#caja-contenido #foto{width: 100%; text-align: center;}
-#caja-contenido #foto #boton-foto{width: 100%; text-align: right;}
-#caja-contenido #foto img{border: 1px solid #d3d6db;}
+#caja-contenido #fotos{width: 100%; text-align: center;}
+#caja-contenido #fotos #boton-foto{width: 100%; text-align: right;}
+#caja-contenido #fotos #foto img{width: 220px; border: 1px solid #d3d6db;}
 /* ======================================================= */
 #caja-contenido #mapa{width: 100%; min-height: 300px;}
 #caja-contenido #ciudades-pais{width: 100%;}
