@@ -11,7 +11,7 @@
 	 */
 	if(filter_has_var(INPUT_GET, "datosPerfil")){
 	      $user = new User();
-	      $user->setId(filter_input(INPUT_GET, "userId"));
+	      $user->setId(filter_input(INPUT_GET, "userId"), FILTER_SANITIZE_EMAIL);
 	      $user->cogeValoresSegunId();
 	      $userArray=array(
 	                  'nombre'=> $user->getUsername(),

@@ -194,14 +194,15 @@ class User{
 
             if (!file_exists($uploaddir)) 
                 mkdir($uploaddir, 0777, true);
-                
-            $uploadfile = $uploaddir.basename($fileImg['name']);
             
+            $antiguoPath=$this->bbdd->findOneCollection(array("_id"=>$this->id), array("imgPerfil"));
+            $uploadfile = $uploaddir.basename($fileImg['name']);
+            if(file_exists($antiguoPath['imgPerfil'])) unlink($antiguoPath['imgPerfil']);
             if (move_uploaded_file($fileImg['tmp_name'], $uploadfile)) {
                 #borra la antigua imagen
-                $antiguoPath=$this->bbdd->findOneCollection(array("_id"=>$this->id), array("imgPerfil"));
+             
                 
-                if(file_exists($antiguoPath['imgPerfil'])) unlink($antiguoPath['imgPerfil']);
+                
                 //echo file_exists($uploadfile);
                 $this->setImgPerfil($uploadfile);
                 $queryForId = array('_id' => $this->id);

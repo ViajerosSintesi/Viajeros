@@ -19,15 +19,15 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
       $user->cogeValoresSegunId();
       
       if(filter_has_var(INPUT_POST, "username")){
-            $username = filter_input(INPUT_POST, "username");
+            $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
             $user->setUsername($username);
       }
       if(filter_has_var(INPUT_POST, "apellidos")){
-            $apellidos = filter_input(INPUT_POST, "apellidos");
+            $apellidos = filter_input(INPUT_POST, "apellidos", FILTER_SANITIZE_STRING);
             $user->setApellidos($apellidos);
       }
       if(filter_has_var(INPUT_POST, "password")){
-            $password = filter_input(INPUT_POST, "password");
+            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING;
             $user->setPassword($password);
       }
       if(filter_has_var(INPUT_POST, "edad")){
@@ -35,7 +35,7 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
             $user->setUsername($edad);
       }
       if(filter_has_var(INPUT_POST, "email")){
-            $id = filter_input(INPUT_POST, "email");
+            $id = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
             $user->setId($id);
             $user->setActivado(0);
             $user->enviaEmailConfirm();

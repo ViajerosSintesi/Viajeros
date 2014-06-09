@@ -18,9 +18,9 @@
   * 
   */
  if(filter_has_var(INPUT_GET, "ciudad")&&filter_has_var(INPUT_GET, "verValorUsuario")){
-      $userId = filter_input(INPUT_GET, "userId");
-      $ciudad = filter_input(INPUT_GET, "ciudad");
-      $valorCiudad = new Valoracion("valoracionciudad");
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $ciudad = filter_input(INPUT_GET, "ciudad", FILTER_SANITIZE_STRING);
+      $valorCiudad = new Valoracion("valoracionciudad", FILTER_SANITIZE_STRING);
       $valorCiudad->setUser($userId);
       $valorCiudad->setObject($ciudad);
       $total = $valorCiudad->verValoracionDelUsuario();
@@ -38,9 +38,9 @@
   * no devuelve nada, refresca la pagina ciudad
   */
  if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "valorCiudad")){
-      $userId = filter_input(INPUT_GET, "userId");
-      $ciudad = filter_input(INPUT_GET, "ciudad");
-      $valor = filter_input(INPUT_GET, "valorCiudad");
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $ciudad = filter_input(INPUT_GET, "ciudad", FILTER_SANITIZE_STRING);
+      $valor = filter_input(INPUT_GET, "valorCiudad", FILTER_SANITIZE_STRING);
 
       $valorCiudad = new Valoracion("valoracionciudad");
       
@@ -65,7 +65,7 @@
   */
  if(filter_has_var(INPUT_GET, "ciudad")&&filter_has_var(INPUT_GET, "verValor")){
       
-      $ciudad = filter_input(INPUT_GET, "ciudad");
+      $ciudad = filter_input(INPUT_GET, "ciudad", FILTER_SANITIZE_STRING);
 
       $valorCiudad = new Valoracion("valoracionciudad");
       

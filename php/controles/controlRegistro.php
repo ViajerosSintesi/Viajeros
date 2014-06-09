@@ -55,7 +55,7 @@ if(filter_has_var(INPUT_POST, "user") && filter_has_var(INPUT_POST, "mail") && f
  * si existe, se activa
  */
 if(filter_has_var(INPUT_GET, "verificar")){
-	$codActivacion = filter_input(INPUT_GET, "verificar");
+	$codActivacion = filter_input(INPUT_GET, "verificar", FILTER_SANITIZE_STRING);
 
 	$email = base64_decode($codActivacion);
 	      //echo $email;

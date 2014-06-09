@@ -171,7 +171,7 @@ function cargarDatos(){
                     var divId = $(this).attr("name");
                    var borra = 0;
 
-                   if(userId == $(this).attr("data-user")) borra =1;
+                  if(userId == $(this).attr("data-user")) borra =1;
                   imgDialog(userId, divId, borra);
             });
             

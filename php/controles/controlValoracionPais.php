@@ -18,8 +18,8 @@
   * 
   */
  if(filter_has_var(INPUT_GET, "pais")&&filter_has_var(INPUT_GET, "verValorUsuario")){
-      $userId = filter_input(INPUT_GET, "userId");
-      $pais = filter_input(INPUT_GET, "pais");
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $pais = filter_input(INPUT_GET, "pais", FILTER_SANITIZE_STRING);
       $valorPais = new Valoracion("valoracionpais");
       $valorPais->setUser($userId);
       $valorPais->setObject($pais);
@@ -37,9 +37,9 @@
   * no devuelve nada, refresca la pagina pais
   */
  if(filter_has_var(INPUT_GET, "pais") && filter_has_var(INPUT_GET, "valorPais")){
-      $userId = filter_input(INPUT_GET, "userId");
-      $pais = filter_input(INPUT_GET, "pais");
-      $valor = filter_input(INPUT_GET, "valorPais");
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $pais = filter_input(INPUT_GET, "pais", FILTER_SANITIZE_STRING);
+      $valor = filter_input(INPUT_GET, "valorPais", FILTER_SANITIZE_STRING);
 
       $valorPais = new Valoracion("valoracionpais");
       
@@ -63,7 +63,7 @@
   */
  if(filter_has_var(INPUT_GET, "pais")&&filter_has_var(INPUT_GET, "verValor")){
       
-      $pais = filter_input(INPUT_GET, "pais");
+      $pais = filter_input(INPUT_GET, "pais", FILTER_SANITIZE_STRING);
 
       $valorPais = new Valoracion("valoracionpais");
       

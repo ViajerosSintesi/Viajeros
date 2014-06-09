@@ -17,8 +17,8 @@ session_start();
  
 if(isset($_FILES["picture"])){
 
-	$userId= filter_input(INPUT_POST, "userId");
-	$ciudadId= filter_input(INPUT_POST, "ciudadId");
+	$userId= filter_input(INPUT_POST, "userId", FILTER_SANITIZE_EMAIL);
+	$ciudadId= filter_input(INPUT_POST, "ciudadId", FILTER_SANITIZE_STRING);
 	$ciudadId = explode(" ", $ciudadId);
 
 	$ciudad = new Ciudad();
@@ -56,7 +56,7 @@ if(isset($_FILES["picture"])){
  *  
  */
 if(filter_has_var(INPUT_GET, "fotosForPerfil")){
-	$userId= filter_input(INPUT_GET, "userId");
+	$userId= filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
 
 	$imagen = new Imagen();
 
@@ -74,7 +74,7 @@ if(filter_has_var(INPUT_GET, "fotosForPerfil")){
  */
 if(filter_has_var(INPUT_GET, "borrarImagen")){
 
-	$imagenId = filter_input(INPUT_GET, "imagenId");
+	$imagenId = filter_input(INPUT_GET, "imagenId", FILTER_SANITIZE_STRING);
 
 	$imagen = new Imagen();
 
@@ -98,7 +98,7 @@ if(filter_has_var(INPUT_GET, "borrarImagen")){
  * devulve las rutas de la ciudad seleccionada
  */
 if(filter_has_var(INPUT_GET, "fotosForCiudad")){
-	$ciudadId= filter_input(INPUT_GET, "ciudadId");
+	$ciudadId= filter_input(INPUT_GET, "ciudadId", FILTER_SANITIZE_STRING);
 	$ciudad = new Ciudad();
 
 	$ciudad->setId($ciudadId);
@@ -120,7 +120,7 @@ if(filter_has_var(INPUT_GET, "fotosForCiudad")){
  */
 if(filter_has_var(INPUT_GET, "pais")){
 	require_once("../clases/PaisClass.php");
-	$paisId= filter_input(INPUT_GET, "pais");
+	$paisId= filter_input(INPUT_GET, "pais", FILTER_SANITIZE_STRING);
 	$pais = new Pais();
 	$pais->setId($paisId);
 	$ciudadesDelPais = $pais->listarCiudadesPais();

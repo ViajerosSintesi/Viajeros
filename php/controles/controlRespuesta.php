@@ -14,9 +14,9 @@ require_once("../clases/UserClass.php");
  * devuelve la valoracion del respuesta en formato JSON
  */
     if(filter_has_var(INPUT_GET, "pregunta") && filter_has_var(INPUT_GET, "verRespuestas")){
-    	$pregunta = filter_input(INPUT_GET, "pregunta");
-    	$userId = filter_input(INPUT_GET, "userId");
-    	$tipo = filter_input(INPUT_GET, "verRespuestas");
+    	$pregunta = filter_input(INPUT_GET, "pregunta", FILTER_SANITIZE_STRING);
+    	$userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+    	$tipo = filter_input(INPUT_GET, "verRespuestas", FILTER_SANITIZE_STRING);
     	$respuestaCiudad = new Respuesta("respuesta".$tipo);
     	
     	$respuestaCiudad->setIdSitio($pregunta);
@@ -64,10 +64,10 @@ require_once("../clases/UserClass.php");
  * devuelve si ha podido insertar true or false
  */
 if(filter_has_var(INPUT_GET,"pregunta")&& filter_has_var(INPUT_GET, "insertarRespuesta")){
-	$pregunta = filter_input(INPUT_GET, "pregunta");
-	$userId = filter_input(INPUT_GET, "userId");
-	$tipo = filter_input(INPUT_GET, "insertarRespuesta");
-	$respuestaText = filter_input(INPUT_GET, "respuesta");
+	$pregunta = filter_input(INPUT_GET, "pregunta", FILTER_SANITIZE_STRING);
+	$userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+	$tipo = filter_input(INPUT_GET, "insertarRespuesta", FILTER_SANITIZE_STRING);
+	$respuestaText = filter_input(INPUT_GET, "respuesta", FILTER_SANITIZE_STRING);
 	$data = filter_input(INPUT_GET, "fecha");
 	$respuesta= new Respuesta("respuesta".$tipo);
 	

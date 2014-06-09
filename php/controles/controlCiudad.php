@@ -13,7 +13,7 @@
 if(filter_has_var(INPUT_GET, "nombreCiudad")){
 	require_once("../clases/CiudadClass.php");
 	$ciudadC = new Ciudad();
-	$id = filter_input(INPUT_GET, "nombreCiudad");
+	$id = filter_input(INPUT_GET, "nombreCiudad", FILTER_SANITIZE_STRING);
 	$ciudadC->setId($id);
 	$ciudadC->cogeValoresSegunId();
 	$nombreCiudad = $ciudadC->getNombre();
@@ -31,7 +31,7 @@ if(filter_has_var(INPUT_GET, "nombreCiudad")){
  */
 if(filter_has_var(INPUT_GET, "nombreCiudadB") && filter_has_var(INPUT_GET, "buscar")){
 	require_once("../clases/ClassMongoClient.php");
-	$ciudad = filter_input(INPUT_GET, "nombreCiudadB");
+	$ciudad = filter_input(INPUT_GET, "nombreCiudadB", FILTER_SANITIZE_STRING);
 	$mongo = new DBMongo("ciudad");
 	$regexObj = new MongoRegex("/".$ciudad."/i"); 
 	$query = array("ciudad" => $regexObj);
@@ -61,9 +61,9 @@ if(filter_has_var(INPUT_GET, "nombreCiudadB") && filter_has_var(INPUT_GET, "busc
 if(filter_has_var(INPUT_GET,"incluirCiudadUser")){
 	require_once("../clases/UserClass.php");
       require_once("../clases/CiudadClass.php");
-	$ciudad = filter_input(INPUT_GET,"incluirCiudadUser");
-	$userId = filter_input(INPUT_GET,"user");
-      $ciudadId = filter_input(INPUT_GET,"ciudadId");
+	$ciudad = filter_input(INPUT_GET,"incluirCiudadUser", FILTER_SANITIZE_STRING);
+	$userId = filter_input(INPUT_GET,"user", FILTER_SANITIZE_EMAIL);
+      $ciudadId = filter_input(INPUT_GET,"ciudadId", FILTER_SANITIZE_STRING);
 	session_start();
 	if(isset($_SESSION["userId"])){
 		if($_SESSION["userId"] == $userId){
@@ -94,8 +94,8 @@ if(filter_has_var(INPUT_GET,"incluirCiudadUser")){
 if(filter_has_var(INPUT_GET,"saberCiudadUser")){
 	require_once("../clases/UserClass.php");
      
-	$ciudad = filter_input(INPUT_GET,"saberCiudadUser");
-	$userId = filter_input(INPUT_GET,"user");
+	$ciudad = filter_input(INPUT_GET,"saberCiudadUser", FILTER_SANITIZE_STRING);
+	$userId = filter_input(INPUT_GET,"user", FILTER_SANITIZE_EMAIL);
 
 	$user = new User();
 	$user->setId($userId);

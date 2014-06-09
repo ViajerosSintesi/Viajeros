@@ -14,10 +14,10 @@ require_once("../clases/ReporteClass.php");
 if(filter_has_var(INPUT_GET, "reportarImg")){
       require_once("../clases/ImagenClass.php");
       
-      $report = new Report("reporteImg");
+      $report = new Report("reporteImg", FILTER_SANITIZE_STRING);
       
-      $imgId = filter_input(INPUT_GET, "imgId");
-      $userId = filter_input(INPUT_GET, "userId");
+      $imgId = filter_input(INPUT_GET, "imgId", FILTER_SANITIZE_STRING);
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
       
       $report->setUser($userId);
       $report->setObjectToReport($imgId);
@@ -44,11 +44,11 @@ if(filter_has_var(INPUT_GET, "reportarImg")){
  */
 if(filter_has_var(INPUT_GET, "reportarComent")){
       require_once("../clases/CommentClass.php");
-      $tipo = filter_input(INPUT_GET, "reportarComent");
+      $tipo = filter_input(INPUT_GET, "reportarComent", FILTER_SANITIZE_STRING);
       $report = new Report("reporteComent");
       
-      $comentId = filter_input(INPUT_GET, "comentId");
-      $userId = filter_input(INPUT_GET, "userId");
+      $comentId = filter_input(INPUT_GET, "comentId", FILTER_SANITIZE_STRING);
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
       
       $report->setUser($userId);
       $report->setObjectToReport($comentId);

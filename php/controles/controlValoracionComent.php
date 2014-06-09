@@ -18,9 +18,9 @@
 **/
  
 if(filter_has_var(INPUT_GET, "coment")&&filter_has_var(INPUT_GET, "verValorUsuario")){
-      $userId = filter_input(INPUT_GET, "userId");
-      $coment = filter_input(INPUT_GET, "coment");
-      $valorComent = new Valoracion("valoracioncoment");
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $coment = filter_input(INPUT_GET, "coment", FILTER_SANITIZE_STRING);
+      $valorComent = new Valoracion("valoracioncoment", FILTER_SANITIZE_STRING);
       $valorComent->setUser($userId);
       $valorComent->setObject($coment);
       $total = $valorComent->verValoracionDelUsuario();
@@ -37,9 +37,9 @@ if(filter_has_var(INPUT_GET, "coment")&&filter_has_var(INPUT_GET, "verValorUsuar
 * devuelve si lo ha podido realizar
 **/
  if(filter_has_var(INPUT_GET, "coment") && filter_has_var(INPUT_GET, "valorComent")){
-      $userId = filter_input(INPUT_GET, "userId");
-      $coment = filter_input(INPUT_GET, "coment");
-      $valor = filter_input(INPUT_GET, "valorComent");
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $coment = filter_input(INPUT_GET, "coment", FILTER_SANITIZE_STRING);
+      $valor = filter_input(INPUT_GET, "valorComent", FILTER_SANITIZE_STRING);
 
       $valorComent = new Valoracion("valoracioncoment");
       
@@ -60,7 +60,7 @@ if(filter_has_var(INPUT_GET, "coment")&&filter_has_var(INPUT_GET, "verValorUsuar
 **/
  if(filter_has_var(INPUT_GET, "coment")&&filter_has_var(INPUT_GET, "verValor")){
       
-      $coment = filter_input(INPUT_GET, "coment");
+      $coment = filter_input(INPUT_GET, "coment", FILTER_SANITIZE_STRING);
 
       $valorComent = new Valoracion("valoracioncoment");
       

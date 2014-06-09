@@ -17,8 +17,8 @@
 * devuelve la valoracion que le ha puesto el usuario a la pregunta
 **/
 if(filter_has_var(INPUT_GET, "pregunta")&&filter_has_var(INPUT_GET, "verValorUsuario")){
-      $userId = filter_input(INPUT_GET, "userId");
-      $pregunta = filter_input(INPUT_GET, "pregunta");
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $pregunta = filter_input(INPUT_GET, "pregunta", FILTER_SANITIZE_STRING);
       $valorPregunta = new Valoracion("valoracionpregunta");
       $valorPregunta->setUser($userId);
       $valorPregunta->setObject($pregunta);
@@ -35,9 +35,9 @@ if(filter_has_var(INPUT_GET, "pregunta")&&filter_has_var(INPUT_GET, "verValorUsu
 * devuelve si lo ha podido realizar
 **/
  if(filter_has_var(INPUT_GET, "pregunta") && filter_has_var(INPUT_GET, "valorPregunta")){
-      $userId = filter_input(INPUT_GET, "userId");
-      $pregunta = filter_input(INPUT_GET, "pregunta");
-      $valor = filter_input(INPUT_GET, "valorPregunta");
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $pregunta = filter_input(INPUT_GET, "pregunta", FILTER_SANITIZE_STRING);
+      $valor = filter_input(INPUT_GET, "valorPregunta", FILTER_SANITIZE_STRING);
 
       $valorPregunta = new Valoracion("valoracionpregunta");
       
@@ -57,7 +57,7 @@ if(filter_has_var(INPUT_GET, "pregunta")&&filter_has_var(INPUT_GET, "verValorUsu
 **/
  if(filter_has_var(INPUT_GET, "pregunta")&&filter_has_var(INPUT_GET, "verValor")){
       
-      $pregunta = filter_input(INPUT_GET, "pregunta");
+      $pregunta = filter_input(INPUT_GET, "pregunta", FILTER_SANITIZE_STRING);
 
       $valorPregunta = new Valoracion("valoracionpregunta");
       

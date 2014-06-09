@@ -15,9 +15,9 @@ require_once("../clases/UserClass.php");
  * devuelve la valoracion del comentario en formato JSON
  */
 if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "verComments")){
-  $ciudad = filter_input(INPUT_GET, "ciudad");
-  $userId = filter_input(INPUT_GET, "userId");
-  $tipo = filter_input(INPUT_GET, "verComments");
+  $ciudad = filter_input(INPUT_GET, "ciudad",FILTER_SANITIZE_STRING);
+  $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+  $tipo = filter_input(INPUT_GET, "verComments", FILTER_SANITIZE_STRING);
   $commentCiudad = new Comment("coment".$tipo);
   
   $commentCiudad->setIdSitio($ciudad);
@@ -66,10 +66,10 @@ if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "verComments
  */
 if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarComent")){
       
-      $ciudad = filter_input(INPUT_GET, "ciudad");
-      $userId = filter_input(INPUT_GET, "userId");
-      $tipo = filter_input(INPUT_GET, "insertarComent");
-      $comentText = filter_input(INPUT_GET, "comentario");
+      $ciudad = filter_input(INPUT_GET, "ciudad", FILTER_SANITIZE_STRING);
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $tipo = filter_input(INPUT_GET, "insertarComent", FILTER_SANITIZE_STRING);
+      $comentText = filter_input(INPUT_GET, "comentario", FILTER_SANITIZE_STRING);
       $data = filter_input(INPUT_GET, "fecha");
       $coment= new Comment("coment".$tipo);
       

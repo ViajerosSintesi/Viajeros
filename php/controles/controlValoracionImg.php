@@ -20,9 +20,9 @@
 * devuelve en formato JSONsi lo ha conseguido
 **/
   if(filter_has_var(INPUT_GET, "imagenId") && filter_has_var(INPUT_GET, "valorimg")){
-      $userId = filter_input(INPUT_GET, "userId");
-      $imagenId = filter_input(INPUT_GET, "imagenId");
-      $valor = filter_input(INPUT_GET, "valorimg");
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $imagenId = filter_input(INPUT_GET, "imagenId", FILTER_SANITIZE_STRING);
+      $valor = filter_input(INPUT_GET, "valorimg", FILTER_SANITIZE_STRING);
 
       $valorimg = new Valoracion("valoracionimg");
       
@@ -45,9 +45,9 @@
 **/
  if(filter_has_var(INPUT_GET, "img")&&filter_has_var(INPUT_GET, "verValor")){
       
-      $imagenId = filter_input(INPUT_GET, "img");
-      $userId = filter_input(INPUT_GET, "userId");
-      $valorImg = new Valoracion("valoracionimg");
+      $imagenId = filter_input(INPUT_GET, "img", FILTER_SANITIZE_STRING);
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $valorImg = new Valoracion("valoracionimg", FILTER_SANITIZE_STRING);
       
       $valorImg->setObject($imagenId);
       $valoraciones = $valorImg->verValoraciones();
