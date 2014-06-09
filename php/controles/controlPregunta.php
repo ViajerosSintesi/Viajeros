@@ -92,6 +92,7 @@ if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarPregu
 			}else{
 				$expire=time()+60*4;
 				setcookie("pregunta", 0, $expire);
+				$inserta = 1;
 			}
 		}
 	}

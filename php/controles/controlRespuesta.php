@@ -90,6 +90,7 @@ if(filter_has_var(INPUT_GET,"pregunta")&& filter_has_var(INPUT_GET, "insertarRes
 			}else{
 				$expire=time()+60*4;
 				setcookie("respuesta", 0, $expire);
+				$inserta = 1;
 			}
 		}
 	}

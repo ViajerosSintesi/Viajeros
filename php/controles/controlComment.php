@@ -95,6 +95,7 @@ if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarComen
       		}else{
       			$expire=time()+60*4;
       			setcookie("coment", 0, $expire);
+      			$inserta = 1;
       		}
       	}
       }
