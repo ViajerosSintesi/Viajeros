@@ -105,9 +105,10 @@ class Correo {
             $mail->SMTPAuth = true;
             $mail->Port = 25;
             $mail->Host = 'smtp.sendgrid.net';
-            $mail->Username = $_ENV["SENDGRID_USERNAME"];
-            $mail->Password = $_ENV["SENDGRID_PASSWORD"];
-            
+            //$mail->Username = $_ENV["SENDGRID_USERNAME"];
+            //$mail->Password = $_ENV["SENDGRID_PASSWORD"];
+            $mail->Username = "app25040717@heroku.com";
+            $mail->Password = "xa8qk9t1";
             $mail->AddReplyTo($this->headersFrom, "Paradise");
             $mail->SetFrom($this->headersFrom, "Paradise");    
             $mail->AddAddress($this->destinatario, "Dermatologico del Norte");
