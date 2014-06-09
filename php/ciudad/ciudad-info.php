@@ -14,8 +14,8 @@ if(isset($_GET['ciudad'])){
 	$session=1;
 }
 ?>
-<script src="js/jquery-1.10.2.js"></script>
-<script src="js/jquery-ui-1.10.4.custom.js"></script>
+<!--<script src="js/jquery-1.10.2.js"></script>
+<script src="js/jquery-ui-1.10.4.custom.js"></script>-->
 <script type="text/javascript">
 $("#edit-info-lugar").click(function(){
 	var ciudad= "<?php echo $_GET['ciudad']; ?>";

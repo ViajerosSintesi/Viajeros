@@ -36,6 +36,7 @@ if(@$_POST['edit-info']){
 	<script src="js/valoracion.js"></script>
 	<script src="js/cargaScript.js"></script>
 	<script src="js/comun.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script type="text/javascript">
 	/**
 	* Codigo javascript utilizando la libreria Jquery
