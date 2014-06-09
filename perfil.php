@@ -26,6 +26,7 @@ function comproveEmail(){
 include("php/funciones.php");
 $coor = lugaresUsuario($user);
 $coor=json_encode($coor["lugares"]);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -174,6 +175,7 @@ $coor=json_encode($coor["lugares"]);
 			var map = new google.maps.Map(document.getElementById('map-div'), mapOptions);
 
 			for (var i = 0; i < coor.length; i++) {
+			      
 				var c1 = coor[i].coor.split(",",2);
 				var contenido = coor[i].direc;
 				var myLatlng2 = new google.maps.LatLng(c1[0], c1[1]);

@@ -75,8 +75,8 @@ class DBMongo{
 	 * @return bool      	Si ha podido insertarlo
 	 */
 	public function insertar($doc){
-		
-		return $this->colectionNow->insert($doc);
+		$retorn = $this->colectionNow->insert($doc);
+		return $retorn["ok"];
 	}
     /**
      * [findCollection description]
@@ -131,7 +131,7 @@ class DBMongo{
 		if($opt=="") $retorn = $this->colectionNow->remove($query);
 		else $retorn = $this->colectionNow->remove($query, $opt);
 		
-		return $retorn;
+		return $retorn["ok"];
 	}
 	/**
 	 * [actualiza description]
@@ -149,7 +149,7 @@ class DBMongo{
 	      $retorn = 0;
 	      if($opt=="+") $retorn = $this->colectionNow->update($query, $newData);
 		else $retorn = $this->colectionNow->update($query, $newData, $opt);
-	      return $retorn;
+	      return $retorn["ok"];
 	}
 	/**
 	 * [getCollection description]

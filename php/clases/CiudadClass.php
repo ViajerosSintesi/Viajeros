@@ -74,8 +74,8 @@ class Ciudad{
 		$this->ciudadInArray = array(
       			'_id' => $this->id,
       			'ciudad' => $this->nombre,
-      			'coordenadax' => $this->coordenadax,
-      			'coordenaday' => $this->coordenaday,
+      			'coordenadas' => $this->coordenadas,
+      			
       			'pais' =>  $this->pais
 			);
 	}
@@ -94,7 +94,7 @@ class Ciudad{
 			$user = $this->bbdd->findOneCollection($queryForId);
 			
 			$this->nombre = $user['ciudad'];
-		
+		      $this->coordenadas = $user["coordenadas"];
 			$this->pais = $user['pais'];
 		}
 	}

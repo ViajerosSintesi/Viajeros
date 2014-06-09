@@ -60,15 +60,21 @@ if(filter_has_var(INPUT_GET, "nombreCiudadB") && filter_has_var(INPUT_GET, "busc
  */
 if(filter_has_var(INPUT_GET,"incluirCiudadUser")){
 	require_once("../clases/UserClass.php");
-
+      require_once("../clases/CiudadClass.php");
 	$ciudad = filter_input(INPUT_GET,"incluirCiudadUser");
 	$userId = filter_input(INPUT_GET,"user");
+      $ciudadId = filter_input(INPUT_GET,"ciudadId");
 	session_start();
 	if(isset($_SESSION["userId"])){
 		if($_SESSION["userId"] == $userId){
+		      $ciudadC = new Ciudad();
+	            $ciudadC->setId($ciudadId);
+	            $ciudadC->cogeValoresSegunId();
+	            $coor = $ciudadC->getCoordenadas();
+	            $param = array('coor'=>$coor, 'direc'=>$ciudad);
 			$user = new User();
 			$user->setId($userId);
-			$user->setLugares($ciudad);
+			$user->setLugares($param);
 
 			echo json_encode($user->incluirCiudad());
 		}else echo json_encode(0);
@@ -87,16 +93,20 @@ if(filter_has_var(INPUT_GET,"incluirCiudadUser")){
  */
 if(filter_has_var(INPUT_GET,"saberCiudadUser")){
 	require_once("../clases/UserClass.php");
-
+     
 	$ciudad = filter_input(INPUT_GET,"saberCiudadUser");
 	$userId = filter_input(INPUT_GET,"user");
+
 	$user = new User();
 	$user->setId($userId);
 	$user->cogeValoresSegunId();
-
+      $retorn= 0;
 	$lugares = $user->getLugares();
-
-	echo json_encode(in_array($ciudad, $lugares));
+      for($i=0;$i<count($lugares); $i++)
+            if($retorn = in_array($ciudad, $lugares[$i]))
+                  break;
+      
+	echo json_encode($retorn);
 }
 
 

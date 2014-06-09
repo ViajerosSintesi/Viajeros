@@ -12,37 +12,6 @@ $(function(){
 		alert("envio comentario");
 		return false;
 	});
-	/*$("#areatexto").keypress(function(e) {
-		if (e.keyCode == 13 && !e.shiftKey) {
-			e.preventDefault();
-			alert('sending comment...');
-		}
-	});
-	
-	
-	$("#areatexto-ciudad").keypress(function(e) {
-		if (e.keyCode == 13 && !e.shiftKey) {
-			e.preventDefault();
-			var comentario = $("#areatexto").val();
-			var idUser = $("#idUsert").val();
-			var idSitio = $("#idSitio").val();
-			var tipo = $("#tipo").val();
-			
-			var dataEnvio = {
-			   "comentario":comentario, 
-			   "userId": idUser,
-			   "ciudad": idSitio,
-			   "insertarComent": tipo
-			   };
-			$.getJSON("php/controles/controlComment.php", dataEnvio, function(data){
-			      console.log(data);
-			});
-		}
-	});
-	*/
-	//hay que mirarselo que no funciona
-	//$("#areatexto").elastic();
-	//$("#areatexto-ciudad").elastic();
 
 	
 });
@@ -246,9 +215,9 @@ function cargarPreguntas(idSitio, idUser, tipo){
       			   "fecha": fecha
       			   };
       			$.getJSON("php/controles/controlPregunta.php", dataEnvio, function(data){
-      			      if(data){
-      			            cargarPreguntas(idSitio, idUser, tipo);
-      			      }
+      			      
+      			      cargarPreguntas(idSitio, idUser, tipo);
+      			     
       			});
       		}
             });
@@ -370,9 +339,9 @@ function cargarRespuestas(idSitio, idUser, tipo){
       			   "fecha": fecha
       			   };
       			$.getJSON("php/controles/controlRespuesta.php", dataEnvio, function(data){
-      			      if(data){
-      			            cargarRespuestas(idSitio, idUser, tipo);
-      			      }
+      			      
+      			      cargarRespuestas(idSitio, idUser, tipo);
+      			      
       			});
       		}
             });

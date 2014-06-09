@@ -83,16 +83,16 @@ if(@$_POST['edit-info']){
 		
 		valoraciones();
 		$("#nombreCiudad").click(function(){
-	            heEstadoAqui("<?php echo $userId;?>", "<?php echo $nombreCiudad['ciudad'];?>");
+	            heEstadoAqui("<?php echo $userId;?>", "<?php echo $nombreCiudad['ciudad'];?>","<?php echo $ciudad;?>");
 		});
 		
-		saberSiHeEstadoAqui("<?php echo $userId;?>", "<?php echo $nombreCiudad['ciudad'];?>");
+		saberSiHeEstadoAqui("<?php echo $userId;?>", "<?php echo $nombreCiudad['ciudad'];?>" );
 		
 	});
 
-	function heEstadoAqui(user, ciudad){
+	function heEstadoAqui(user, ciudad, ciudadId){
 		if(confirm("Has estado en "+ciudad+"?")){
-			var dataForName = {"incluirCiudadUser": ciudad, "user": user};
+			var dataForName = {"incluirCiudadUser": ciudad, "user": user, "ciudadId": ciudadId};
 			$.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
 				if(data == true){
 					$("#nombreCiudad").removeClass("nohasEstado");
