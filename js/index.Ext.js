@@ -101,7 +101,7 @@ $(document).ready(function(){
                         document.getElementById("captchaDiv").innerHTML=" <img src='php/controles/creaCaptcha.php?"+(new Date()).getTime()+"'/><input type='text' id='code'/>";
                    
                   else if(not.notice ==4)
-                        location.href="ciudad.php";
+                        location.href="admin-panel.php";
                    
               });
           }

@@ -49,13 +49,13 @@ input[type=submit]{padding: 5px 4px; color: #fff; font-size: 12px;
 #perfil-right table input{width: 180px;}
 
 #perfil-galeria{width: 100%; margin-bottom: 31px; text-align: center; background-color: #fff; border: 1px solid #d3d6db;}
-#perfil-galeria img{width: 22%; min-width: 206px; border: 1px solid #d3d6db;}
 #perfil-galeria #titulo{width: 100%; text-align: left; margin-bottom: 15px; background:url(../img/pattern.png); border-bottom: 1px solid #d3d6db;}
 #titulo{height: 81px;}
 #titulo h1{padding-left: 10px;}
 #titulo #perfil-subir-foto{position: relative; left: 100%; margin-left: -102px; top: -53px;}
 #titulo #perfil-subir-foto input{padding: 5px 10px; background-color: #069; color: #fff; font-size: 15px;}
 #perfil-galeria #fotos{width: 100%; margin-bottom: 15px;}
+#perfil-galeria #fotos img{width: 22%; min-width: 206px; border: 1px solid #d3d6db;}
 
 #contenedor #perfil-lugares{width: 100%; margin-bottom: 31px; background-color: #fff; border: 1px solid #d3d6db; text-align: center;}
 #perfil-lugares #titulo{width: 100%; text-align: left; margin-bottom: 15px; background:url(../img/pattern.png); border-bottom: 1px solid #d3d6db;}
@@ -141,13 +141,17 @@ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; background
 
 #footer{width: 80%; margin: 0 auto; text-align: center; border-top: 1px solid #d3d6db; padding: 10px 0;}
 
-
-
-
-
-
 .nohasEstado:hover{
       cursor:pointer;
       text-shadow: 5px 3px 2px #fff;
       color: #000;
 }
+
+/* =================== admin panel ===================== */
+#contenedor .nuevoLugar{width: 100%; margin-bottom: 31px; background-color: #fff; border: 1px solid #d3d6db;}
+.nuevoLugar #titulo{width: 100%; text-align: left; margin-bottom: 15px; background:url(../img/pattern.png); border-bottom: 1px solid #d3d6db;}
+.nuevoLugar table{width: 80%; margin-bottom: 15px; margin: 0 auto; text-align: left;}
+.nuevoLugar table input{width: 100%;}
+.nuevoLugar table textarea{width: 100%;}
+.nuevoLugar table select{width: 100%; padding: 4px 5px;}
+.nuevoLugar table .map_canvas{width: 100%; height: 300px;}

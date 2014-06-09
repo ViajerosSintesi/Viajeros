@@ -10,51 +10,85 @@ function conectar($co="pais"){
 	$collection = $mongo->selectCollection($co);
 	return $collection;
 }
-
-// añadir un registro
-/*$document = array( "pais" => "España", "info" => "España, también denominado Reino de España, es un país soberano, miembro de la Unión Europea, constituido en Estado social y democrático de derecho y cuya forma de gobierno es la monarquía democrática parlamentaria. Su territorio está organizado en 17 comunidades autónomas y dos ciudades autónomas. Su capital es la villa de Madrid.
-Es un país transcontinental que se encuentra situado tanto en Europa Occidental como en el norte de África. En Europa ocupa la mayor parte de la península ibérica, conocida como España peninsular, y el archipiélago de las islas Baleares (en el mar Mediterráneo occidental); en África se hallan las ciudades de Ceuta (en la península Tingitana) y Melilla (en el cabo de Tres Forcas), las islas Canarias (en el océano Atlántico nororiental), las islas Chafarinas (mar Mediterráneo), el peñón de Vélez de la Gomera (mar Mediterráneo), las islas Alhucemas (golfo de las islas Alhucemas), y la isla de Alborán (mar de Alborán). El municipio de Llivia, en los Pirineos, constituye un enclave rodeado totalmente por territorio francés. Completa el conjunto de territorios una serie de islas e islotes frente a las propias costas peninsulares.
-Tiene una extensión de 504 645 km², siendo el cuarto país más extenso del continente, tras Rusia, Ucrania y Francia. Con una altitud media de 650 metros es uno de los países más montañosos de Europa. Su población es de 47 190 493 habitantes, según datos del padrón municipal de 2011. El territorio peninsular comparte fronteras terrestres con Francia y con el principado de Andorra al norte, con Portugal al oeste y con el territorio británico de Gibraltar al sur. En sus territorios africanos, comparte fronteras terrestres y marítimas con Marruecos. Comparte con Francia la soberanía sobre la isla de los Faisanes en la desembocadura del río Bidasoa y cinco facerías pirenaicas.",
-"coordenadas"=> "40.2085,-3.713,6" );
-$collection->insert($document);*/
-
-// encontrar todo lo que haya en la colección
-//$cursor = $collection->find();
-
-// recorrer el resultado
-/*foreach ($cursor as $document) {
-    echo $document["pais"] . "\n";
-    echo $document["coordenadas"];
-}*/
+/**
+* funcion para insertar en mongodb un nuevo pais
+* @return no retorna nada.
+* @param $pais, $info, $coordenadas, contienen los datos necesarios para realizar la insercion.
+*/
+function insertarPais($pais, $info, $coordenadas){
+	$collection = conectar();
+	$parametros = array('pais'=>$pais, 'info'=>$info, 'coordenadas'=>$coordenadas);
+	$cursor = $collection->insert($parametros);
+}
+/**
+* funcion para insertar en mongodb una nueva ciudad.
+* @return no retorna nada.
+* @param $ciudad, $info, $coordenadas,$pertenece, contiene los datos para la insercion en la coleccion de ciudad.
+*/
+function insertarCiudad($ciudad, $info, $coordenadas, $pertenece){
+	$collection = conectar("ciudad");
+	$parametros = array('ciudad'=>$ciudad, 'info'=>$info, 'coordenadas'=>$coordenadas, 'idPais'=>new MongoId($pertenece));
+	$cursor = $collection->insert($parametros);
+}
+/** 
+* funcion que conecta a mongo y devuelve la informacion de la colleccion pais
+* @return devuelve un array con la informacion de la colleccion.
+* @param no parametros.
+*/
 function listPaises(){
 	$collection = conectar();
 	$cursor = $collection->find()->sort(array('pais'=>1));
 	return $cursor;
 }
+/** 
+* funcion que conecta a mongo y devuelve una unica fila de informacion de la colleccion pais
+* @return devuelve un array con la informacion.
+* @param $pais que contiene el identificador.
+*/
 function obtenerInfoPais($pais){
 	$collection = conectar();
 	$parametro = array('_id'=>new MongoId($pais));
 	$cursor = $collection->findOne($parametro);
 	return $cursor;
 }
+/** 
+* funcion que conecta a mongo y devuelve una unica fila de informacion de la colleccion ciudad
+* @return devuelve un array con la informacion de la colleccion.
+* @param $ciudad que contiene el identificador.
+*/
 function obtenerInfoCiudad($ciudad){
 	$collection = conectar("ciudad");
 	$parametro = array('_id'=>new MongoId($ciudad));
 	$cursor = $collection->findOne($parametro);
 	return $cursor;
 }
+/** 
+* funcion que conecta a mongo y devuelve una unica fila de informacion de la colleccion pais
+* @return devuelve el valor del campo coordenadas.
+* @param $pais que contiene el identificador.
+*/
 function obtenerCoordenadasPais($pais){
 	$collection = conectar();
 	$parametro = array('_id'=>new MongoId($pais));
 	$cursor = $collection->findOne($parametro);
 	return $cursor["coordenadas"];
 }
+/** 
+* funcion que conecta a mongo y devuelve una unica fila de informacion de la colleccion ciudad
+* @return devuelve el valor del campo coordenadas.
+* @param $ciudad que contiene el identificador.
+*/
 function obtenerCoordenadasCiudad($ciudad){
 	$collection = conectar("ciudad");
 	$parametro = array('_id'=>new MongoId($ciudad));
 	$cursor = $collection->findOne($parametro);
 	return $cursor["coordenadas"];
 }
+/** 
+* funcion que conecta a mongo y realiza una modificacion a un documento.
+* @return no devuelve nada.
+* @param $pais, $info, que contiene el identificador y la informacion.
+*/
 function modificarInfoPais($pais, $info){
 	$collection = conectar();
 	$infor = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $info);
@@ -63,6 +97,11 @@ function modificarInfoPais($pais, $info){
 	$collection->update($parametro, $variable);
 
 }
+/** 
+* funcion que conecta a mongo y realiza una modificacion a un documento.
+* @return no devuelve nada.
+* @param $ciudad, $info, que contiene el identificador y la informacion.
+*/
 function modificarInfoCiudad($info, $ciudad){
 	$collection = conectar("ciudad");
 	$infor = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $info);
@@ -82,18 +121,34 @@ function cargarComentCiudad($ciudad){
 	$cursor =$collection->find($parametro);
 	return $cursor;
 }*/
+/** 
+* funcion que conecta a mongo devuelve un documento con informacion de una usuario.
+* @return devuelve un documento.
+* @param $valor.
+*/
 function datosUnUsuario($valor){
 	$collection = conectar("usuarios");
 	$parametro = array("_id"=>$valor);
 	$cursor = $collection->findOne($parametro);
 	return $cursor;
 }
+/** 
+* funcion que conecta a mongo y realiza un consulta de todas las ciudades que pertenecen a un pais.
+* @return $cursor, que devuelve toda la información en arrays.
+* @param $id, que contiene el identificador.
+*/
 function paisCiudades($id){
 	$collection = conectar("ciudad");
 	$parametro = array("idPais"=>$id);
 	$cursor = $collection->find($parametro)->sort(array('ciudad'=>1));
 	return $cursor;
 }
+/** 
+* funcion que conecta a mongo y realiza una consulta a la collecion usuarios
+* sobre un campo especifico que es lugares.
+* @return $cursor, que contiene las coordenadas de un usuario.
+* @param $usu que contiene el identificador y la informacion.
+*/
 function lugaresUsuario($usu){
 	$collection = conectar("usuarios");
 	$par = array("_id"=>$usu);
@@ -101,6 +156,11 @@ function lugaresUsuario($usu){
 	$cursor = $collection->findOne($par,$parametro);
 	return $cursor;
 }
+/** 
+* funcion que conecta a mongo y realiza una insercion en la colleccion usuarios.
+* @return no devuelve nada.
+* @param $usu, $coor, $infolugar que contiene el identificador, las coordenadas y la informacion.
+*/
 function guardarUbicacion($usu, $coor, $infoLugar){
 	$collection = conectar("usuarios");
 	$parametro = array("_id"=>$usu);

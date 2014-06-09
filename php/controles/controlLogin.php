@@ -79,6 +79,6 @@ if(filter_has_var(INPUT_POST, "mail") && filter_has_var(INPUT_POST, "pass") && f
 if(filter_has_var(INPUT_POST, "destroySession")){
 	session_destroy();
             //cambiar al nuevo servidor!
-	header("location:http://viajeros.herokuapp.com");
+	header("location:/");
 }
 ?>
