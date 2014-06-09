@@ -27,7 +27,7 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
             $user->setApellidos($apellidos);
       }
       if(filter_has_var(INPUT_POST, "password")){
-            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING;
+            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
             $user->setPassword($password);
       }
       if(filter_has_var(INPUT_POST, "edad")){
