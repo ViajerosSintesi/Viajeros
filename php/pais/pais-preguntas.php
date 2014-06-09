@@ -1,4 +1,13 @@
 <?php
+/**
+*
+* pais-preguntas.php
+* En este document se muestra todas las preguntas que realizan los usuarios sobre algún país
+* tambien se muetran las respuestas a dichas preguntas, además de realizar nuevas preguntas y
+* de responder a cualquier pregunta.
+* @version 1.0
+*
+*/
 session_start();
 include("../funciones.php");
 $pais = "";

@@ -1,4 +1,13 @@
 <?php
+/**
+*
+* ciudad.php
+* Este documento php es el perfil de una ciudad, en este archivo se cargaran
+* toda la información relativa a la ciudad, información general, fotos, comentarios, preguntas
+* ubicación.
+* @version 1.0
+*
+*/
 include("php/funciones.php");
 session_start();
 $ciudad = "";
@@ -11,7 +20,6 @@ if(!isset($_SESSION['userId'])){
       	$ciudad = $_GET['ciudad'];
 	      $userId = $_SESSION['userId'];
 	      //$ciudadC = new Ciudad();
-	    
       }
 }
 
@@ -36,29 +44,32 @@ if(@$_POST['edit-info']){
 	<script src="js/cargaScript.js"></script>
 	<script type="text/javascript">
       
-$(function(){
-            
+	$(function(){
+		// carga la informacion.
 		$("#informacion").click(function(){
 			//infoCiudad();
 			$("#contenido").load("php/ciudad/ciudad-info.php?ciudad=<?php echo $ciudad;?>");
 			return false;
 		});
-		
+		// carga las fotos
 		$("#fotos").click(function(){
 			//fotoCiudad();
 			$("#contenido").load("php/ciudad/ciudad-foto.php?ciudad=<?php echo $ciudad;?>");
 			return false;
 		});
+		// carga los comentarios
 		$("#comentarios").click(function(){
 			//comentariosPais();
 			$("#contenido").load("php/ciudad/ciudad-comentarios.php?ciudad=<?php echo $ciudad;?>");
 			return false;
 		});
+		// Carga las preguntas
 		$("#preguntas").click(function(){
 			//comentariosPais();
 			$("#contenido").load("php/ciudad/ciudad-preguntas.php?ciudad=<?php echo $ciudad;?>");
 			return false;
 		});
+		// Carga la ubicacion de la ciudad
 		$("#ubicacion").click(function(){
 			//ubicacionPais();
 			document.getElementById("contenido").innerHTML="<div id='mapa'></div>";
@@ -77,39 +88,41 @@ $(function(){
 		
 		saberSiHeEstadoAqui("<?php echo $userId;?>", "<?php echo $nombreCiudad['ciudad'];?>");
 		
-});
+	});
 
-      function heEstadoAqui(user, ciudad){
-            if(confirm("Has estado en "+ciudad+"?")){
-                  var dataForName = {"incluirCiudadUser": ciudad, "user": user};
-      		$.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
-      			if(data == true){
-      			      $("#nombreCiudad").removeClass("nohasEstado");
-			            $("#nombreCiudad").addClass("hasEstado");
-			            $("#nombreCiudad").off("click");
-			      }
-      		});
-            }
-      }
-      function saberSiHeEstadoAqui(user, ciudad){
-            var dataForName = {"saberCiudadUser": ciudad, "user": user};
+	function heEstadoAqui(user, ciudad){
+		if(confirm("Has estado en "+ciudad+"?")){
+			var dataForName = {"incluirCiudadUser": ciudad, "user": user};
+			$.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
+				if(data == true){
+					$("#nombreCiudad").removeClass("nohasEstado");
+					$("#nombreCiudad").addClass("hasEstado");
+					$("#nombreCiudad").off("click");
+				}
+			});
+		}
+	}
+	function saberSiHeEstadoAqui(user, ciudad){
+		var dataForName = {"saberCiudadUser": ciudad, "user": user};
 		$.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
 			if(data == true){
-			      $("#nombreCiudad").removeClass("nohasEstado");
-			      $("#nombreCiudad").addClass("hasEstado");
-			     $("#nombreCiudad").off("click");
+				$("#nombreCiudad").removeClass("nohasEstado");
+				$("#nombreCiudad").addClass("hasEstado");
+				$("#nombreCiudad").off("click");
 			}
 		});
-      }
-      function valoraciones(){
-            $.getJSON("php/controles/controlValoracionCiudad.php",{"ciudad":"<?php echo $ciudad;?>", "verValor":"1"}, function(data){
-                  if(data!=null)$("#valoracion-lugar").html(data);
-            });
-            var queryForValoracionUsuario = {"ciudad":"<?php echo $ciudad;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
-            $.getJSON("php/controles/controlValoracionCiudad.php",queryForValoracionUsuario, function(data){
-                  if(data!=null)$("#valorCiudad"+data.valor).attr("checked", "true");
-            });
-      }
+	}
+	// funcion de valoracion
+	function valoraciones(){
+		$.getJSON("php/controles/controlValoracionCiudad.php",{"ciudad":"<?php echo $ciudad;?>", "verValor":"1"}, function(data){
+			if(data!=null)$("#valoracion-lugar").html(data);
+		});
+		var queryForValoracionUsuario = {"ciudad":"<?php echo $ciudad;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
+		$.getJSON("php/controles/controlValoracionCiudad.php",queryForValoracionUsuario, function(data){
+			if(data!=null)$("#valorCiudad"+data.valor).attr("checked", "true");
+		});
+	}
+	// construccion del mapa
 	function cargarmap1() {
 		var mapOptions = {
 		center: new google.maps.LatLng(<?php echo $coor; ?>),
@@ -128,6 +141,7 @@ $(function(){
 </head>
 <body>
 <div id="wrap">
+	<!-- barra menu -->
 	<div id="menu">
 		<button id="hide-show-menu" title="Ocultar/mostrar barra de men&uacute;">Barra men&uacute; <img src="img/33.png" id="ico-menu" alt="Ocultar men&uacute;"></button>
 		<div id="barra-menu">
@@ -144,16 +158,17 @@ $(function(){
 			</ul>
 		</div>
 	</div>
+	<!-- cabecera -->
 	<div id="header">
 		<img src="img/logo.png" alt="Logo corporativo">
 	</div>
+	<!-- Contenedor principal -->
 	<div id="contenedor">
 		<div id="cabecera">
 			<!-- <img src="img/home_img1.jpg"> -->
 			<span id="valoracion-lugar"></span>
 			<div id="subcabecera-lugar">
 				<div id="titulo-lugar">
-					
 					<h1 id="nombreCiudad" class="nohasEstado"><?php echo $nombreCiudad['ciudad']; ?></h1>
 				</div>
 				<div id="puntuacion">
@@ -166,7 +181,8 @@ $(function(){
 					</form>
 				</div>
 			</div>
-		</div> 
+		</div>
+		<!-- Menu interno de ciudad -->
 		<div id="menu-pais">
 			<ul>
 				<li><a href="#" id="informacion" title="Informaci&oacute;n">Informaci&oacute;n</a></li>
@@ -176,15 +192,18 @@ $(function(){
 				<li><a href="#" id="ubicacion" title="Ubicaci&oacute;n en el mapa">Ubicaci&oacute;n</a></li>
 			</ul>
 		</div>
+		<!-- caja donde se carga el contenido -->
 		<div id="caja-contenido">
 			<div id="contenido"></div>
 		</div>
+		<!-- cuadro de ubicacion -->
 		<div id="bg-cuadro">
 			<div id="mapa-ubicacion">
 				<div class="cerrar-cuadro"><img src="img/75.png" alt="Cerrar cuadro" title="Cerrar"></div>
 			</div>
 		</div>
 	</div>
+	<!-- footer -->
 	<div id="footer">
 		<span><a href="#" title="Informaci&oacute;n sobre nosotros">Sobre nosotros</a></span>
 		<span><a href="#" title="Condiciones de uso de la web">Condiciones</a></span>

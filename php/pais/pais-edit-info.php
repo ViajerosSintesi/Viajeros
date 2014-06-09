@@ -1,4 +1,13 @@
-<?php include("../funciones.php");
+<?php
+/**
+* pais-edit-info.php
+* En este documento se obtiene la informacion de la base de datos de un pais
+* y se muestra en un textarea en el cual se podrá modificar dicho contenido y guardarlo.
+*
+* @version 1.0
+*
+*/
+include("../funciones.php");
 $pais="";
 if(isset($_GET['pais'])){
 	$pais = $_GET['pais'];

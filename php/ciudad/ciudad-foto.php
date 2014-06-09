@@ -1,30 +1,34 @@
-<?php 
-      session_start();
-      if(isset($_GET['ciudad'])){
-      	$ciudad = $_GET['ciudad'];
-	      $userId = $_SESSION['userId'];
-      }else{
-            $ciudad = "";
-	      $userId = $_SESSION['userId'];
-      }
+<?php
+/**
+* ciudad-foto.php
+* En este documento se muestran todas las fotos que se haya guardado en el servidor
+* de una ciudad.
+*
+* @version 1.0
+*
+*/
+session_start();
+if(isset($_GET['ciudad'])){
+	$ciudad = $_GET['ciudad'];
+      $userId = $_SESSION['userId'];
+}else{
+      $ciudad = "";
+      $userId = $_SESSION['userId'];
+}
 ?>
-<!--
-<script src="js/jquery-1.10.2.js"></script>
-<script src="js/jquery-ui-1.10.4.custom.js"></script>
--->
-
+<script src="js/comun.js"></script>
 <div id="fotos">
 	<div id="boton-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>
 <script type="text/javascript">
 
-$("#bg-cuadro").hide();
+/*$("#bg-cuadro").hide();
 $("#subir-foto").click(function(){
 	$("#bg-cuadro").show();
 	return false;
 });
 $(".cerrar-cuadro").click(function(){
 	$("#bg-cuadro").hide();
-});
+});*/
  $("#formfotos").submit(subirFotos);
 
 function subirFotos(){
@@ -119,7 +123,6 @@ END;
 			<div id="centra-input">
 				<h2>Selecciona una foto</h2>
 				<input type='file' name='picture' id='picture'><br>
-				
 				<input type='hidden' name='ciudadId' value="<?php echo $ciudad;?>" id='buscarForImg'/><br>
 				<input type='hidden' name='userId' value='<?php echo $userId;?>' id='userIdForImg'/>
 				<input type='submit' name='subir-pic' id='subir-pic' value='Subir foto'>

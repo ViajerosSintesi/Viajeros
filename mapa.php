@@ -1,4 +1,12 @@
 <?php
+/**
+*
+* mapa.php
+* Este documento .php carga un mapa con la ubicación del usuario logueado.
+* y contiene una lista que permite mostrar por categorias los lugares que
+* al usuario le gustaria saber.
+*
+*/
 include("php/funciones.php");
 ?>
 <!DOCTYPE html>
@@ -68,20 +76,25 @@ include("php/funciones.php");
 			</div>
 		</div>
 		<script type="text/javascript">
+		/**
+		* Funciones javascript para la implementación del mapa.
+		*/
 		$(function(){
 			$("#bsqda").change(function(){
-				search();
+				buscar();
 			});
 		});
+		// declaracion de variables.
 		var map, places, iw;
 		var markers = [];
 		var autocomplete;
 		var lat, lon;
 		var geocoder;
 		var marker;
+		//instacia de la clase InfoWindow del mapa
 		var infowindow = new google.maps.InfoWindow();
 		var x=document.getElementById("alertas");
-		
+		// funcion para iniciar la geolocalizacion.
 		function getLocation(){
 			if (navigator.geolocation){
 				navigator.geolocation.getCurrentPosition(coordenadas);
@@ -89,11 +102,22 @@ include("php/funciones.php");
 				x.innerHTML="Su navegador no soporta Geolocalizaci&oacute;n.";
 			}
 		}
+		// se obtiene las coordenadas
 		function coordenadas(position){
 			lat=parseFloat(position.coords.latitude);
 			lon=parseFloat(position.coords.longitude);
 			initialize();
 		}
+		/**
+		* se inicializa la construccion del mapa.
+		* se realizan diferentes instancias de las clases de la api de googlemaps
+		* geocoder para la localizacion inversa.
+		* maps para crear el mapa
+		* LatLng para los puntos de latitud y longitud
+		* autocomplete para la busqueda de lugares mediante el input
+		* PlacesServices para la localizacion de lugares y recuperar dicha informacion.
+		* marker par crear los marcadores en el mapa.
+		*/
 		function initialize() {
 			geocoder = new google.maps.Geocoder();
 			var myLatlng = new google.maps.LatLng(lat, lon);
@@ -125,23 +149,23 @@ include("php/funciones.php");
 			});
 
 			places = new google.maps.places.PlacesService(map);
-			google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
+			google.maps.event.addListener(map, 'tilesloaded', tilesLoaded); //cuando se terminan de cargar las fichas.
 			autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
 			google.maps.event.addListener(autocomplete, 'place_changed', function() {
-				showSelectedPlace();
+				buscarLugar();
 			});
 		}
-
+		// funcion que llama a otras funciones, dependiendo de los eventos realizados(zoom o moverse por el mata)
 		function tilesLoaded() {
 			google.maps.event.clearListeners(map, 'tilesloaded');
-			google.maps.event.addListener(map, 'zoom_changed', search);
-			google.maps.event.addListener(map, 'dragend', search);
-			search();
+			google.maps.event.addListener(map, 'zoom_changed', buscar);
+			google.maps.event.addListener(map, 'dragend', buscar);
+			buscar();
 		}
-
-		function showSelectedPlace() {
-			clearResults();
-			clearMarkers();
+		// busca un lugar mediante la clase autocomplete
+		function buscarLugar() {
+			limpiarResultados();
+			limpiarMarcadores();
 			var place = autocomplete.getPlace();
 			map.panTo(place.geometry.location);
 			markers[0] = new google.maps.Marker({
@@ -149,12 +173,12 @@ include("php/funciones.php");
 				map: map
 			});
 			iw = new google.maps.InfoWindow({
-				content: getIWContent(place)
+				content: obtenerInfo(place)
 			});
 			iw.open(map, markers[0]);
 		}
-
-		function search() {
+		// funcion que busca los lugares de interes cercanos.
+		function buscar() {
 			var type = document.opciones.type.value
 			/*alert(type);*/
 			autocomplete.setBounds(map.getBounds());
@@ -168,22 +192,22 @@ include("php/funciones.php");
 
 			places.search(search, function(resultados, status) {
 				if (status == google.maps.places.PlacesServiceStatus.OK) {
-					clearResults();
-					clearMarkers();
+					limpiarResultados();
+					limpiarMarcadores();
 					for (var i = 0; i < resultados.length; i++) {
 						markers[i] = new google.maps.Marker({
 							position: resultados[i].geometry.location,
 							animation: google.maps.Animation.DROP
 						});
-						google.maps.event.addListener(markers[i], 'click', getDetails(resultados[i], i));
+						google.maps.event.addListener(markers[i], 'click', obtenerDetalles(resultados[i], i));
 						setTimeout(dropMarker(i), i * 100);
-						addResult(resultados[i], i);
+						agregrarResultado(resultados[i], i);
 					}
 				}
 			});
 		}
-
-		function clearMarkers() {
+		// borra los marcadores que estan en el mapa
+		function limpiarMarcadores() {
 			for (var i = 0; i < markers.length; i++) {
 				if (markers[i]) {
 					markers[i].setMap(null);
@@ -191,14 +215,14 @@ include("php/funciones.php");
 				}
 			}
 		}
-
+		// va haciendo aparecer los marcadores uno a uno
 		function dropMarker(i) {
 			return function() {
 				markers[i].setMap(map);
 			}
 		}
-
-		function addResult(result, i) {
+		// añade celdas con informacion en la tabla resultados
+		function agregrarResultado(result, i) {
 			var resultados = document.getElementById('resultados');
 			var tr = document.createElement('tr');
 			tr.style.backgroundColor = (i% 2 == 0 ? '#F0F0F0' : '#FFFFFF');
@@ -218,23 +242,23 @@ include("php/funciones.php");
 			tr.appendChild(nameTd);
 			resultados.appendChild(tr);
 		}
-
-		function clearResults() {
+		// borra el contenido que contiene la tabla con el id resultados
+		function limpiarResultados() {
 			var resultados = document.getElementById('resultados');
 			while (resultados.childNodes[0]) {
 				resultados.removeChild(resultados.childNodes[0]);
 			}
 		}
-
-		function getDetails(result, i) {
+		// Obtiene los detalles de un lugar especifico
+		function obtenerDetalles(result, i) {
 			return function() {
 				places.getDetails({
 					reference: result.reference
-				}, showInfoWindow(i));
+				}, mostrarInfo(i));
 			}
 		}
-
-		function showInfoWindow(i) {
+		// muestra la informacion de los marcadores
+		function mostrarInfo(i) {
 			return function(place, status) {
 				if (iw) {
 					iw.close();
@@ -242,14 +266,14 @@ include("php/funciones.php");
 				}
 				if (status == google.maps.places.PlacesServiceStatus.OK) {
 					iw = new google.maps.InfoWindow({
-						content: getIWContent(place)
+						content: obtenerInfo(place)
 					});
 					iw.open(map, markers[i]);
 				}
 			}
 		}
-
-		function getIWContent(place) {
+		// funcion que añade informacion al cuadro de texto de los marcadores.
+		function obtenerInfo(place) {
 			var content = '<table style="border:0"><tr><td style="border:0;">';
 			content += '<img class="placeIcon" src="' + place.icon + '"></td>';
 			content += '<td style="border:0;"><b><a href="' + place.url + '" target="_blank">' + place.name + '</a></b>';

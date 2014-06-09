@@ -1,4 +1,14 @@
-<?php 
+<?php
+/**
+*
+* index.php
+* Este documento php es nuestro index, la primera pantalla que se encontrara
+* los usuarios al querer entrar en la web, en la  cual se tienen que loguear
+* o registrarse si aun no lo estan.
+*
+* @version 1.0
+*
+*/
       session_start();
       if(isset($_SESSION['userId'])){
             header("Location:perfil.php");
@@ -16,34 +26,28 @@
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/index.js"></script>
-      <!---<script src="js/ajax.js"></script>-->
 	<script type="text/javascript">
 	$(function(){
 		$("#imagen").hide();
-		/*$("#registro").click(function(){
-			registro();
-		});
-		$("#login").click(function(){
-			$(location).attr('href', "inicio.php")
-		});*/
 	});
-	
 	function runEffect() {
 		var selectedEffect = "explode";
 		var options = {};
 		$( "#imagen" ).show( selectedEffect, options, 1000);
 	};
 	window.onload=runEffect;
-	
 	</script>
 </head>
 <body>
 <div id="wrap">
+	<!-- Cabecera -->
 	<div id="header">
 		<img src="img/logo.png">
 	</div>
+	<!-- Cuerpo principal -->
 	<div id="contenedor">
 		<div id="home-left"><img src="img/home_img1.jpg" id="imagen"></div>
+		<!-- Login y registro -->
 		<div id="home-right">
 			<div id="form-login" >
 				<fieldset>
@@ -113,6 +117,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- footer -->
 	<div id="footer">
 		<span><a href="#">Sobre nosotros</a></span>
 		<span><a href="#">Condiciones</a></span>

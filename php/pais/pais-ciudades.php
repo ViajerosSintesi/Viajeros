@@ -1,4 +1,11 @@
 <?php
+/**
+*
+* pais-ciudades.php
+* Este archivo php se carga todas las ciudades existentes en la base de datos
+* de un país en concreto.
+*
+*/
 include("../funciones.php");
 if(isset($_GET['pais'])){
 	$pais = $_GET['pais'];

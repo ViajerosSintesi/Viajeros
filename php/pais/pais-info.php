@@ -1,4 +1,11 @@
 <?php
+/**
+*
+* pais-info.php
+* En este documento se muestra la información de cada país.
+* @version 1.0
+*
+*/
 include("../funciones.php");
 $pais="";
 if(isset($_GET['pais'])){
@@ -10,6 +17,7 @@ if(isset($_GET['pais'])){
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
 <script type="text/javascript">
+// funcion para la edicion de la informacion.
 $("#edit-info-lugar").click(function(){
 	var pais= "<?php echo $_GET['pais']; ?>";
 	editInfoPais(pais);

@@ -1,19 +1,21 @@
-<?php 
-      session_start();
-      if(isset($_GET['pais'])){
-      	$pais = $_GET['pais'];
-	      $userId = $_SESSION['userId'];
-      }else{
-            $pais = "";
-	      $userId = $_SESSION['userId'];
-      }
+<?php
+/**
+* pais-foto.php
+* En este documento se muestran todas las fotos que se haya guardado en el servidor
+* de un pais.
+*
+* @version 1.0
+*
+*/
+session_start();
+if(isset($_GET['pais'])){
+      $pais = $_GET['pais'];
+      $userId = $_SESSION['userId'];
+}else{
+      $pais = "";
+      $userId = $_SESSION['userId'];
+}
 ?>
-
-
-<!---
-<script src="js/jquery-1.10.2.js"></script>
-<script src="js/jquery-ui-1.10.4.custom.js"></script>
--->
 <div id="fotos">
       <!---<div id="boton-foto"><input type="submit" id="subir-foto" value="Subir foto"></div>-->
 <script type="text/javascript">
@@ -71,14 +73,14 @@ END;
 	<div id="cuadro-foto">
 		<div id="cerrar-cuadro"><img src="img/delete.png"></div>
 		 <form action='php/controles/controlImagen.php' method='post' enctype='multipart/form-data' id='formFotos'>
-					<div id="centra-input">
-						<h2>Selecciona una foto</h2>
-						<input type='file' name='picture' id='picture'><br>
-						<h2>Selecciona una ciudad</h2>
-						<input type='text' name='ciudadId' id='buscarForImg'/><br>
-						<input type='hidden' name='userId' value='<?php echo $user;?>' id='userIdForImg'/>
-						<input type='submit' name='subir-pic' id='subir-pic' value='Subir foto'>
-					</div>
-				</form>
+			<div id="centra-input">
+				<h2>Selecciona una foto</h2>
+				<input type='file' name='picture' id='picture'><br>
+				<h2>Selecciona una ciudad</h2>
+				<input type='text' name='ciudadId' id='buscarForImg'/><br>
+				<input type='hidden' name='userId' value='<?php echo $user;?>' id='userIdForImg'/>
+				<input type='submit' name='subir-pic' id='subir-pic' value='Subir foto'>
+			</div>
+		</form>
 	</div>-->
 </div>

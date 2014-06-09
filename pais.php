@@ -1,4 +1,12 @@
 <?php
+/**
+* 
+* pais.php
+* Este documento contiene la ficha de cada pais, este documento recopila toda 
+* la informacion del pais seleccionado.
+* Se utilizan las tecnologias de ajax, javascript y php.
+*
+*/
 include("php/funciones.php");
 session_start();
 if(!isset($_SESSION['userId'])){
@@ -29,35 +37,45 @@ if(@$_POST['edit-info']){
 	<script src="js/cargaScript.js"></script>
 	<script src="js/comun.js"></script>
 	<script type="text/javascript">
+	/**
+	* Codigo javascript utilizando la libreria Jquery
+	*/
 	$(function(){
+		// Carga la informacion del pais.
 		$("#informacion").click(function(){
 			//infoPais("España");
 			$("#contenido").load("php/pais/pais-info.php?pais=<?php echo $pais; ?>");
 			return false;
 		});
+		// Carga las fotos de dicho pais.
 		$("#fotos").click(function(){
 			//fotoPais();
 			$("#contenido").load("php/pais/pais-foto.php?pais=<?php echo $pais; ?>");
 			return false;
 		});
+		// Carga los comentarios
 		$("#comentarios").click(function(){
 			//comentariosPais();
 			$("#contenido").load("php/pais/pais-comentarios.php?pais=<?php echo $pais; ?>");
 			return false;
 		});
+		// Carga la ubicacion en el mapa.
 		$("#ubicacion").click(function(){
 			//ubicacionPais();
 			document.getElementById("contenido").innerHTML="<div id='mapa'></div>";
 			cargarmap1();
 			return false;
 		});
+		// Carga el listado de ciudades de un pais.
 		$("#ciudades").click(function(){
 			ciudadesPais("<?php echo $pais; ?>");
 			return false;
 		});
+		// Valoracion de un pais.
 		$(".valorPais").change(function(){
 			$("#valorPais").submit();
 		});
+		// Carga las preguntas sobre un pais.
 		$("#preguntas").click(function(){
 			//comentariosPais();
 			$("#contenido").load("php/pais/pais-preguntas.php?pais=<?php echo $pais;?>");
@@ -65,15 +83,17 @@ if(@$_POST['edit-info']){
 		});
 		valoraciones();
 	});
-      function valoraciones(){
-            $.getJSON("php/controles/controlValoracionPais.php",{"pais":"<?php echo $pais;?>", "verValor":"1"}, function(data){
-                  if(data!=null)$("#valoracion-lugar").html(data);
-            });
-            var queryForValoracionUsuario = {"pais":"<?php echo $pais;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
-            $.getJSON("php/controles/controlValoracionPais.php",queryForValoracionUsuario, function(data){
-                  if(data!=null)$("#valorPais"+data.valor).attr("checked", "true");
-            });
-      }
+	// Funcion para realizar la valoracion 
+	function valoraciones(){
+		$.getJSON("php/controles/controlValoracionPais.php",{"pais":"<?php echo $pais;?>", "verValor":"1"}, function(data){
+			if(data!=null)$("#valoracion-lugar").html(data);
+		});
+		var queryForValoracionUsuario = {"pais":"<?php echo $pais;?>","userId":"<?php echo $userId;?>", "verValorUsuario":"1"};
+		$.getJSON("php/controles/controlValoracionPais.php",queryForValoracionUsuario, function(data){
+			if(data!=null)$("#valorPais"+data.valor).attr("checked", "true");
+		});
+	}
+	// Funcion para cargar mapa
 	function cargarmap1() {
 		var mapOptions = {
 		center: new google.maps.LatLng(<?php echo $coor; ?>),
@@ -106,9 +126,10 @@ if(@$_POST['edit-info']){
 	</div>
 	<div id="header">
 		<img src="img/logo.png" alt="Logo corporativo">
-		
 	</div>
+	<!-- Cuerpo principal -->
 	<div id="contenedor">
+		<!-- cabecera -->
 		<div id="cabecera">
 			<!-- <img src="img/home_img1.jpg"> -->
 			<span id="valoracion-lugar"></span>
@@ -127,6 +148,7 @@ if(@$_POST['edit-info']){
 				</div>
 			</div>
 		</div>
+		<!-- menu interno del pais -->
 		<div id="menu-pais">
 			<ul>
 				<li><a href="#" id="informacion" title="Informaci&oacute;n">Informaci&oacute;n</a></li>
@@ -137,15 +159,18 @@ if(@$_POST['edit-info']){
 				<li><a href="#" id="ciudades" title="Lista todas las ciudades del pa&iacute;s">Ciudades</a></li>
 			</ul>
 		</div>
+		<!-- cuadro donde se cargara toda la informacion relativa al pais -->
 		<div id="caja-contenido">
 			<div id="contenido"></div>
 		</div>
+		<!-- cuadro que muestra la ubicacion -->
 		<div id="bg-cuadro">
 			<div id="mapa-ubicacion">
 				<div class="cerrar-cuadro"><img src="img/75.png" alt="Cerrar cuadro" title="Cerrar"></div>
 			</div>
 		</div>
 	</div>
+	<!-- footer -->
 	<div id="footer">
 		<span><a href="#" title="Informaci&oacute;n sobre nosotros">Sobre nosotros</a></span>
 		<span><a href="#" title="Condiciones de uso de la web">Condiciones</a></span>

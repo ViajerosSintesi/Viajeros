@@ -1,4 +1,13 @@
 <?php
+/**
+*
+* ciudad-preguntas.php
+* En este document se muestra todas las preguntas que realizan los usuarios sobre algúna ciudad
+* tambien se muetran las respuestas a dichas preguntas, además de realizar nuevas preguntas y
+* de responder a cualquier pregunta.
+* @version 1.0
+*
+*/
 session_start();
 include("../funciones.php");
 $ciudad = "";

@@ -1,4 +1,12 @@
 <?php
+/**
+*
+* list-pais.php
+* Documento php que muestra una lista con los paises que se encuentran
+* en la base de datos, y que nos enviaran al perfil del pais seleccionado.
+* @version 1.0
+*
+*/
 include("php/funciones.php");
 ?>
 <!DOCTYPE html>
@@ -13,10 +21,10 @@ include("php/funciones.php");
 	<script src="js/ajax.js"></script>
 	<script src="js/buscador.js"></script>
 	<script src="js/comun.js"></script>
-
 </head>
 <body>
 <div id="wrap">
+	<!-- barra menu -->
 	<div id="menu">
 		<button id="hide-show-menu" title="Ocultar/mostrar barra de men&uacute;">Barra men&uacute; <img src="img/33.png" id="ico-menu"></button>
 		<div id="barra-menu">
@@ -33,9 +41,11 @@ include("php/funciones.php");
 			</ul>
 		</div>
 	</div>
+	<!-- cabecera -->
 	<div id="header">
 		<img src="img/logo.png">
 	</div>
+	<!-- cuerpo principal -->
 	<div id="contenedor">
 		<div id="contenedor-paises">
 			<div id="titulo">
@@ -61,12 +71,14 @@ include("php/funciones.php");
 			?>
 			</div>
 		</div>
+		<!-- Cuadro de ubicacion -->
 		<div id="bg-cuadro">
 			<div id="mapa-ubicacion">
 				<div class="cerrar-cuadro"><img src="img/75.png"></div>
 			</div>
 		</div>
 	</div>
+	<!-- footer -->
 	<div id="footer">
 		<span><a href="#">Sobre nosotros</a></span>
 		<span><a href="#">Condiciones</a></span>

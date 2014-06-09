@@ -1,19 +1,24 @@
 <?php
+/**
+*
+* ciudad-comentarios.php
+* Documento que muestra todos los comentarios que se hayan realizado en una ciudad.
+*
+* @version 1.0
+*
+*/
 session_start();
 include("../funciones.php");
 $ciudad = "";
 if(isset($_GET['ciudad'])){
 	$ciudad = $_GET['ciudad'];
-	//$cursor = cargarComentCiudad($ciudad);
 	$session=1;
 	// falta terminaar de implemaentar la funcion.
 }
 ?>
 <!doctype html>
 <head>
-	<title></title>
-	<!--<script src="js/jquery-1.10.2.js"></script>
-	<script src="js/jquery-ui-1.10.4.custom.js"></script>-->
+	<title>Ciudad</title>
 	<style>
 	.imgperfil{
 	      width:50px;
@@ -22,20 +27,13 @@ if(isset($_GET['ciudad'])){
 	</style>
 	<script src="js/cargaScript.js"></script>
 	<script src="js/valoracion.js"></script>
-	
 	<script type="text/javascript">
-            $(function(){
-                  cargarComents('<?php echo $ciudad;?>', '<?php echo $_SESSION['userId'];?>', 'Ciudad');
-                  
-            });
-            
-	      
+	$(function(){
+		cargarComents('<?php echo $ciudad;?>', '<?php echo $_SESSION['userId'];?>', 'Ciudad');
+	});
 	</script>
 </head>
 <body>
-
-<div id="comentarios-pais">
-
-</div>
+<div id="comentarios-pais"></div>
 </body>
 </html>

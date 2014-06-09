@@ -1,20 +1,28 @@
 <?php
-      session_start();
-      $user = null;
-      if(!isset($_SESSION['userId'])){
-            header("location:index.php");
-      }else{
-             if(filter_has_var(INPUT_GET,"user")){
-                  $user= filter_input(INPUT_GET,"user");
-            }else{
-                  $user=$_SESSION['userId'];
-            }
-      }
-      
-      function comproveEmail(){
-            if(filter_has_var(INPUT_GET,"user")) return 0;
-            else return 1;
-      }
+/**
+*
+* perfil.php
+* Este documento php muestra toda la información del usuario, la cual
+* esta dividida en tres partes: la información personal, fotos y por último
+* la de ubicación.
+*
+*/
+session_start();
+$user = null;
+if(!isset($_SESSION['userId'])){
+	header("location:index.php");
+}else{
+	if(filter_has_var(INPUT_GET,"user")){
+		$user= filter_input(INPUT_GET,"user");
+	}else{
+		$user=$_SESSION['userId'];
+	}
+}
+
+function comproveEmail(){
+	if(filter_has_var(INPUT_GET,"user")) return 0;
+	else return 1;
+}
 include("php/funciones.php");
 $coor = lugaresUsuario($user);
 $coor=json_encode($coor["lugares"]);
@@ -32,13 +40,12 @@ $coor=json_encode($coor["lugares"]);
 	<script src="js/buscador.js"></script>
 	<script src="js/comun.js"></script>
 	<script src="js/perfil.js"></script>
-	
-	
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </head>
 <body>
 <input type="hidden" name="userId" value="<?php echo $user?>" id="userIdForImg"/>
 <div id="wrap">
+	<!-- Barra de menu -->
 	<div id="menu">
 		<button id="hide-show-menu" title="Ocultar/mostrar barra de men&uacute;">Barra men&uacute; <img src="img/33.png" id="ico-menu"></button>
 		<div id="barra-menu">
@@ -55,10 +62,14 @@ $coor=json_encode($coor["lugares"]);
 			</ul>
 		</div>
 	</div>
+	<!-- fin barra menu -->
+	<!-- Cabecera -->
 	<div id="header">
 		<img src="img/logo.png">
 	</div>
+	<!-- Cuerpo principal -->
 	<div id="contenedor">
+		<!-- Parte de informacion personal -->
 		<div id="perfil">
 			<div id="titulo">
 				<h1>Informaci&oacute;n</h1>
@@ -102,6 +113,7 @@ $coor=json_encode($coor["lugares"]);
 				</div>
 			</div>
 		</div>
+		<!-- Galeria de imagenes del usuario -->
 		<div id="perfil-galeria">
 			<div id="titulo">
 				<h1>Fotos</h1>
@@ -119,7 +131,9 @@ $coor=json_encode($coor["lugares"]);
 			?>
 			</div>
 		</div>
+		<!-- Capa oculta que contiene el formulario para subir imagenes y para mostrar la geololocalizacion -->
 		<div id="bg-cuadro">
+			<!-- subir foto -->
 			<div id="cuadro-foto">
 				<div class="cerrar-cuadro"><img src="img/75.png"></div>
 			<?php if( comproveEmail()){ ?>
@@ -135,16 +149,19 @@ $coor=json_encode($coor["lugares"]);
 				</form>
 			<?php } ?>
 			</div>
+			<!-- ubicacion -->
 			<div id="mapa-ubicacion">
 				<div class="cerrar-cuadro"><img src="img/75.png"></div>
 			</div>
 		</div>
+		<!-- Mapa con las ubicaciones del usuario -->
 		<div id="perfil-lugares">
 			<div id="titulo">
 				<h1>Lugares</h1>
 			</div>
 			<div id="map-div"></div>
 		</div>
+		<!-- Codigo javascript para cargar el mapa -->
 		<script>
 		var coor = <?php echo $coor?>;
 		var infowindow = new google.maps.InfoWindow();
@@ -175,12 +192,15 @@ $coor=json_encode($coor["lugares"]);
 		google.maps.event.addDomListener(window, 'load', initialize);
 		</script>
 	</div>
+	<!-- fin cuerpo -->
+	<!-- footer -->
 	<div id="footer">
 		<span><a href="#">Sobre nosotros</a></span>
 		<span><a href="#">Condiciones</a></span>
 		<span><a href="#">Privacidad</a></span>
 		<span>&#64; 2014 Alumnos D.A.W.</span>
 	</div>
+	<!-- fin footer -->
 </div>
 </body>
 </html>

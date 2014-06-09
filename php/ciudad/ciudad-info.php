@@ -1,4 +1,11 @@
 <?php
+/**
+*
+* ciudad-info.php
+* En este documento se muestra la información de cada ciudad.
+* @version 1.0
+*
+*/
 include("../funciones.php");
 $ciudad = "";
 if(isset($_GET['ciudad'])){
