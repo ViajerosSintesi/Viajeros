@@ -25,7 +25,7 @@
 	<script src="js/jquery-2.1.1.min.js"></script>
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
-	<script src="js/index.js"></script>
+	<script src="js/index.Ext.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		$("#imagen").hide();

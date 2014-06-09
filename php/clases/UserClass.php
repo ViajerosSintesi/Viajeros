@@ -18,6 +18,7 @@ class User{
 	private $imgPerfil = null;			#ruta acia la imagen del perfil
 	private $lugares = null;			#lugares en el que ha estado
 	private $userInArray;				#formato array de las propiedades
+	private $admin = null;                    #rol de admin
 	
 
 	/**
@@ -48,6 +49,8 @@ class User{
 	public function setImgPerfil($imgPerfil){$this->imgPerfil = $imgPerfil;}
 	public function getLugares(){return $this->lugares;}
 	public function setLugares($lugares){$this->lugares = $lugares;}
+	public function getAdmin(){return $this->admin;}
+	public function setAdmin($admin){$this->admin = $admin;}
 
     
     /**
@@ -94,7 +97,8 @@ class User{
 			'activado' => $this->activado,
 			'codActivacion' => $this->codActivacion,
                   'imgPerfil' => $this->imgPerfil,
-                  'lugares' => array()
+                  'lugares' => array(),
+                  "admin" =>$this->admin
 			//'email' => $this->email
 			);
 	}
@@ -146,6 +150,7 @@ class User{
 			$this->codActivacion = $user['codActivacion'];
 			$this->imgPerfil = $user['imgPerfil'];
 			$this->lugares = $user['lugares'];
+			$this->admin = $user["admin"];
 			$retorn = 1;
 		}
 		return $retorn;

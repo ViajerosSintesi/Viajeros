@@ -46,6 +46,9 @@ if(filter_has_var(INPUT_POST, "mail") && filter_has_var(INPUT_POST, "pass") && f
 		if( $notice =$user->comproveLogin()){
 			$user->cogeValoresSegunId();
 			$_SESSION['userId'] = $user->getId();
+			if($user->getAdmin()){
+			      $notice = 4;
+			}
       		      //echo $notice;
 		}else{
 			//echo $notice;

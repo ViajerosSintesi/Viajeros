@@ -44,8 +44,10 @@ class DBMongo{
 	    $this->server = "mongodb://".$this->dbUser.":".$this->dbPass."@ds043329.mongolab.com:43329/viajeros";
 	    
 	    // $this->server = getenv("MONGO_URL");
-	    //$this->conexion = new MongoClient($this->server);
-	    $this->conexion = new MongoClient();
+	    #conexion en mongolab 
+	    $this->conexion = new MongoClient($this->server);
+	    #conexion en local
+	    //$this->conexion = new MongoClient();
 	    return $this->conexion;
 	}
 	/**

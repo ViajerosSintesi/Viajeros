@@ -29,6 +29,7 @@ if(filter_has_var(INPUT_POST, "user") && filter_has_var(INPUT_POST, "mail") && f
 	$newUser->setPassword($password);
 	$newUser->setCodActivacion($mail);
 	$newUser->setActivado(0);
+	$newUser->setAdmin(0);
 	$newUser->setEdad($edad);
 	if(isset($_FILES["imgPerfil"])){
 		$user->ponerImgPerfil($_FILES["imgPerfil"]);
@@ -62,8 +63,6 @@ if(filter_has_var(INPUT_GET, "verificar")){
 	$user = new User();
 	$user->setId($email);
 	$user->cogeValoresSegunId();
-
-
 	$user->activarUser();
 
 	header("location:../../index.php?ref=1");

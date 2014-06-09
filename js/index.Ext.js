@@ -88,19 +88,21 @@ $(document).ready(function(){
               })
               .done(function(data){
                       var not = $.parseJSON(data);
-                   if(not.notice== 0){
+                   if(not.notice== 0)
 					   document.getElementById("no_logeo").innerHTML="No te has logeado";
-                   }
-                   if(not.notice == 1){
+                   
+                   else if(not.notice == 1)
                          location.href="perfil.php";
-                   }
-                   if(not.notice == 2){
+                   
+                   else if(not.notice == 2)
                        document.getElementById("no_logeo").innerHTML="No has activado tu cuenta , mira tu email";
-                   }
-                   if(not.notice ==3){
-
-                         document.getElementById("captchaDiv").innerHTML=" <img src='php/controles/creaCaptcha.php?"+(new Date()).getTime()+"'/><input type='text' id='code'/>";
-                   }
+                   
+                   else if(not.notice ==3)
+                        document.getElementById("captchaDiv").innerHTML=" <img src='php/controles/creaCaptcha.php?"+(new Date()).getTime()+"'/><input type='text' id='code'/>";
+                   
+                  else if(not.notice ==4)
+                        location.href="ciudad.php";
+                   
               });
           }
     });
