@@ -1,0 +1,29 @@
+
+
+Autores:
+      Txema almenta
+      Luis Ruiz
+      Juvenc Melguizo
+      
+Factores a tener en cuenta:
+
+      - Para poder ejecutar en local la pagina se ha instalar
+        el driver PHP-mongo, para que php se conecte a la base de datos
+      
+      - La pagina, aparte, esta alojada en herokuapp, y demomento funcional
+            http://viajeros.herokuapp.com/
+      
+      - La base de datos esta alojada en mongolab, esto supone que tanto la version
+        local como la version de heroku, tienen la misma base de datos. Esto supone
+        que las imagenes no se puedan ver. 
+        Ya que cada version guarda las imagenes en su propia maquina, y en la base
+        de datos solo se almacena la ruta
+            dejo credenciales por si acaso: mongolab.com User: txemens, pass: h0lita
+            
+      - El repositorio que hemos utilizado es: https://github.com/ViajerosSintesi/Viajeros
+      
+      -la documentacion escrita (analisis dafo, guia de estilos, ...) esta en:
+            viajeros/documentacion
+      
+      - existe el rol de admin, pero demomento todo el que se registra, es usuario normal
+        para ver la seccion de administrador, cambiar el mongolab el campo "admin"
