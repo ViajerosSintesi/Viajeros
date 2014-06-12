@@ -1,13 +1,13 @@
 /* ==================== parte comun ==================== */
 /*html, body{height: 100%;}*/
 body{margin: 0; padding: 0; background-color: #e9eaed;}
-#wrap{width: 100%; height: 100%; min-width: 1024px; margin: 0; padding: 0; background: url("../img/bg-image.png"); background-repeat: repeat-x;}
+#wrap{width: 100%; height: 100%; min-width: 980px; margin: 0; padding: 0; background: url("../img/bg-image.png"); background-repeat: repeat-x;}
 input{padding: 5px 4px; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;}
 input[type=submit]{padding: 5px 4px; color: #fff; font-size: 12px;
 	border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; background: url(../img/blue.gif);}
-#header{width: 80%; min-width: 1024px; min-height: 107px; margin: 0 auto;}
+#header{width: 80%; min-width: 980px; min-height: 107px; margin: 0 auto;}
 #header img{padding-top: 22px;}
-#contenedor{width: 80%; min-width: 1024px; margin: 0 auto;}
+#contenedor{width: 80%; min-width: 980px; margin: 0 auto;}
 
 /* ======================== fin ============================ */
 
@@ -139,7 +139,7 @@ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; background
 .list-paises ul li a{text-decoration: none; color: #000; font-weight: bold;}
 .list-paises ul li a:hover{color: #069; text-decoration: underline;}
 
-#footer{width: 80%; min-width: 1024px; margin: 0 auto; text-align: center; border-top: 1px solid #d3d6db; padding: 10px 0;}
+#footer{width: 80%; min-width: 980px; margin: 0 auto; text-align: center; border-top: 1px solid #d3d6db; padding: 10px 0;}
 
 .nohasEstado:hover{
       cursor:pointer;
