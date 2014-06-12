@@ -111,7 +111,7 @@ class Correo {
             $mail->Password = "xa8qk9t1";
             $mail->AddReplyTo($this->headersFrom, "Paradise");
             $mail->SetFrom($this->headersFrom, "Paradise");    
-            $mail->AddAddress($this->destinatario, "Dermatologico del Norte");
+            $mail->AddAddress($this->destinatario, "User");
             $mail->Subject = $this->asunto;
             $mail->MsgHTML($this->cuerpo);
             

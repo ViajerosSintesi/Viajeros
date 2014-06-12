@@ -57,7 +57,7 @@
 						<td><input type="text" id="usuario" name="usuario" value="Escribe tu email" class="text-input"></td></tr>
 						<tr><th><label for="password">Contrase&ntilde;a: </label></th>
 						<td><input type="password" id="password" name="password"></td></tr>
-						<tr><td></td><td><input type="buton" name="enviar" id="boton-login" value="Iniciar sesi&oacute;n"></td></tr>
+						<tr><td></td><td><input type="button" name="enviar" id="boton-login" value="Iniciar sesi&oacute;n"></td></tr>
 					</table>
 				</fieldset>
 				<p><span id="captchaDiv"></span><p>

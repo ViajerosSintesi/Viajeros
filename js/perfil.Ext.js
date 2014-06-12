@@ -206,7 +206,7 @@ function modPerfil(){
       }else{
             $.post('php/controles/modificarPerfil.php', dataEnvio, function(data){
                   var not = JSON.parse(data);
-                  alert(not.notice)
+                  //alert(not.notice)
                   cargarDatos();
                   $("#info").show();
       	      $("#form-info").hide();

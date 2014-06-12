@@ -65,7 +65,7 @@ if(filter_has_var(INPUT_GET, "verificar")){
 	$user->cogeValoresSegunId();
 	$user->activarUser();
 
-	header("location:../../index.php?ref=1");
+	header("location:http://viajeros.herokuapp.com/index.php?ref=1");
 
 }
 
