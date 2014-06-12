@@ -14,7 +14,7 @@
             header("Location:perfil.php");
       }
       if(filter_has_var(INPUT_GET,"ref")){
-            echo "<script>alert('Te has registrado con exito!')";
+            echo "<script>alert('Te has registrado con exito!')</script>";
       }
 ?>
 <!DOCTYPE html>
