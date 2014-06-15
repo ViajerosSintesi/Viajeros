@@ -11,12 +11,12 @@
 	 */
 	if(filter_has_var(INPUT_GET, "datosPerfil")){
 	      $user = new User();
-	      $user->setId(filter_input(INPUT_GET, "userId"), FILTER_SANITIZE_EMAIL);
+	      $user->setId(base64_decode(filter_input(INPUT_GET, "userId"), FILTER_SANITIZE_EMAIL));
 	      $user->cogeValoresSegunId();
 	      $userArray=array(
 	                  'nombre'=> $user->getUsername(),
 	                  'apellidos'=> $user->getApellidos(),
-	                  'email'=> $user->getId(),
+	                  'email'=> base64_decode($user->getId()),
 	                  'edad'=> $user->getEdad(),
 	                  'imgPerfil'=>$user->getImgPerfil()
 	            );

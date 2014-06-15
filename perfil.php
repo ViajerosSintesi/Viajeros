@@ -12,15 +12,25 @@ $user = null;
 if(!isset($_SESSION['userId'])){
 	header("location:index.php");
 }else{
-	if(filter_has_var(INPUT_GET,"user")){
-		$user= filter_input(INPUT_GET,"user");
+	if(filter_has_var(INPUT_POST,"user")){
+		$user= filter_input(INPUT_POST,"user");
+		/*require_once("php/clases/UserClass.php");
+	      $usuario = new User();
+	      $usuario->setId($user);
+	      $usuario->cogeValoresSegunId();*/
+	      
 	}else{
+	      
 		$user=$_SESSION['userId'];
+	      /*require_once("php/clases/UserClass.php");
+	      $usuario = new User();
+	      $usuario->setId($user);
+	      $usuario->cogeValoresSegunId();*/
 	}
 }
 
 function comproveEmail(){
-	if(filter_has_var(INPUT_GET,"user")) return 0;
+	if(filter_has_var(INPUT_POST,"user")) return 0;
 	else return 1;
 }
 include("php/funciones.php");
@@ -38,9 +48,9 @@ $coor=json_encode($coor["lugares"]);
 	<script src="js/jquery-2.1.1.min.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/ajax.js"></script>
-	<script src="js/buscador.js"></script>
+	<script src="js/buscador.Ext.js"></script>
 	<script src="js/comun.js"></script>
-	<script src="js/perfil.js"></script>
+	<script src="js/perfil.Ext.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </head>
 <body>

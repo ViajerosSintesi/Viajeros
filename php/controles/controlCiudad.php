@@ -41,8 +41,19 @@ if(filter_has_var(INPUT_GET, "nombreCiudadB") && filter_has_var(INPUT_GET, "busc
 	$regexObjPais = new MongoRegex("/".$ciudad."/i"); 
 	$queryForPais = array("pais" => $regexObjPais);
 	$todosPaises=$mongoPais->findCollection($queryForPais);
-	    
-    echo json_encode(array_merge($todasciudades, $todosPaises));
+	#users
+      $mongoUser = new DBMongo("usuarios");
+	$regexObjuser = new MongoRegex("/".$ciudad."/i"); 
+	$queryForUser = array("username" => $regexObjuser);
+	$todosUsers=$mongoUser->findCollection($queryForUser);
+	
+	for($i=0; $i< count($todosUsers); $i++){
+	      $todUser[$i]["id"] = base64_encode($todosUsers[$i]["_id"]);
+	      $todUser[$i]["username"] = $todosUsers[$i]["username"];
+	}
+	
+	$todosSitios =array_merge($todasciudades, $todosPaises);
+    echo json_encode(array_merge($todosSitios, $todUser));
 }
 
 /**

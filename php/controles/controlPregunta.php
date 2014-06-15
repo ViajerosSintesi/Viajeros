@@ -15,7 +15,7 @@ require_once("../clases/UserClass.php");
  */
   if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "verPreguntas")){
   	$ciudad = filter_input(INPUT_GET, "ciudad", FILTER_SANITIZE_STRING);
-  	$userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+  	$userId = filter_input(INPUT_GET, "userId");
   	$tipo = filter_input(INPUT_GET, "verPreguntas", FILTER_SANITIZE_STRING);
   	$preguntaCiudad = new Pregunta("pregunta".$tipo);
 
@@ -36,7 +36,7 @@ require_once("../clases/UserClass.php");
   			elseif($valoraciones[$x]["valor"] == 2)$preguntas[$i]["valorPos"]++; 
   		}
   		$preguntas[$i]["valorDelUser"] = $valoracionPregunta->verValoracionDelUsuario(); 
-  		$user->setId($preguntas[$i]["idUsu"]);
+  		$user->setId(base64_decode($preguntas[$i]["idUsu"]));
   		$user->cogeValoresSegunId();
   		$preguntas[$i]["nombreDelUser"] = $user->getUsername();
   		$preguntas[$i]["imgPerfilUser"] = $user->getImgPerfil();
@@ -67,7 +67,7 @@ require_once("../clases/UserClass.php");
  */
 if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarPregunta")){
 	$ciudad = filter_input(INPUT_GET, "ciudad", FILTER_SANITIZE_STRING);
-	$userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+	$userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_STRING);
 	$tipo = filter_input(INPUT_GET, "insertarPregunta", FILTER_SANITIZE_STRING);
 	$preguntaText = filter_input(INPUT_GET, "pregunta", FILTER_SANITIZE_STRING);
 	$data = filter_input(INPUT_GET, "fecha");

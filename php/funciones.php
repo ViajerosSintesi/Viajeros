@@ -128,7 +128,7 @@ function cargarComentCiudad($ciudad){
 */
 function datosUnUsuario($valor){
 	$collection = conectar("usuarios");
-	$parametro = array("_id"=>$valor);
+	$parametro = array("_id"=>base64_decode($valor));
 	$cursor = $collection->findOne($parametro);
 	return $cursor;
 }
@@ -151,7 +151,7 @@ function paisCiudades($id){
 */
 function lugaresUsuario($usu){
 	$collection = conectar("usuarios");
-	$par = array("_id"=>$usu);
+	$par = array("_id"=>base64_decode($usu));
 	$parametro = array("_id"=>0,"lugares"=>1);
 	$cursor = $collection->findOne($par,$parametro);
 	return $cursor;
@@ -163,7 +163,7 @@ function lugaresUsuario($usu){
 */
 function guardarUbicacion($usu, $coor, $infoLugar){
 	$collection = conectar("usuarios");
-	$parametro = array("_id"=>$usu);
+	$parametro = array("_id"=>base64_decode($usu));
 	$param = array('$push'=>array('lugares'=> array('coor'=>$coor, 'direc'=>$infoLugar)));
 	$cursor = $collection->update($parametro, $param);;
 }

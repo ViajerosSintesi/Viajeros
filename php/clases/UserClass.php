@@ -31,8 +31,8 @@ class User{
 	/**
 	 * getters and setters
 	 */
-	public function getId(){return $this->id;}
-	public function setId($id){$this->id = $id;}
+	public function getId(){return base64_encode($this->id);}
+	public function setId($id){$this->id = base64_encode($id);}
 	public function getUsername(){return $this->username;}
 	public function setUsername($username){$this->username = $username;}
 	public function getApellidos(){return $this->apellidos;}
@@ -89,7 +89,7 @@ class User{
 	 */
     public function userToArray(){
 		$this->userInArray = array(
-			'_id' => $this->id,
+			'_id' => base64_decode($this->id),
 			'username' => $this->username,
 			'apellidos' => $this->apellidos,
 			'pass' => $this->password,
@@ -115,7 +115,7 @@ class User{
 	 *                    cod 2: existe el mail i el password pero no esta activado
 	 */
       public function comproveLogin(){
-	    $queryForId = array('_id' => $this->id);
+	    $queryForId = array('_id' => base64_decode($this->id));
 	    $retorn = 0;
 	    if($this->bbdd->contar($queryForId)){
 	    	$queryForPass = array('_id' => $this->id,'pass' => $this->password);
@@ -138,7 +138,7 @@ class User{
 	 */
 	public function cogeValoresSegunId(){
 		$retorn = 0;
-		$queryForId = array('_id' => $this->id);
+		$queryForId = array('_id' => base64_decode($this->id));
 		if($this->bbdd->contar($queryForId)){
 			$user = $this->bbdd->findOneCollection($queryForId);
 			
@@ -171,7 +171,7 @@ class User{
 		$diccionario = array('username' => $this->username,'url' => $url );
 	
 		#creacion del correo y envio
-		$mail = new Correo($diccionario, $plantilla, $this->id, "Bienvenido!", "no-reply@viajeros.com");
+		$mail = new Correo($diccionario, $plantilla, base64_decode($this->id), "Bienvenido!", "no-reply@viajeros.com");
 		$mail->enviarMail();
 	}
 
@@ -182,7 +182,7 @@ class User{
 	public function activarUser(){
 	      $this->userToArray();
 	      $nuevosDatos = array('$set' => array("activado" => 1));
-	      $queryForUp = array('_id' => $this->id);
+	      $queryForUp = array('_id' => base64_decode($this->id));
 	      $this->bbdd->actualiza($queryForUp,$nuevosDatos);
 	}
 	/**
@@ -210,7 +210,7 @@ class User{
                 
                 //echo file_exists($uploadfile);
                 $this->setImgPerfil($uploadfile);
-                $queryForId = array('_id' => $this->id);
+                $queryForId = array('_id' => base64_decode($this->id));
                 $queryForChange = array('$set'=> array('imgPerfil' =>$uploadfile));
                 $this->bbdd->actualiza($queryForId, $queryForChange);
                 $retorn=1;
@@ -228,7 +228,7 @@ class User{
 	 */
 	public function updateUser($id=""){
 	      
-	      if($id=="") $queryForId = array('_id' => $this->id);
+	      if($id=="") $queryForId = array('_id' => base64_decode($this->id));
 	      else {
 	            $queryForId = array('_id' => $id);
 	            $this->id = $id;
@@ -244,7 +244,7 @@ class User{
      * @return Array  		nombre de los lugares
      */
 	public function cogerCoord(){
-	    $queryForCoord = array('_id' => $this->id);
+	    $queryForCoord = array('_id' => base64_decode($this->id));
 	    $queryForView = array('lugares' => true);
 	    $this->lugares= $this->bbdd->findOneCollection($queryForCoord, $queryForView);
 	    return $this->lugares;
@@ -256,7 +256,7 @@ class User{
 	 * @return bool  		devuelve si ha podido insertar el lugar al user 
 	 */
 	public function incluirCiudad(){
-	    $queryForLugares = array('_id' => $this->id);
+	    $queryForLugares = array('_id' => base64_decode($this->id));
 	    $queryForChange = array('$addToSet'=> array('lugares' => $this->lugares));
 	    return $this->bbdd->actualiza($queryForLugares, $queryForChange);
 	}

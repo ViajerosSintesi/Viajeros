@@ -9,11 +9,14 @@ function buscador(request, response){
                   
 			if(data)	  
                   if(data[i].idPais){
-                   $("#id").val("ciudad.php?ciudad="+data[i]._id.$id);
-                   availableTags.push(data[i].ciudad+" - "+data[i].pais);
+                        $("#id").val("ciudad.php?ciudad="+data[i]._id.$id);
+                        availableTags.push(data[i].ciudad+" - "+data[i].pais);
+                  }else if(data[i].idCiudad){
+                        $("#id").val("pais.php?pais="+data[i]._id.$id);
+                        availableTags.push(data[i].pais);
                   }else{
-                   $("#id").val("pais.php?pais="+data[i]._id.$id);
-                   availableTags.push(data[i].pais);
+                        $("#id").val("perfil.php?user="+data[i].id);
+                        availableTags.push(data[i].username);
                   }
 				  
 				  
