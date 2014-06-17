@@ -26,7 +26,17 @@ $(function(){
 		source: buscador,
 		select: function(){
 			var res = document.getElementById("id").value;
-			window.location=res;
+			if(res.indexOf("-perfil")){
+			      
+                        var strUser = res.substr(0,res.indexOf("[perfil"));
+                        alert(strUser);
+			      var htmlInsert ='<form method="post" action="perfil.php" class="envioPerfil">';
+                        htmlInsert +='<input type="hidden" value="'+strUser+'" name="user"/></form>';
+			      $(this).html(htmlInsert);
+			      $(".envioPerfil").submit();
+			}else{
+			      window.location=res;
+			}
 		}
 	});
 	//Menu
@@ -38,6 +48,10 @@ $(function(){
 			$("#ico-menu").attr('src', src);
 		});
 	});
+	$("#mensajes").click(function(){
+	      var userId = $("#userIdForImg").val();
+	      recibirMnsj(userId);
+	})
 });
 
 function borrarImagen(imgId, carga){
@@ -53,6 +67,22 @@ function borrarImagen(imgId, carga){
       });
 }
 
+function recibirMnsj(user){
+      var query = {"user":user, verMnsjRec:1};
+      $.getJSON("php/controles/controlMensajes.php", query, function(data){
+            var htmlinsert = "";
+            if(data){
+                  for(var i = 0; i<data.length; i++){
+                        htmlinsert +="de: "+data[i].remitente+"<br>";
+                        htmlinsert +="mensaje: "+data[i].texto+"<br>";
+                        htmlinsert +="fecha: "+data[i].fecha+"<br>";
+                        htmlinsert +="<hr>";
+                  }
+            }
+            
+            $("#mnsjDiv").html(htmlinsert);
+      });
+}
 
 
 function reportarImagen(imagen,user){

@@ -37,7 +37,7 @@ if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "verComments
             elseif($valoraciones[$x]["valor"] == 2)$comentarios[$i]["valorPos"]++; 
       }
       $comentarios[$i]["valorDelUser"] = $valoracionComent->verValoracionDelUsuario(); 
-      $user->setId($comentarios[$i]["idUsu"]);
+      $user->setId(base64_decode($comentarios[$i]["idUsu"]));
       $user->cogeValoresSegunId();
       $comentarios[$i]["nombreDelUser"] = $user->getUsername();
       $comentarios[$i]["imgPerfilUser"] = $user->getImgPerfil();
@@ -67,7 +67,7 @@ if(filter_has_var(INPUT_GET, "ciudad") && filter_has_var(INPUT_GET, "verComments
 if(filter_has_var(INPUT_GET,"ciudad")&& filter_has_var(INPUT_GET, "insertarComent")){
       
       $ciudad = filter_input(INPUT_GET, "ciudad", FILTER_SANITIZE_STRING);
-      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+      $userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_STRING);
       $tipo = filter_input(INPUT_GET, "insertarComent", FILTER_SANITIZE_STRING);
       $comentText = filter_input(INPUT_GET, "comentario", FILTER_SANITIZE_STRING);
       $data = filter_input(INPUT_GET, "fecha");

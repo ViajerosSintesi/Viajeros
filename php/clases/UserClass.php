@@ -20,6 +20,8 @@ class User{
 	private $userInArray;				#formato array de las propiedades
 	private $admin = null;                    #rol de admin
 	
+	private $privado = 0;
+	
 
 	/**
 	 * [__construct description]
@@ -51,6 +53,9 @@ class User{
 	public function setLugares($lugares){$this->lugares = $lugares;}
 	public function getAdmin(){return $this->admin;}
 	public function setAdmin($admin){$this->admin = $admin;}
+	public function getPrivado(){return $this->privado;}
+	public function setPrivado($privado){$this->privado = $privado;}
+	
 
     
     /**
@@ -98,7 +103,8 @@ class User{
 			'codActivacion' => $this->codActivacion,
                   'imgPerfil' => $this->imgPerfil,
                   'lugares' => array(),
-                  "admin" =>$this->admin
+                  "admin" =>$this->admin,
+                  "privado" =>$this->privado
 			//'email' => $this->email
 			);
 	}
@@ -116,9 +122,10 @@ class User{
 	 */
       public function comproveLogin(){
 	    $queryForId = array('_id' => base64_decode($this->id));
+	    
 	    $retorn = 0;
 	    if($this->bbdd->contar($queryForId)){
-	    	$queryForPass = array('_id' => $this->id,'pass' => $this->password);
+	    	$queryForPass = array('_id' =>base64_decode( $this->id),'pass' => $this->password);
 	    	if($user = $this->bbdd->findOneCollection($queryForPass)){
 	    	      if($user["activado"]){
 	    	            $retorn = 1;
@@ -151,6 +158,8 @@ class User{
 			$this->imgPerfil = $user['imgPerfil'];
 			$this->lugares = $user['lugares'];
 			$this->admin = $user["admin"];
+			$this->privado = $user["privado"];
+		
 			$retorn = 1;
 		}
 		return $retorn;
@@ -227,13 +236,14 @@ class User{
 	 * @param  string $id 	id a actualizar
 	 */
 	public function updateUser($id=""){
-	      
+	      $this->cogeValoresSegunId();
 	      if($id=="") $queryForId = array('_id' => base64_decode($this->id));
 	      else {
-	            $queryForId = array('_id' => $id);
+	            $queryForId = array('_id' => base64_decode($id));
 	            $this->id = $id;
 	      }
 	      $this->cogerCoord();
+	      
 	      $this->bbdd->eliminar($queryForId);
 	      
 	      return $this->guardarUser();

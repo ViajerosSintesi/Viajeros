@@ -16,9 +16,10 @@
 	      $userArray=array(
 	                  'nombre'=> $user->getUsername(),
 	                  'apellidos'=> $user->getApellidos(),
-	                  'email'=> base64_decode($user->getId()),
+	                  'email'=> base64_decode(base64_decode($user->getId())),
 	                  'edad'=> $user->getEdad(),
-	                  'imgPerfil'=>$user->getImgPerfil()
+	                  'imgPerfil'=>$user->getImgPerfil(),
+	                  'privacidad'=>$user->getPrivado()
 	            );
 	      echo json_encode($userArray);
 	}

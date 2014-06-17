@@ -142,7 +142,7 @@ function isImage(extension){
  **/
 function cargarDatos(){
        $("body").append("<div id='cargaAjax'> <img src='img/gif-load.gif'/></div>");
-       $("#cargaAjax").dialog({modal:true});
+       //$("#cargaAjax").dialog({modal:true});
       var userId = $("#userIdForImg").val();
       var dataEnvio = {"datosPerfil": 1, "userId": userId};
       $.getJSON('php/controles/controlPerfil.php', dataEnvio,function(data){
@@ -175,8 +175,8 @@ function cargarDatos(){
                   imgDialog(userId, divId, borra);
             });
             
-            $("#cargaAjax").dialog("close");
-            $("#cargaAjax").remove();
+            //$("#cargaAjax").dialog("close");
+            //$("#cargaAjax").remove();
       });
       
 }
@@ -192,28 +192,29 @@ function cargarDatos(){
  
 function modPerfil(){
        $("body").append("<div id='cargaAjax'> <img src='img/gif-load.gif'/></div>");
-       $("#cargaAjax").dialog({modal:true});
+       //$("#cargaAjax").dialog({modal:true});
       var username = $("#perfil-nombre").val();
       var apellidos = $("#perfil-apellidos").val();
       var mail =  $("#perfil-email").val();
-		var pass =  $("#perfil-password").val();
-		var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos, "email": mail, "password": pass};
+	var pass =  $("#perfil-password").val();
+	var privacidad =  $("#privacidad").val();
+	var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos, "email": mail, "password": pass, "privacidad": privacidad};
 		// validacion username
-      if(($("#perfil-nombre").val() == '')||(pass.length<=4)){
+      /*if(($("#perfil-nombre").val() == '')||(pass.length<=4)){
             $("#cargaAjax").dialog("close");
             $("#cargaAjax").remove();
 	      document.getElementById("no_modifico").innerHTML="El campo nombre no puede estar vacio y el password debe tener almenos 5 digitos";
-      }else{
+      }else{*/
             $.post('php/controles/modificarPerfil.php', dataEnvio, function(data){
                   var not = JSON.parse(data);
                   //alert(not.notice)
                   cargarDatos();
                   $("#info").show();
       	      $("#form-info").hide();
-      	       $("#cargaAjax").dialog("close");
-                  $("#cargaAjax").remove();
+      	      //$("#cargaAjax").dialog("close");
+                  //$("#cargaAjax").remove();
             });
-	}
+	//}
 }
 
 function subirFotos(){

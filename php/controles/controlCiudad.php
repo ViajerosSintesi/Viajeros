@@ -46,7 +46,7 @@ if(filter_has_var(INPUT_GET, "nombreCiudadB") && filter_has_var(INPUT_GET, "busc
 	$regexObjuser = new MongoRegex("/".$ciudad."/i"); 
 	$queryForUser = array("username" => $regexObjuser);
 	$todosUsers=$mongoUser->findCollection($queryForUser);
-	
+	$todUser=array();
 	for($i=0; $i< count($todosUsers); $i++){
 	      $todUser[$i]["id"] = base64_encode($todosUsers[$i]["_id"]);
 	      $todUser[$i]["username"] = $todosUsers[$i]["username"];

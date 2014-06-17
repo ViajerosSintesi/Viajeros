@@ -25,7 +25,8 @@ if(isset($_GET['ciudad'])){
 	      border-radius:20px;
 	}
 	</style>
-	<script src="js/cargaScript.js"></script>
+	<!--<script src="js/cargaScript.Ext.js"></script>-->
+	
 	<script src="js/valoracion.js"></script>
 	<script type="text/javascript">
 	$(function(){

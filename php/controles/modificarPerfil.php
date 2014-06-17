@@ -15,7 +15,7 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
       
       $userId = $_SESSION["userId"];
       $user = new User();
-      $user->setId($userId);
+      $user->setId(base64_decode($userId));
       $user->cogeValoresSegunId();
       
       if(filter_has_var(INPUT_POST, "username")){
@@ -33,6 +33,10 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
       if(filter_has_var(INPUT_POST, "edad")){
             $edad = filter_input(INPUT_POST, "edad");
             $user->setUsername($edad);
+      }
+      if(filter_has_var(INPUT_POST, "privacidad")){
+            $privacidad = filter_input(INPUT_POST, "privacidad");
+            $user->setPrivado($privacidad);
       }
       if(filter_has_var(INPUT_POST, "email")){
             $id = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);

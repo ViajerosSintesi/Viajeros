@@ -41,7 +41,7 @@ if(@$_POST['edit-info']){
 	<script src="js/ajax.js"></script>
 	<script src="js/buscador.js"></script>
 	<script src="js/comun.js"></script>
-	<script src="js/cargaScript.js"></script>
+	<script src="js/cargaScript.Ext.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script type="text/javascript">
       

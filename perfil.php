@@ -12,17 +12,23 @@ $user = null;
 if(!isset($_SESSION['userId'])){
 	header("location:index.php");
 }else{
+      
 	if(filter_has_var(INPUT_POST,"user")){
 		$user= filter_input(INPUT_POST,"user");
-		/*require_once("php/clases/UserClass.php");
+		require_once("php/clases/UserClass.php");
+
 	      $usuario = new User();
 	      $usuario->setId($user);
-	      $usuario->cogeValoresSegunId();*/
-	      
+	      $usuario->cogeValoresSegunId();
+	      echo $use;
+	      if($usuario->getPrivado() == 1){
+	            header("location:perfil.php?ref=2");
+	      }
+
 	}else{
 	      
 		$user=$_SESSION['userId'];
-	      /*require_once("php/clases/UserClass.php");
+		/*require_once("php/clases/UserClass.php");
 	      $usuario = new User();
 	      $usuario->setId($user);
 	      $usuario->cogeValoresSegunId();*/
@@ -30,7 +36,7 @@ if(!isset($_SESSION['userId'])){
 }
 
 function comproveEmail(){
-	if(filter_has_var(INPUT_POST,"user")) return 0;
+	if(filter_has_var(INPUT_POST,"user") == $_SESSION['userId']) return 0;
 	else return 1;
 }
 include("php/funciones.php");
@@ -49,7 +55,7 @@ $coor=json_encode($coor["lugares"]);
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/ajax.js"></script>
 	<script src="js/buscador.Ext.js"></script>
-	<script src="js/comun.js"></script>
+	<script src="js/comun.Ext.js"></script>
 	<script src="js/perfil.Ext.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </head>
@@ -63,6 +69,7 @@ $coor=json_encode($coor["lugares"]);
 			<input type="text" id="buscar" title="Buscar ciudad, pa&iacute;s">
 			<input type="hidden" value="" id="id" />
 			<ul>
+			      <li><a href="#" id="mensajes" title="mensajes">mensajes</a></li>
 				<li><a href="#" id="miUbicacion" title="Obterner ubicaci&oacute;n"><img src="img/161.png"></a></li>
 				<li><a href="perfil.php" title="Ir a perfil">Perfil</a></li>
 				<li><a href="list-pais.php" title="Lista de paises">Paises</a></li>
@@ -74,6 +81,7 @@ $coor=json_encode($coor["lugares"]);
 		</div>
 	</div>
 	<!-- fin barra menu -->
+	<div id="mnsjDiv"></div>
 	<!-- Cabecera -->
 	<div id="header">
 		<img src="img/logo.png">
@@ -106,6 +114,7 @@ $coor=json_encode($coor["lugares"]);
 						<tr><th>Apellidos: </th><td><span id="apellidosUser"></td></tr>
 						<?php if( comproveEmail()){ ?>
 						<tr><th>Email: </th><td><span id="emailUser"></span></td></tr>
+
 						<?php } ?>
 						<tr><th>Fecha de nacimiento: </th><td><span id="edadUser"></span></td></tr>
 						<tr><th>Pais: </th><td>Espa&ntilde;a</td></tr>
@@ -117,6 +126,11 @@ $coor=json_encode($coor["lugares"]);
 						<tr><th><label for="">Apellidos: </label></th><td><input type="text" name="apellido" id="perfil-apellidos"></td></tr>
 						<tr><th><label for="">Email: </label></th><td><input type="text" name="email" id="perfil-email"></td></tr>
 						<tr><th><label for="">Password: </label></th><td><input type="password" name="password" id="perfil-password"></td></tr>
+						<tr><th><label for="">Privacidad: </label></th><td><select id="privacidad" name="privacidad">
+						<option value="0">Publico</option>
+					      <option value="1">Privado</option>
+					      </option>
+					      </td></tr>
 						<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
 						<p><span id="no_modifico"><span>
 						<tr><td><input type="submit" name="modificar-datos" id="modificar-datos" value="Modificar datos"></td><td><input type="submit" name="cancelar" id="cancelar-datos" value="Cancelar"></td></tr>

@@ -11,12 +11,12 @@ function buscador(request, response){
                   if(data[i].idPais){
                         $("#id").val("ciudad.php?ciudad="+data[i]._id.$id);
                         availableTags.push(data[i].ciudad+" - "+data[i].pais);
-                  }else if(data[i].idCiudad){
+                  }else if(data[i].username){
+                        $("#id").val(data[i].id+"[perfil");
+                        availableTags.push(data[i].username);
+                  }else{
                         $("#id").val("pais.php?pais="+data[i]._id.$id);
                         availableTags.push(data[i].pais);
-                  }else{
-                        $("#id").val("perfil.php?user="+data[i].id);
-                        availableTags.push(data[i].username);
                   }
 				  
 				  

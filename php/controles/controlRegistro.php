@@ -30,6 +30,7 @@ if(filter_has_var(INPUT_POST, "user") && filter_has_var(INPUT_POST, "mail") && f
 	$newUser->setCodActivacion($mail);
 	$newUser->setActivado(0);
 	$newUser->setAdmin(0);
+	$newUser->setPrivado(1);
 	$newUser->setEdad($edad);
 	if(isset($_FILES["imgPerfil"])){
 		$user->ponerImgPerfil($_FILES["imgPerfil"]);

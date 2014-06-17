@@ -27,7 +27,8 @@ function cargarComents(idSitio, idUser, tipo){
              for(var i = 0; i<data.length; i++){
                   htmlInsert +='<div class="coments">';
                   htmlInsert +='<div class="coment-up">';
-                  htmlInsert +='<p><a href="perfil.php?user='+data[i].idUsu+'"><img class="imgperfil" src="'+data[i].imgPerfilUser+'"/>'+data[i].nombreDelUser+'</a></p>';
+                  htmlInsert +='<p><form method="post" action="perfil.php" class="envioPerfil"><a href="#" class="linkPerfil"><input type="hidden" value="'+data[i].idUsu+'" name="user"/>';
+                  htmlInsert +='<img class="imgperfil" src="'+data[i].imgPerfilUser+'"/>'+data[i].nombreDelUser+'</a></form></p>';
       	      htmlInsert +='<p>'+data[i].comentario+'</p>';
       	      htmlInsert +='<input type="hidden" id="idUsu'+i+'" value="'+idUser+'"/>';
       	      htmlInsert +='<input type="hidden" id="idComent'+i+'" value="'+data[i]._id['$id']+'"/>';
@@ -64,6 +65,10 @@ function cargarComents(idSitio, idUser, tipo){
             htmlInsert +='</div>';
             
              $("#comentarios-pais").html(htmlInsert);
+             $(".linkPerfil").click(function(){
+                  
+                   $(this).parent().submit();
+             });
              $(".meGusta").click(function(){
                   var id=$(this).attr("id");
                   var numComent = id[id.length-1];
@@ -139,7 +144,8 @@ function cargarPreguntas(idSitio, idUser, tipo){
              for(var i = 0; i<data.length; i++){
                   htmlInsert +='<div class="pregunta">';
                   htmlInsert +='<div class="pregunta-up">';
-                  htmlInsert +='<p><a href="perfil.php?user='+data[i].idUsu+'"><img class="imgperfil" src="'+data[i].imgPerfilUser+'"/>'+data[i].nombreDelUser+'</a></p>';
+                  htmlInsert +='<p><form method="post" action="perfil.php" class="envioPerfil"><a href="#" class="linkPerfil"><input type="hidden" value="'+data[i].idUsu+'" name="user"/>';
+                  htmlInsert +='<img class="imgperfil" src="'+data[i].imgPerfilUser+'"/>'+data[i].nombreDelUser+'</a></form></p>';
       	      htmlInsert +='<p>'+data[i].pregunta+'</p>';
       	      htmlInsert +='<input type="hidden" id="idUsu'+i+'" value="'+idUser+'"/>';
       	      htmlInsert +='<input type="hidden" id="idPregunta'+i+'" value="'+data[i]._id['$id']+'"/>';
@@ -179,6 +185,10 @@ function cargarPreguntas(idSitio, idUser, tipo){
             htmlInsert +='</div>';
             
              $("#preguntas-pais").html(htmlInsert);
+             $(".linkPerfil").click(function(){
+                  
+                   $(this).parent().submit();
+             });
              $(".meGusta").click(function(){
                   var id=$(this).attr("id");
                   var numPregunta = id[id.length-1];
@@ -266,7 +276,8 @@ function cargarRespuestas(idSitio, idUser, tipo){
              for(var i = 0; i<data.length; i++){
                   htmlInsert +='<div class="respuesta">';
                   htmlInsert +='<div class="respuesta-up">';
-                  htmlInsert +='<p><a href="perfil.php?user='+data[i].idUsu+'"><img class="imgperfil" src="'+data[i].imgPerfilUser+'"/>'+data[i].nombreDelUser+'</a></p>';
+                  htmlInsert +='<p><form method="post" action="perfil.php" class="envioPerfil"><a href="#" class="linkPerfil"><input type="hidden" value="'+data[i].idUsu+'" name="user"/>';
+                  htmlInsert +='<img class="imgperfil" src="'+data[i].imgPerfilUser+'"/>'+data[i].nombreDelUser+'</a></form></p>';
       	      htmlInsert +='<p>'+data[i].respuesta+'</p>';
       	      htmlInsert +='<input type="hidden" id="idUsu'+i+'" value="'+idUser+'"/>';
       	      htmlInsert +='<input type="hidden" id="idRespuesta'+i+'" value="'+data[i]._id['$id']+'"/>';
@@ -303,7 +314,10 @@ function cargarRespuestas(idSitio, idUser, tipo){
             htmlInsert +='</div>';
             
              $("#"+idSitio).html(htmlInsert);
-             
+             $(".linkPerfil").click(function(){
+                  
+                   $(this).parent().submit();
+             });
              $(".meGusta").click(function(){
                   var id=$(this).attr("id");
                   var numRespuesta = id[id.length-1];
