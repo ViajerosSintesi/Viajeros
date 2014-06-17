@@ -36,12 +36,14 @@ if(@$_POST['edit-info']){
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css">
-	<script src="js/jquery-1.10.2.js"></script>
+<link rel="stylesheet" type="text/css" href="css/alertify.default.css">
+	<link rel="stylesheet" type="text/css" href="css/alertify.core.css">
+	<script src="js/jquery-2.1.1.min.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+	<script src="js/alertify.min.js"></script>
 	<script src="js/ajax.js"></script>
 	<script src="js/buscador.js"></script>
 	<script src="js/comun.js"></script>
-	<script src="js/cargaScript.Ext.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script type="text/javascript">
       

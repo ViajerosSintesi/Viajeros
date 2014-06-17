@@ -146,6 +146,7 @@ class User{
 	public function cogeValoresSegunId(){
 		$retorn = 0;
 		$queryForId = array('_id' => base64_decode($this->id));
+		
 		if($this->bbdd->contar($queryForId)){
 			$user = $this->bbdd->findOneCollection($queryForId);
 			
@@ -236,16 +237,14 @@ class User{
 	 * @param  string $id 	id a actualizar
 	 */
 	public function updateUser($id=""){
-	      $this->cogeValoresSegunId();
+	      
 	      if($id=="") $queryForId = array('_id' => base64_decode($this->id));
 	      else {
 	            $queryForId = array('_id' => base64_decode($id));
 	            $this->id = $id;
 	      }
 	      $this->cogerCoord();
-	      
 	      $this->bbdd->eliminar($queryForId);
-	      
 	      return $this->guardarUser();
 	}
     /**

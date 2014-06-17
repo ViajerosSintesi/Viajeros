@@ -28,7 +28,8 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
       }
       if(filter_has_var(INPUT_POST, "password")){
             $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
-            $user->setPassword($password);
+            if($password!="")
+                  $user->setPassword($password);
       }
       if(filter_has_var(INPUT_POST, "edad")){
             $edad = filter_input(INPUT_POST, "edad");
@@ -39,11 +40,19 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
             $user->setPrivado($privacidad);
       }
       if(filter_has_var(INPUT_POST, "email")){
+            
             $id = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-            $user->setId($id);
-            $user->setActivado(0);
-            $user->enviaEmailConfirm();
-            $returnUpd = $user->updateUser($userId);
+            
+            if($id != base64_decode($userId)&&$id != ""){
+                  $user->setId($id);
+                  $user->setActivado(0);
+                  $user->enviaEmailConfirm();
+                  $returnUpd = $user->updateUser($userId);
+                  
+            }else{
+                  $returnUpd = $user->updateUser();
+            }
+            
       }else{
             $returnUpd = $user->updateUser();
       }
@@ -58,7 +67,7 @@ if(filter_has_var(INPUT_POST, "modPerfil") && isset($_SESSION["userId"])){
 if(isset($_FILES["imgPerfil"])){
             $userId = $_SESSION["userId"];
             $user = new User();
-            $user->setId($userId);
+            $user->setId(base64_decode($userId));
             echo $user->ponerImgPerfil($_FILES["imgPerfil"]);
 }
 ?>

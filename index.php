@@ -22,9 +22,14 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="js/jquery-2.1.1.min.js"></script>
+
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/alertify.default.css">
+	<link rel="stylesheet" type="text/css" href="css/alertify.core.css">
+	
+	<script src="js/alertify.min.js"></script>
+	
 	<script src="js/index.Ext.js"></script>
 	<script type="text/javascript">
 	$(function(){

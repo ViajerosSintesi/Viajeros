@@ -18,9 +18,8 @@ if(!isset($_SESSION['userId'])){
 		require_once("php/clases/UserClass.php");
 
 	      $usuario = new User();
-	      $usuario->setId($user);
+	      $usuario->setId(base64_decode($user));
 	      $usuario->cogeValoresSegunId();
-	      echo $use;
 	      if($usuario->getPrivado() == 1){
 	            header("location:perfil.php?ref=2");
 	      }
@@ -51,15 +50,24 @@ $coor=json_encode($coor["lugares"]);
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css">
+	<link rel="stylesheet" type="text/css" href="css/alertify.default.css">
+	<link rel="stylesheet" type="text/css" href="css/alertify.core.css">
 	<script src="js/jquery-2.1.1.min.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+	<script src="js/alertify.min.js"></script>
 	<script src="js/ajax.js"></script>
-	<script src="js/buscador.Ext.js"></script>
-	<script src="js/comun.Ext.js"></script>
-	<script src="js/perfil.Ext.js"></script>
+	<script src="js/buscador.js"></script>
+	<script src="js/comun.js"></script>
+	<script src="js/perfil.js"></script>
+
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </head>
 <body>
+<?php
+if(filter_has_var(INPUT_GET,"ref"))
+      if(filter_input(INPUT_GET,"ref") == 2)
+            echo "<script>alertify.alert('El perfil que intentas acceder es privado');</script>";
+?>
 <input type="hidden" name="userId" value="<?php echo $user?>" id="userIdForImg"/>
 <div id="wrap">
 	<!-- Barra de menu -->

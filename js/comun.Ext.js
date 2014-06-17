@@ -26,14 +26,13 @@ $(function(){
 		source: buscador,
 		select: function(){
 			var res = document.getElementById("id").value;
-			if(res.indexOf("-perfil")){
-			      
+			if(res.indexOf("[perfil")!=1){
+			      //alertify.alert(res+" - "+res.indexOf("[perfil"));
                         var strUser = res.substr(0,res.indexOf("[perfil"));
-                        alert(strUser);
 			      var htmlInsert ='<form method="post" action="perfil.php" class="envioPerfil">';
                         htmlInsert +='<input type="hidden" value="'+strUser+'" name="user"/></form>';
 			      $(this).html(htmlInsert);
-			      $(".envioPerfil").submit();
+			      //$(".envioPerfil").submit();
 			}else{
 			      window.location=res;
 			}
@@ -94,7 +93,7 @@ function reportarImagen(imagen,user){
       $.getJSON('php/controles/controlReporte.php', dataEnvio, function(data){
             console.log(data);
             if(data){ location.reload(true);
-                  alert("imagen reportada! Gracias por tu ayuda!");
+                  alertify.alert("imagen reportada! Gracias por tu ayuda!");
             }
             //console.log(this.parentNode.nodeName);
       });

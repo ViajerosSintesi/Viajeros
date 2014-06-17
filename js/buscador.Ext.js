@@ -8,18 +8,16 @@ function buscador(request, response){
             for(var i = 0; i<data.length;i++){
                   
 			if(data)	  
-                  if(data[i].idPais){
-                        $("#id").val("ciudad.php?ciudad="+data[i]._id.$id);
-                        availableTags.push(data[i].ciudad+" - "+data[i].pais);
-                  }else if(data[i].username){
-                        $("#id").val(data[i].id+"[perfil");
-                        availableTags.push(data[i].username);
-                  }else{
-                        $("#id").val("pais.php?pais="+data[i]._id.$id);
-                        availableTags.push(data[i].pais);
-                  }
-				  
-				  
+                        if(data[i].idPais){
+                              $("#id").val("ciudad.php?ciudad="+data[i]._id.$id);
+                              availableTags.push(data[i].ciudad+" - "+data[i].pais);
+                        }else if(data[i].username){
+                              $("#id").val(data[i].id+"[perfil");
+                              availableTags.push(data[i].username);
+                        }else if(data[i].pais){
+                              $("#id").val("pais.php?pais="+data[i]._id.$id);
+                              availableTags.push(data[i].pais);
+                        }
             }
 		/*}else{
 		      $("#id").val("crearSitio.php?sitio="+ request.term);

@@ -1,15 +1,15 @@
 $(function(){
       
 	$("#cancelar-datos").click(function(){
-		alert("clickado en cancelar");
+		alertify.alert("clickado en cancelar");
 		return false;
 	});
 	$("#modificar-datos").click(function(){
-		alert("clickado en modificar");
+		alertify.alert("clickado en modificar");
 		return false;
 	});
 	$("#kiko").click(function(){
-		alert("envio comentario");
+		alertify.alert("envio comentario");
 		return false;
 	});
 

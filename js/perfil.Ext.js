@@ -6,7 +6,7 @@
  * 
  **/
 $(function(){
-      
+            
             //esta funcion carga los datos del usuario en sus campos
             cargarDatos();
             /*//esconde el cuadro para subir imagenes
@@ -110,11 +110,11 @@ function subirImgPerfil(){
                   	success: function(data){
                   	     //si todo va bien, vuelve a cargar los datos
                   	    if(data==1) cargarDatos();
-                  	    else alert("no se ha subido");// <<<<-----No alerts loco!
+                  	    else alertify.alert("no se ha subido");// <<<<-----No alerts loco!
                   	}
                   });
 		}else {
-		      alert("La imagen es demasiado grande o no cumple el formato correcto");
+		      alertify.alert("La imagen es demasiado grande o no cumple el formato correcto");
 		}
 }
 /**
@@ -141,7 +141,7 @@ function isImage(extension){
  * 
  **/
 function cargarDatos(){
-       $("body").append("<div id='cargaAjax'> <img src='img/gif-load.gif'/></div>");
+       //$("body").append("<div id='cargaAjax'> <img src='img/gif-load.gif'/></div>");
        //$("#cargaAjax").dialog({modal:true});
       var userId = $("#userIdForImg").val();
       var dataEnvio = {"datosPerfil": 1, "userId": userId};
@@ -207,7 +207,10 @@ function modPerfil(){
       }else{*/
             $.post('php/controles/modificarPerfil.php', dataEnvio, function(data){
                   var not = JSON.parse(data);
-                  //alert(not.notice)
+                  if(not.notice)
+                        alertify.alert('Datos modificados correctamente!');
+                  else 
+                        alertify.alert(':) Ha habido algun problema al actualizar los datos');
                   cargarDatos();
                   $("#info").show();
       	      $("#form-info").hide();
@@ -250,12 +253,12 @@ function subirFotos(){
                 
                         //si todo va bien, vuelve a cargar los datos
                         if(data==1) cargarDatos();
-                              else alert("no se ha subido");// <<<<-----No alerts loco!
+                              else alertify.alert("no se ha subido");// <<<<-----No alerts loco!
                         }
                   
             });
 	}else {
-	      alert("La imagen es demasiado grande o no cumple el formato correcto");
+	      alertify.alert("La imagen es demasiado grande o no cumple el formato correcto");
 	}
       
 }

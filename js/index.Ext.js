@@ -348,15 +348,15 @@ $(document).ready(function(){
               .done(function(data){
                     var not = $.parseJSON(data);
                    if(!not.notice){
-                       alert("no ha podido registrarse, prueva con otro email");
+                       alertify.alert("no ha podido registrarse, prueva con otro email");
                    }else if(not.notice==3){
-                          alert("Codigo Captcha Mal escrito!!");
+                          alertify.alert("Codigo Captcha Mal escrito!!");
                    }else{
-                         alert("Enhorabuena! Mira en tu correo y activalo!");
+                         alertify.alert("Enhorabuena! Mira en tu correo y activalo!");
                    }
               });
       }else{
-            alert("Datos incorrectos");
+            alertify.alert("Datos incorrectos");
       }
     
     };
