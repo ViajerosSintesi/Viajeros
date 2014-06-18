@@ -13,9 +13,7 @@
       if(isset($_SESSION['userId'])){
             header("Location:perfil.php");
       }
-      if(filter_has_var(INPUT_GET,"ref")){
-            echo "<script>alert('Te has registrado con exito!')</script>";
-      }
+      
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,7 +28,7 @@
 	
 	<script src="js/alertify.min.js"></script>
 	
-	<script src="js/index.Ext.js"></script>
+	<script src="js/index.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		$("#imagen").hide();
@@ -41,9 +39,15 @@
 		$( "#imagen" ).show( selectedEffect, options, 1000);
 	};
 	window.onload=runEffect;
+
 	</script>
 </head>
 <body>
+	<?php
+	if(filter_has_var(INPUT_GET,"ref")){
+            echo "<script>alertify.alert('Te has registrado con exito!')</script>";
+      }
+      ?>
 <div id="wrap">
 	<!-- Cabecera -->
 	<div id="header">
@@ -59,9 +63,9 @@
 					<legend><h2>Inicia sesi&oacute;n</h2></legend>
 					<table>
 						<tr><th><label for="usuario">Email: </label></th>
-						<td><input type="text" id="usuario" name="usuario" value="Escribe tu email" class="text-input"></td></tr>
-						<tr><th><label for="password">Contrase&ntilde;a: </label></th>
-						<td><input type="password" id="password" name="password"></td></tr>
+						<td><input type="email" id="usuario" name="usuario" value="Escribe tu email" class="text-input" required></td></tr>
+						<tr><th><label for="password" >Contrase&ntilde;a: </label></th>
+						<td><input type="password" id="password" name="password" required></td></tr>
 						<tr><td></td><td><input type="button" name="enviar" id="boton-login" value="Iniciar sesi&oacute;n"></td></tr>
 					</table>
 				</fieldset>
@@ -79,9 +83,11 @@
 					<p><label for="apellidos">Apellidos</label><br>
 						<input type="text" name="apellidos" id="apellidos" value="Tu apellido" class="text-input"></p>
 					<p><label for="email">Email: </label><br>
-						<input type="text" name="email" id="email" value="Tu email" class="text-input"></p>
+						<input type="email" name="email" id="email" value="Tu email" class="text-input"></p>
 					<p><label for="password">Contrase&ntilde;a: </label><br>
 						<input type="password" name="contra" id="contra" class="text-input"></p>
+					<p><label for="password">repite la Contrase&ntilde;a: </label><br>
+						<input type="password" name="repcontra" id="repcontra" class="text-input"></p>
 					<p><label>Fecha de nacimiento: </label><br>
 					<select name="dia" id="dia">
 						<option value="0" selected="1">D&iacute;a</option>

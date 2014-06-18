@@ -170,7 +170,8 @@ function cargarDatos(){
             $("#perfil-apellidos").val(data.apellidos);
             $("#emailUser").html(data.email);
             $("#edadUser").html(data.edad);
-            document.getElementById("img-Perfil").src=data.imgPerfil;
+            if(data.imgPerfil!=null)
+                  document.getElementById("img-Perfil").src=data.imgPerfil;
       });
       var dataImagenes = {"fotosForPerfil": 1, "userId": userId};
 
@@ -253,7 +254,7 @@ function subirFotos(){
 	var userId = $("#userIdForImg").val();
 	console.log(userId);
 	var ciudadId = $("#buscarForImg").val();
-	if ((fileSize<=200000) && (fileExtension=="jpeg") || (fileExtension=="png") || (fileExtension=="jpg")){
+	if ((fileSize<=50000) && (fileExtension=="jpeg") || (fileExtension=="png") || (fileExtension=="jpg")){
             //creamos un form data i añadimos el fichero
             var formData = new FormData();
             formData.append("imgPerfil", file);

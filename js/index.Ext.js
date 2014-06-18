@@ -71,6 +71,7 @@ $(document).ready(function(){
           var pass = $("#password").val();
           var code = $("#captchaDiv").val();
           var pasa = 1;
+          
           if(mail == ""){
                 //$("#emailLog").addClass("has-error");
                 pasa = 0;
@@ -89,13 +90,13 @@ $(document).ready(function(){
               .done(function(data){
                       var not = $.parseJSON(data);
                    if(not.notice== 0)
-					   document.getElementById("no_logeo").innerHTML="No te has logeado";
+					   alertify.error("No te has logeado");
                    
                    else if(not.notice == 1)
                          location.href="perfil.php";
                    
                    else if(not.notice == 2)
-                       document.getElementById("no_logeo").innerHTML="No has activado tu cuenta , mira tu email";
+                       alertify.error("No has activado tu cuenta , mira tu email");
                    
                    else if(not.notice ==3)
                         document.getElementById("captchaDiv").innerHTML=" <img src='php/controles/creaCaptcha.php?"+(new Date()).getTime()+"'/><input type='text' id='code'/>";
@@ -133,20 +134,12 @@ $(document).ready(function(){
 	function validar_password(valor2){
 	 // creamos nuestra regla con expresiones regulares.
 	  var retornar=0;
-      var filter2 = /[_0-9-]/g;
-	  var filter3 = /[@0-9%]/g;
-	  var filter4 = /[#0-9~]/g;
-	  var filter5 = /[&0-9=]/g;
-	  var filter6 = /[€0-9$]/g;
-	  var filter7 = /[¿0-9?]/g;
-      // utilizamos test para comprobar si el parametro valor cumple la regla
-      if((filter2.test(valor2)==true)||(filter3.test(valor2)==true)||(filter4.test(valor2)==true)||(filter5.test(valor2)==true)||(filter6.test(valor2)==true)||(filter7.test(valor2)==true)){
+      if(valor2 >= 6)
            retornar=1; 	
-		   }
-      else{
+      else
            retornar=0;
-		}
-		return retornar;
+		
+	return retornar;
 	}
 	
 
@@ -158,16 +151,13 @@ $(document).ready(function(){
 
 		
 		if($("#contra").val() == ''){
-			document.getElementById("no_registro").innerHTML="El password no puede estar vacio";
+			alertify.error("El password no puede estar vacio");
 			$("#contra").css( "border","3px solid red" );		
 		}
-		
 		if((miCampoTexto2.length<=4)||(validar_password($("#contra").val())==true)){
-			document.getElementById("no_registro").innerHTML="El password debe tener 5 o mas digitos y solo puede tener letras";
+			alertify.error("El password debe tener 5 o mas digitos");
 			$("#contra").css( "border","3px solid red" );
-			
 		}
-		
 		else {
 			document.getElementById("no_registro").innerHTML="";
 			$("#contra").css( "border","1px solid blue" );
@@ -185,12 +175,12 @@ $(document).ready(function(){
 
 		
 		if($("#password").val() == ''){
-			document.getElementById("no_logeo").innerHTML="El password no puede estar vacio";
+			alertify.error("El password no puede estar vacio");
 			$("#password").css( "border","3px solid red" );		
 		}
 		
 		if((miCampoTexto2.length<=4)||(validar_password($("#password").val())==true)){
-			document.getElementById("no_logeo").innerHTML="El password debe tener 5 o mas digitos y solo puede tener letras";
+			alertify.error("El password debe tener 6 o mas digito");
 			$("#password").css( "border","3px solid red" );
 			
 		}
@@ -210,7 +200,7 @@ $(document).ready(function(){
 		var retorn =0;
 		var miCampoTexto = document.getElementById("usuario").value;
 		if (miCampoTexto.length <= 3) {
-		document.getElementById("no_logeo").innerHTML="El nombre debe tener un minimo de 3 digitos";
+		alertify.error("El nombre debe tener un minimo de 3 digitos");
 		$("#usuario").css( "border","3px solid red" );
 		}
 		else {
@@ -227,7 +217,7 @@ $(document).ready(function(){
 		var retorn =0;
 		var miCampoTexto = document.getElementById("nombre").value;
 		if (miCampoTexto.length <= 3) {
-		document.getElementById("no_registro").innerHTML="El nombre debe tener un minimo de 3 digitos";
+		alertify.error("El nombre debe tener un minimo de 3 digitos");
 		$("#nombre").css( "border","3px solid red" );
 		}
 		else {
@@ -245,7 +235,7 @@ $(document).ready(function(){
 		 var retorn =0;
 		if($("#apellidos").val() == '')
 		{
-			document.getElementById("no_registro").innerHTML="El apellido no puede estar vacio";
+			alertify.error("El apellido no puede estar vacio");
 			$("#apellidos").css( "border","3px solid red" );		
 		}
 		else {
@@ -264,7 +254,7 @@ $(document).ready(function(){
 		var retorn =0;
 		if($("#email").val() == '')
 		{
-			document.getElementById("no_registro").innerHTML="Ingrese un email";
+			alertify.error("Ingrese un email");
 			$("#email").css( "border","3px solid red" );
 		}else if(validar_email($("#email").val()))
 		{
@@ -273,7 +263,7 @@ $(document).ready(function(){
 			retorn=1;
 		}else
 		{
-			document.getElementById("no_registro").innerHTML="Email incorrecto";
+			alertify.error("Email incorrecto");
 			$("#email").css( "border","3px solid red" );
 		}
 		return retorn;
@@ -335,28 +325,32 @@ $(document).ready(function(){
     var mes = $("#mes").val();
     var anio = $("#any").val();
     var code = $("#code").val();
-    
+    var rePass = $("#repcontra").val();
     var fecha = dia+"/"+mes+"/"+anio;
-   
-      if((apellido_registro()) && (email_registro()) && (contrasenya_registro()) && (nombre_registro()) && (dia_registro()) && (mes_registro()) && (any_registro())){
-			
-            $.ajax({
-                  type: "POST",
-                  url: "php/controles/controlRegistro.php",
-                  data: {"user":user, "mail":mail,"pass":pass, "edad":fecha, "apellidos":apellidos, "codeCaptcha": code }
-              })
-              .done(function(data){
-                    var not = $.parseJSON(data);
-                   if(!not.notice){
-                       alertify.alert("no ha podido registrarse, prueva con otro email");
-                   }else if(not.notice==3){
-                          alertify.alert("Codigo Captcha Mal escrito!!");
-                   }else{
-                         alertify.alert("Enhorabuena! Mira en tu correo y activalo!");
-                   }
-              });
-      }else{
-            alertify.alert("Datos incorrectos");
-      }
+      if(rePass == pass){
+            if((apellido_registro()) && (email_registro()) && (contrasenya_registro()) && (nombre_registro()) && (dia_registro()) && (mes_registro()) && (any_registro())){
+      			
+                  $.ajax({
+                        type: "POST",
+                        url: "php/controles/controlRegistro.php",
+                        data: {"user":user, "mail":mail,"pass":pass, "edad":fecha, "apellidos":apellidos, "codeCaptcha": code }
+                    })
+                    .done(function(data){
+                          var not = $.parseJSON(data);
+                         if(!not.notice){
+                             alertify.error("no ha podido registrarse, prueva con otro email");
+                         }else if(not.notice==3){
+                                alertify.error("Codigo Captcha Mal escrito!!");
+                         }else if(not.notice==4){
+                                alertify.error("El email ya existe!");
+                         }else{
+                               alertify.success("Enhorabuena! Mira en tu correo y activalo!");
+                         }
+                    });
+            }else{
+                  alertify.error("Datos incorrectos");
+            }
+      }else
+            alertify.error("las contraseñas no coinciden!");
     
     };

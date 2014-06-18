@@ -76,6 +76,7 @@ function cargarComents(idSitio, idUser, tipo){
                   var idUsu= $("#idUsu"+numComent).val();
                   var idComment= $("#idComent"+numComent).val();
                   enviarValoracion("comment", 2, idUsu, idComment);
+                  
                   cargarComents(idSitio, idUser, tipo);
             });
             
@@ -105,8 +106,11 @@ function cargarComents(idSitio, idUser, tipo){
       			   };
 
       			$.getJSON("php/controles/controlComment.php", dataEnvio, function(data){
-      			      
-      			      cargarComents(idSitio, idUser, tipo);
+      			      if(data){
+      			            alertify.success("comentado!! :)");
+      			            cargarComents(idSitio, idUser, tipo);
+      			      }else
+      			            alertify.error("que a pasado?!! :(");
       			      
       			});
       		
@@ -125,6 +129,7 @@ function cargarComents(idSitio, idUser, tipo){
                               "comentId": idComment
                               };
                   $.getJSON("php/controles/controlReporte.php", dataEnvio, function(data){
+                        alertify.success("hagamos de este un sitio tranquilo!! :)");
                         console.log(data);
                   });
             });
@@ -225,8 +230,12 @@ function cargarPreguntas(idSitio, idUser, tipo){
       			   "fecha": fecha
       			   };
       			$.getJSON("php/controles/controlPregunta.php", dataEnvio, function(data){
+      			      if(data){
+      			            alertify.success("comentado!! :)");
+      			            cargarPreguntas(idSitio, idUser, tipo);
+      			      }else
+      			            alertify.error("que a pasado?!! :(");
       			      
-      			      cargarPreguntas(idSitio, idUser, tipo);
       			     
       			});
       		}
@@ -245,6 +254,7 @@ function cargarPreguntas(idSitio, idUser, tipo){
                               };
                   $.getJSON("php/controles/controlReporte.php", dataEnvio, function(data){
                         console.log(data);
+                        alertify.success("hagamos de este un sitio tranquilo!! :)");
                   });
             });
             $(".ver-respuesta").click(function(){
@@ -353,7 +363,7 @@ function cargarRespuestas(idSitio, idUser, tipo){
       			   "fecha": fecha
       			   };
       			$.getJSON("php/controles/controlRespuesta.php", dataEnvio, function(data){
-      			      
+      			      alertify.success("Perfecto!! :)");
       			      cargarRespuestas(idSitio, idUser, tipo);
       			      
       			});
@@ -373,6 +383,7 @@ function cargarRespuestas(idSitio, idUser, tipo){
                               "respuestaId": idRespuesta
                               };
                   $.getJSON("php/controles/controlReporte.php", dataEnvio, function(data){
+                        alertify.success("hagamos de este un sitio tranquilo!! :)");
                         console.log(data);
                   });
             });

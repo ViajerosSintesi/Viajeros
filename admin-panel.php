@@ -30,16 +30,6 @@ $coor=json_encode($coor["lugares"]);
 * esten debidamente rellenados, una vez pasan la comprobación, se ejecuta este
 * código php que llama a unas funciones para realizar la inserción.
 */
-if(@$_POST['guardarPais']){
-	$coordenadasPais = str_replace("(", "", $_POST['coordenadasPais']);
-	$coordenadasPais = str_replace(")", "", $coordenadasPais);
-	insertarPais($_POST['nombrePais'], $_POST['infoPais'], $coordenadasPais);
-}
-if(@$_POST['guardarCiudad']){
-	$coordenadasCiudad = str_replace("(", "", $_POST['coordenadasCiudad']);
-	$coordenadasCiudad = str_replace(")", "", $coordenadasCiudad);
-	insertarCiudad($_POST['nombreCiudad'], $_POST['infoCiudad'], $coordenadasCiudad, $_POST['pertecePais']);
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,9 +45,39 @@ if(@$_POST['guardarCiudad']){
 	<script src="js/comun.js"></script>
 	<script src="js/perfil.js"></script>
 	<script src="js/admin.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/alertify.default.css">
+	<link rel="stylesheet" type="text/css" href="css/alertify.core.css">
+	
+	<script src="js/alertify.min.js"></script>
+	
+	<script src="js/index.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 </head>
 <body>
+<?php
+if(@$_POST['guardarPais']){
+	$coordenadasPais = str_replace("(", "", $_POST['coordenadasPais']);
+	$coordenadasPais = str_replace(")", "", $coordenadasPais);
+      if(insertarPais($_POST['nombrePais'], $_POST['infoPais'], $coordenadasPais))
+	       echo "<script>alertify.success('Pais Insertado :)')</script>";
+	 else
+	      echo "<script>alertify.error('ya existe :(')</script>";
+}
+if(@$_POST['guardarCiudad']){
+	$coordenadasCiudad = str_replace("(", "", $_POST['coordenadasCiudad']);
+	$coordenadasCiudad = str_replace(")", "", $coordenadasCiudad);
+	$pais = $_POST['pertecePais'];
+	$pais = explode("|", $pais);
+	//var_dump($pais);
+	$idPais = $pais[0];
+	$nomPais = $pais[1];
+	if(insertarCiudad($_POST['nombreCiudad'], $_POST['infoCiudad'], $coordenadasCiudad, $idPais, $nomPais))
+	      echo "<script>alertify.success('Pais Insertado :)')</script>";
+	 else
+	      echo "<script>alertify.error('ya existe :(')</script>";
+	 
+}
+?>
 <input type="hidden" name="userId" value="<?php echo $user?>" id="userIdForImg"/>
 <div id="wrap">
 	<!-- Barra de menu -->
@@ -165,7 +185,7 @@ if(@$_POST['guardarCiudad']){
 						<?php 
 						$cursor = listPaises();
 						foreach ($cursor as $document) {
-							echo "<option value='".$document['_id']."'>".$document['pais']."</option>";
+							echo "<option value='".$document['_id']."|".$document['pais']."'>".$document['pais']."</option>";
 						}
 						?>
 						</select>
@@ -225,7 +245,7 @@ if(@$_POST['guardarCiudad']){
 					var place = autocompletee.getPlace();
 					mp.panTo(place.geometry.location);
 					if(lugarPC == "pais"){
-						alert("entro");
+						
 						var cadena = place.geometry.location;
 						$("#coordenadasPais").val(cadena);
 					}else $("#coordenadasCiudad").val(place.geometry.location);

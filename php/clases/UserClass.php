@@ -216,8 +216,6 @@ class User{
             if (move_uploaded_file($fileImg['tmp_name'], $uploadfile)) {
                 #borra la antigua imagen
              
-                
-                
                 //echo file_exists($uploadfile);
                 $this->setImgPerfil($uploadfile);
                 $queryForId = array('_id' => base64_decode($this->id));

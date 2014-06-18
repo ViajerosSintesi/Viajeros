@@ -25,7 +25,9 @@ $(function(){
 	$("#buscar" ).autocomplete({
 		source: buscador,
 		select: function(){
+		      
 			var res = document.getElementById("id").value;
+                  
 			if(res.indexOf("[perfil")>1){
 			      //alertify.alert(res+" - "+res.indexOf("[perfil"));
                         var strUser = res.substr(0,res.indexOf("[perfil"));
@@ -61,7 +63,8 @@ function borrarImagen(imgId, carga){
             console.log(data);
             if(data){
                    location.reload(true);
-            }
+            }else
+                  alertify.error("no se ha podido borrar!");
             //console.log(this.parentNode.nodeName);
       });
 }
@@ -93,7 +96,9 @@ function reportarImagen(imagen,user){
       $.getJSON('php/controles/controlReporte.php', dataEnvio, function(data){
             console.log(data);
             if(data){ location.reload(true);
-                  alertify.alert("imagen reportada! Gracias por tu ayuda!");
+                  alertify.success("imagen reportada! Gracias por tu ayuda!");
+            }else{
+                  alertify.error("no se ha podido reportar :(");
             }
             //console.log(this.parentNode.nodeName);
       });
@@ -109,6 +114,11 @@ function enviarValoracion(tipo, valor, user, object){
                         $.getJSON("php/controles/controlValoracionComent.php",
                                     dataEnvio, function(data){
                                     console.log(data);
+                                    if(data){
+                                          alertify.success("Genial! sigue valorando! :)");
+                                    }else{
+                                           alertify.error("no ha podido guardarse la valoracion :(");
+                                    }
                                     });
                         break;
             case 'img':
@@ -118,6 +128,11 @@ function enviarValoracion(tipo, valor, user, object){
                   var dataEnvio = {"valorimg": valor, "imagenId": imgId, "userId": userId};
                   $.getJSON('php/controles/controlValoracionImg.php', dataEnvio, function(data){
                         console.log(data);
+                        if(data){
+                              alertify.success("Genial! sigue valorando! :)");
+                        }else{
+                               alertify.error("no ha podido guardarse la valoracion :(");
+                        }
                   });
                   break;
             case 'pregunta': 
@@ -127,6 +142,11 @@ function enviarValoracion(tipo, valor, user, object){
                         $.getJSON("php/controles/controlValoracionPregunta.php",
                                     dataEnvio, function(data){
                                     console.log(data);
+                                    if(data){
+                                          alertify.success("Genial! sigue valorando! :)");
+                                    }else{
+                                           alertify.error("no ha podido guardarse la valoracion :(");
+                                    }
                                     });
                         break;
             case 'respuesta': 
@@ -136,6 +156,11 @@ function enviarValoracion(tipo, valor, user, object){
                         $.getJSON("php/controles/controlValoracionRespuesta.php",
                                     dataEnvio, function(data){
                                     console.log(data);
+                                    if(data){
+                                          alertify.success("Genial! sigue valorando! :)");
+                                    }else{
+                                           alertify.error("no ha podido guardarse la valoracion :(");
+                                    }
                                     });
                         break;
             default: break;

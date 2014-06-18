@@ -40,9 +40,13 @@ if(filter_has_var(INPUT_POST, "user") && filter_has_var(INPUT_POST, "mail") && f
 	if($_SESSION["captcha"] != $code){
 		$returnReg = 3;
 	} else{
-		$returnReg = $newUser->guardarUser();
-      	     
-		if($returnReg) $newUser->enviaEmailConfirm();
+	      if(!$newUser->userIfExistInBBDD()){
+		      $returnReg = $newUser->guardarUser();
+      	   
+		      if($returnReg) $newUser->enviaEmailConfirm();
+	      }else{
+	            $returnReg = 4;
+	      }
 	}
 	
 	echo json_encode(array( "notice"=>$returnReg));

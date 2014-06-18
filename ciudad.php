@@ -36,7 +36,7 @@ if(@$_POST['edit-info']){
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css">
-<link rel="stylesheet" type="text/css" href="css/alertify.default.css">
+      <link rel="stylesheet" type="text/css" href="css/alertify.default.css">
 	<link rel="stylesheet" type="text/css" href="css/alertify.core.css">
 	<script src="js/jquery-2.1.1.min.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
@@ -101,6 +101,9 @@ if(@$_POST['edit-info']){
 					$("#nombreCiudad").removeClass("nohasEstado");
 					$("#nombreCiudad").addClass("hasEstado");
 					$("#nombreCiudad").off("click");
+					alertify.success("Otro sitio mas! :)");
+				}else{
+				      alertify.error("Otro sitio mas! :)");
 				}
 			});
 		}
@@ -112,6 +115,7 @@ if(@$_POST['edit-info']){
 				$("#nombreCiudad").removeClass("nohasEstado");
 				$("#nombreCiudad").addClass("hasEstado");
 				$("#nombreCiudad").off("click");
+				
 			}
 		});
 	}

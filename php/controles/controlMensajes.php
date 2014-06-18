@@ -35,4 +35,14 @@ if(filter_has_var(INPUT_GET,"userReceptor")&&filter_has_var(INPUT_GET,"enviarMns
       }else
             echo json_encode(0);
 }
+/*
+if(filter_has_var(INPUT_GET, "verNumNoLeidos")){
+      session_start();
+      if(isset($_SESSION["userId"])){
+            $userRec = $_SESSION["userId"];
+            $mensajeC = new Mensaje();
+            $mensajeC->setReceptor($userRec);
+            
+            
+}*/
 ?>

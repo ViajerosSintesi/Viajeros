@@ -15,7 +15,7 @@ require_once("../clases/UserClass.php");
  */
     if(filter_has_var(INPUT_GET, "pregunta") && filter_has_var(INPUT_GET, "verRespuestas")){
     	$pregunta = filter_input(INPUT_GET, "pregunta", FILTER_SANITIZE_STRING);
-    	$userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+    	$userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_STRING);
     	$tipo = filter_input(INPUT_GET, "verRespuestas", FILTER_SANITIZE_STRING);
     	$respuestaCiudad = new Respuesta("respuesta".$tipo);
     	
@@ -36,7 +36,7 @@ require_once("../clases/UserClass.php");
     			elseif($valoraciones[$x]["valor"] == 2)$respuestas[$i]["valorPos"]++; 
     		}
     		$respuestas[$i]["valorDelUser"] = $valoracionRespuesta->verValoracionDelUsuario(); 
-    		$user->setId($respuestas[$i]["idUsu"]);
+    		$user->setId(base64_decode($respuestas[$i]["idUsu"]));
     		$user->cogeValoresSegunId();
     		$respuestas[$i]["nombreDelUser"] = $user->getUsername();
     		$respuestas[$i]["imgPerfilUser"] = $user->getImgPerfil();
@@ -65,12 +65,12 @@ require_once("../clases/UserClass.php");
  */
 if(filter_has_var(INPUT_GET,"pregunta")&& filter_has_var(INPUT_GET, "insertarRespuesta")){
 	$pregunta = filter_input(INPUT_GET, "pregunta", FILTER_SANITIZE_STRING);
-	$userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_EMAIL);
+	$userId = filter_input(INPUT_GET, "userId", FILTER_SANITIZE_STRING);
 	$tipo = filter_input(INPUT_GET, "insertarRespuesta", FILTER_SANITIZE_STRING);
 	$respuestaText = filter_input(INPUT_GET, "respuesta", FILTER_SANITIZE_STRING);
 	$data = filter_input(INPUT_GET, "fecha");
 	$respuesta= new Respuesta("respuesta".$tipo);
-	
+
 	$respuesta->setUser($userId);
 	$respuesta->setIdSitio(new MongoId($pregunta));
 	$respuesta->setRespuesta($respuestaText);

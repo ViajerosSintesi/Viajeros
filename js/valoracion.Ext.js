@@ -10,6 +10,7 @@ function enviarValoracion(tipo, valor, user, object){
                         $.getJSON("php/controles/controlValoracionComent.php",
                                     dataEnvio, function(data){
                                     console.log(data);
+                                    alertify.success("Valorado!:)");
                                     });
                         break;
             case 'img':
@@ -19,6 +20,7 @@ function enviarValoracion(tipo, valor, user, object){
                   var dataEnvio = {"valorimg": valor, "imagenId": imgId, "userId": userId};
                   $.getJSON('php/controles/controlValoracionImg.php', dataEnvio, function(data){
                         console.log(data);
+                        alertify.success("Valorado!:)");
                   });
                   break;
             case 'pregunta': 
@@ -28,6 +30,7 @@ function enviarValoracion(tipo, valor, user, object){
                         $.getJSON("php/controles/controlValoracionPregunta.php",
                                     dataEnvio, function(data){
                                     console.log(data);
+                                    alertify.success("Valorado!:)");
                                     });
                         break;
             case 'respuesta': 
@@ -37,6 +40,7 @@ function enviarValoracion(tipo, valor, user, object){
                         $.getJSON("php/controles/controlValoracionRespuesta.php",
                                     dataEnvio, function(data){
                                     console.log(data);
+                                    alertify.success("Valorado!:)");
                                     });
                         break;
             default: break;

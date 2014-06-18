@@ -73,7 +73,7 @@ if(filter_has_var(INPUT_GET,"incluirCiudadUser")){
 	require_once("../clases/UserClass.php");
       require_once("../clases/CiudadClass.php");
 	$ciudad = filter_input(INPUT_GET,"incluirCiudadUser", FILTER_SANITIZE_STRING);
-	$userId = filter_input(INPUT_GET,"user", FILTER_SANITIZE_EMAIL);
+	$userId = filter_input(INPUT_GET,"user", FILTER_SANITIZE_STRING);
       $ciudadId = filter_input(INPUT_GET,"ciudadId", FILTER_SANITIZE_STRING);
 	session_start();
 	if(isset($_SESSION["userId"])){
@@ -84,7 +84,7 @@ if(filter_has_var(INPUT_GET,"incluirCiudadUser")){
 	            $coor = $ciudadC->getCoordenadas();
 	            $param = array('coor'=>$coor, 'direc'=>$ciudad);
 			$user = new User();
-			$user->setId($userId);
+			$user->setId(base64_decode($userId));
 			$user->setLugares($param);
 
 			echo json_encode($user->incluirCiudad());
@@ -109,7 +109,7 @@ if(filter_has_var(INPUT_GET,"saberCiudadUser")){
 	$userId = filter_input(INPUT_GET,"user", FILTER_SANITIZE_EMAIL);
 
 	$user = new User();
-	$user->setId($userId);
+	$user->setId(base64_decode($userId));
 	$user->cogeValoresSegunId();
       $retorn= 0;
 	$lugares = $user->getLugares();

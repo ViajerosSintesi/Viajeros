@@ -17,18 +17,32 @@ function conectar($co="pais"){
 */
 function insertarPais($pais, $info, $coordenadas){
 	$collection = conectar();
-	$parametros = array('pais'=>$pais, 'info'=>$info, 'coordenadas'=>$coordenadas);
-	$cursor = $collection->insert($parametros);
+	$param = array('pais'=>$pais);
+	if($collection->count($param)){
+	      return 0;
+	}else{
+	
+      	$parametros = array('pais'=>$pais, 'info'=>$info, 'coordenadas'=>$coordenadas);
+      	
+      	$cursor = $collection->insert($parametros);
+      	return 1;
+	}
 }
 /**
 * funcion para insertar en mongodb una nueva ciudad.
 * @return no retorna nada.
 * @param $ciudad, $info, $coordenadas,$pertenece, contiene los datos para la insercion en la coleccion de ciudad.
 */
-function insertarCiudad($ciudad, $info, $coordenadas, $pertenece){
+function insertarCiudad($ciudad, $info, $coordenadas, $pertenece, $nomPais){
 	$collection = conectar("ciudad");
-	$parametros = array('ciudad'=>$ciudad, 'info'=>$info, 'coordenadas'=>$coordenadas, 'idPais'=>new MongoId($pertenece));
-	$cursor = $collection->insert($parametros);
+	$param = array('ciudad'=>$ciudad,'idPais'=>new MongoId($pertenece));
+	if($collection->count($param)){
+	      return 0;
+	}else{
+	      $parametros = array('ciudad'=>$ciudad, 'info'=>$info, 'coordenadas'=>$coordenadas, 'idPais'=>new MongoId($pertenece), 'pais'=>$nomPais);
+      	$cursor = $collection->insert($parametros);
+      	return 1;
+	}
 }
 /** 
 * funcion que conecta a mongo y devuelve la informacion de la colleccion pais

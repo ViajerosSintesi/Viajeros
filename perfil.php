@@ -57,8 +57,8 @@ $coor=json_encode($coor["lugares"]);
 	<script src="js/alertify.min.js"></script>
 	<script src="js/ajax.js"></script>
 	<script src="js/buscador.js"></script>
-	<script src="js/comun.Ext.js"></script>
-	<script src="js/perfil.Ext.js"></script>
+	<script src="js/comun.js"></script>
+	<script src="js/perfil.js"></script>
 
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </head>
