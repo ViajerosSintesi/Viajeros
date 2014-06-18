@@ -61,12 +61,13 @@ if(filter_has_var(INPUT_GET, "verificar")){
 
 	$email = base64_decode($codActivacion);
 	      //echo $email;
+	$email = iconv('UTF-8', 'UTF-8//IGNORE', $email);
 	$user = new User();
 	$user->setId($email);
 	$user->cogeValoresSegunId();
 	$user->activarUser();
-
-	header("location:http://viajeros.herokuapp.com/index.php?ref=1");
+       
+	header("location:http://viajeros-c9-txemens.c9.io/index.php?ref=1");
 
 }
 

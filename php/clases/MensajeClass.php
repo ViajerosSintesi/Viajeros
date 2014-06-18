@@ -26,7 +26,6 @@ class Mensaje {
     }
     public function mensjToArray(){
 	    $this->mensajeArray = array(
-	                      "_id" => $this->id,
 	                      "remitente" => $this->remitente,
 	                      "receptor" => $this->receptor,
 	                      "texto" => $this->texto,

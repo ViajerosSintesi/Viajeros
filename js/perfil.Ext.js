@@ -73,7 +73,23 @@ $(function(){
                         : 'img/33.png';
                         $("#ico-menu").attr('src', src);
                   });
-            });*/        
+            });*/
+            $("#enviaMensaje").click(function(){
+                  alertify.prompt("Dejale un mensaje: ", function(e, str){
+                        if(e){
+                              var userId = $("#userIdForImg").val();
+                              var data = new Date().toString();
+                              var dataEnvio = {"userReceptor": userId, "texto":str, "fecha": data, "enviarMnsj":1};
+                              
+                              $.getJSON("php/controles/controlMensajes.php", dataEnvio, function(data){
+                                    if(data)
+                                          alertify.success("enviado correctamente");
+                                    else
+                                          alertify.error("No se ha podido enviar :(");
+                              }); 
+                        }
+                  });   
+            });
 });
 /**
  *
@@ -109,12 +125,14 @@ function subirImgPerfil(){
                   	processData: false,
                   	success: function(data){
                   	     //si todo va bien, vuelve a cargar los datos
-                  	    if(data==1) cargarDatos();
-                  	    else alertify.alert("no se ha subido");// <<<<-----No alerts loco!
+                  	    if(data==1){ 
+                  	          alertify.success("Subido perfectamente!");
+                  	          cargarDatos();}
+                  	    else alertify.error("no se ha subido");// <<<<-----No alerts loco!
                   	}
                   });
 		}else {
-		      alertify.alert("La imagen es demasiado grande o no cumple el formato correcto");
+		      alertify.error("La imagen es demasiado grande o no cumple el formato correcto");
 		}
 }
 /**
@@ -208,9 +226,9 @@ function modPerfil(){
             $.post('php/controles/modificarPerfil.php', dataEnvio, function(data){
                   var not = JSON.parse(data);
                   if(not.notice)
-                        alertify.alert('Datos modificados correctamente!');
+                        alertify.success('Datos modificados correctamente!');
                   else 
-                        alertify.alert(':) Ha habido algun problema al actualizar los datos');
+                        alertify.error(':( Ha habido algun problema al actualizar los datos');
                   cargarDatos();
                   $("#info").show();
       	      $("#form-info").hide();
@@ -253,7 +271,7 @@ function subirFotos(){
                 
                         //si todo va bien, vuelve a cargar los datos
                         if(data==1) cargarDatos();
-                              else alertify.alert("no se ha subido");// <<<<-----No alerts loco!
+                              else alertify.error("no se ha subido");// <<<<-----No alerts loco!
                         }
                   
             });

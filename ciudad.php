@@ -94,7 +94,7 @@ if(@$_POST['edit-info']){
 	});
 
 	function heEstadoAqui(user, ciudad, ciudadId){
-		if(confirm("Has estado en "+ciudad+"?")){
+		if(alertify.confirm("Has estado en "+ciudad+"?")){
 			var dataForName = {"incluirCiudadUser": ciudad, "user": user, "ciudadId": ciudadId};
 			$.getJSON("php/controles/controlCiudad.php", dataForName, function(data){
 				if(data == true){
