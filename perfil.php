@@ -58,7 +58,7 @@ $coor=json_encode($coor["lugares"]);
 	<script src="js/ajax.js"></script>
 	<script src="js/buscador.js"></script>
 	<script src="js/comun.js"></script>
-	<script src="js/perfil.js"></script>
+	<script src="js/perfil.Ext.js"></script>
 
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </head>
@@ -135,8 +135,9 @@ if(filter_has_var(INPUT_GET,"ref"))
 					<table>
 						<tr><th><label for="">Nombre: </label></th><td><input type="text" name="nombre" id="perfil-nombre"></td></tr>
 						<tr><th><label for="">Apellidos: </label></th><td><input type="text" name="apellido" id="perfil-apellidos"></td></tr>
-						<tr><th><label for="">Email: </label></th><td><input type="text" name="email" id="perfil-email"></td></tr>
+						<tr><th><label for="">Email: </label></th><td><input type="email" name="email" id="perfil-email"></td></tr>
 						<tr><th><label for="">Password: </label></th><td><input type="password" name="password" id="perfil-password"></td></tr>
+						<tr><th><label for="">respite el password: </label></th><td><input type="password" name="repassword" id="perfil-repassword"></td></tr>
 						<tr><th><label for="">Privacidad: </label></th><td><select id="privacidad" name="privacidad">
 						<option value="0">Publico</option>
 					      <option value="1">Privado</option>
@@ -195,7 +196,7 @@ if(filter_has_var(INPUT_GET,"ref"))
 			<div id="titulo">
 				<h1>Lugares</h1>
 			</div>
-			<div id="map-div"></div>
+			<div id="map-div"><?php echo $coor?></div>
 		</div>
 		<!-- Codigo javascript para cargar el mapa -->
 		<script>

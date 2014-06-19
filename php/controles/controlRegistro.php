@@ -40,7 +40,10 @@ if(filter_has_var(INPUT_POST, "user") && filter_has_var(INPUT_POST, "mail") && f
 	if($_SESSION["captcha"] != $code){
 		$returnReg = 3;
 	} else{
+	     
 	      if(!$newUser->userIfExistInBBDD()){
+		      
+		      
 		      $returnReg = $newUser->guardarUser();
       	   
 		      if($returnReg) $newUser->enviaEmailConfirm();

@@ -29,10 +29,9 @@ $("#subir-foto").click(function(){
 $(".cerrar-cuadro").click(function(){
 	$("#bg-cuadro").hide();
 });*/
- $("#formfotos").submit(subirFotos);
-
+ 
 function subirFotos(){
-      
+      //alertify.alert("hhol");
       var file = $("#picture")[0].files[0];
 	//obtenemos el nombre del archivo
 	var fileName = file.name;
@@ -63,13 +62,16 @@ function subirFotos(){
             	success: function(data){
                 
                         //si todo va bien, vuelve a cargar los datos
-                        if(data==1) cargarDatos();
-                              else alert("no se ha subido");// <<<<-----No alerts loco!
+                        if(data==1){
+                              alertify.success("se ha subido!!");
+                              cargarDatos();
+                        } 
+                        else alertify.error("no se ha subido!");// <<<<-----No alerts loco!
                         }
                   
             });
 	}else {
-	      alert("La imagen es demasiado grande o no cumple el formato correcto");
+	      alertify.error("La imagen es demasiado grande o no cumple el formato correcto");
 	}
       
 }
@@ -131,3 +133,5 @@ END;
 	</div>
 </div>
 
+<script>$("#formFotos").submit(subirFotos);
+</script>

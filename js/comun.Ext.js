@@ -62,6 +62,7 @@ function borrarImagen(imgId, carga){
       $.getJSON('php/controles/controlImagen.php', dataEnvio, function(data){
             console.log(data);
             if(data){
+                  alertify.success("imagen borrada!");
                    location.reload(true);
             }else
                   alertify.error("no se ha podido borrar!");

@@ -66,7 +66,8 @@ class User{
      * @return int   valor numerico de filas identicas
      */
 	public function userIfExistInBBDD(){
-		return $this->bbdd->contar($this->userInArray);
+	      
+		return $this->bbdd->contar(array("_id"=>$this->id));
 	}
 
 	/**

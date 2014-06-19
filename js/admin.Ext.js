@@ -81,7 +81,8 @@ $(function(){
 			document.enviar.coordenadasCiudad.value=coordenadasCiudad;
 			document.enviar.pertenecePais.value=pertenecePais;
       		document.enviar.submit();
-		}
+		}else
+		      alertify.error("hay errores!!!");
 		return false;
 	});
 });

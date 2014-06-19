@@ -216,6 +216,7 @@ function modPerfil(){
       var apellidos = $("#perfil-apellidos").val();
       var mail =  $("#perfil-email").val();
 	var pass =  $("#perfil-password").val();
+	var repass =  $("#perfil-repassword").val();
 	var privacidad =  $("#privacidad").val();
 	var dataEnvio = {"modPerfil": 1, "username": username, "apellidos":apellidos, "email": mail, "password": pass, "privacidad": privacidad};
 		// validacion username
@@ -224,18 +225,28 @@ function modPerfil(){
             $("#cargaAjax").remove();
 	      document.getElementById("no_modifico").innerHTML="El campo nombre no puede estar vacio y el password debe tener almenos 5 digitos";
       }else{*/
-            $.post('php/controles/modificarPerfil.php', dataEnvio, function(data){
-                  var not = JSON.parse(data);
-                  if(not.notice)
-                        alertify.success('Datos modificados correctamente!');
-                  else 
-                        alertify.error(':( Ha habido algun problema al actualizar los datos');
-                  cargarDatos();
-                  $("#info").show();
-      	      $("#form-info").hide();
-      	      //$("#cargaAjax").dialog("close");
-                  //$("#cargaAjax").remove();
-            });
+            var pasa = 0;
+            if(pass.length>0){
+                  if(pass == repass){
+                        pasa = 1
+                  }else
+                        alertify.error("las contraseñas no coinciden!");
+            }else pasa = 1;
+            if(pasa){
+                  $.post('php/controles/modificarPerfil.php', dataEnvio, function(data){
+                        var not = JSON.parse(data);
+                        if(not.notice)
+                              alertify.success('Datos modificados correctamente!');
+                        else 
+                              alertify.error(':( Ha habido algun problema al actualizar los datos');
+                        cargarDatos();
+                        $("#info").show();
+            	      $("#form-info").hide();
+            	      //$("#cargaAjax").dialog("close");
+                        //$("#cargaAjax").remove();
+                  });
+            }
+            
 	//}
 }
 

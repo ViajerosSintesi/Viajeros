@@ -128,8 +128,8 @@ if(filter_has_var(INPUT_GET, "pais")){
 	for($i=0; $i<count($ciudadesDelPais);$i++){
 		$imagen = new Imagen();
 		$imagen->setCiudad($ciudadesDelPais[$i]["ciudad"]);
-
-		echo json_encode($imagen->darImagenes(false));
+            if($imagenes = $imagen->darImagenes(false))
+		      echo json_encode($imagenes);
 	}
 }
 

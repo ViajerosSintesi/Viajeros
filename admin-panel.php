@@ -72,7 +72,7 @@ if(@$_POST['guardarCiudad']){
 	$idPais = $pais[0];
 	$nomPais = $pais[1];
 	if(insertarCiudad($_POST['nombreCiudad'], $_POST['infoCiudad'], $coordenadasCiudad, $idPais, $nomPais))
-	      echo "<script>alertify.success('Pais Insertado :)')</script>";
+	      echo "<script>alertify.success('Ciudad Insertada :)')</script>";
 	 else
 	      echo "<script>alertify.error('ya existe :(')</script>";
 	 
