@@ -39,7 +39,7 @@ class DBMongo{
 	 */
 	public function conectar(){
 	    $this->dbUser = "txemens";
-	    $this->dbPass = "h0lita";
+	    $this->dbPass = "*******";
 	    $this->db = "viajeros";
 	    $this->server = "mongodb://".$this->dbUser.":".$this->dbPass."@ds043329.mongolab.com:43329/viajeros";
 	    
